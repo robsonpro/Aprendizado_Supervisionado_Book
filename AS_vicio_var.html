@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>2&nbsp; Conflito entre vício e variância no Aprendizado supervisionado – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>2&nbsp; Conflito entre vício e variância no aprendizado supervisionado – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_vicio_var.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no Aprendizado supervisionado</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_vicio_var.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -173,7 +173,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -185,7 +185,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no Aprendizado supervisionado</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -204,7 +204,7 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#conflito-entre-vício-e-variância" id="toc-conflito-entre-vício-e-variância" class="nav-link active" data-scroll-target="#conflito-entre-vício-e-variância"><span class="header-section-number">2.1</span> Conflito entre vício e variância</a></li>
+  <li><a href="#intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão" id="toc-intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão" class="nav-link active" data-scroll-target="#intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão"><span class="header-section-number">2.1</span> Intuição e conflito entre vício e variância em problemas de regressão</a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">2.2</span> Implementações em R</a></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
@@ -215,7 +215,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no Aprendizado supervisionado</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></h1>
 </div>
 
 
@@ -238,15 +238,15 @@ window.Quarto = {
 </header>
 
 
-<section id="conflito-entre-vício-e-variância" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="conflito-entre-vício-e-variância"><span class="header-section-number">2.1</span> Conflito entre vício e variância</h2>
+<section id="intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão"><span class="header-section-number">2.1</span> Intuição e conflito entre vício e variância em problemas de regressão</h2>
 <p>Seja uma variável regressora ou independente <span class="math inline">\(x \in \mathbb{R}\)</span> e uma resposta ou variável dependente igualmente medida em uma escala contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>.</p>
 <p>Deseja-se aproximar uma função desconhecida, <span class="math inline">\(f(x)\)</span>, que relaciona <span class="math inline">\(y\)</span> e <span class="math inline">\(x\)</span>. Tal aproximação pode ser feita minimizando uma função perda, <span class="math inline">\(L(y,f(x))\)</span>, que mede os erros de previsão.</p>
 <p>A função perda mais comum para problemas de regressão é a função perda quadrática, conforme segue.</p>
 <p><span class="math display">\[
 L(y,f(x)) = (y-f(x))^2
 \]</span></p>
-<p>Seja um conjunto de dados disponível, <span class="math inline">\(D = {(x_1,y_1), (x_2,y_2), ..., (x_n,y_n)}\)</span>, conforme o observado graficamente na <a href="AS_reg_ols.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>. As observações da variável independente podem ser descritas em relação à função desconhecida adicionada de um termo de erro, <span class="math inline">\(y = f(x) + \varepsilon\)</span>, <span class="math inline">\(E(\varepsilon)=0\)</span>, <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span>.</p>
+<p>Seja um conjunto de dados disponível, <span class="math inline">\(D = {(x_1,y_1), (x_2,y_2), ..., (x_n,y_n)}\)</span>, conforme o observado graficamente na <a href="AS_reg_ols.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>. As observações da variável independente podem ser descritas em relação à função desconhecida adicionada de um termo de erro, <span class="math inline">\(y = f(x) + \varepsilon\)</span>, <span class="math inline">\(E(\varepsilon)=0\)</span>, <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span>. O erro das medições tem variância <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span> e consiste no erro irredutível. Este erro está associado à qualidade dos dados. Portanto, sua variabilidade terá implicação no erro do modelo estimado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -261,26 +261,43 @@ Figura&nbsp;2.1: Exemplo de dados para regressão linear simples
 </div>
 </div>
 </div>
-<p>É possível decompor a esperança da função perda considerando um modelo estimado, <span class="math inline">\(\hat f(x)\)</span>, conforme segue.</p>
+<p>Seja um amplo número de cojuntos de dados <span class="math inline">\(D\)</span> distintos e tomados de forma independente da população, todos de tamanho <span class="math inline">\(N\)</span>. Para um destes podemos aplicar um algoritmo para obter uma aproximação <span class="math inline">\(\hat f_D(x)\)</span>. Obviamente cada conjunto de dados resultará em uma aproximação diferente, com perda distinta. Para medir o desempenho de um algoritmo ou método pode-se considerar a média de todos modelos obtidos via conjuntos de dados distintos.</p>
+<p>Seja o erro quadrático de um modelo em relação à função desconhecida.</p>
 <p><span class="math display">\[
-E[(y-\hat f(x))^2] = Var[\hat f(x)] + Vicio^2[\hat f(x)] + Var[\varepsilon]
+\{\hat f_D(x) - f(x)\}^2
 \]</span></p>
-<p>Para um conjunto de dados disponíveis, <span class="math inline">\(D\)</span>, tem-se para o vício:</p>
+<p>Seja a média de distintos modelos considerando distintos <em>data sets</em>, <span class="math inline">\(E_D[\hat f_D(x)]\)</span>. Somando e subtraindo este termo dentro da perda quadrática, tem-se:</p>
+<p><span class="math display">\[
+\begin{align}
+\{\hat f_D(x) - f(x)\}^2 =&amp; \{\hat f_D(x) - E_D[\hat f_D(x)] + E_D[\hat f_D(x)] - f(x)\}^2\\
+\{\hat f_D(x) - f(x)\}^2 =&amp; \{\underbrace{(\hat f_D(x) - E_D[\hat f_D(x)])}_\text{a} + \underbrace{(E_D[\hat f_D(x)] - f(x))}_\text{b}\}^2\\
+\end{align}
+\]</span></p>
+<p>Desenvolvendo o quadrado, tem-se:</p>
+<p><span class="math display">\[
+\begin{align}
+\{\hat f_D(x) - f(x)\}^2 = (\hat f_D(x) - E_D[\hat f_D(x)])^2 + 2(\hat f_D(x) - E_D[\hat f_D(x)])(E_D[\hat f_D(x)] - f(x)) + (E_D[\hat f_D(x)] - f(x))^2
+\end{align}
+\]</span></p>
+<p>Tomando a média (esperança, <span class="math inline">\(E\)</span>) em relação ao conjuntos de dados, <span class="math inline">\(D\)</span>, o segundo termo se anulará, pois <span class="math inline">\(E_D \{\hat f_D(x) - E_D[\hat f_D] \}\)</span>=0. Logo:</p>
+<p><span class="math display">\[
+E_D\{\hat f_D(x) - f(x)\}^2 = \underbrace{E_D\{\hat f_D(x) - E_D[\hat f_D(x)]\}^2}_\text{variância} + \underbrace{\{E_D[\hat f_D(x)] - f(x)\}^2}_\text{vício}
+\]</span></p>
+<p>Tem-se para o vício:</p>
 <p><span class="math display">\[
 \begin{aligned}
-Vicio_D[\hat f(x)] &amp;= E_D[\hat f(x) - f(x)] = E_D[\hat f(x) - y + \varepsilon] \\
-Vicio_D[\hat f(x)] &amp;= E_D[\hat f(x)] - E_D[y]
+Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0) - f(x_0)] = E_D[\hat f(x_0) - (y + \varepsilon)] \\
+Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0)] - E_D[y]
 \end{aligned}
 \]</span></p>
 <p>E para a variância:</p>
 <p><span class="math display">\[
 \begin{aligned}
-Var_D[\hat f(x)] &amp;= E_D[(\hat f(x) - \hat f(x))^2]
+Var_D[\hat f(x)] &amp;= E_D[(\hat f_D(x) - E_D{\hat f(x)})^2]
 \end{aligned}
 \]</span></p>
-<p>O erro associado às medições, <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span>, consiste no erro irredutível. Este erro está associado à qualidade dos dados. Portanto sua variabilidade terá implicação no erro do modelo estimado.</p>
 <p>Seja o ajuste aos dados disponíveis de três modelos de regressão com distintas complexidades, um linear, um cúbico e um modelo polinomial de décima ordem.</p>
-<p>Tais modelos são da forma que segue:</p>
+<p>Tais modelos apresentam as seguintes formas:</p>
 <p><span class="math display">\[
 \begin{matrix}
 y_1 = \beta_0 + \beta_1x\\
@@ -538,13 +555,6 @@ Figura&nbsp;2.6: Erro para dados de treino e teste
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"ordem"</span>, <span class="at">y =</span> <span class="st">"erro"</span>) <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="AS_vicio_var_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred, <span class="fu">aes</span>(<span class="at">x=</span>vicio, <span class="at">fill =</span> <span class="fu">as.factor</span>(model))) <span class="sc">+</span></span>
@@ -552,13 +562,6 @@ Figura&nbsp;2.6: Erro para dados de treino e teste
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"densidade"</span>, <span class="at">x =</span> <span class="st">"erro"</span>, <span class="at">fill =</span> <span class="st">"ordem"</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="AS_vicio_var_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 <p>Simulando o conflito para um caso com poucas observações disponíveis.</p>
 <div class="cell">
