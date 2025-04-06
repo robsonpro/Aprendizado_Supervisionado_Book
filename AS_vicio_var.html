@@ -313,7 +313,7 @@ y_{10} = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + \beta_4x^4 + ... + \beta
 <img src="AS_vicio_var_files/figure-html/fig-lmdata-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.2: Modelo de regressão linear simples
+Figura&nbsp;2.2: Modelo de regressão simples
 </figcaption>
 </figure>
 </div>
@@ -419,7 +419,22 @@ Tabela&nbsp;2.2: Variância versus complexidade dos modelos
 </figure>
 </div>
 </div>
-<p>Em casos onde o número de observações é baixo o conflito entre vício e variância fica mais claro. Considerando o exemplo plotado na <a href="#fig-fewdata" class="quarto-xref">Figura&nbsp;<span>2.5</span></a>, pode-se observar que enquanto o modelo linear apresenta um baixo ajuste, o modelo polinomial de décima ordem apresenta um sobreajuste, uma vez que praticamente interpola os dados disponíveis. Este último apresentará um ajuste muito além do real, uma vez que sua capacidade não se confirmará para dados futuros.</p>
+<p>A <a href="#fig-lm3sim" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> plota os 1000 modelos cúbicos obtidos com distintos conjuntos de dados em verde em torno do modelo real. Pode-se observar que o conjunto de dados pode influenciar nos modelos, mas a média de diversos modelos cúbicos certamente apresentará um bom equilíbrio entre vício e variância para estes dados.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lm3sim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lm3sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_vicio_var_files/figure-html/fig-lm3sim-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm3sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.5: Modelo cúbicos obtidos com distintos conjuntos de dados e modelo real
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Em casos onde o número de observações é baixo o conflito entre vício e variância pode ficar mais claro. Considerando o exemplo plotado na <a href="#fig-fewdata" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>, pode-se observar que enquanto o modelo linear apresenta um baixo ajuste, o modelo polinomial de décima ordem apresenta um sobreajuste, uma vez que praticamente interpola os dados disponíveis. Este último apresentará um ajuste muito além do real, uma vez que sua capacidade não se confirmará para dados futuros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fewdata" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -428,13 +443,13 @@ Tabela&nbsp;2.2: Variância versus complexidade dos modelos
 <img src="AS_vicio_var_files/figure-html/fig-fewdata-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fewdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.5: Modelos com ordens distintas ajustados a um conjunto de dados com poucas observações
+Figura&nbsp;2.6: Modelos com ordens distintas ajustados a um conjunto de dados com poucas observações
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>2.6</span></a> apresenta o erro ou valor da função perda de tais modelos para dados de treino e dados de teste ou futuros.</p>
+<p>A <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>2.7</span></a> apresenta o erro ou valor da função perda de tais modelos para dados de treino e dados de teste ou futuros.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erro" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -443,7 +458,7 @@ Figura&nbsp;2.5: Modelos com ordens distintas ajustados a um conjunto de dados c
 <img src="AS_vicio_var_files/figure-html/fig-erro-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-erro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.6: Erro para dados de treino e teste
+Figura&nbsp;2.7: Erro para dados de treino e teste
 </figcaption>
 </figure>
 </div>
