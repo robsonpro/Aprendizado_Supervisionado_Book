@@ -194,6 +194,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -246,7 +252,7 @@ window.Quarto = {
 <p><span class="math display">\[
 L(y,f(x)) = (y-f(x))^2
 \]</span></p>
-<p>Seja um conjunto de dados disponível, <span class="math inline">\(D = {(x_1,y_1), (x_2,y_2), ..., (x_n,y_n)}\)</span>, conforme o observado graficamente na <a href="AS_reg_ols.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>. As observações da variável independente podem ser descritas em relação à função desconhecida adicionada de um termo de erro, <span class="math inline">\(y = f(x) + \varepsilon\)</span>, <span class="math inline">\(E(\varepsilon)=0\)</span>, <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span>. O erro das medições tem variância <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span> e consiste no erro irredutível. Este erro está associado à qualidade dos dados. Portanto, sua variabilidade terá implicação no erro do modelo estimado.</p>
+<p>Seja um conjunto de dados disponível, <span class="math inline">\(D = {(x_1,y_1), (x_2,y_2), ..., (x_n,y_n)}\)</span>, conforme o observado graficamente na <a href="AS_reg_ols.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>. As observações da variável dependente podem ser descritas em relação à função desconhecida adicionada de um termo de erro, <span class="math inline">\(y = f(x) + \varepsilon\)</span>, <span class="math inline">\(E(\varepsilon)=0\)</span>, <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span>. O erro das medições tem variância <span class="math inline">\(Var(\varepsilon) = \sigma^2_\varepsilon\)</span> e consiste no erro irredutível. Este erro está associado à qualidade dos dados. Portanto, sua variabilidade terá implicação no erro do modelo estimado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -261,7 +267,7 @@ Figura&nbsp;2.1: Exemplo de dados para regressão linear simples
 </div>
 </div>
 </div>
-<p>Seja um amplo número de cojuntos de dados <span class="math inline">\(D\)</span> distintos e tomados de forma independente da população, todos de tamanho <span class="math inline">\(N\)</span>. Para um destes podemos aplicar um algoritmo para obter uma aproximação <span class="math inline">\(\hat f_D(x)\)</span>. Obviamente cada conjunto de dados resultará em uma aproximação diferente, com perda distinta. Para medir o desempenho de um algoritmo ou método pode-se considerar a média de todos modelos obtidos via conjuntos de dados distintos.</p>
+<p>Seja um amplo número de conjuntos de dados <span class="math inline">\(D\)</span> distintos e tomados de forma independente da população, todos de tamanho <span class="math inline">\(N\)</span>. Para cada um destes podemos aplicar um algoritmo para obter uma aproximação <span class="math inline">\(\hat f_D(x)\)</span>. Obviamente cada conjunto de dados resultará em uma aproximação diferente, com perda distinta. Para medir o desempenho de um algoritmo ou método pode-se considerar a média de todos modelos obtidos via conjuntos de dados distintos.</p>
 <p>Seja o erro quadrático de um modelo em relação à função desconhecida.</p>
 <p><span class="math display">\[
 \{\hat f_D(x) - f(x)\}^2
@@ -563,7 +569,7 @@ Figura&nbsp;2.9: Erro para dados de treino e teste
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>E_y</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">999</span>) {</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data_ <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="fu">f_sin</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span>
