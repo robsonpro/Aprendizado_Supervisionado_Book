@@ -224,12 +224,10 @@ window.Quarto = {
   <li><a href="#conceitos-iniciais" id="toc-conceitos-iniciais" class="nav-link active" data-scroll-target="#conceitos-iniciais"><span class="header-section-number">6.1</span> Conceitos iniciais</a></li>
   <li><a href="#validação-cruzada-por-dados-de-treino-e-teste" id="toc-validação-cruzada-por-dados-de-treino-e-teste" class="nav-link" data-scroll-target="#validação-cruzada-por-dados-de-treino-e-teste"><span class="header-section-number">6.2</span> Validação cruzada por dados de treino e teste</a></li>
   <li><a href="#validação-cruzada-por-k-dobras" id="toc-validação-cruzada-por-k-dobras" class="nav-link" data-scroll-target="#validação-cruzada-por-k-dobras"><span class="header-section-number">6.3</span> Validação cruzada por <span class="math inline">\(k\)</span>-dobras</a></li>
-  <li><a href="#validação-cruzada-por-leave-one-out" id="toc-validação-cruzada-por-leave-one-out" class="nav-link" data-scroll-target="#validação-cruzada-por-leave-one-out"><span class="header-section-number">6.4</span> Validação cruzada por <em>leave-one-out</em></a>
-  <ul class="collapse">
-  <li><a href="#grid-search" id="toc-grid-search" class="nav-link" data-scroll-target="#grid-search"><span class="header-section-number">6.4.1</span> <em>Grid search</em></a></li>
-  <li><a href="#exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" id="toc-exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" class="nav-link" data-scroll-target="#exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida"><span class="header-section-number">6.4.2</span> Exemplo: Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção do hiperparâmetro de encolhimento em regressão rígida</a></li>
-  </ul></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">6.5</span> Implementações em R</a></li>
+  <li><a href="#validação-cruzada-por-leave-one-out" id="toc-validação-cruzada-por-leave-one-out" class="nav-link" data-scroll-target="#validação-cruzada-por-leave-one-out"><span class="header-section-number">6.4</span> Validação cruzada por <em>leave-one-out</em></a></li>
+  <li><a href="#grid-search" id="toc-grid-search" class="nav-link" data-scroll-target="#grid-search"><span class="header-section-number">6.5</span> <em>Grid search</em></a></li>
+  <li><a href="#exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" id="toc-exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" class="nav-link" data-scroll-target="#exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida"><span class="header-section-number">6.6</span> Exemplo: Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção do hiperparâmetro de encolhimento em regressão rígida</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">6.7</span> Implementações em R</a></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
 </nav>
@@ -314,8 +312,9 @@ Figura&nbsp;6.1: Validação cruzada via k-dobras
 <h2 data-number="6.4" class="anchored" data-anchor-id="validação-cruzada-por-leave-one-out"><span class="header-section-number">6.4</span> Validação cruzada por <em>leave-one-out</em></h2>
 <p>O método <em>leave-one-out</em> (LOO) é um caso particular do <span class="math inline">\(k\)</span>-dobras para <span class="math inline">\(k = N\)</span>, ou seja, considera uma observação em cada partição ou dobra. É geralmente utilizado para casos onde há poucas observações disponíveis. Para a primeira dobra um modelo é estimado para as <span class="math inline">\(N-1\)</span> observações remanescentes e testado na primeira observação. Tomando por exemplo a métrica <span class="math inline">\(MSE\)</span>, o erro é estimado como <span class="math inline">\((y_1-\hat{y}_1)^2\)</span>, uma estimativa com pouco viés mas com alta variância devido o tamanho amostral unitário, portanto limitado.</p>
 <p>A maior vantagem do <span class="math inline">\(k\)</span>-dobras para o LOO é o tempo computacional. Tomando <span class="math inline">\(k=10\)</span>, por exemplo, serão estimados 10 modelos, enquanto a validação via LOO estimará <span class="math inline">\(N\)</span>, o que pode implicar em alto tempo computacional para tamanhos amostrais grandes, especialmente para métodos de aprendizado mais complexos (GARETH et al., 2013). Para métodos de origem na estatística, como os modelos de regressão por mínimos quadrados, é possível estimar o erro via LOO sem necessariamente fazer um loop, mas considerando o erro de previsão do modelo a partir da matriz chapéu. Para mais detalhes ver Hastie et al.&nbsp;(2009).</p>
-<section id="grid-search" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">6.4.1</span> <em>Grid search</em></h3>
+</section>
+<section id="grid-search" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">6.5</span> <em>Grid search</em></h2>
 <p><em>Grid search</em> consiste em uma busca dos níveis adequados dos hiperparâmetros considerando por exemplo um <em>grid</em> ou uma malha de combinações possíveis dos níveis de interesse dos hiperparâmetros em questão. Dependendo do método de aprendizado utilizado a busca torna-se mais difícil e custosa computacionalmente, devido ao número de hiperparâmetros a serem otimizados.</p>
 <p>Por exemplo, no caso do aprendizado utilizando regressão por vetores de suporte, deve-se definir o melhor kernel, além dos níveis ótimos da constante de regularização, <span class="math inline">\(C\)</span>, e do erro máximo da função perda insensitiva <span class="math inline">\(\varepsilon\)</span>. Dependendo do tipo de kernel utilizado, outros hiperparâmetros devem ser otimizados.</p>
 <p>Seja o caso onde supostamente sabe-se que o kernel polinomial é o mais adequado e deseja-se otimizar <span class="math inline">\(C\)</span> e o grau do polinômio. Um possível grid regular de hiperparâmetros a ser testado é plotado na <a href="#fig-gridsvm" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
@@ -337,8 +336,8 @@ Figura&nbsp;6.2: Exemplo de <em>grid</em> regular para máquinas de vetores de s
 <p>Existem diversas técnicas para realizar o <em>grid search</em> de forma mais eficiente, evitando a busca em regiões que tendem a apresentar baixo desempenho dos modelos. Há pacotes computacionais que viabilizam a aplicação de tais técnicas.</p>
 <p>O <em>grid search</em> deve ser usado junto com a validação cruzada. Por exemplo, ao se usar a validação cruzada via <span class="math inline">\(k\)</span>-dobras, uma busca exaustiva testará cada combinação dos níveis de interesse dos hiperparâmetros em cada dobra.</p>
 </section>
-<section id="exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida"><span class="header-section-number">6.4.2</span> Exemplo: Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção do hiperparâmetro de encolhimento em regressão rígida</h3>
+<section id="exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="exemplo-validação-cruzada-por-k-dobras-com-grid-search-para-seleção-do-hiperparâmetro-de-encolhimento-em-regressão-rígida"><span class="header-section-number">6.6</span> Exemplo: Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção do hiperparâmetro de encolhimento em regressão rígida</h2>
 <p>Sejam os dados de medições de massa de órgãos de 30 focas mortas não intencionalmente em consequência da pesca comercial.</p>
 <p>Consideremos um problema de previsão da idade destes animais em função da massa total, massa do coração, do fígado, do estômago e do rim. A <a href="#tbl-datafocas" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> expõe algumas linhas do conjunto de dados.</p>
 <div class="cell">
@@ -349,23 +348,23 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
 </figcaption>
 <div aria-describedby="tbl-datafocas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="syrnscyykr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#syrnscyykr table {
+<div id="ewkqkruvyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ewkqkruvyz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#syrnscyykr thead, #syrnscyykr tbody, #syrnscyykr tfoot, #syrnscyykr tr, #syrnscyykr td, #syrnscyykr th {
+#ewkqkruvyz thead, #ewkqkruvyz tbody, #ewkqkruvyz tfoot, #ewkqkruvyz tr, #ewkqkruvyz td, #ewkqkruvyz th {
   border-style: none;
 }
 
-#syrnscyykr p {
+#ewkqkruvyz p {
   margin: 0;
   padding: 0;
 }
 
-#syrnscyykr .gt_table {
+#ewkqkruvyz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -391,12 +390,12 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-left-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_caption {
+#ewkqkruvyz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#syrnscyykr .gt_title {
+#ewkqkruvyz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -408,7 +407,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-width: 0;
 }
 
-#syrnscyykr .gt_subtitle {
+#ewkqkruvyz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -420,7 +419,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-width: 0;
 }
 
-#syrnscyykr .gt_heading {
+#ewkqkruvyz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -432,13 +431,13 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_bottom_border {
+#ewkqkruvyz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_col_headings {
+#ewkqkruvyz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -453,7 +452,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_col_heading {
+#ewkqkruvyz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -473,7 +472,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#syrnscyykr .gt_column_spanner_outer {
+#ewkqkruvyz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -485,15 +484,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 4px;
 }
 
-#syrnscyykr .gt_column_spanner_outer:first-child {
+#ewkqkruvyz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#syrnscyykr .gt_column_spanner_outer:last-child {
+#ewkqkruvyz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#syrnscyykr .gt_column_spanner {
+#ewkqkruvyz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -505,11 +504,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   width: 100%;
 }
 
-#syrnscyykr .gt_spanner_row {
+#ewkqkruvyz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#syrnscyykr .gt_group_heading {
+#ewkqkruvyz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -535,7 +534,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   text-align: left;
 }
 
-#syrnscyykr .gt_empty_group_heading {
+#ewkqkruvyz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -550,15 +549,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: middle;
 }
 
-#syrnscyykr .gt_from_md > :first-child {
+#ewkqkruvyz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#syrnscyykr .gt_from_md > :last-child {
+#ewkqkruvyz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#syrnscyykr .gt_row {
+#ewkqkruvyz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -577,7 +576,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#syrnscyykr .gt_stub {
+#ewkqkruvyz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -590,7 +589,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#syrnscyykr .gt_stub_row_group {
+#ewkqkruvyz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -604,15 +603,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: top;
 }
 
-#syrnscyykr .gt_row_group_first td {
+#ewkqkruvyz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#syrnscyykr .gt_row_group_first th {
+#ewkqkruvyz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#syrnscyykr .gt_summary_row {
+#ewkqkruvyz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -622,16 +621,16 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#syrnscyykr .gt_first_summary_row {
+#ewkqkruvyz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_first_summary_row.thick {
+#ewkqkruvyz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#syrnscyykr .gt_last_summary_row {
+#ewkqkruvyz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -641,7 +640,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_grand_summary_row {
+#ewkqkruvyz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -651,7 +650,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#syrnscyykr .gt_first_grand_summary_row {
+#ewkqkruvyz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -661,7 +660,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_last_grand_summary_row_top {
+#ewkqkruvyz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -671,11 +670,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_striped {
+#ewkqkruvyz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#syrnscyykr .gt_table_body {
+#ewkqkruvyz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -684,7 +683,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_footnotes {
+#ewkqkruvyz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -698,7 +697,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_footnote {
+#ewkqkruvyz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -707,7 +706,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#syrnscyykr .gt_sourcenotes {
+#ewkqkruvyz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -721,7 +720,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#syrnscyykr .gt_sourcenote {
+#ewkqkruvyz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -729,72 +728,72 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#syrnscyykr .gt_left {
+#ewkqkruvyz .gt_left {
   text-align: left;
 }
 
-#syrnscyykr .gt_center {
+#ewkqkruvyz .gt_center {
   text-align: center;
 }
 
-#syrnscyykr .gt_right {
+#ewkqkruvyz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#syrnscyykr .gt_font_normal {
+#ewkqkruvyz .gt_font_normal {
   font-weight: normal;
 }
 
-#syrnscyykr .gt_font_bold {
+#ewkqkruvyz .gt_font_bold {
   font-weight: bold;
 }
 
-#syrnscyykr .gt_font_italic {
+#ewkqkruvyz .gt_font_italic {
   font-style: italic;
 }
 
-#syrnscyykr .gt_super {
+#ewkqkruvyz .gt_super {
   font-size: 65%;
 }
 
-#syrnscyykr .gt_footnote_marks {
+#ewkqkruvyz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#syrnscyykr .gt_asterisk {
+#ewkqkruvyz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#syrnscyykr .gt_indent_1 {
+#ewkqkruvyz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#syrnscyykr .gt_indent_2 {
+#ewkqkruvyz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#syrnscyykr .gt_indent_3 {
+#ewkqkruvyz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#syrnscyykr .gt_indent_4 {
+#ewkqkruvyz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#syrnscyykr .gt_indent_5 {
+#ewkqkruvyz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#syrnscyykr .katex-display {
+#ewkqkruvyz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#syrnscyykr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ewkqkruvyz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2422,9 +2421,8 @@ Figura&nbsp;6.5: Intervalo de confiança para o erro do modelo de regressão rí
 <p>Observação: A escolha de hiperparâmetros em alguns métodos, sobretudo os de origem estatística, pode ser baseada também em critérios de informação, como o AIC. Entretanto, neste curso, dar-se-á ênfase na validação cruzada uma vez que esta técnica é útil tanto para os métodos de origem na estatística quanto para os de origem na computação, além de ser simples de implementar.</p>
 <p>É importante recordar que após a realização da validação cruzada e otimização dos hiperparâmetros geralmente recomenda-se estimar o modelo com os hiperparâmetros otimizados em todo o conjunto de dados.</p>
 </section>
-</section>
-<section id="implementações-em-r" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">6.5</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">6.7</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DAAG)</span>
