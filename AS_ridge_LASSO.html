@@ -269,11 +269,11 @@ window.Quarto = {
 <p>Para encolher os coeficientes, a regressão rígida usa uma alteração na função perda otimizada nas estimativas de mínimos quadrados.</p>
 <p>Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
 <p><span class="math display">\[
-\begin{aligned}
-L(\mathbf{\beta}) = \sum_{i=1}^N \varepsilon_i^2 = \sum_{i=1}^N(y_i-\hat{y}_i)^2\\
-L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})^T(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
-=\mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}
-\end{aligned}
+\begin{align}
+L(\mathbf{\beta}) =&amp; \sum_{i=1}^N \varepsilon_i^2 = \sum_{i=1}^N(y_i-\hat{y}_i)^2 =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\\
+L(\mathbf{\beta}) =&amp; \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})^T(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
+=&amp;\mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}
+\end{align}
 \]</span></p>
 <p>Minimizando tal quantidade pela escolha de <span class="math inline">\(\beta\)</span>, conforme visto anteriormente, resulta nas equações normais de mínimos quadrados, <span class="math inline">\(\hat{\beta}=(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})\)</span>. Adicionado o termo de penalização de encolhimento dos coeficientes, <span class="math inline">\(\lambda\beta^T\beta\)</span>, tem-se:</p>
 <p><span class="math display">\[
@@ -284,7 +284,7 @@ L(\mathbf{\beta,\lambda}) = \mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}
 <p>Em notação algébrica a quantidade acima, pode ser escrita como:</p>
 <p><span class="math display">\[
 \begin{aligned}
-L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N\varepsilon_i^2=\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
+L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
 \end{aligned}
 \]</span></p>
 <p>Onde <span class="math inline">\(\lambda\)</span> é uma constante não negativa de penalização de encolhimento (<em>shrinkage penalty</em>), que previne a inflação dos coeficientes. O termo <span class="math inline">\(\lambda\sum_{j=1}^k\beta_j^2\)</span> também é chamado de de termo de regularização. Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de presença de multicolineariedade, implicarão em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício ou viés. A regressão rígida visa, portanto, trabalhar o conflito entre vício e variância em modelos de regressão múltipla. Deve-se buscar um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
@@ -378,7 +378,7 @@ materialsprice   201.05565</code></pre>
 <p>Uma alternativa à regressão rígida que promove a seleção de coeficientes é a regressão pelo operador de seleção e contração mínima absoluta ou <em>Least Absolute Shrinkage and Selection Operator - LASSO</em>. A regressão LASSO muda a penalização da função perda considerando a norma <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\sum_{j=1}^k|\beta_j|\)</span> em detrimento da norma <span class="math inline">\(L_2\)</span>, <span class="math inline">\(\sum_{j=1}^k\beta_j^2\)</span>, usada no caso rígido.</p>
 <p><span class="math display">\[
 \begin{aligned}
-L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N\varepsilon_i^2=\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
+L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
 \end{aligned}
 \]</span></p>
 <p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como no caso rígido. Logo, a formulação acima deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
