@@ -230,6 +230,7 @@ window.Quarto = {
   <li><a href="#obtenção-dos-dados-e-processamento-inicial" id="toc-obtenção-dos-dados-e-processamento-inicial" class="nav-link" data-scroll-target="#obtenção-dos-dados-e-processamento-inicial"><span class="header-section-number">5.4.1</span> Obtenção dos dados e processamento inicial</a></li>
   <li><a href="#regressão-rígida-1" id="toc-regressão-rígida-1" class="nav-link" data-scroll-target="#regressão-rígida-1"><span class="header-section-number">5.4.2</span> Regressão rígida</a></li>
   <li><a href="#regressão-via-lasso-1" id="toc-regressão-via-lasso-1" class="nav-link" data-scroll-target="#regressão-via-lasso-1"><span class="header-section-number">5.4.3</span> Regressão via LASSO</a></li>
+  <li><a href="#regressão-por-mínimos-quadrados-ordinários" id="toc-regressão-por-mínimos-quadrados-ordinários" class="nav-link" data-scroll-target="#regressão-por-mínimos-quadrados-ordinários"><span class="header-section-number">5.4.4</span> Regressão por mínimos quadrados ordinários</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
@@ -520,28 +521,72 @@ Figura&nbsp;5.7: Perda na regressão rígida versus mínims quadrados
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(out, <span class="at">type =</span> <span class="st">"coefficients"</span>, <span class="at">s =</span> bestlam)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho para dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred.teste <span class="ot">&lt;-</span> <span class="fu">predict</span>(out, <span class="at">type =</span> <span class="st">"response"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">newx =</span> X[<span class="sc">-</span>treino,], </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">s =</span> bestlam)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="regressão-via-lasso-1" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="regressão-via-lasso-1"><span class="header-section-number">5.4.3</span> Regressão via LASSO</h3>
 <p>Obtenção do modelo para todo o <em>grid</em> do hiperparâmetro lambda.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lasso1 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> grid)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso1, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lasso1 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> grid)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso1, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Validação cruzada e <em>grid search</em> para seleção do lambda ótimo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lasso.cv <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso.cv)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>bestlam2 <span class="ot">&lt;-</span> lasso.cv<span class="sc">$</span>lambda.min <span class="co"># lambda otimo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lasso.cv <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso.cv)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>bestlam2 <span class="ot">&lt;-</span> lasso.cv<span class="sc">$</span>lambda.min <span class="co"># lambda otimo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Obtendo os coeficientes de regressão rígica com lambda ótimo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(out2, <span class="at">type =</span> <span class="st">"coefficients"</span>, <span class="at">s =</span> bestlam2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(out2, <span class="at">type =</span> <span class="st">"coefficients"</span>, <span class="at">s =</span> bestlam2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho para dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred.teste2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(out2, <span class="at">type =</span> <span class="st">"response"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">newx =</span> X[<span class="sc">-</span>treino,], </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">s =</span> bestlam2)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="regressão-por-mínimos-quadrados-ordinários" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="regressão-por-mínimos-quadrados-ordinários"><span class="header-section-number">5.4.4</span> Regressão por mínimos quadrados ordinários</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho para dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred.teste3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
