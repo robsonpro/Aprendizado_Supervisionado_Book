@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robson Bruno Dutra Pereira">
+
+<title>7&nbsp; Regressão por Componentes Principais – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./AS_cv.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_pcr.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao aprendizado supervisionado</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#intuição-inicial" id="toc-intuição-inicial" class="nav-link active" data-scroll-target="#intuição-inicial"><span class="header-section-number">7.1</span> Intuição inicial</a></li>
+  <li><a href="#decomposição-em-valores-singulares" id="toc-decomposição-em-valores-singulares" class="nav-link" data-scroll-target="#decomposição-em-valores-singulares"><span class="header-section-number">7.2</span> Decomposição em valores singulares</a></li>
+  <li><a href="#análise-de-componentes-principais" id="toc-análise-de-componentes-principais" class="nav-link" data-scroll-target="#análise-de-componentes-principais"><span class="header-section-number">7.3</span> Análise de componentes principais</a></li>
+  <li><a href="#regressão-por-componentes-principais" id="toc-regressão-por-componentes-principais" class="nav-link" data-scroll-target="#regressão-por-componentes-principais"><span class="header-section-number">7.4</span> Regressão por componentes principais</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">7.5</span> Implementações em R</a>
+  <ul class="collapse">
+  <li><a href="#obtenção-dos-dados-e-processamento-inicial" id="toc-obtenção-dos-dados-e-processamento-inicial" class="nav-link" data-scroll-target="#obtenção-dos-dados-e-processamento-inicial"><span class="header-section-number">7.5.1</span> Obtenção dos dados e processamento inicial</a></li>
+  <li><a href="#regressão-linear-múltipla" id="toc-regressão-linear-múltipla" class="nav-link" data-scroll-target="#regressão-linear-múltipla"><span class="header-section-number">7.5.2</span> Regressão linear múltipla</a></li>
+  <li><a href="#regressão-por-componentes-principais-1" id="toc-regressão-por-componentes-principais-1" class="nav-link" data-scroll-target="#regressão-por-componentes-principais-1"><span class="header-section-number">7.5.3</span> Regressão por componentes principais</a></li>
+  <li><a href="#regressão-por-componentes-principais-passo-a-passo-sem-uso-do-pacote-pls" id="toc-regressão-por-componentes-principais-passo-a-passo-sem-uso-do-pacote-pls" class="nav-link" data-scroll-target="#regressão-por-componentes-principais-passo-a-passo-sem-uso-do-pacote-pls"><span class="header-section-number">7.5.4</span> Regressão por componentes principais passo a passo (sem uso do pacote pls)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robson Bruno Dutra Pereira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="intuição-inicial" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="intuição-inicial"><span class="header-section-number">7.1</span> Intuição inicial</h2>
+<p>Seja um conjunto de <span class="math inline">\(n\)</span> observações de <span class="math inline">\(k\)</span> variáveis regressoras, <span class="math inline">\(x_1, x_2, \dots, x_k\)</span> ou independentes, representado matricialmente conforme segue:</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{bmatrix}
+x_{11} &amp; x_{12} &amp; \dots &amp; x_{1k} \\
+x_{21} &amp; x_{22} &amp; \dots &amp; x_{2k} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1} &amp; x_{n2} &amp; \dots &amp; x_{nk} \\
+\end{bmatrix}.
+\]</span></p>
+<p>Um modelo de regressão múltipla para uma resposta dita dependente de <span class="math inline">\(x_1, x_2, \dots, x_k\)</span> pode ser escrito conforme segue.</p>
+<p><span class="math display">\[
+\hat y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \dots \beta_kx_k
+\]</span></p>
+<p>De forma matricial o modelo de regressão múltipla é expresso segundo a Equação <a href="#eq-reglin" class="quarto-xref">Equação&nbsp;<span>7.1</span></a>.</p>
+<p><span id="eq-reglin"><span class="math display">\[
+\hat {\mathbf{y}} = \mathbf{X}\beta
+\tag{7.1}\]</span></span></p>
+<p>Em diversos problemas de regressão as variáveis regressoras podem apresentar multicolineariedade, de forma a acarretar na inflação dos coeficientes de regressão. Além dos métodos de regularização como a regressão rígiga e LASSO há abordagens de regressão que visam tratar a correlação entre os preditores, evitando o problema de inflação dos coeficientes. A regressão por componentes principais visa obter uma matriz de com variáveis não correlacionadas <span class="math inline">\(\mathbf W\)</span> a partir de <span class="math inline">\(\mathbf{X}\)</span> de forma a obter um modelo em função de tais variáveis, ao invés das originais. Tal modelo pode ser expresso conforme <a href="#eq-pcr" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>, onde <span class="math inline">\(\gamma\)</span> é o velor de <span class="math inline">\(p\times 1\)</span> coeficientes de regressão. Ademais a matriz <span class="math inline">\(\mathbf W\)</span> retém boa parte da informação de <span class="math inline">\(\mathbf{X}\)</span>, porém apresenta menor número de variáveis (colunas), <span class="math inline">\(\mathbf{W}_{n\times p}\)</span>, <span class="math inline">\(p&lt;k\)</span>.</p>
+<p><span id="eq-pcr"><span class="math display">\[
+\hat {\mathbf{y}} = \mathbf{W}\gamma
+\tag{7.2}\]</span></span></p>
+<p>Para obter <span class="math inline">\(W\)</span> pode-se usar da análise de componentes principais (<em>principal component analysis</em> - PCA). Porém, antes é necessário entender a decomposição por valores singulares (<em>singluar value decomposition</em> - SVD), um dos métodos disponíveis para realizar a PCA.</p>
+</section>
+<section id="decomposição-em-valores-singulares" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="decomposição-em-valores-singulares"><span class="header-section-number">7.2</span> Decomposição em valores singulares</h2>
+<p>A SVD é um método de fatoração de matrizes da álgebra linear que permite a decomposição de uma matriz em três outras, conforme <a href="#eq-svd" class="quarto-xref">Equação&nbsp;<span>7.3</span></a>, onde <span class="math inline">\(\mathbf U_{n \times n}\)</span> é a matriz de vetores singulares esquerda, <span class="math inline">\(\mathbf L_{n \times k}\)</span> é a matriz de valores singulares e <span class="math inline">\(\mathbf V_{k \times k}\)</span> é a matriz de vetores singulares direita.</p>
+<p><span id="eq-svd"><span class="math display">\[
+\mathbf X = \mathbf U \mathbf L \mathbf V^T
+\tag{7.3}\]</span></span></p>
+<p>cat(” <span class="math display">\[
+\mathbf{X} =
+\begin{bmatrix}
+\color{red}{u_{11}} &amp; \color{blue}{u_{12}} &amp; \color{green}{\cdots} &amp; \color{magenta}{u_{1n}} \\
+\color{red}{u_{21}} &amp; \color{blue}{u_{22}} &amp; \color{green}{\cdots} &amp; \color{magenta}{u_{2n}} \\
+\color{red}{\vdots} &amp; \color{blue}{\vdots} &amp; \color{green}{\ddots} &amp; \color{magenta}{\vdots} \\
+\color{red}{u_{n1}} &amp; \color{blue}{u_{n2}} &amp; \color{green}{\cdots} &amp; \color{magenta}{u_{nn}} \\
+\end{bmatrix}
+\begin{bmatrix}
+\color{orange}{\ell_{1}} &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \color{cyan}{\ell_{2}} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; 0 &amp; \color{purple}{\ell_{3}} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; \color{brown}{\ell_{k}} \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+\end{bmatrix}
+\begin{bmatrix}
+\color{orange}{v_{11}} &amp; \color{orange}{v_{21}} &amp; \color{orange}{\cdots} &amp; \color{orange}{v_{k1}} \\
+\color{cyan}{v_{12}} &amp; \color{cyan}{v_{22}} &amp; \color{cyan}{\cdots} &amp; \color{cyan}{v_{k2}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\color{brown}{v_{1k}} &amp; \color{brown}{v_{2k}} &amp; \color{brown}{\cdots} &amp; \color{brown}{v_{kk}} \\
+\end{bmatrix}
+\]</span></p>
+<p>Na PCR as matrizes <span class="math inline">\(\mathbf L_{n \times k}\)</span> e <span class="math inline">\(\mathbf V_{k \times k}\)</span> são mais importantes, visto que a última determinará as novas direções ou eixos das variáveis transformadas, enquanto a primeira a importância destas, uma vez que <span class="math inline">\(\ell_1 \geq \ell_2 \geq \dots \geq l_k\)</span>. A matriz <span class="math inline">\(\mathbf W\)</span> será obtida a partir da PCA da matriz de correlação de <span class="math inline">\(\mathbf X\)</span>.</p>
+</section>
+<section id="análise-de-componentes-principais" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="análise-de-componentes-principais"><span class="header-section-number">7.3</span> Análise de componentes principais</h2>
+<p>Seja <span class="math inline">\(\mathbf R = \mathbf X^T\mathbf X/(n-1)\)</span> a matriz de correlação de <span class="math inline">\(\mathbf X\)</span>, onde X tem suas colunas padronizadas, isto é, <span class="math inline">\(x^*_j = (x_j-\mu_j)/\sigma_j\)</span>.</p>
+<p>A análise de componentes principais de <span class="math inline">\(\mathbf X^T\mathbf X\)</span> via SVD fica:</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf X^T\mathbf X &amp;= (\mathbf U \mathbf L \mathbf V^T)^T(\mathbf U \mathbf L \mathbf V^T) \\
+\mathbf X^T\mathbf X &amp;= \mathbf V \mathbf L^T \mathbf U^T\mathbf U \mathbf L \mathbf V^T \\
+\mathbf X^T\mathbf X &amp;= \mathbf V \mathbf L^T \mathbf L \mathbf V^T \\
+\mathbf X^T\mathbf X &amp;= \mathbf V \mathbf L^2 \mathbf V^T \\
+\end{align}
+\]</span></p>
+<p>Faz-se <span class="math inline">\(\mathbf W = \mathbf X \mathbf V\)</span>. Porém, não são consideradas todas as <span class="math inline">\(k\)</span> colunas de <span class="math inline">\(\mathbf V\)</span>, mas apenas as <span class="math inline">\(p\)</span> primeiras. Para determinar <span class="math inline">\(p\)</span>, sejam <span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \dots \lambda_k\)</span> com <span class="math inline">\(\lambda_j=\ell_j^2/(n-1)\)</span>, <span class="math inline">\(j=1,\dots,k\)</span> os valores singulares de <span class="math inline">\(\mathbf R\)</span>. Sugere-se selecionar os <span class="math inline">\(p\)</span> primeiros autovetores de <span class="math inline">\(\mathbf V\)</span> tal que a <a href="#eq-varexp" class="quarto-xref">Equação&nbsp;<span>7.4</span></a></p>
+<p><span id="eq-varexp"><span class="math display">\[
+\frac{\sum_{j=1}^p \lambda_j}{\sum_{j=1}^k \lambda_j}
+\tag{7.4}\]</span></span></p>
+<p>seja maior que, por exemplo, 0,8, de forma a reter no mínimo 80% da informação das variáveis originais. Outra forma, talvez a mais adequada, para selecionar o número adequado de autovetores considerados é via validação cruzada. Porém antes, é importante entender como transformar <span class="math inline">\(\mathbf X\)</span> em <span class="math inline">\(\mathbf W\)</span> via <span class="math inline">\(\mathbf V\)</span>.</p>
+</section>
+<section id="regressão-por-componentes-principais" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="regressão-por-componentes-principais"><span class="header-section-number">7.4</span> Regressão por componentes principais</h2>
+<p>A matriz de variáveis transformadas <span class="math inline">\(\mathbf W\)</span>, pode ser obtida via <a href="#eq-w" class="quarto-xref">Equação&nbsp;<span>7.5</span></a>. Uma vez que <span class="math inline">\(\mathbf V\)</span> tem ordem <span class="math inline">\(k \times p\)</span>, <span class="math inline">\(p &lt; k\)</span>, garante-se a redução de dimensionadade além da ausência de correlação das variáveis transformadas armazenadas em <span class="math inline">\(\mathbf W\)</span>.</p>
+<p><span id="eq-w"><span class="math display">\[
+\mathbf W = \mathbf X \mathbf V
+\tag{7.5}\]</span></span></p>
+<p>Os coeficientes de regressão por componentes principais podem ser obtidos por mínimos quadrados ordinários conforme <a href="#eq-coefpcr" class="quarto-xref">Equação&nbsp;<span>7.6</span></a>.</p>
+<p><span id="eq-coefpcr"><span class="math display">\[
+\gamma = (\mathbf W^T\mathbf W)^{-1}\mathbf W^T \mathbf y
+\tag{7.6}\]</span></span></p>
+<p>Sejam os dados de custos de manufatura apresentados no capítulo sobre regressão rígida e Lasso. Conforme observado, os preditores apresentam multicolineariedade, ou seja, alta correlação aos pares, o que acarretou na regressão múltipla a inflação dos coeficientes. O fator de inflação de variâncias para o <span class="math inline">\(j-ésimo\)</span> coeficiente, <span class="math inline">\(j=1,\dots,k\)</span>, pode ser obtido pela <span class="citation" data-cites="eqw-vif">(<a href="#ref-eqw-vif" role="doc-biblioref"><strong>eqw-vif?</strong></a>)</span>, onde <span class="math inline">\(R^2_j\)</span> é coeficiente de determinação múltipla da regressão para a <span class="math inline">\(x_j\)</span> em função dos regressores. O <span class="math inline">\(VIF_j\)</span> expressa o quanto o coeficiente é inflado pela correlação entre <span class="math inline">\(x_j\)</span> e os outros preditores.</p>
+<p><span id="eq-vif"><span class="math display">\[
+VIF_j = \frac{1}{1-R^2_j}
+\tag{7.7}\]</span></span></p>
+<p>A seguir expõe-se o VIF dos coeficientes relacionados às variáveis regressoras consideradas para prever o custo. Em geral um VIF maior que 10 indica que há séria multicolieariedade nos dados. Logo, no caso dos preditores para o custo de manufatura, há multicolineariedade altíssima.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   capitalcost      laborcost     energycost  materialscost   capitalprice 
+   19882.52875   210216.61405     7623.81460   271415.93968       81.76512 
+    laborprice    energyprice materialsprice 
+     163.35521       49.89049      131.51254 </code></pre>
+</div>
+</div>
+<p>Seja um modelo de regressão por componentes principais para tais dados, considerando metade dos dados disponíveis para treino. A seguir observa-se o erro da validação cruzada para buscar o número de componentetes, além do percentual da variância explicada, conforme <a href="#eq-varexp" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>. Duas componentes já retém mais de 90% da variabilidade dos preditores originais. A <a href="#fig-cvpcr" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> ilustra um gráfico do resultado do erro de validação cruzada segundo o número de componentes ou novas variáveis, <span class="math inline">\(p\)</span>, a serem utilizados na regressão via PCR. Pode-se observar que neste caso recomenda-se selecionar 2 componentes, apesar de que com 4, 5 ou 7 componentes o erro foi mais baixo, entretanto, recomenda-se também redução da dimensionalidade do problema.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Data:   X dimension: 12 8 
+    Y dimension: 12 1
+Fit method: svdpc
+Number of components considered: 8
+
+VALIDATION: RMSEP
+Cross-validated using 12 leave-one-out segments.
+       (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
+CV           132.6    59.91    39.43    42.74    36.42    32.33    48.26
+adjCV        132.6    59.27    38.77    41.91    34.98    31.39    46.71
+       7 comps  8 comps
+CV       31.14    64.20
+adjCV    29.89    61.49
+
+TRAINING: % variance explained
+      1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+X       75.63    90.50    97.45    98.90    99.74    99.96    100.0   100.00
+cost    85.24    94.88    96.04    99.02    99.03    99.10     99.9    99.95</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cvpcr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cvpcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_pcr_files/figure-html/fig-cvpcr-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvpcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Validação cruzada e <em>grid search</em> para buscar o número de componentes a serem retidos via PCR
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-vectors" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> expõe os dois autovetores retidos que compõem a matriz <span class="math inline">\(\mathbf V\)</span>, neste caso de ordem <span class="math inline">\(8\times 2\)</span>.</p>
+<div class="cell">
+<div id="fig-vectors" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Comp 1</th>
+<th style="text-align: right;">Comp 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">capitalcost</td>
+<td style="text-align: right;">0.2678470</td>
+<td style="text-align: right;">0.4843071</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">laborcost</td>
+<td style="text-align: right;">0.3914250</td>
+<td style="text-align: right;">-0.0459354</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">energycost</td>
+<td style="text-align: right;">-0.1653088</td>
+<td style="text-align: right;">0.7998529</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">materialscost</td>
+<td style="text-align: right;">-0.3892178</td>
+<td style="text-align: right;">-0.2231251</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">capitalprice</td>
+<td style="text-align: right;">0.3803000</td>
+<td style="text-align: right;">-0.1481571</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">laborprice</td>
+<td style="text-align: right;">0.3881260</td>
+<td style="text-align: right;">-0.1711247</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">energyprice</td>
+<td style="text-align: right;">0.3825521</td>
+<td style="text-align: right;">0.1501528</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">materialsprice</td>
+<td style="text-align: right;">0.3932060</td>
+<td style="text-align: right;">-0.0026466</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Autovetores retidos para obtenção das novas variáveis
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Finalmente, abaixo expõe-se o resultado das métricas de desempenho para os dados não usados para treinamento.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      RMSE      MAE        R2
+1 37.82187 22.11853 0.9426065</code></pre>
+</div>
+</div>
+</section>
+<section id="implementações-em-r" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">7.5</span> Implementações em R</h2>
+<p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
+<section id="obtenção-dos-dados-e-processamento-inicial" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="obtenção-dos-dados-e-processamento-inicial"><span class="header-section-number">7.5.1</span> Obtenção dos dados e processamento inicial</h3>
+<p>Carregando pacotes necessários à análise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pls)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Leitura dos dados e separação de dados de treino e teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"ManufactCosts"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ManufactCosts)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(dados)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">### Separando dados de treino e teste</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.5</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(dados), tr, <span class="at">replace =</span> F)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>dados.treino <span class="ot">&lt;-</span> dados[treino,]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>dados.teste <span class="ot">&lt;-</span> dados[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="regressão-linear-múltipla" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">7.5.2</span> Regressão linear múltipla</h3>
+<p>Regressão linear múltipla.</p>
+<p>Fator de inflação de variância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(lm1) <span class="co"># do pacote car</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># passo a passo</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>lm_cc <span class="ot">&lt;-</span> <span class="fu">lm</span>(capitalcost <span class="sc">~</span>.<span class="sc">-</span>cost, dados.treino)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">summary</span>(lm_cc)<span class="sc">$</span>r.squared)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Intervalo de confiança para os coeficientes de regressão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e desempenho do modelo de regressão múltipla.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># teste</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pred.lm1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, <span class="at">newdata =</span> dados.teste)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># metricas</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados.teste<span class="sc">$</span>cost, pred.lm1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="regressão-por-componentes-principais-1" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="regressão-por-componentes-principais-1"><span class="header-section-number">7.5.3</span> Regressão por componentes principais</h3>
+<p>Modelo de regressão por componentes principais.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">### PCR</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># modelo pcr - treino</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pcr1 <span class="ot">&lt;-</span> <span class="fu">pcr</span>(cost<span class="sc">~</span>., <span class="at">ncomp =</span> <span class="dv">8</span>, <span class="at">data =</span> dados.treino, <span class="at">validation =</span> <span class="st">"LOO"</span>, <span class="at">scale =</span> T)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcr1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gráfico da validação cruzada para definição de <span class="math inline">\(p\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ncomp.permut <span class="ot">&lt;-</span> <span class="fu">selectNcomp</span>(pcr1, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">method =</span> <span class="st">"randomization"</span>,  <span class="co"># "onesigma"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e desemepnho do modelo de PCR.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste do modelo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pred.pcr1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(pcr1, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ncomp =</span> ncomp.permut, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">newdata =</span> dados.teste)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># metricas</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados.teste<span class="sc">$</span>cost, pred.pcr1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="regressão-por-componentes-principais-passo-a-passo-sem-uso-do-pacote-pls" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="regressão-por-componentes-principais-passo-a-passo-sem-uso-do-pacote-pls"><span class="header-section-number">7.5.4</span> Regressão por componentes principais passo a passo (sem uso do pacote pls)</h3>
+<p>Decomposição em valores singulares das variáveis independentes padronizadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scale.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(<span class="fu">scale</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">nu =</span> <span class="dv">0</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>scale.svd</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$d
+[1] 8.158140622 3.617775972 2.472887692 1.128664316 0.858377400 0.437596932
+[7] 0.197629712 0.004647851
+
+$v
+           [,1]         [,2]       [,3]        [,4]        [,5]        [,6]
+[1,]  0.2678470  0.484307125  0.7137352 -0.07253635 -0.11245488 -0.35408955
+[2,]  0.3914250 -0.045935391 -0.2835412  0.28085245 -0.49478392  0.10342311
+[3,] -0.1653088  0.799852897 -0.3420449 -0.21690085  0.08444984  0.37510666
+[4,] -0.3892178 -0.223125130  0.1064010 -0.18943647  0.45062639 -0.06916044
+[5,]  0.3803000 -0.148157107  0.3867378 -0.01229602  0.27689456  0.77658592
+[6,]  0.3881260 -0.171124744 -0.1700297 -0.55187547 -0.09613398 -0.05733236
+[7,]  0.3825521  0.150152781 -0.2249164  0.54421586  0.59995268 -0.23056049
+[8,]  0.3932060 -0.002646556 -0.2297975 -0.48170489  0.29409402 -0.24270402
+            [,7]         [,8]
+[1,]  0.04439488  0.197556822
+[2,] -0.13068165  0.642508790
+[3,]  0.07797726  0.122271915
+[4,]  0.10324194  0.730076088
+[5,] -0.06213066  0.009356454
+[6,]  0.68848860 -0.007254333
+[7,]  0.26685501 -0.006062630
+[8,] -0.64430093  0.003913727</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># autovetores</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>vectors <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>v</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Calculando os autovalores da análise de componentes principais da matriz de autocorrelação dos regressores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># desvio padrao das novas variaveis</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>d<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(dados.treino)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># variancias - autovalores </span><span class="al">###</span><span class="co"> sum(diag(cor(dados.treino[,-1]))) == sum (values)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.050478e+00 1.189846e+00 5.559249e-01 1.158076e-01 6.698289e-02
+[6] 1.740828e-02 3.550682e-03 1.963865e-06</code></pre>
+</div>
+</div>
+<p>Proporção da variabilidade de X explicada pelas componentes principais ou novas variáveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># proporcao da variabilidade dos dados retida por cada variavel</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>prop_var <span class="ot">&lt;-</span> values<span class="sc">/</span><span class="fu">sum</span>(values)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>prop_var</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.563098e-01 1.487307e-01 6.949061e-02 1.447594e-02 8.372861e-03
+[6] 2.176035e-03 4.438353e-04 2.454831e-07</code></pre>
+</div>
+</div>
+<p>Proporção de explicação acumulada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variancia acumulada das novas variaveis</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>var_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(prop_var)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>var_cum</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7563098 0.9050405 0.9745311 0.9890070 0.9973799 0.9995559 0.9999998
+[8] 1.0000000</code></pre>
+</div>
+</div>
+<p>Obtendo a matriz W, ou seja a matriz de observações dos novos regressores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># escores - valores das novas variaveis</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>scores_treino <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>]) <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Organizando os dados e obtendo modelo de PCR.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pcr.treino <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados.treino<span class="sc">$</span>cost, scores_treino[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.treino) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cost"</span>, <span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pcr via lm</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>pcr_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost<span class="sc">~</span>., pcr.treino)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cost ~ ., data = pcr.treino)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-25.426 -20.834 -12.780   9.817  56.468 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  375.202      9.169  40.921 1.55e-11 ***
+pc1           47.648      3.893  12.239 6.51e-07 ***
+pc2          -36.139      8.779  -4.116  0.00261 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 31.76 on 9 degrees of freedom
+Multiple R-squared:  0.9488,    Adjusted R-squared:  0.9374 
+F-statistic: 83.36 on 2 and 9 DF,  p-value: 1.557e-06</code></pre>
+</div>
+</div>
+<p>Transformando os dados de teste e avaliando, realizando previsões e avaliando o desempenho de generalização.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para os dados de TESTE, usar média e desvio do TREINO</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>media_treino <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>desvio_treino <span class="ot">&lt;-</span> <span class="fu">apply</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>, sd)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>dados.teste.scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.teste[,<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">center =</span> media_treino, </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">scale =</span> desvio_treino)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Agora calcular os escores do teste corretamente</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>scores_teste <span class="ot">&lt;-</span> dados.teste.scaled <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>pcr.teste <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(scores_teste)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.teste) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>pred.pcr_lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pcr_lm, <span class="at">newdata =</span> pcr.teste)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados.teste<span class="sc">$</span>cost, pred.pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      RMSE      MAE        R2
+1 37.82187 22.11853 0.9426065</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
