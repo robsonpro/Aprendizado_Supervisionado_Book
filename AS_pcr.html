@@ -329,7 +329,22 @@ x_{n1} &amp; x_{n2} &amp; \dots &amp; x_{nk} \\
 </section>
 <section id="análise-de-componentes-principais" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="análise-de-componentes-principais"><span class="header-section-number">7.3</span> Análise de componentes principais</h2>
-<p>Seja <span class="math inline">\(\mathbf R = \mathbf X^T\mathbf X/(n-1)\)</span> a matriz de correlação de <span class="math inline">\(\mathbf X\)</span>, onde X tem suas colunas padronizadas, isto é, <span class="math inline">\(x^*_j = (x_j-\mu_j)/\sigma_j\)</span>.</p>
+<p>Seja <span class="math inline">\(\mathbf R = \mathbf X^T\mathbf X/(n-1)\)</span> a matriz de correlação de <span class="math inline">\(\mathbf X\)</span>, onde <span class="math inline">\(\mathbf X\)</span> tem suas colunas padronizadas, isto é, <span class="math inline">\(x^*_j = (x_j-\mu_j)/\sigma_j\)</span>.</p>
+<p>Sejam os dados de custos de manufatura apresentados no capítulo sobre regressão rígida e Lasso. Conforme observado, os preditores apresentam multicolineariedade, ou seja, alta correlação aos pares, o que acarretou na regressão múltipla a inflação dos coeficientes. A <a href="#fig-autovec" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> plota aos pares as observações de preço e custo de trabalho, consideradas como preditores para prever o custo. O coeficiente de correlação de Pearson para tais variáveis é igual a 0,886. Logo, elas apresentam alta similaridade. Realizando PCA obtém-se novas variáveis ou direções, rotacionando as variáveis originais. A partir destas novas direções pode-se projetar as observações originais e obter um conjunto de dados transformado com variáveis não correlacionadas. Cada uma destas consiste em uma combinação linear das variáveis originais. Ademais, a primeira variável explicará maior proporção da variabilidade dos dados que a segunda e assim sucessivamente em casos onde há mais variáveis. Logo, pode-se considerar uma variável tansformada para explicar as duas originais, sendo esta plotada com, a seta azul escura.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-autovec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-autovec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_pcr_files/figure-html/fig-autovec-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-autovec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Autovetores obtidos para PCA via SVD para as variáveis preço e custo de trabalho
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>A análise de componentes principais de <span class="math inline">\(\mathbf X^T\mathbf X\)</span> via SVD fica:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -355,7 +370,7 @@ x_{n1} &amp; x_{n2} &amp; \dots &amp; x_{nk} \\
 <p><span id="eq-coefpcr"><span class="math display">\[
 \gamma = (\mathbf W^T\mathbf W)^{-1}\mathbf W^T \mathbf y
 \tag{7.6}\]</span></span></p>
-<p>Sejam os dados de custos de manufatura apresentados no capítulo sobre regressão rígida e Lasso. Conforme observado, os preditores apresentam multicolineariedade, ou seja, alta correlação aos pares, o que acarretou na regressão múltipla a inflação dos coeficientes. O fator de inflação de variâncias para o <span class="math inline">\(j-ésimo\)</span> coeficiente, <span class="math inline">\(j=1,\dots,k\)</span>, pode ser obtido pela <span class="citation" data-cites="eqw-vif">(<a href="#ref-eqw-vif" role="doc-biblioref"><strong>eqw-vif?</strong></a>)</span>, onde <span class="math inline">\(R^2_j\)</span> é coeficiente de determinação múltipla da regressão para a <span class="math inline">\(x_j\)</span> em função dos regressores. O <span class="math inline">\(VIF_j\)</span> expressa o quanto o coeficiente é inflado pela correlação entre <span class="math inline">\(x_j\)</span> e os outros preditores.</p>
+<p>Ainda considerando os dados de custos de manufatura, o fator de inflação de variâncias para o <span class="math inline">\(j\)</span>-ésimo coeficiente, <span class="math inline">\(j=1,\dots,k\)</span>, pode ser obtido pela <a href="#eq-vif" class="quarto-xref">Equação&nbsp;<span>7.7</span></a>, onde <span class="math inline">\(R^2_j\)</span> é coeficiente de determinação múltipla da regressão para a <span class="math inline">\(x_j\)</span> em função dos regressores. O <span class="math inline">\(VIF_j\)</span> expressa o quanto o coeficiente é inflado pela correlação entre <span class="math inline">\(x_j\)</span> e os outros preditores.</p>
 <p><span id="eq-vif"><span class="math display">\[
 VIF_j = \frac{1}{1-R^2_j}
 \tag{7.7}\]</span></span></p>
@@ -368,7 +383,7 @@ VIF_j = \frac{1}{1-R^2_j}
      163.35521       49.89049      131.51254 </code></pre>
 </div>
 </div>
-<p>Seja um modelo de regressão por componentes principais para tais dados, considerando metade dos dados disponíveis para treino. A seguir observa-se o erro da validação cruzada para buscar o número de componentetes, além do percentual da variância explicada, conforme <a href="#eq-varexp" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>. Duas componentes já retém mais de 90% da variabilidade dos preditores originais. A <a href="#fig-cvpcr" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> ilustra um gráfico do resultado do erro de validação cruzada segundo o número de componentes ou novas variáveis, <span class="math inline">\(p\)</span>, a serem utilizados na regressão via PCR. Pode-se observar que neste caso recomenda-se selecionar 2 componentes, apesar de que com 4, 5 ou 7 componentes o erro foi mais baixo, entretanto, recomenda-se também redução da dimensionalidade do problema.</p>
+<p>Seja um modelo de regressão por componentes principais para tais dados, considerando metade dos dados disponíveis para treino. A seguir observa-se o erro da validação cruzada para buscar o número de componentetes, além do percentual da variância explicada, conforme <a href="#eq-varexp" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>. Duas componentes já retém mais de 90% da variabilidade dos preditores originais. A <a href="#fig-cvpcr" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> ilustra um gráfico do resultado do erro de validação cruzada segundo o número de componentes ou novas variáveis, <span class="math inline">\(p\)</span>, a serem utilizados na regressão via PCR. Pode-se observar que neste caso recomenda-se selecionar 2 componentes, apesar de que com 4, 5 ou 7 componentes o erro foi mais baixo, entretanto, recomenda-se também redução da dimensionalidade do problema.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Data:   X dimension: 12 8 
@@ -399,17 +414,15 @@ cost    85.24    94.88    96.04    99.02    99.03    99.10     99.9    99.95</co
 <img src="AS_pcr_files/figure-html/fig-cvpcr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvpcr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.1: Validação cruzada e <em>grid search</em> para buscar o número de componentes a serem retidos via PCR
+Figura&nbsp;7.2: Validação cruzada e <em>grid search</em> para buscar o número de componentes a serem retidos via PCR
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-vectors" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> expõe os dois autovetores retidos que compõem a matriz <span class="math inline">\(\mathbf V\)</span>, neste caso de ordem <span class="math inline">\(8\times 2\)</span>.</p>
-<div class="cell">
-<div id="fig-vectors" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>A <span class="quarto-unresolved-ref">?tbl-vectors</span> expõe os dois autovetores retidos que compõem a matriz <span class="math inline">\(\mathbf V\)</span>, neste caso de ordem <span class="math inline">\(8\times 2\)</span>.</p>
+<div id="tbl-vectors" class="cell anchored">
+<div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -461,11 +474,7 @@ Figura&nbsp;7.1: Validação cruzada e <em>grid search</em> para buscar o númer
 </tr>
 </tbody>
 </table>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.2: Autovetores retidos para obtenção das novas variáveis
-</figcaption>
-</figure>
+<p>Autovetores retidos para obtenção das novas variáveis</p>
 </div>
 </div>
 <p>Finalmente, abaixo expõe-se o resultado das métricas de desempenho para os dados não usados para treinamento.</p>
@@ -575,127 +584,66 @@ Figura&nbsp;7.2: Autovetores retidos para obtenção das novas variáveis
 <p>Decomposição em valores singulares das variáveis independentes padronizadas.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scale.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(<span class="fu">scale</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">nu =</span> <span class="dv">0</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>scale.svd</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$d
-[1] 8.158140622 3.617775972 2.472887692 1.128664316 0.858377400 0.437596932
-[7] 0.197629712 0.004647851
-
-$v
-           [,1]         [,2]       [,3]        [,4]        [,5]        [,6]
-[1,]  0.2678470  0.484307125  0.7137352 -0.07253635 -0.11245488 -0.35408955
-[2,]  0.3914250 -0.045935391 -0.2835412  0.28085245 -0.49478392  0.10342311
-[3,] -0.1653088  0.799852897 -0.3420449 -0.21690085  0.08444984  0.37510666
-[4,] -0.3892178 -0.223125130  0.1064010 -0.18943647  0.45062639 -0.06916044
-[5,]  0.3803000 -0.148157107  0.3867378 -0.01229602  0.27689456  0.77658592
-[6,]  0.3881260 -0.171124744 -0.1700297 -0.55187547 -0.09613398 -0.05733236
-[7,]  0.3825521  0.150152781 -0.2249164  0.54421586  0.59995268 -0.23056049
-[8,]  0.3932060 -0.002646556 -0.2297975 -0.48170489  0.29409402 -0.24270402
-            [,7]         [,8]
-[1,]  0.04439488  0.197556822
-[2,] -0.13068165  0.642508790
-[3,]  0.07797726  0.122271915
-[4,]  0.10324194  0.730076088
-[5,] -0.06213066  0.009356454
-[6,]  0.68848860 -0.007254333
-[7,]  0.26685501 -0.006062630
-[8,] -0.64430093  0.003913727</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># autovetores</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>vectors <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>v</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>scale.svd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># autovetores</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>vectors <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>v</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculando os autovalores da análise de componentes principais da matriz de autocorrelação dos regressores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># desvio padrao das novas variaveis</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>d<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(dados.treino)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># variancias - autovalores </span><span class="al">###</span><span class="co"> sum(diag(cor(dados.treino[,-1]))) == sum (values)</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> sdev<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6.050478e+00 1.189846e+00 5.559249e-01 1.158076e-01 6.698289e-02
-[6] 1.740828e-02 3.550682e-03 1.963865e-06</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># desvio padrao das novas variaveis</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">&lt;-</span> scale.svd<span class="sc">$</span>d<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(dados.treino)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># variancias - autovalores </span><span class="al">###</span><span class="co"> sum(diag(cor(dados.treino[,-1]))) == sum (values)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>values</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Proporção da variabilidade de X explicada pelas componentes principais ou novas variáveis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># proporcao da variabilidade dos dados retida por cada variavel</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>prop_var <span class="ot">&lt;-</span> values<span class="sc">/</span><span class="fu">sum</span>(values)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>prop_var</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 7.563098e-01 1.487307e-01 6.949061e-02 1.447594e-02 8.372861e-03
-[6] 2.176035e-03 4.438353e-04 2.454831e-07</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># proporcao da variabilidade dos dados retida por cada variavel</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>prop_var <span class="ot">&lt;-</span> values<span class="sc">/</span><span class="fu">sum</span>(values)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>prop_var</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Proporção de explicação acumulada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variancia acumulada das novas variaveis</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>var_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(prop_var)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>var_cum</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7563098 0.9050405 0.9745311 0.9890070 0.9973799 0.9995559 0.9999998
-[8] 1.0000000</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variancia acumulada das novas variaveis</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>var_cum <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(prop_var)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>var_cum</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Obtendo a matriz W, ou seja a matriz de observações dos novos regressores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># escores - valores das novas variaveis</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>scores_treino <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>]) <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># escores - valores das novas variaveis</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>scores_treino <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>]) <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Organizando os dados e obtendo modelo de PCR.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pcr.treino <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados.treino<span class="sc">$</span>cost, scores_treino[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.treino) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cost"</span>, <span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pcr via lm</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>pcr_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost<span class="sc">~</span>., pcr.treino)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = cost ~ ., data = pcr.treino)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--25.426 -20.834 -12.780   9.817  56.468 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  375.202      9.169  40.921 1.55e-11 ***
-pc1           47.648      3.893  12.239 6.51e-07 ***
-pc2          -36.139      8.779  -4.116  0.00261 ** 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 31.76 on 9 degrees of freedom
-Multiple R-squared:  0.9488,    Adjusted R-squared:  0.9374 
-F-statistic: 83.36 on 2 and 9 DF,  p-value: 1.557e-06</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pcr.treino <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dados.treino<span class="sc">$</span>cost, scores_treino[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.treino) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cost"</span>, <span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pcr via lm</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>pcr_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost<span class="sc">~</span>., pcr.treino)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Transformando os dados de teste e avaliando, realizando previsões e avaliando o desempenho de generalização.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para os dados de TESTE, usar média e desvio do TREINO</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>media_treino <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>desvio_treino <span class="ot">&lt;-</span> <span class="fu">apply</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>, sd)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>dados.teste.scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.teste[,<span class="sc">-</span><span class="dv">1</span>], </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">center =</span> media_treino, </span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">scale =</span> desvio_treino)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Agora calcular os escores do teste corretamente</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>scores_teste <span class="ot">&lt;-</span> dados.teste.scaled <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>pcr.teste <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(scores_teste)</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.teste) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>pred.pcr_lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pcr_lm, <span class="at">newdata =</span> pcr.teste)</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados.teste<span class="sc">$</span>cost, pred.pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      RMSE      MAE        R2
-1 37.82187 22.11853 0.9426065</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teste</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para os dados de TESTE, usar média e desvio do TREINO</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>media_treino <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>desvio_treino <span class="ot">&lt;-</span> <span class="fu">apply</span>(dados.treino[,<span class="sc">-</span><span class="dv">1</span>], <span class="dv">2</span>, sd)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>dados.teste.scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(dados.teste[,<span class="sc">-</span><span class="dv">1</span>], </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">center =</span> media_treino, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">scale =</span> desvio_treino)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Agora calcular os escores do teste corretamente</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>scores_teste <span class="ot">&lt;-</span> dados.teste.scaled <span class="sc">%*%</span> vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>pcr.teste <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(scores_teste)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pcr.teste) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pc1"</span>, <span class="st">"pc2"</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>pred.pcr_lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(pcr_lm, <span class="at">newdata =</span> pcr.teste)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados.teste<span class="sc">$</span>cost, pred.pcr_lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
