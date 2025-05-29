@@ -218,6 +218,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressão por máquinas de reforço de gradiente</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_GAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -355,23 +367,23 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
 </figcaption>
 <div aria-describedby="tbl-datafocas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="enqdncecmg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#enqdncecmg table {
+<div id="fmcdbqhsow" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fmcdbqhsow table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#enqdncecmg thead, #enqdncecmg tbody, #enqdncecmg tfoot, #enqdncecmg tr, #enqdncecmg td, #enqdncecmg th {
+#fmcdbqhsow thead, #fmcdbqhsow tbody, #fmcdbqhsow tfoot, #fmcdbqhsow tr, #fmcdbqhsow td, #fmcdbqhsow th {
   border-style: none;
 }
 
-#enqdncecmg p {
+#fmcdbqhsow p {
   margin: 0;
   padding: 0;
 }
 
-#enqdncecmg .gt_table {
+#fmcdbqhsow .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -397,12 +409,12 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-left-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_caption {
+#fmcdbqhsow .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#enqdncecmg .gt_title {
+#fmcdbqhsow .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -414,7 +426,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-width: 0;
 }
 
-#enqdncecmg .gt_subtitle {
+#fmcdbqhsow .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -426,7 +438,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-width: 0;
 }
 
-#enqdncecmg .gt_heading {
+#fmcdbqhsow .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -438,13 +450,13 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_bottom_border {
+#fmcdbqhsow .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_col_headings {
+#fmcdbqhsow .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -459,7 +471,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_col_heading {
+#fmcdbqhsow .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -479,7 +491,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#enqdncecmg .gt_column_spanner_outer {
+#fmcdbqhsow .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -491,15 +503,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 4px;
 }
 
-#enqdncecmg .gt_column_spanner_outer:first-child {
+#fmcdbqhsow .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#enqdncecmg .gt_column_spanner_outer:last-child {
+#fmcdbqhsow .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#enqdncecmg .gt_column_spanner {
+#fmcdbqhsow .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -511,11 +523,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   width: 100%;
 }
 
-#enqdncecmg .gt_spanner_row {
+#fmcdbqhsow .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#enqdncecmg .gt_group_heading {
+#fmcdbqhsow .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -541,7 +553,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   text-align: left;
 }
 
-#enqdncecmg .gt_empty_group_heading {
+#fmcdbqhsow .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -556,15 +568,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: middle;
 }
 
-#enqdncecmg .gt_from_md > :first-child {
+#fmcdbqhsow .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#enqdncecmg .gt_from_md > :last-child {
+#fmcdbqhsow .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#enqdncecmg .gt_row {
+#fmcdbqhsow .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -583,7 +595,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#enqdncecmg .gt_stub {
+#fmcdbqhsow .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -596,7 +608,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#enqdncecmg .gt_stub_row_group {
+#fmcdbqhsow .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -610,15 +622,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: top;
 }
 
-#enqdncecmg .gt_row_group_first td {
+#fmcdbqhsow .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#enqdncecmg .gt_row_group_first th {
+#fmcdbqhsow .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#enqdncecmg .gt_summary_row {
+#fmcdbqhsow .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -628,16 +640,16 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#enqdncecmg .gt_first_summary_row {
+#fmcdbqhsow .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_first_summary_row.thick {
+#fmcdbqhsow .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#enqdncecmg .gt_last_summary_row {
+#fmcdbqhsow .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -647,7 +659,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_grand_summary_row {
+#fmcdbqhsow .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -657,7 +669,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#enqdncecmg .gt_first_grand_summary_row {
+#fmcdbqhsow .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -667,7 +679,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_last_grand_summary_row_top {
+#fmcdbqhsow .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,11 +689,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_striped {
+#fmcdbqhsow .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#enqdncecmg .gt_table_body {
+#fmcdbqhsow .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -690,7 +702,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_footnotes {
+#fmcdbqhsow .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -704,7 +716,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_footnote {
+#fmcdbqhsow .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -713,7 +725,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#enqdncecmg .gt_sourcenotes {
+#fmcdbqhsow .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -727,7 +739,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#enqdncecmg .gt_sourcenote {
+#fmcdbqhsow .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -735,72 +747,72 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#enqdncecmg .gt_left {
+#fmcdbqhsow .gt_left {
   text-align: left;
 }
 
-#enqdncecmg .gt_center {
+#fmcdbqhsow .gt_center {
   text-align: center;
 }
 
-#enqdncecmg .gt_right {
+#fmcdbqhsow .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#enqdncecmg .gt_font_normal {
+#fmcdbqhsow .gt_font_normal {
   font-weight: normal;
 }
 
-#enqdncecmg .gt_font_bold {
+#fmcdbqhsow .gt_font_bold {
   font-weight: bold;
 }
 
-#enqdncecmg .gt_font_italic {
+#fmcdbqhsow .gt_font_italic {
   font-style: italic;
 }
 
-#enqdncecmg .gt_super {
+#fmcdbqhsow .gt_super {
   font-size: 65%;
 }
 
-#enqdncecmg .gt_footnote_marks {
+#fmcdbqhsow .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#enqdncecmg .gt_asterisk {
+#fmcdbqhsow .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#enqdncecmg .gt_indent_1 {
+#fmcdbqhsow .gt_indent_1 {
   text-indent: 5px;
 }
 
-#enqdncecmg .gt_indent_2 {
+#fmcdbqhsow .gt_indent_2 {
   text-indent: 10px;
 }
 
-#enqdncecmg .gt_indent_3 {
+#fmcdbqhsow .gt_indent_3 {
   text-indent: 15px;
 }
 
-#enqdncecmg .gt_indent_4 {
+#fmcdbqhsow .gt_indent_4 {
   text-indent: 20px;
 }
 
-#enqdncecmg .gt_indent_5 {
+#fmcdbqhsow .gt_indent_5 {
   text-indent: 25px;
 }
 
-#enqdncecmg .katex-display {
+#fmcdbqhsow .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#enqdncecmg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fmcdbqhsow div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
