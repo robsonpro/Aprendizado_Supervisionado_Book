@@ -230,6 +230,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -433,10 +439,16 @@ Figura&nbsp;7.2: Validação cruzada e <em>grid search</em> para buscar o númer
 </div>
 </div>
 </div>
-<p>A <span class="quarto-unresolved-ref">?tbl-vectors</span> expõe os dois autovetores retidos que compõem a matriz <span class="math inline">\(\mathbf V\)</span>, neste caso de ordem <span class="math inline">\(8\times 2\)</span>.</p>
-<div id="tbl-vectors" class="cell anchored">
+<p>A <a href="#tbl-vectors" class="quarto-xref">Tabela&nbsp;<span>7.1</span></a> expõe os dois autovetores retidos que compõem a matriz <span class="math inline">\(\mathbf V\)</span>, neste caso de ordem <span class="math inline">\(8\times 2\)</span>.</p>
+<div class="cell">
+<div id="tbl-vectors" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.1: Autovetores retidos para obtenção das novas variáveis
+</figcaption>
+<div aria-describedby="tbl-vectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -487,7 +499,9 @@ Figura&nbsp;7.2: Validação cruzada e <em>grid search</em> para buscar o númer
 </tr>
 </tbody>
 </table>
-<p>Autovetores retidos para obtenção das novas variáveis</p>
+</div>
+</div>
+</figure>
 </div>
 </div>
 <p>Finalmente, abaixo expõe-se o resultado das métricas de desempenho para os dados não usados para treinamento.</p>
