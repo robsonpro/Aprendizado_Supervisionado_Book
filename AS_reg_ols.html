@@ -266,10 +266,9 @@ window.Quarto = {
   <li><a href="#regressão-polinomial" id="toc-regressão-polinomial" class="nav-link" data-scroll-target="#regressão-polinomial"><span class="header-section-number">3.3</span> Regressão polinomial</a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">3.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#caso-1---regressão-linear-simples" id="toc-caso-1---regressão-linear-simples" class="nav-link" data-scroll-target="#caso-1---regressão-linear-simples"><span class="header-section-number">3.4.1</span> Caso 1 - regressão linear simples</a></li>
-  <li><a href="#regressão-linear-múltipla-1" id="toc-regressão-linear-múltipla-1" class="nav-link" data-scroll-target="#regressão-linear-múltipla-1"><span class="header-section-number">3.4.2</span> Regressão linear múltipla</a></li>
-  <li><a href="#regressão-múltipla-com-variáveis-categóricas" id="toc-regressão-múltipla-com-variáveis-categóricas" class="nav-link" data-scroll-target="#regressão-múltipla-com-variáveis-categóricas"><span class="header-section-number">3.4.3</span> Regressão múltipla com variáveis categóricas</a></li>
-  <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">3.4.4</span> Regressão polinomial</a></li>
+  <li><a href="#regressão-linear-múltipla-1" id="toc-regressão-linear-múltipla-1" class="nav-link" data-scroll-target="#regressão-linear-múltipla-1"><span class="header-section-number">3.4.1</span> Regressão linear múltipla</a></li>
+  <li><a href="#regressão-múltipla-com-variáveis-categóricas" id="toc-regressão-múltipla-com-variáveis-categóricas" class="nav-link" data-scroll-target="#regressão-múltipla-com-variáveis-categóricas"><span class="header-section-number">3.4.2</span> Regressão múltipla com variáveis categóricas</a></li>
+  <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">3.4.3</span> Regressão polinomial</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
@@ -305,7 +304,7 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">3.1</span> Regressão linear simples</h2>
-<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de uma única variável independente também contínua, <span class="math inline">\(x \in \mathbb{R}\)</span>. Conforme observado graficamente na <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
+<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de uma única variável independente também contínua, <span class="math inline">\(x \in \mathbb{R}\)</span>. Conforme observado graficamente na <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-data</span></a>, pode-se considerar em diversos casos a aproximação de uma função linear para tal relação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -324,7 +323,7 @@ Figura&nbsp;3.1: Exemplo de conjunto de dados para regressão linear simples
 <p><span class="math display">\[
 \hat{y} = \beta_0 + \beta_1x
 \]</span></p>
-<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> plota para os dados plotados anteriormente a linha azul do modelo de regressão linear simples obtido.</p>
+<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-lm</span></a> plota para os dados plotados anteriormente a linha azul do modelo de regressão linear simples obtido.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -346,7 +345,7 @@ Figura&nbsp;3.2: Modelo de regressão linear simples
   10.927762    2.728817 </code></pre>
 </div>
 </div>
-<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
+<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-erros</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -369,7 +368,7 @@ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\
 \end{aligned}
 \]</span></p>
 <p>Tomando <span class="math inline">\(n\)</span> observações retiradas da população de interesse, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão para a amostra disponível. Uma vez que o erro é normalmente distribuído, com média nula e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2\)</span>.</p>
-<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> expõe algumas das observações para os dados plotados anteriormente, bem como os valores preditos e erros associados.</p>
+<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dados</span></a> expõe algumas das observações para os dados plotados anteriormente, bem como os valores preditos e erros associados.</p>
 <div class="cell">
 <div id="tbl-dados" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -507,7 +506,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \end{aligned}
 \]</span></p>
 <p>Tal solução constitui as chamadas equações normais de mínimos quadrados.</p>
-<p>Ao obter um modelo de regressão é sempre importante observar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. Neste curso de aprendizado não supervisionado, serão estudados diversos modelos que não implicam qualquer distribuição acerca dos resíduos ou dados sendo, portanto, livres de distribuição e ditos não-paramétricos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> expõe alguns gráficos dos resíduos os erros do modelo obtido, os quais podem servir para avaliação da normalidade do modelo, bem como para identificação de observações não usuais.</p>
+<p>Ao obter um modelo de regressão é sempre importante observar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. Neste curso de aprendizado não supervisionado, serão estudados diversos modelos que não implicam qualquer distribuição acerca dos resíduos ou dados sendo, portanto, livres de distribuição e ditos não-paramétricos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-resi</span></a> expõe alguns gráficos dos resíduos os erros do modelo obtido, os quais podem servir para avaliação da normalidade do modelo, bem como para identificação de observações não usuais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -577,7 +576,7 @@ t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(N-k)}}
 <p><span class="math display">\[
 \hat{\beta}_j \pm t_{[\alpha/2,N-k]}\sqrt{C_jSS_E/(N-k)}
 \]</span></p>
-<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros usados em função da idade e quilometragem.</p>
+<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-mulreg</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros usados em função da idade e quilometragem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mulreg" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -627,7 +626,7 @@ Multiple R-squared:  0.8239,    Adjusted R-squared:  0.8198
 F-statistic: 203.5 on 2 and 87 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> apresentam os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
+<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ic</span></a> apresentam os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
 <div class="cell">
 <div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -695,7 +694,7 @@ F-statistic: 151.1 on 3 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>É importante esclarecer que no caso de modelos de regressão múltipla com termos de interação, a matriz <span class="math inline">\(\mathbf{X}\)</span> apresentará mais que <span class="math inline">\(k+1\)</span> colunas, sendo adicionadas as colunas das respectivas interações, como sendo o produto das colunas das variáveis envolvidas em cada termo adicionado.</p>
 <section id="codificação-de-variáveis-categóricas-em-regressão-múltipla" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">3.2.1</span> Codificação de variáveis categóricas em regressão múltipla</h3>
-<p>Retomando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, imagine uma terceira variável regressora que determina o modelo ou tipo do veículo. Tal variável apresenta três categorias, <em>Mazda6</em>, <em>Accord</em> e <em>Maxima</em>. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span>3.3</span></a> expõe algumas observações do conjuunto de dados.</p>
+<p>Retomando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, imagine uma terceira variável regressora que determina o modelo ou tipo do veículo. Tal variável apresenta três categorias, <em>Mazda6</em>, <em>Accord</em> e <em>Maxima</em>. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carrr</span></a> expõe algumas observações do conjuunto de dados.</p>
 <div class="cell">
 <div id="tbl-carrr" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -784,7 +783,7 @@ x_4 = \bigg\{
 <p><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3x_{i3} + \beta_4x_{i4}
 \]</span></p>
-<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Mazda6</code>. Uma explicação análoga pode ser feita para <span class="math inline">\(\beta_4\)</span>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span>3.4</span></a>.</p>
+<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Mazda6</code>. Uma explicação análoga pode ser feita para <span class="math inline">\(\beta_4\)</span>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carsint</span></a>.</p>
 <div class="cell">
 <div id="tbl-carsint" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -918,7 +917,7 @@ F-statistic:   122 on 4 and 85 DF,  p-value: &lt; 2.2e-16</code></pre>
 1 &amp; x_{n} &amp; x_{n}^2 &amp; \cdots &amp; x_{n}^p \\
 \end{bmatrix}\\
 \]</span></p>
-<p>Sejam os dados da massa de um paciente em kg medidos ao longo de 8 meses de um programa de perda de peso, conforme <a href="#fig-rehab" class="quarto-xref">Figura&nbsp;<span>3.6</span></a>.</p>
+<p>Sejam os dados da massa de um paciente em kg medidos ao longo de 8 meses de um programa de perda de peso, conforme <a href="#fig-rehab" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-rehab</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rehab" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -933,7 +932,7 @@ Figura&nbsp;3.6: Dados de perda de peso em função do tempo no programa
 </div>
 </div>
 </div>
-<p>Considerando um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-rehabresi" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
+<p>Considerando um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-rehabresi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-rehabresi</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
 <div class="cell" data-fig-caption="Resíduos para um modelo linear ajustado aos dados de perda de peso">
 <div class="cell-output-display">
 <div id="fig-rehabresi" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -948,7 +947,7 @@ Figura&nbsp;3.7
 </div>
 </div>
 </div>
-<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar o peso em função de dias. A curva plotada na <a href="#fig-rehab" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> consiste em tal modelo.</p>
+<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar o peso em função de dias. A curva plotada na <a href="#fig-rehab" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-rehab</span></a> consiste em tal modelo.</p>
 <div class="cell" data-fig-caption="Modelo de regressão quadrático para os dados de perda de peso">
 <div class="cell-output-display">
 <div id="fig-rehablm" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -987,7 +986,7 @@ Multiple R-squared:  0.9981,    Adjusted R-squared:  0.998
 F-statistic: 1.287e+04 on 2 and 49 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-rehabresi" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>.</p>
+<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-rehabresi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-rehabresi</span></a>.</p>
 <div class="cell" data-fig-caption="Resíduos para o modelo quadrático ajustado aos dados de perda de peso">
 <div class="cell-output-display">
 <div id="fig-rehabresi2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -1009,19 +1008,15 @@ Figura&nbsp;3.9
 </section>
 <section id="implementações-em-r" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">3.4</span> Implementações em R</h2>
-<p>A seguir será expostos as implementações necessárias para obter os resultados do capítulo. Alguns exemplos aqui expostos são distintos dos do capítulo, sendo os resultados das implementações apresentados integralmente.</p>
-<section id="caso-1---regressão-linear-simples" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="caso-1---regressão-linear-simples"><span class="header-section-number">3.4.1</span> Caso 1 - regressão linear simples</h3>
-<p>Um exemplo de regressão linear simples já foi proposto no primeiro capítulo do livro.</p>
-</section>
-<section id="regressão-linear-múltipla-1" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="regressão-linear-múltipla-1"><span class="header-section-number">3.4.2</span> Regressão linear múltipla</h3>
+<p>A seguir será expostos as implementações necessárias para obter os resultados do capítulo. Alguns exemplos aqui expostos são distintos dos do capítulo, sendo os resultados das implementações apresentados integralmente. Um exemplo de regressão linear simples já foi proposto no primeiro capítulo do livro.</p>
+<section id="regressão-linear-múltipla-1" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="regressão-linear-múltipla-1"><span class="header-section-number">3.4.1</span> Regressão linear múltipla</h3>
 <p>Carregando pacote para dados e gráfico.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caTools)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>A <span class="quarto-unresolved-ref">?fig-dataecn</span> expõe algumas das observações dados macroeconômicos para regressão linear múltipla.</p>
+<p>A <a href="#fig-dataecn" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-dataecn</span></a> expõe algumas das observações dados macroeconômicos para regressão linear múltipla.</p>
 <div id="tbl-dataecn" class="cell anchored" data-tbl-caption="Dados macroeconômicos para o exemplo de regressão múltipla">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(longley)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?longley</span></span>
@@ -1116,7 +1111,7 @@ Figura&nbsp;3.9
 </table>
 </div>
 </div>
-<p>Na <a href="#fig-corecn" class="quarto-xref">Figura&nbsp;<span>3.10</span></a> visualiza-se a correlação entre as variáveis presentes no conjunto de dados.</p>
+<p>Na <a href="#fig-corecn" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-corecn</span></a> visualiza-se a correlação entre as variáveis presentes no conjunto de dados.</p>
 <div class="cell" data-fig-caption="Correlação entre variáveis macroeconômicas">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(longley) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1326,7 +1321,7 @@ data:  lm_mult_red$residuals
 W = 0.96685, p-value = 0.854</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-resecn" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> expõe os gráficos de resíduos do modelo.</p>
+<p>A <a href="#fig-resecn" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-resecn</span></a> expõe os gráficos de resíduos do modelo.</p>
 <div class="cell" data-fig-caption="Gráficos de resíduos  macroeconômicas">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_mult_red)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1353,8 +1348,8 @@ Figura&nbsp;3.11
 </div>
 </div>
 </section>
-<section id="regressão-múltipla-com-variáveis-categóricas" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="regressão-múltipla-com-variáveis-categóricas"><span class="header-section-number">3.4.3</span> Regressão múltipla com variáveis categóricas</h3>
+<section id="regressão-múltipla-com-variáveis-categóricas" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="regressão-múltipla-com-variáveis-categóricas"><span class="header-section-number">3.4.2</span> Regressão múltipla com variáveis categóricas</h3>
 <p>Pacote para dados e para codificação de variáveis dummy ou dicotômicas.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
@@ -1376,7 +1371,7 @@ Figura&nbsp;3.11
 6  461.2 4643.9   207.2 General Motors 1940</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-corfirms" class="quarto-xref">Figura&nbsp;<span>3.12</span></a> expõe gráficos de densidade, correlação aos pares e coeficientes de correlação de Pearson para cada nível da variável categórica <code>firm</code> (firma). Foram consideradas apenas três empresas para não dificultar a interpretação. Consegue fazer para as outras empresas?</p>
+<p>A <a href="#fig-corfirms" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-corfirms</span></a> expõe gráficos de densidade, correlação aos pares e coeficientes de correlação de Pearson para cada nível da variável categórica <code>firm</code> (firma). Foram consideradas apenas três empresas para não dificultar a interpretação. Consegue fazer para as outras empresas?</p>
 <div class="cell" data-fig-caption="Matriz de gráficos generalizados aos pares do conjunto de dados `Grunfeld`, para avaliar distribuição e correlação">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(Grunfeld[<span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,], <span class="at">columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="fu">aes</span>(<span class="at">color =</span> firm, <span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1506,7 +1501,7 @@ Multiple R-squared:  0.9478,    Adjusted R-squared:  0.9433
 F-statistic: 208.9 on 14 and 161 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-betafirms" class="quarto-xref">Figura&nbsp;<span>3.13</span></a> a seguir ilustra a mudança da inclinação para a empresa GE em relação a outras três selecionadas arbitrariamente. Em um caso com tantos níveis de variáveis dummy como este é difícil explorar todas possibilidades. Uma sugestão seria fazer um modelo com todas interações possíveis e posteriormente usar a função step para realizar eliminação para trás (<em>backward elimination</em>) para remover os termos não significativos.</p>
+<p>A <a href="#fig-betafirms" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-betafirms</span></a> a seguir ilustra a mudança da inclinação para a empresa GE em relação a outras três selecionadas arbitrariamente. Em um caso com tantos níveis de variáveis dummy como este é difícil explorar todas possibilidades. Uma sugestão seria fazer um modelo com todas interações possíveis e posteriormente usar a função step para realizar eliminação para trás (<em>backward elimination</em>) para remover os termos não significativos.</p>
 <div class="cell" data-fig-caption="Mudança da inclinação para a empresa GE em relação a outras três selecionadas arbitrariamente">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Grunfeld_select <span class="ot">&lt;-</span> Grunfeld <span class="sc">|&gt;</span> </span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(firm <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"General Motors"</span>,</span>
@@ -1592,8 +1587,8 @@ F-statistic: 301.5 on 14 and 161 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Consegue fazer os próximos passos para avaliar o modelo com interação nos dados de teste?</p>
 </section>
-<section id="regressão-polinomial-1" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="regressão-polinomial-1"><span class="header-section-number">3.4.4</span> Regressão polinomial</h3>
+<section id="regressão-polinomial-1" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="regressão-polinomial-1"><span class="header-section-number">3.4.3</span> Regressão polinomial</h3>
 <p>Carregando pacote e dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
