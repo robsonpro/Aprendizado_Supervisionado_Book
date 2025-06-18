@@ -232,20 +232,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -332,7 +350,7 @@ L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \]</span></p>
-<p>Seja um conjunto de dados com informações de custos de empresas de manufatura. Pode-se observar na <a href="#fig-pairscost" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pairscost</span></a> a presença de alta correlação entre algumas das variáveis de custo consideradas.</p>
+<p>Seja um conjunto de dados com informações de custos de empresas de manufatura. Pode-se observar na <a href="#fig-pairscost" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> a presença de alta correlação entre algumas das variáveis de custo consideradas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pairscost" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -347,7 +365,7 @@ Figura&nbsp;5.1: Gráfico de correlações aos pares para os custos de manufatur
 </div>
 </div>
 </div>
-<p>O gráfico de correlação da <a href="#fig-heatscost" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-heatscost</span></a> expõe as correlações aos pares em um mapa de calor, de forma que as positivas tendem para o azul escuro, enquanto as negativas para vermelho escuro.</p>
+<p>O gráfico de correlação da <a href="#fig-heatscost" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe as correlações aos pares em um mapa de calor, de forma que as positivas tendem para o azul escuro, enquanto as negativas para vermelho escuro.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-heatscost" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -362,7 +380,7 @@ Figura&nbsp;5.2: Mapa de calor de correlações para os custos de manufatura
 </div>
 </div>
 </div>
-<p>Em um modelo de regressão rígida considerando o custo como resposta e as demais variáveis como preditores, o gráfico da <a href="#fig-coefrigid" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-coefrigid</span></a> expõe os níveis dos coeficientes em relação à constante de encolhimento <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que minimize o erro do modelo. Por exemplo, para o custo de energia, pode-se observar que um <span class="math inline">\(\lambda=0\)</span> implica em alta magnitude dos coeficientes, sendo observado o encolhimento destes com o aumento de <span class="math inline">\(\lambda\)</span>.</p>
+<p>Em um modelo de regressão rígida considerando o custo como resposta e as demais variáveis como preditores, o gráfico da <a href="#fig-coefrigid" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> expõe os níveis dos coeficientes em relação à constante de encolhimento <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que minimize o erro do modelo. Por exemplo, para o custo de energia, pode-se observar que um <span class="math inline">\(\lambda=0\)</span> implica em alta magnitude dos coeficientes, sendo observado o encolhimento destes com o aumento de <span class="math inline">\(\lambda\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-coefrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -377,7 +395,7 @@ Figura&nbsp;5.3: Coeficientes <em>versus</em> penalização de encolhimento na r
 </div>
 </div>
 </div>
-<p>A partir de validação cruzada pode-se selecionar o valor de <span class="math inline">\(\lambda\)</span> dado um grid de valores. A <a href="#fig-cvrigid" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-cvrigid</span></a> plota os resultados. Para o exemplo o melhor nível seria <span class="math inline">\(\lambda^*=12.022\)</span>.</p>
+<p>A partir de validação cruzada pode-se selecionar o valor de <span class="math inline">\(\lambda\)</span> dado um grid de valores. A <a href="#fig-cvrigid" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> plota os resultados. Para o exemplo o melhor nível seria <span class="math inline">\(\lambda^*=12.022\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -419,7 +437,7 @@ L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^
 \end{aligned}
 \]</span></p>
 <p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como no caso rígido. Logo, a formulação acima deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
-<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-coeflasso</span></a> plota os valores dos coeficientes no exemplo anterior em função do parâmetro de encolhimento e seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes vão sendo anulados e, portanto, excluídos do modelo.</p>
+<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> plota os valores dos coeficientes no exemplo anterior em função do parâmetro de encolhimento e seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes vão sendo anulados e, portanto, excluídos do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-coeflasso" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -434,7 +452,7 @@ Figura&nbsp;5.5: Coeficientes <em>versus</em> penalização de encolhimento na r
 </div>
 </div>
 </div>
-<p>Tomando o exemplo anterior para o caso LASSO, o valor ótimo do parâmetro de encolhimento e selção é <span class="math inline">\(\lambda^*=2,2\)</span>, conforme <a href="#fig-cvlasso" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-cvlasso</span></a>.</p>
+<p>Tomando o exemplo anterior para o caso LASSO, o valor ótimo do parâmetro de encolhimento e selção é <span class="math inline">\(\lambda^*=2,2\)</span>, conforme <a href="#fig-cvlasso" class="quarto-xref">Figura&nbsp;<span>5.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvlasso" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -482,7 +500,7 @@ Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k|\beta_j| \leq s
 \end{aligned}
 \]</span></p>
-<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-errorrigid</span></a> ilustra a função perda quadrática sendo minimizada segundo a formulação de regressão rígida exposta. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta.</p>
+<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> ilustra a função perda quadrática sendo minimizada segundo a formulação de regressão rígida exposta. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-errorrigid" class="quarto-float quarto-figure quarto-figure-center anchored">

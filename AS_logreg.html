@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>12&nbsp; Classificação via regressão logística – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>13&nbsp; Classificação via regressão logística – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./AS_lda.html" rel="next">
 <link href="./AS_class.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,17 +90,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
   }
 }</script>
 
@@ -141,13 +142,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_logreg.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_logreg.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -164,7 +165,7 @@ window.Quarto = {
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Procurar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -231,20 +232,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -254,23 +273,23 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-logística-binária-simples" id="toc-regressão-logística-binária-simples" class="nav-link active" data-scroll-target="#regressão-logística-binária-simples"><span class="header-section-number">12.1</span> Regressão logística binária simples</a></li>
-  <li><a href="#estimativa-dos-coeficientes-do-modelo-de-regressão-logística" id="toc-estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="nav-link" data-scroll-target="#estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">12.2</span> Estimativa dos coeficientes do modelo de regressão logística</a>
+  <li><a href="#regressão-logística-binária-simples" id="toc-regressão-logística-binária-simples" class="nav-link active" data-scroll-target="#regressão-logística-binária-simples"><span class="header-section-number">13.1</span> Regressão logística binária simples</a></li>
+  <li><a href="#estimativa-dos-coeficientes-do-modelo-de-regressão-logística" id="toc-estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="nav-link" data-scroll-target="#estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">13.2</span> Estimativa dos coeficientes do modelo de regressão logística</a>
   <ul class="collapse">
-  <li><a href="#regressão-logística-binária-múltipla" id="toc-regressão-logística-binária-múltipla" class="nav-link" data-scroll-target="#regressão-logística-binária-múltipla"><span class="header-section-number">12.2.1</span> Regressão logística binária múltipla</a></li>
+  <li><a href="#regressão-logística-binária-múltipla" id="toc-regressão-logística-binária-múltipla" class="nav-link" data-scroll-target="#regressão-logística-binária-múltipla"><span class="header-section-number">13.2.1</span> Regressão logística binária múltipla</a></li>
   </ul></li>
-  <li><a href="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" id="toc-avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="nav-link" data-scroll-target="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">12.3</span> Avaliação da capacidade de previsão do modelo de regressão</a></li>
-  <li><a href="#regressão-logística-multinomial" id="toc-regressão-logística-multinomial" class="nav-link" data-scroll-target="#regressão-logística-multinomial"><span class="header-section-number">12.4</span> Regressão logística multinomial</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">12.5</span> Implementações em R</a>
+  <li><a href="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" id="toc-avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="nav-link" data-scroll-target="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">13.3</span> Avaliação da capacidade de previsão do modelo de regressão</a></li>
+  <li><a href="#regressão-logística-multinomial" id="toc-regressão-logística-multinomial" class="nav-link" data-scroll-target="#regressão-logística-multinomial"><span class="header-section-number">13.4</span> Regressão logística multinomial</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">13.5</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" id="toc-implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="nav-link" data-scroll-target="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">12.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</a></li>
-  <li><a href="#regressão-logística-binária-simples-via-glm" id="toc-regressão-logística-binária-simples-via-glm" class="nav-link" data-scroll-target="#regressão-logística-binária-simples-via-glm"><span class="header-section-number">12.5.2</span> Regressão logística binária simples via <code>glm</code></a></li>
-  <li><a href="#regressão-logística-múltipla" id="toc-regressão-logística-múltipla" class="nav-link" data-scroll-target="#regressão-logística-múltipla"><span class="header-section-number">12.5.3</span> Regressão logística múltipla</a></li>
-  <li><a href="#regressão-logística-múltipla-com-mais-variáveis" id="toc-regressão-logística-múltipla-com-mais-variáveis" class="nav-link" data-scroll-target="#regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">12.5.4</span> Regressão logística múltipla com mais variáveis</a></li>
-  <li><a href="#regressão-logística-rígida-para-o-exemplo-anterior" id="toc-regressão-logística-rígida-para-o-exemplo-anterior" class="nav-link" data-scroll-target="#regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">12.5.5</span> Regressão logística rígida para o exemplo anterior</a></li>
+  <li><a href="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" id="toc-implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="nav-link" data-scroll-target="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</a></li>
+  <li><a href="#regressão-logística-binária-simples-via-glm" id="toc-regressão-logística-binária-simples-via-glm" class="nav-link" data-scroll-target="#regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.5.2</span> Regressão logística binária simples via <code>glm</code></a></li>
+  <li><a href="#regressão-logística-múltipla" id="toc-regressão-logística-múltipla" class="nav-link" data-scroll-target="#regressão-logística-múltipla"><span class="header-section-number">13.5.3</span> Regressão logística múltipla</a></li>
+  <li><a href="#regressão-logística-múltipla-com-mais-variáveis" id="toc-regressão-logística-múltipla-com-mais-variáveis" class="nav-link" data-scroll-target="#regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.5.4</span> Regressão logística múltipla com mais variáveis</a></li>
+  <li><a href="#regressão-logística-rígida-para-o-exemplo-anterior" id="toc-regressão-logística-rígida-para-o-exemplo-anterior" class="nav-link" data-scroll-target="#regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.5.5</span> Regressão logística rígida para o exemplo anterior</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
@@ -281,7 +300,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></h1>
 </div>
 
 
@@ -289,7 +308,7 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Autor</div>
     <div class="quarto-title-meta-contents">
              <p>Robson Bruno Dutra Pereira </p>
           </div>
@@ -304,10 +323,10 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-logística-binária-simples" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="regressão-logística-binária-simples"><span class="header-section-number">12.1</span> Regressão logística binária simples</h2>
+<section id="regressão-logística-binária-simples" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="regressão-logística-binária-simples"><span class="header-section-number">13.1</span> Regressão logística binária simples</h2>
 <p>Seja um supervisor uma variável categórica com duas categorias, <span class="math inline">\(y \in \{c_1,c_2\}\)</span>, dita binária ou dicotômica, a qual suspeita-se ser dependente de uma única variável contínua ou real, <span class="math inline">\(x\)</span>, <span class="math inline">\(x \in \mathcal{R}\)</span>. Respostas binárias incluem categorias “sim” e “não” ou “sucesso” e “fracasso”. Um modelo de regressão logística visa prever a probabilidade de sucesso dado um valor de x, isto é <span class="math inline">\(p(y=sucesso|x)\)</span>. O sucesso deve ser entendido não literalmente, mas como a categoria de mais interesse a ser prevista. Obviamente, a remanescente terá probabilidade complementar.</p>
-<p>Considere o caso onde deseja-se prever se a pessoa compra ou não um iphone de última geração tomando como variável independente o seu salário. Tais categorias são codificadas respectivamente em 1 e 0. A <a href="#fig-iphone" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> ilustra algumas observações de tal problema, onde o salário é plotado no eixo horizontal e indivíduos que compraram iphone são marcados em círculos vermelhos e codificado em zero no eixo vertical, enquanto indivíduos que compraram são marcados em triângulos azuais e codificados em 1 no eixo vertical.</p>
+<p>Considere o caso onde deseja-se prever se a pessoa compra ou não um iphone de última geração tomando como variável independente o seu salário. Tais categorias são codificadas respectivamente em 1 e 0. A <a href="#fig-iphone" class="quarto-xref">Figura&nbsp;<span>13.1</span></a> ilustra algumas observações de tal problema, onde o salário é plotado no eixo horizontal e indivíduos que compraram iphone são marcados em círculos vermelhos e codificado em zero no eixo vertical, enquanto indivíduos que compraram são marcados em triângulos azuais e codificados em 1 no eixo vertical.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-iphone" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -316,7 +335,7 @@ window.Quarto = {
 <img src="AS_logreg_files/figure-html/fig-iphone-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iphone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.1: Dados de indivíduos com distintos salários que compraram ou não um iphone
+Figura&nbsp;13.1: Dados de indivíduos com distintos salários que compraram ou não um iphone
 </figcaption>
 </figure>
 </div>
@@ -326,7 +345,7 @@ Figure&nbsp;12.1: Dados de indivíduos com distintos salários que compraram ou 
 <p><span class="math display">\[
 p(y=1|x) =\beta_0+\beta_1x
 \]</span></p>
-<p>Tal procedimento resultaria na regressão da <a href="#fig-regiphone" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>. O problema é que a reta obtida prevê probabilidades negativas para salários menores que R$3200 reais e probabilidades maiores que 1 para salários maiores que R$19300. Tais previsões são irreais, uma vez que <span class="math inline">\(p(y) \in [0,1]\)</span>.</p>
+<p>Tal procedimento resultaria na regressão da <a href="#fig-regiphone" class="quarto-xref">Figura&nbsp;<span>13.2</span></a>. O problema é que a reta obtida prevê probabilidades negativas para salários menores que R$3200 reais e probabilidades maiores que 1 para salários maiores que R$19300. Tais previsões são irreais, uma vez que <span class="math inline">\(p(y) \in [0,1]\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-regiphone" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -335,16 +354,16 @@ p(y=1|x) =\beta_0+\beta_1x
 <img src="AS_logreg_files/figure-html/fig-regiphone-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regiphone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.2: Usando erroneamente regressão linear para prever a probabilidade de sucesso, neste caso de compra do iphone
+Figura&nbsp;13.2: Usando erroneamente regressão linear para prever a probabilidade de sucesso, neste caso de compra do iphone
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para garantir previsões no domínio da probabilidade, podem ser aplicadas diversas funções. A função logit ou sigmoid é uma delas. Estas função é definida matematicamente segundo a <a href="#eq-logit" class="quarto-xref">Equation&nbsp;<span>12.1</span></a> e plotada na <a href="#fig-logit" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>.</p>
+<p>Para garantir previsões no domínio da probabilidade, podem ser aplicadas diversas funções. A função logit ou sigmoid é uma delas. Estas função é definida matematicamente segundo a <a href="#eq-logit" class="quarto-xref">Equação&nbsp;<span>13.1</span></a> e plotada na <a href="#fig-logit" class="quarto-xref">Figura&nbsp;<span>13.3</span></a>.</p>
 <p><span id="eq-logit"><span class="math display">\[
 p(z)=\frac{1}{1+e^{-z}}=\frac{e^z}{e^z+1}
-\tag{12.1}\]</span></span></p>
+\tag{13.1}\]</span></span></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-logit" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -353,17 +372,17 @@ p(z)=\frac{1}{1+e^{-z}}=\frac{e^z}{e^z+1}
 <img src="AS_logreg_files/figure-html/fig-logit-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.3: Função logística
+Figura&nbsp;13.3: Função logística
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Aplicando um modelo linear em função da variável independente em tal função, isto é, fazendo <span class="math inline">\(z=\beta_0+\beta_1x\)</span>, obtém-se o modelo de regressão logística, conforme <a href="#eq-reglog" class="quarto-xref">Equation&nbsp;<span>12.2</span></a>.</p>
+<p>Aplicando um modelo linear em função da variável independente em tal função, isto é, fazendo <span class="math inline">\(z=\beta_0+\beta_1x\)</span>, obtém-se o modelo de regressão logística, conforme <a href="#eq-reglog" class="quarto-xref">Equação&nbsp;<span>13.2</span></a>.</p>
 <p><span id="eq-reglog"><span class="math display">\[
 p(y=1|x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x)}}
-\tag{12.2}\]</span></span></p>
-<p>O ajuste de um modelo de regressão logística para o exemplo do iphone resulta na função plotada na <a href="#fig-reglogit" class="quarto-xref">Figure&nbsp;<span>12.4</span></a>.</p>
+\tag{13.2}\]</span></span></p>
+<p>O ajuste de um modelo de regressão logística para o exemplo do iphone resulta na função plotada na <a href="#fig-reglogit" class="quarto-xref">Figura&nbsp;<span>13.4</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-reglogit" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -372,7 +391,7 @@ p(y=1|x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x)}}
 <img src="AS_logreg_files/figure-html/fig-reglogit-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reglogit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.4: Regressão logística simples para prever a probabilidade do cliente comprar um iphone em função do seu salário
+Figura&nbsp;13.4: Regressão logística simples para prever a probabilidade do cliente comprar um iphone em função do seu salário
 </figcaption>
 </figure>
 </div>
@@ -391,13 +410,13 @@ p(y=0|x)=\frac{e^{-(\beta_0+\beta_1x)}}{1 + e^{-(\beta_0+\beta_1x)}} \\
 <p><span class="math display">\[
 \frac{p(y=1|x)}{1-p(y=1|x)} = e^{\beta_0+\beta_1x}.
 \]</span></p>
-<p>Tal razão tem domínio entre 0 e <span class="math inline">\(\infty\)</span>, com uma razão unitária indicando chance igual de ocorrência de ambos grupos, uma razão maior que 1 indicando maior chance de ocorrência do grupo 1 e uma razão menor que 1 indicando maior probabilidade de ocorrência do grupo 0. Aplicando logaritmo em ambos os lados do último resultado, verifica-se que o modelo de regressão logística (entenda-se aqui log como o logaritmo neperiano), obtido a partir da aplicação da função logit, pode ser concebido como um modelo de regressão linear simples para o log da razão de chance, conforme <a href="#eq-lnodds" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>. O lado esquerdo da relação é chamado de <em>log-odds</em> ou logit, que viabiliza a obtenção da subtração das probabilidades em escala log, <span class="math inline">\(\text{log }\frac{p}{(1-p)} = \text{log } p - \text{log }(1-p)\)</span>. Ademais, o logit permite converter a probabilidade que tem dom+inio de 0 a 1 para uma resposta que tem domínio em <span class="math inline">\((-\infty,+\infty)\)</span>.</p>
+<p>Tal razão tem domínio entre 0 e <span class="math inline">\(\infty\)</span>, com uma razão unitária indicando chance igual de ocorrência de ambos grupos, uma razão maior que 1 indicando maior chance de ocorrência do grupo 1 e uma razão menor que 1 indicando maior probabilidade de ocorrência do grupo 0. Aplicando logaritmo em ambos os lados do último resultado, verifica-se que o modelo de regressão logística (entenda-se aqui log como o logaritmo neperiano), obtido a partir da aplicação da função logit, pode ser concebido como um modelo de regressão linear simples para o log da razão de chance, conforme <a href="#eq-lnodds" class="quarto-xref">Equação&nbsp;<span>13.3</span></a>. O lado esquerdo da relação é chamado de <em>log-odds</em> ou logit, que viabiliza a obtenção da subtração das probabilidades em escala log, <span class="math inline">\(\text{log }\frac{p}{(1-p)} = \text{log } p - \text{log }(1-p)\)</span>. Ademais, o logit permite converter a probabilidade que tem dom+inio de 0 a 1 para uma resposta que tem domínio em <span class="math inline">\((-\infty,+\infty)\)</span>.</p>
 <p><span id="eq-lnodds"><span class="math display">\[
 \text{log } \biggl(\frac{p(y=1|x)}{1-p(y=1|x)}\biggr) = \beta_0+\beta_1x
-\tag{12.3}\]</span></span></p>
+\tag{13.3}\]</span></span></p>
 </section>
-<section id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">12.2</span> Estimativa dos coeficientes do modelo de regressão logística</h2>
+<section id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">13.2</span> Estimativa dos coeficientes do modelo de regressão logística</h2>
 <p>A estimativa dos coeficientes do modelo de regressão é realizada pela maximização da função de verossimilhança. Para simplificar a notação, considere <span class="math inline">\(p(y_i|x_i,\beta_0,\beta_1)=p(x_i)\)</span>. Seja o log da máxima verossimilhança expresso conforme segue.</p>
 <p><span class="math display">\[
 \begin{align}
@@ -412,10 +431,10 @@ l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bi
 l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) - \text{log } \bigl( 1+ e^{(\beta_0+\beta_1x_i)} \bigr) \\
 \end{align}
 \]</span></p>
-<p>Considerando o modelo de regressão logística em notação matricial, podemos reescrever a função do log da verossimilhança, conforme <a href="#eq-lver" class="quarto-xref">Equation&nbsp;<span>12.4</span></a>.</p>
+<p>Considerando o modelo de regressão logística em notação matricial, podemos reescrever a função do log da verossimilhança, conforme <a href="#eq-lver" class="quarto-xref">Equação&nbsp;<span>13.4</span></a>.</p>
 <p><span id="eq-lver"><span class="math display">\[
 l(\beta) = \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
-\tag{12.4}\]</span></span></p>
+\tag{13.4}\]</span></span></p>
 <p>O vetor <span class="math inline">\(\beta\)</span> considera ambos os coeficientes <span class="math inline">\(\beta = [\beta_0,\beta_1]^T\)</span> enquanto o vetor <span class="math inline">\(\mathbf{x}_i\)</span> considera a constante e a observação da variável regressora, <span class="math inline">\(\mathbf{x}_i = [1,x]^T\)</span>. Para maximizar o log da verossimilhança, igualamos a derivada da função a zero, isto é:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -426,20 +445,20 @@ l(\beta) = \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\be
 \frac{\partial l(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N \mathbf{x}_i(y_i - p(\mathbf{x}_i,\beta)) = 0 \\
 \end{align}
 \]</span></p>
-<p>Tal resultado consite em um sistema de duas equações não lineares para o caso simples. Para resolver este problema pode-se usar o método de Newton-Raphson. Este requer além do gradiente a derivada segunda ou a Hessiana da função do log da verossimilhança, conforme <a href="#eq-der2nr" class="quarto-xref">Equation&nbsp;<span>12.5</span></a>.</p>
+<p>Tal resultado consite em um sistema de duas equações não lineares para o caso simples. Para resolver este problema pode-se usar o método de Newton-Raphson. Este requer além do gradiente a derivada segunda ou a Hessiana da função do log da verossimilhança, conforme <a href="#eq-der2nr" class="quarto-xref">Equação&nbsp;<span>13.5</span></a>.</p>
 <p><span id="eq-der2nr"><span class="math display">\[
 \frac{\partial^2 l(\beta)}{\partial \beta \partial\beta^T} = \sum_{i=1}^N \mathbf{x}_i\mathbf{x}_i^Tp(\mathbf{x}_i,\beta)(y_i - p(\mathbf{x}_i,\beta))
-\tag{12.5}\]</span></span></p>
-<p>Uma atualização de <span class="math inline">\(\beta\)</span> é obtida conforme <a href="#eq-atuanr" class="quarto-xref">Equation&nbsp;<span>12.6</span></a>.</p>
+\tag{13.5}\]</span></span></p>
+<p>Uma atualização de <span class="math inline">\(\beta\)</span> é obtida conforme <a href="#eq-atuanr" class="quarto-xref">Equação&nbsp;<span>13.6</span></a>.</p>
 <p><span id="eq-atuanr"><span class="math display">\[
 \beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 l(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial l(\beta)}{\partial \beta}
-\tag{12.6}\]</span></span></p>
-<p>Considere o caso onde deseja-se prever se uma pessoa tem ou não diabetes segundo o nível de glicose. Considere as primeiras linhas expostas na <a href="#tbl-diab1" class="quarto-xref">Table&nbsp;<span>12.1</span></a> de um conjunto de dados com observações de 763 pacientes.</p>
+\tag{13.6}\]</span></span></p>
+<p>Considere o caso onde deseja-se prever se uma pessoa tem ou não diabetes segundo o nível de glicose. Considere as primeiras linhas expostas na <a href="#tbl-diab1" class="quarto-xref">Tabela&nbsp;<span>13.1</span></a> de um conjunto de dados com observações de 763 pacientes.</p>
 <div class="cell">
 <div id="tbl-diab1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diab1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.1: Conjunto de dados de pacientes com e sem diabetes com distintos níveis de glicose
+Tabela&nbsp;13.1: Conjunto de dados de pacientes com e sem diabetes com distintos níveis de glicose
 </figcaption>
 <div aria-describedby="tbl-diab1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -966,7 +985,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <img src="AS_logreg_files/figure-html/fig-diab1-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diab1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.5: Modelo de regresão logística para prever a probabilidade do indivíduo ter diabetes em função do nível de glicose
+Figura&nbsp;13.5: Modelo de regresão logística para prever a probabilidade do indivíduo ter diabetes em função do nível de glicose
 </figcaption>
 </figure>
 </div>
@@ -976,13 +995,13 @@ Figure&nbsp;12.5: Modelo de regresão logística para prever a probabilidade do 
 <p><span class="math display">\[
 p(y=1|x) = \frac{1}{1 + e^{-(-5.712+0.040x)}}
 \]</span></p>
-<section id="regressão-logística-binária-múltipla" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="regressão-logística-binária-múltipla"><span class="header-section-number">12.2.1</span> Regressão logística binária múltipla</h3>
+<section id="regressão-logística-binária-múltipla" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="regressão-logística-binária-múltipla"><span class="header-section-number">13.2.1</span> Regressão logística binária múltipla</h3>
 <p>Seja o caso onde deseja-se estudar a probabilidade de sucesso de uma variável de resposta categórica binária em função de múltiplos preditores, <span class="math inline">\(x_1,x_2,\ldots,x_k\)</span>, <span class="math inline">\(p(y=1|x_1,x_2,\ldots,x_k)\)</span>.</p>
-<p>Um modelo de regressão logística múltipla pode ser escrito conforme <a href="#eq-lregmult" class="quarto-xref">Equation&nbsp;<span>12.7</span></a>.</p>
+<p>Um modelo de regressão logística múltipla pode ser escrito conforme <a href="#eq-lregmult" class="quarto-xref">Equação&nbsp;<span>13.7</span></a>.</p>
 <p><span id="eq-lregmult"><span class="math display">\[
 p(y=1|\mathbf x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x_1+\beta_2x_2+\ldots+\beta_kx_k)}}
-\tag{12.7}\]</span></span></p>
+\tag{13.7}\]</span></span></p>
 <p>Seja a matrix de observações das variáveis preditoras <span class="math inline">\(\mathbf{X}_{[N\times (k+1)]}\)</span>, com <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span> como o vetor de coeficientes, <span class="math inline">\(\mathbf{y}_{[N]}\)</span> o vetor de observações da resposta binária, <span class="math inline">\(\mathbf{p}_{[N]}\)</span> o vetor de probabilidades ajustadas com <span class="math inline">\(i\)</span>-ésimo elemento <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})\)</span> e <span class="math inline">\(\mathbf{W}_{[N\times N]}\)</span> uma matriz diagonal de pesos com o <span class="math inline">\(i\)</span>-ésimo elemento diagonal igual a <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})(1-p(\mathbf{x}_i,\beta_{t}))\)</span>. Temos o gradiente e a hessina tomando tal notação conforme segue.</p>
 <p><span class="math display">\[
 \frac{\partial l(\beta)}{\partial \beta} = \mathbf{X}^T(\mathbf{y}-\mathbf{p}) \\
@@ -994,12 +1013,12 @@ p(y=1|\mathbf x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x_1+\beta_2x_2+\ldots+\beta_
 <p><span class="math display">\[
 \beta_{t+1}=\beta_t - (\mathbf{X}^T\mathbf{W}\mathbf{X})^{-1}\mathbf{X}^T(\mathbf{y}-\mathbf{p})
 \]</span></p>
-<p>Considerando ainda o caso onde deseja-se prever se a pessoa tem ou não diabetes, porém, não apenas em função do nível de glicose no sangue, mas também em função da idade, sejam as primeiras observações do conjunto de dados expostas na <a href="#tbl-diab2" class="quarto-xref">Table&nbsp;<span>12.2</span></a>.</p>
+<p>Considerando ainda o caso onde deseja-se prever se a pessoa tem ou não diabetes, porém, não apenas em função do nível de glicose no sangue, mas também em função da idade, sejam as primeiras observações do conjunto de dados expostas na <a href="#tbl-diab2" class="quarto-xref">Tabela&nbsp;<span>13.2</span></a>.</p>
 <div class="cell">
 <div id="tbl-diab2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.2: Conjunto de dados de pacientes com e sem diabetes com distintas idades e distintos níveis de glicose
+Tabela&nbsp;13.2: Conjunto de dados de pacientes com e sem diabetes com distintas idades e distintos níveis de glicose
 </figcaption>
 <div aria-describedby="tbl-diab2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1530,8 +1549,8 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <p>O modelo de regressão logística apresenta pressuposiçoes similares ao modelo de regressão linear, tais como: independência das observações, linearidade dos dados, homogeneidade dos erros, independência dos erros e ausência de multicolinearidade. Entretanto, como este curso é mais voltado para previsão e menos para inferência, será dada mais ênfase no aprendizado e acuracidade da previsão, para avaliar a capacidade de generalização do modelo.</p>
 </section>
 </section>
-<section id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">12.3</span> Avaliação da capacidade de previsão do modelo de regressão</h2>
+<section id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">13.3</span> Avaliação da capacidade de previsão do modelo de regressão</h2>
 <p>Conforme já discutido, o modelo de regressão logística é útil para prever a probabilidade de ocorrência de uma classe de interesse. No entanto,em aprendizado deseja-se classificar observações futuras. Para usar um modelo de regressão logística para tal fim deve-se discretizar a probabilidade considerando um valor de corte de interesse, geralmente <span class="math inline">\(p=0,5\)</span>.</p>
 <p><span class="math display">\[
 \biggl\{
@@ -1540,12 +1559,12 @@ Number of Fisher Scoring iterations: 4</code></pre>
 \hat{y}=0\text{, se }  p(y=1|\mathbf{x}) &lt; 0,5 \\
 \end{matrix}
 \]</span></p>
-<p>A partir de tal discretização é possível obter a matriz de confusão, que resume todas as possíveis combinações de classificações considerando a realidade e o modelo, conforme <a href="#tbl-confmat" class="quarto-xref">Table&nbsp;<span>12.3</span></a>.</p>
+<p>A partir de tal discretização é possível obter a matriz de confusão, que resume todas as possíveis combinações de classificações considerando a realidade e o modelo, conforme <a href="#tbl-confmat" class="quarto-xref">Tabela&nbsp;<span>13.3</span></a>.</p>
 <div class="cell">
 <div id="tbl-confmat" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-confmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.3: Matriz de confusão
+Tabela&nbsp;13.3: Matriz de confusão
 </figcaption>
 <div aria-describedby="tbl-confmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2038,7 +2057,7 @@ y     0   1
 <p><span class="math display">\[
 Acc = \frac{TP+TN}{TP+TN+FP+FN} = \frac{\sum I(\hat{y}=y)}{n}
 \]</span></p>
-<p>Além de ser possível constatar a falta de equilíbrio entre as duas classes, observa-se um alto número de indivíduos com diabetes classificados erroneamente. O desbalanceamento entre as classes, possivelmente também presente nos dados de treino, tem consequência na diferença de proporção entre falsos positivos e negativos. Devido ao desequilíbrio entre classes a acuracidade geral pode não ser a melhor métrica para avaliar a capacidade do modelo. O gráfico da <a href="#fig-logregp" class="quarto-xref">Figure&nbsp;<span>12.6</span></a> apresenta o modelo de regressão logística múltipla obtido.</p>
+<p>Além de ser possível constatar a falta de equilíbrio entre as duas classes, observa-se um alto número de indivíduos com diabetes classificados erroneamente. O desbalanceamento entre as classes, possivelmente também presente nos dados de treino, tem consequência na diferença de proporção entre falsos positivos e negativos. Devido ao desequilíbrio entre classes a acuracidade geral pode não ser a melhor métrica para avaliar a capacidade do modelo. O gráfico da <a href="#fig-logregp" class="quarto-xref">Figura&nbsp;<span>13.6</span></a> apresenta o modelo de regressão logística múltipla obtido.</p>
 <div class="cell" data-tbl-cap="Fronteira de decisão do modelo de regressão logística para prever se a pessoa tem diabetes em função da concentração de glicose e da idade">
 <div class="cell-output-display">
 <div id="fig-logregp" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -2047,18 +2066,18 @@ Acc = \frac{TP+TN}{TP+TN+FP+FN} = \frac{\sum I(\hat{y}=y)}{n}
 <img src="AS_logreg_files/figure-html/fig-logregp-1.png" id="fig-logregp" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-logregp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.6
+Figura&nbsp;13.6
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Consideremos outras variáveis regressoras no modelo de regressão logística, conforme <a href="#tbl-diab3" class="quarto-xref">Table&nbsp;<span>12.4</span></a>.</p>
+<p>Consideremos outras variáveis regressoras no modelo de regressão logística, conforme <a href="#tbl-diab3" class="quarto-xref">Tabela&nbsp;<span>13.4</span></a>.</p>
 <div class="cell">
 <div id="tbl-diab3" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diab3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.4: Conjunto de dados de pacientes com e sem diabetes considerando diversas variáveis relacionadas à saúde
+Tabela&nbsp;13.4: Conjunto de dados de pacientes com e sem diabetes considerando diversas variáveis relacionadas à saúde
 </figcaption>
 <div aria-describedby="tbl-diab3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2639,15 +2658,15 @@ y    0  1
   1 12 20</code></pre>
 </div>
 </div>
-<p>Em problemas de classificação da área de saúde a sensitividade a especificidade são usadas, sendo a primeira a probabilidade de prever a doença dado que a pessoa é de fato doente, enquanto a especificidade consiste na probabilidade de prever como não doente dado que a pessoa de fato não o é, conforme <a href="#eq-senesp" class="quarto-xref">Equation&nbsp;<span>12.8</span></a>. Para o exemplo estudado, considerando o último modelo obtido, tem-se uma sensibilidade igual a 62,5% e uma especificidade igual a 92,42%.</p>
+<p>Em problemas de classificação da área de saúde a sensitividade a especificidade são usadas, sendo a primeira a probabilidade de prever a doença dado que a pessoa é de fato doente, enquanto a especificidade consiste na probabilidade de prever como não doente dado que a pessoa de fato não o é, conforme <a href="#eq-senesp" class="quarto-xref">Equação&nbsp;<span>13.8</span></a>. Para o exemplo estudado, considerando o último modelo obtido, tem-se uma sensibilidade igual a 62,5% e uma especificidade igual a 92,42%.</p>
 <p><span id="eq-senesp"><span class="math display">\[
 \biggl\{
 \begin{matrix}
 Sens = \frac{TP}{TP+FN} \\
 Spec = \frac{TN}{TN+FP}
 \end{matrix}
-\tag{12.8}\]</span></span></p>
-<p>A curva ROC (<em>receiver operating characteristics</em>) mede graficamente a relação entre tais a sensitividade e 1 menos a especificidade, sendo plotada para o exemplo a seguir na <a href="#fig-roc" class="quarto-xref">Figure&nbsp;<span>12.7</span></a>. Pode-se observar que para obter uma especificidade igual a 92% tem-se 62,5% de sensitividade.</p>
+\tag{13.8}\]</span></span></p>
+<p>A curva ROC (<em>receiver operating characteristics</em>) mede graficamente a relação entre tais a sensitividade e 1 menos a especificidade, sendo plotada para o exemplo a seguir na <a href="#fig-roc" class="quarto-xref">Figura&nbsp;<span>13.7</span></a>. Pode-se observar que para obter uma especificidade igual a 92% tem-se 62,5% de sensitividade.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-roc" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2656,7 +2675,7 @@ Spec = \frac{TN}{TN+FP}
 <img src="AS_logreg_files/figure-html/fig-roc-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.7: Curva ROC para o modelo de regressão logística para prever a probabilidade de o paciente ter diabetes
+Figura&nbsp;13.7: Curva ROC para o modelo de regressão logística para prever a probabilidade de o paciente ter diabetes
 </figcaption>
 </figure>
 </div>
@@ -2664,9 +2683,9 @@ Figure&nbsp;12.7: Curva ROC para o modelo de regressão logística para prever a
 </div>
 <p>A área abaixo da curva ROC também é utilizada como métrica de capacidade de previsão, devendo ser maximizada. Para o exemplo a curva apresentada tem área igual a 0,775 abaixo dela.</p>
 </section>
-<section id="regressão-logística-multinomial" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="regressão-logística-multinomial"><span class="header-section-number">12.4</span> Regressão logística multinomial</h2>
-<p>Considere o caso onde a variável dependente apresenta mais de duas classes, <span class="math inline">\(y \in \{c_1,c_2,\ldots,c_Q\}\)</span>, <span class="math inline">\(Q&gt;2\)</span>. Um modelo de regressão logística multinomial simples pode ser escrito conforme <a href="#eq-reglogmultinom" class="quarto-xref">Equation&nbsp;<span>12.9</span></a>.</p>
+<section id="regressão-logística-multinomial" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="regressão-logística-multinomial"><span class="header-section-number">13.4</span> Regressão logística multinomial</h2>
+<p>Considere o caso onde a variável dependente apresenta mais de duas classes, <span class="math inline">\(y \in \{c_1,c_2,\ldots,c_Q\}\)</span>, <span class="math inline">\(Q&gt;2\)</span>. Um modelo de regressão logística multinomial simples pode ser escrito conforme <a href="#eq-reglogmultinom" class="quarto-xref">Equação&nbsp;<span>13.9</span></a>.</p>
 <p><span id="eq-reglogmultinom"><span class="math display">\[
 \begin{align}
 \text{log } \biggl(\frac{p(y=1|x)}{p(y=Q|x)}\biggr) &amp;= \beta_{10}+\beta_1x \\
@@ -2674,7 +2693,7 @@ Figure&nbsp;12.7: Curva ROC para o modelo de regressão logística para prever a
 \vdots \\
 \text{log } \biggl(\frac{p(y=Q-1|x)}{p(y=Q|x)}\biggr) &amp;= \beta_{(Q-1)0}+\beta_{(Q-1)}x \\
 \end{align}
-\tag{12.9}\]</span></span></p>
+\tag{13.9}\]</span></span></p>
 <p>O modelo foi especificado considerando <span class="math inline">\(Q-1\)</span> transformações logit. A classe considerada no denominador é definida arbitrariamente. De forma análoga ao modelo binário, tem-se:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -2685,11 +2704,11 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <p>O modelo de regressão logística multinomial simples pode ser obviamente estendido ao caso múltiplo.</p>
 <p>Assim como na regressão linear para respostas contínuas, a regressão logística também permite a aplicação de técnicas de regularização como regressão logística rígida e LASSO. Ademais, é possível considerar termos polinomiais e de interação e até mesmo expansões de base, como <em>splines</em> e GAM.</p>
 </section>
-<section id="implementações-em-r" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">12.5</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">13.5</span> Implementações em R</h2>
 <p>A seguir será expostos as implementações necessárias para obter os resultados do capítulo. Alguns exemplos aqui expostos são distintos dos do capítulo, sendo os resultados das implementações apresentados integralmente.</p>
-<section id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">12.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</h3>
+<section id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</h3>
 <p>Seja o exemplo de previsão se o paciente tem diabetes em função da concentração de glicose.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlbench)</span>
@@ -2701,7 +2720,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> PimaIndiansDiabetes2 <span class="sc">|&gt;</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(glucose,diabetes)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Separando dados de treino e teste.</p>
 <div class="cell">
@@ -2715,7 +2734,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data), <span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data))</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> data[treino,]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Algoritmo de Newton-Raphson para obtenção dos coeficientes.</p>
 <div class="cell">
@@ -2764,7 +2783,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(beta_history)</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rodando algoritmo.</p>
 <div class="cell">
@@ -2775,7 +2794,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar o algoritmo de Newton-Raphson</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>beta_history <span class="ot">&lt;-</span> <span class="fu">newton_raphson</span>(X, y)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>beta_history[<span class="fu">nrow</span>(beta_history),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>beta_history[<span class="fu">nrow</span>(beta_history),]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Visualizando a evolução dos coeficientes para maximizar o log da verossimilhança via Newton-Raphson.</p>
 <div class="cell">
@@ -2807,11 +2826,11 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># main = "Curvas de Contorno com Atualização de Beta"</span></span>
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(beta0, beta1, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(beta0, beta1, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(beta0, beta1, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-binária-simples-via-glm" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="regressão-logística-binária-simples-via-glm"><span class="header-section-number">12.5.2</span> Regressão logística binária simples via <code>glm</code></h3>
+<section id="regressão-logística-binária-simples-via-glm" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.5.2</span> Regressão logística binária simples via <code>glm</code></h3>
 <p>Carregando pacotes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
@@ -2819,7 +2838,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotROC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotROC)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lendo os dados.</p>
 <div class="cell">
@@ -2829,27 +2848,27 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> PimaIndiansDiabetes2 <span class="sc">|&gt;</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(glucose,diabetes)</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Filtrar dados para remover valores <code>NA</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(glucose), <span class="sc">!</span><span class="fu">is.na</span>(diabetes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(glucose), <span class="sc">!</span><span class="fu">is.na</span>(diabetes))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Codificando a resposta em 0 e 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>diabetes <span class="sc">==</span> <span class="st">"pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>diabetes <span class="sc">==</span> <span class="st">"pos"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dividindo dados para treinamento e teste.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data), <span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> data[treino,]</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelo de regressão logística multinomial simples.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(diabetes <span class="sc">~</span> glucose, <span class="at">data =</span> dados_treino, <span class="at">family =</span> binomial)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Visualizando modelo.</p>
 <div class="cell">
@@ -2861,38 +2880,38 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Concentracao de glicose"</span>, </span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probabilidade de ter diabetes"</span>,</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"diabetes?"</span>) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão e avaliação do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>prob_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, <span class="at">type =</span> <span class="st">'response'</span>, <span class="at">newdata =</span> dados_test)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_pred <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Matriz de confusão.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cm <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y =</span> dados_test<span class="sc">$</span>diabetes, <span class="at">pred =</span> y_pred)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cm</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Acuracidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cm[<span class="dv">1</span>,<span class="dv">1</span>],cm[<span class="dv">2</span>,<span class="dv">2</span>])<span class="sc">/</span><span class="fu">sum</span>(cm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm))<span class="sc">/</span><span class="fu">sum</span>(cm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sensibilidade e especificidade.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cm[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(cm[<span class="dv">2</span>,])</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cm[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm[<span class="dv">1</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cm[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm[<span class="dv">1</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-múltipla" class="level3" data-number="12.5.3">
-<h3 data-number="12.5.3" class="anchored" data-anchor-id="regressão-logística-múltipla"><span class="header-section-number">12.5.3</span> Regressão logística múltipla</h3>
+<section id="regressão-logística-múltipla" class="level3" data-number="13.5.3">
+<h3 data-number="13.5.3" class="anchored" data-anchor-id="regressão-logística-múltipla"><span class="header-section-number">13.5.3</span> Regressão logística múltipla</h3>
 <p>Leitura dos dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> PimaIndiansDiabetes2 <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(glucose,diabetes, age)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pré-processamento inicial.</p>
 <div class="cell">
@@ -2904,12 +2923,12 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data2), <span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data2))</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>dados_treino2 <span class="ot">&lt;-</span> data2[treino,]</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>dados_test2 <span class="ot">&lt;-</span> data2[<span class="sc">-</span>treino,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>dados_test2 <span class="ot">&lt;-</span> data2[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelagem.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(diabetes <span class="sc">~</span> <span class="fu">scale</span>(glucose) <span class="sc">+</span> <span class="fu">scale</span>(age), <span class="at">data =</span> dados_treino2, <span class="at">family =</span> binomial)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotando o modelo.</p>
 <div class="cell">
@@ -2929,30 +2948,30 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dados_test2<span class="sc">$</span>glucose, <span class="at">y =</span> dados_test2<span class="sc">$</span>age, </span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="fu">as.factor</span>(dados_test2<span class="sc">$</span>diabetes)), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Nivel de glicose"</span>, <span class="at">y =</span> <span class="st">"Idade"</span>, </span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Diabetes"</span>, <span class="at">col =</span> <span class="st">"Diabetes"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Diabetes"</span>, <span class="at">col =</span> <span class="st">"Diabetes"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão e avaliação do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>prob_pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">type =</span> <span class="st">'response'</span>, <span class="at">newdata =</span> dados_test2)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>y_pred2 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_pred2 <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Matriz de confusão.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cm2 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y =</span> dados_test2<span class="sc">$</span>diabetes, <span class="at">pred =</span> y_pred2)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cm2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cm2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Acuracidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cm2[<span class="dv">1</span>,<span class="dv">1</span>],cm2[<span class="dv">2</span>,<span class="dv">2</span>])<span class="sc">/</span><span class="fu">sum</span>(cm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm2))<span class="sc">/</span><span class="fu">sum</span>(cm2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sensibilidade e especificidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cm2[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(cm2[<span class="dv">2</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cm2[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(cm2[<span class="dv">2</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5070423</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cm2[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm2[<span class="dv">1</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cm2[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm2[<span class="dv">1</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.875</code></pre>
 </div>
@@ -2965,24 +2984,24 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">label=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"model1"</span>,</span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">nrow</span>(dados_test)),</span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">rep</span>(<span class="st">"model2"</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">nrow</span>(dados_test))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">nrow</span>(dados_test))))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_roc, </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">d =</span> y,</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">m =</span> prob,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span>label)) <span class="sc">+</span> <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span>label)) <span class="sc">+</span> <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-múltipla-com-mais-variáveis" class="level3" data-number="12.5.4">
-<h3 data-number="12.5.4" class="anchored" data-anchor-id="regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">12.5.4</span> Regressão logística múltipla com mais variáveis</h3>
+<section id="regressão-logística-múltipla-com-mais-variáveis" class="level3" data-number="13.5.4">
+<h3 data-number="13.5.4" class="anchored" data-anchor-id="regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.5.4</span> Regressão logística múltipla com mais variáveis</h3>
 <p>Leitura dos dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> PimaIndiansDiabetes2</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data3)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Normalizando dados.</p>
 <div class="cell">
@@ -2991,7 +3010,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">list</span>(mean, sd)))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># data3_sum</span></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>data3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">scale</span>(data3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>data3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">scale</span>(data3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pré-processamento inicial.</p>
 <div class="cell">
@@ -3000,67 +3019,67 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data3), <span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data3))</span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>dados_treino3 <span class="ot">&lt;-</span> data3[treino,]</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>dados_test3 <span class="ot">&lt;-</span> data3[<span class="sc">-</span>treino,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>dados_test3 <span class="ot">&lt;-</span> data3[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modelagem.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(diabetes <span class="sc">~</span>., <span class="at">data =</span> dados_treino3, <span class="at">family =</span> binomial)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão e avaliação do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>prob_pred3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3, <span class="at">type =</span> <span class="st">'response'</span>, <span class="at">newdata =</span> dados_test3)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y_pred3 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_pred3 <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(y_pred3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Matriz de confusão.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cm3 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y =</span> dados_test3<span class="sc">$</span>diabetes, <span class="at">pred =</span> y_pred3)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cm3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cm3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Acuracidade.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cm3[<span class="dv">1</span>,<span class="dv">1</span>],cm3[<span class="dv">2</span>,<span class="dv">2</span>])<span class="sc">/</span><span class="fu">sum</span>(cm3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm3))<span class="sc">/</span><span class="fu">sum</span>(cm3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sensibilidade e especificidade.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cm3[<span class="dv">2</span>,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(cm3[<span class="dv">2</span>,])</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>cm3[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm3[<span class="dv">1</span>,])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>cm3[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm3[<span class="dv">1</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-rígida-para-o-exemplo-anterior" class="level3" data-number="12.5.5">
-<h3 data-number="12.5.5" class="anchored" data-anchor-id="regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">12.5.5</span> Regressão logística rígida para o exemplo anterior</h3>
+<section id="regressão-logística-rígida-para-o-exemplo-anterior" class="level3" data-number="13.5.5">
+<h3 data-number="13.5.5" class="anchored" data-anchor-id="regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.5.5</span> Regressão logística rígida para o exemplo anterior</h3>
 <p>Pré-processamento inicial.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(glucose <span class="sc">~</span> ., data3)[,<span class="sc">-</span><span class="dv">1</span>]</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data3<span class="sc">$</span>diabetes</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>X.treino <span class="ot">&lt;-</span> X[treino,]</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>y.treino <span class="ot">&lt;-</span> y[treino]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>y.treino <span class="ot">&lt;-</span> y[treino]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Grid para lambda.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length =</span> <span class="dv">100</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Regressão rígida.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>rid1 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, </span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> <span class="st">"binomial"</span>,</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="dv">0</span>, </span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">lambda =</span> grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">lambda =</span> grid)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plotando coeficientes versus lambda.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rid1, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, </span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> .<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> .<span class="dv">7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Obtendo lambda ótimo via cv e <em>grid search</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>rid.cv <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>bestlam <span class="ot">&lt;-</span> rid.cv<span class="sc">$</span>lambda.min <span class="co"># selecionando lambda otimo</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>bestlam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>bestlam</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão para teste e matriz de confusão.</p>
 <div class="cell">
@@ -3070,7 +3089,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>rid1.pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_pred4 <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">y=</span>y[<span class="sc">-</span>treino], <span class="at">pred=</span>rid1.pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">y=</span>y[<span class="sc">-</span>treino], <span class="at">pred=</span>rid1.pred)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Curva ROC.</p>
 <div class="cell">
@@ -3080,7 +3099,7 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(test_res, </span>
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">d =</span> y,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">m =</span> prob)) <span class="sc">+</span> <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">m =</span> prob)) <span class="sc">+</span> <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -3136,12 +3155,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiada");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiada");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -3513,10 +3532,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./AS_class.html" class="pagination-link" aria-label="Introdução a classificação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./AS_lda.html" class="pagination-link" aria-label="Classificação via análise discriminante">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

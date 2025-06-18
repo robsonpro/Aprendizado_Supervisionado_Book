@@ -232,20 +232,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -385,23 +403,23 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
 </figcaption>
 <div aria-describedby="tbl-datafocas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="yieesmtmrk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yieesmtmrk table {
+<div id="mvzlldoecv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mvzlldoecv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yieesmtmrk thead, #yieesmtmrk tbody, #yieesmtmrk tfoot, #yieesmtmrk tr, #yieesmtmrk td, #yieesmtmrk th {
+#mvzlldoecv thead, #mvzlldoecv tbody, #mvzlldoecv tfoot, #mvzlldoecv tr, #mvzlldoecv td, #mvzlldoecv th {
   border-style: none;
 }
 
-#yieesmtmrk p {
+#mvzlldoecv p {
   margin: 0;
   padding: 0;
 }
 
-#yieesmtmrk .gt_table {
+#mvzlldoecv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -427,12 +445,12 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-left-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_caption {
+#mvzlldoecv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yieesmtmrk .gt_title {
+#mvzlldoecv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -444,7 +462,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-width: 0;
 }
 
-#yieesmtmrk .gt_subtitle {
+#mvzlldoecv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -456,7 +474,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-width: 0;
 }
 
-#yieesmtmrk .gt_heading {
+#mvzlldoecv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,13 +486,13 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_bottom_border {
+#mvzlldoecv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_col_headings {
+#mvzlldoecv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -489,7 +507,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_col_heading {
+#mvzlldoecv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -509,7 +527,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#yieesmtmrk .gt_column_spanner_outer {
+#mvzlldoecv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -521,15 +539,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 4px;
 }
 
-#yieesmtmrk .gt_column_spanner_outer:first-child {
+#mvzlldoecv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yieesmtmrk .gt_column_spanner_outer:last-child {
+#mvzlldoecv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yieesmtmrk .gt_column_spanner {
+#mvzlldoecv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -541,11 +559,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   width: 100%;
 }
 
-#yieesmtmrk .gt_spanner_row {
+#mvzlldoecv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yieesmtmrk .gt_group_heading {
+#mvzlldoecv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -571,7 +589,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   text-align: left;
 }
 
-#yieesmtmrk .gt_empty_group_heading {
+#mvzlldoecv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -586,15 +604,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: middle;
 }
 
-#yieesmtmrk .gt_from_md > :first-child {
+#mvzlldoecv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yieesmtmrk .gt_from_md > :last-child {
+#mvzlldoecv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yieesmtmrk .gt_row {
+#mvzlldoecv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -613,7 +631,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#yieesmtmrk .gt_stub {
+#mvzlldoecv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -626,7 +644,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#yieesmtmrk .gt_stub_row_group {
+#mvzlldoecv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -640,15 +658,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: top;
 }
 
-#yieesmtmrk .gt_row_group_first td {
+#mvzlldoecv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yieesmtmrk .gt_row_group_first th {
+#mvzlldoecv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yieesmtmrk .gt_summary_row {
+#mvzlldoecv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -658,16 +676,16 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#yieesmtmrk .gt_first_summary_row {
+#mvzlldoecv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_first_summary_row.thick {
+#mvzlldoecv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yieesmtmrk .gt_last_summary_row {
+#mvzlldoecv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,7 +695,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_grand_summary_row {
+#mvzlldoecv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -687,7 +705,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#yieesmtmrk .gt_first_grand_summary_row {
+#mvzlldoecv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -697,7 +715,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_last_grand_summary_row_top {
+#mvzlldoecv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,11 +725,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_striped {
+#mvzlldoecv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yieesmtmrk .gt_table_body {
+#mvzlldoecv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -720,7 +738,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_footnotes {
+#mvzlldoecv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -734,7 +752,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_footnote {
+#mvzlldoecv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -743,7 +761,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#yieesmtmrk .gt_sourcenotes {
+#mvzlldoecv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -757,7 +775,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#yieesmtmrk .gt_sourcenote {
+#mvzlldoecv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -765,72 +783,72 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#yieesmtmrk .gt_left {
+#mvzlldoecv .gt_left {
   text-align: left;
 }
 
-#yieesmtmrk .gt_center {
+#mvzlldoecv .gt_center {
   text-align: center;
 }
 
-#yieesmtmrk .gt_right {
+#mvzlldoecv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yieesmtmrk .gt_font_normal {
+#mvzlldoecv .gt_font_normal {
   font-weight: normal;
 }
 
-#yieesmtmrk .gt_font_bold {
+#mvzlldoecv .gt_font_bold {
   font-weight: bold;
 }
 
-#yieesmtmrk .gt_font_italic {
+#mvzlldoecv .gt_font_italic {
   font-style: italic;
 }
 
-#yieesmtmrk .gt_super {
+#mvzlldoecv .gt_super {
   font-size: 65%;
 }
 
-#yieesmtmrk .gt_footnote_marks {
+#mvzlldoecv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yieesmtmrk .gt_asterisk {
+#mvzlldoecv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yieesmtmrk .gt_indent_1 {
+#mvzlldoecv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yieesmtmrk .gt_indent_2 {
+#mvzlldoecv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yieesmtmrk .gt_indent_3 {
+#mvzlldoecv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yieesmtmrk .gt_indent_4 {
+#mvzlldoecv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yieesmtmrk .gt_indent_5 {
+#mvzlldoecv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yieesmtmrk .katex-display {
+#mvzlldoecv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yieesmtmrk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mvzlldoecv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

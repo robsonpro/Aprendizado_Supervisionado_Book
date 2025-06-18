@@ -232,20 +232,38 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -325,7 +343,7 @@ window.Quarto = {
 L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2
 \end{aligned}
 \]</span></p>
-<p>A divisão por 2 viabiliza facilitar os cálculos no algoritmo de <em>boosting</em>. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-gradloss</span></a>.</p>
+<p>A divisão por 2 viabiliza facilitar os cálculos no algoritmo de <em>boosting</em>. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.1</span></a>.</p>
 <p><span id="eq-gradloss"><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial f} = y - \hat{f}(\mathbf{x}) = \varepsilon
@@ -334,7 +352,7 @@ L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2
 <p>Portanto, em cada iteração, o algoritmo GBM, ao aproximar uma árvore considerando <span class="math inline">\(N\)</span> observações das variáveis regressoras, <span class="math inline">\(\mathbf{x}_i\)</span>, em relação à <span class="math inline">\(N\)</span> valores residuais, <span class="math inline">\(\varepsilon_i\)</span>, <span class="math inline">\(i=1,...,N\)</span>, aproxima o gradiente da função perda que, no caso da função perda quadrática, é o valor residual ou erro, <span class="math inline">\(\varepsilon\)</span>.</p>
 <section id="implementação-simplista-passo-a-passo-do-gbm-para-regressão" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="implementação-simplista-passo-a-passo-do-gbm-para-regressão"><span class="header-section-number">8.1.1</span> Implementação simplista passo a passo do GBM para regressão</h3>
-<p>Para entender melhor o algoritmo GBM, considere o conjunto arbitrário de dados de treino da <a href="#tbl-regdata" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-regdata</span></a>, com duas variáveis independentes, <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>, e uma dependente contínua, <span class="math inline">\(y\)</span>.</p>
+<p>Para entender melhor o algoritmo GBM, considere o conjunto arbitrário de dados de treino da <a href="#tbl-regdata" class="quarto-xref">Tabela&nbsp;<span>8.1</span></a>, com duas variáveis independentes, <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>, e uma dependente contínua, <span class="math inline">\(y\)</span>.</p>
 <div class="cell">
 <div id="tbl-regdata" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -861,7 +879,7 @@ Tabela&nbsp;8.1: Conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>Consideremos para fins didáticos uma taxa de aprendizagem alta, <span class="math inline">\(\lambda\)</span> = 0,5, e um número pequeno de iterações, <span class="math inline">\(M = 4\)</span> árvores. O algoritmo inicia fazendo <span class="math inline">\(\hat{f}(x_1,x_2)=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span>, isto é (a penúltima coluna seriam os valores previstos do modelo inicial, <span class="math inline">\(\hat{f} = f\)</span>, e a última coluna seria o erro, <span class="math inline">\(\varepsilon = e\)</span>), conforme <a href="#tbl-iter0" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-iter0</span></a>.</p>
+<p>Consideremos para fins didáticos uma taxa de aprendizagem alta, <span class="math inline">\(\lambda\)</span> = 0,5, e um número pequeno de iterações, <span class="math inline">\(M = 4\)</span> árvores. O algoritmo inicia fazendo <span class="math inline">\(\hat{f}(x_1,x_2)=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span>, isto é (a penúltima coluna seriam os valores previstos do modelo inicial, <span class="math inline">\(\hat{f} = f\)</span>, e a última coluna seria o erro, <span class="math inline">\(\varepsilon = e\)</span>), conforme <a href="#tbl-iter0" class="quarto-xref">Tabela&nbsp;<span>8.2</span></a>.</p>
 <div class="cell">
 <div id="tbl-iter0" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1421,7 +1439,7 @@ Tabela&nbsp;8.2: Previsão e resíduos iniciais do GBM
   3) x2 &gt; 1.915 5 0.5049 2.564 *</code></pre>
 </div>
 </div>
-<p>O modelo obtido é usado para atualizar os valores previstos, <span class="math inline">\(\hat{f}(x_1,x_2)\leftarrow \hat{f}(x_1,x_2) + \lambda\hat{f}_1(x_1,x_2)\)</span> e os resíduos, <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_1(x_1,x_2)\)</span>, conforme <a href="#tbl-iter1" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-iter1</span></a>.</p>
+<p>O modelo obtido é usado para atualizar os valores previstos, <span class="math inline">\(\hat{f}(x_1,x_2)\leftarrow \hat{f}(x_1,x_2) + \lambda\hat{f}_1(x_1,x_2)\)</span> e os resíduos, <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_1(x_1,x_2)\)</span>, conforme <a href="#tbl-iter1" class="quarto-xref">Tabela&nbsp;<span>8.3</span></a>.</p>
 <div class="cell">
 <div id="tbl-iter1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1970,7 +1988,7 @@ Tabela&nbsp;8.3: Previsão e resíduos da primeira iteração do GBM
 </figure>
 </div>
 </div>
-<p>Tomando <span class="math inline">\(m=2\)</span>, repete-se o processo, obtendo-se uma nova árvore para os resíduos e atualizando as previsões e os resíduos, conforme <a href="#tbl-iter2" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-iter2</span></a>.</p>
+<p>Tomando <span class="math inline">\(m=2\)</span>, repete-se o processo, obtendo-se uma nova árvore para os resíduos e atualizando as previsões e os resíduos, conforme <a href="#tbl-iter2" class="quarto-xref">Tabela&nbsp;<span>8.4</span></a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -2529,7 +2547,7 @@ Tabela&nbsp;8.4: Previsão e resíduos da segunda iteração do GBM
 </figure>
 </div>
 </div>
-<p>Para <span class="math inline">\(m=3\)</span>, tem-se os resultados resumidos na <a href="#tbl-iter3" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-iter3</span></a>.</p>
+<p>Para <span class="math inline">\(m=3\)</span>, tem-se os resultados resumidos na <a href="#tbl-iter3" class="quarto-xref">Tabela&nbsp;<span>8.5</span></a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -3088,7 +3106,7 @@ Tabela&nbsp;8.5: Previsão e resíduos da terceira iteração do GBM
 </figure>
 </div>
 </div>
-<p>Finalmente, para <span class="math inline">\(m=4\)</span>, obtém-se o modelo “reforçado” final que consiste na soma ponderada pela taxa de aprendizagem de todos os modelos, isto é, <span class="math inline">\(\hat{f}(\mathbf{x}) = \sum_{m=1}^M\lambda\hat{f}_m(\mathbf{x})\)</span>, com resultados resumidos na <a href="#tbl-iter4" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-iter4</span></a>.</p>
+<p>Finalmente, para <span class="math inline">\(m=4\)</span>, obtém-se o modelo “reforçado” final que consiste na soma ponderada pela taxa de aprendizagem de todos os modelos, isto é, <span class="math inline">\(\hat{f}(\mathbf{x}) = \sum_{m=1}^M\lambda\hat{f}_m(\mathbf{x})\)</span>, com resultados resumidos na <a href="#tbl-iter4" class="quarto-xref">Tabela&nbsp;<span>8.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -3648,7 +3666,7 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 </div>
 </div>
 <p>Obviamente, o processo poderia seguir para melhorar as previsões. Conforme já elucidado, pode-se definir o número de iterações por validação cruzada. Quanto maior o número de árvores estipulado, recomenda-se que menor seja a taxa de aprendizagem.</p>
-<p>Seja um conjunto de dados para prever o rendimento de indivíduos considerando anos de experiência, ocupação, se ele trabalha ou não na indústria, escolaridade, além de fatores sócio-geográficos. Considerando um modelo obtido via GBM com 8000 árvores e <span class="math inline">\(\lambda = 0,1\)</span>, pode-se plotar um gráfico de superfície considerando como variáveis independentes a escolaridade e anos de experiência conforme <a href="#fig-surfrend" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-surfrend</span></a>.</p>
+<p>Seja um conjunto de dados para prever o rendimento de indivíduos considerando anos de experiência, ocupação, se ele trabalha ou não na indústria, escolaridade, além de fatores sócio-geográficos. Considerando um modelo obtido via GBM com 8000 árvores e <span class="math inline">\(\lambda = 0,1\)</span>, pode-se plotar um gráfico de superfície considerando como variáveis independentes a escolaridade e anos de experiência conforme <a href="#fig-surfrend" class="quarto-xref">Figura&nbsp;<span>8.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfrend" class="quarto-float quarto-figure quarto-figure-center anchored">
