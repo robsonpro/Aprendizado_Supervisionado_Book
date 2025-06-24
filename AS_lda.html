@@ -1095,7 +1095,7 @@ Figura&nbsp;14.7: Fronteira de discriminação binária para caso em função de
 </div>
 <p>A função discriminante quadrática para a <span class="math inline">\(c\)</span>-ésima classe pode ser escrita conforme <a href="#eq-fundiscquad" class="quarto-xref">Equação&nbsp;<span>14.17</span></a>. Pode-se observar que neste caso não se desconsideram termos dependentes da matriz de covariância, uma vez que esta é diferente para cada classe. Deve-se calcular o valor de <span class="math inline">\(u_c\)</span>, <span class="math inline">\(c=1,\dots,C\)</span>, de forma a decidir sobre a classe com maior probabilidade.</p>
 <p><span id="eq-fundiscquad"><span class="math display">\[
-u_c = (\mathbf x) = -\frac 1 2 (\mathbf x - \mu_c)^T \Sigma_c^{-1}(\mathbf x - \mu_c)-\frac 1 2 \text{log }(\Sigma_c)
+u_c(\mathbf x) = -\frac 1 2 (\mathbf x - \mu_c)^T \Sigma_c^{-1}(\mathbf x - \mu_c)-\frac 1 2 \text{log }(\Sigma_c)
 \tag{14.17}\]</span></span></p>
 <p>Seja um conjunto de dados de medições de características de folhas de distintas espécies de árvores frutíferas encontradas no Brasil. A <a href="#tbl-folhas" class="quarto-xref">Tabela&nbsp;<span>14.2</span></a> expõe as primeiras observações do conjunto de dados.</p>
 <div class="cell">
