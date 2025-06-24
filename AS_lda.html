@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>14&nbsp; Classificação via análise discriminante – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>14&nbsp; Classificação via análise discriminante – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -126,7 +160,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -249,6 +283,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#lda-para-k-variáveis-independentes-e-duas-classes" id="toc-lda-para-k-variáveis-independentes-e-duas-classes" class="nav-link" data-scroll-target="#lda-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">14.2</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</a></li>
   <li><a href="#lda-para-k-variáveis-independentes-e-três-ou-mais-classes" id="toc-lda-para-k-variáveis-independentes-e-três-ou-mais-classes" class="nav-link" data-scroll-target="#lda-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">14.3</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</a></li>
+  <li><a href="#análise-discriminante-quadrática" id="toc-análise-discriminante-quadrática" class="nav-link" data-scroll-target="#análise-discriminante-quadrática"><span class="header-section-number">14.4</span> Análise discriminante quadrática</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">14.5</span> Implementações em R</a>
+  <ul class="collapse">
+  <li><a href="#análise-linear-discriminante" id="toc-análise-linear-discriminante" class="nav-link" data-scroll-target="#análise-linear-discriminante"><span class="header-section-number">14.5.1</span> Análise linear discriminante</a></li>
+  <li><a href="#análise-discriminante-quadrática-1" id="toc-análise-discriminante-quadrática-1" class="nav-link" data-scroll-target="#análise-discriminante-quadrática-1"><span class="header-section-number">14.5.2</span> Análise discriminante quadrática</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -385,7 +425,7 @@ p(\mathbf{x}|y=1)=f_1(\mathbf{x})=\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{
 \sigma_{21} &amp; \sigma_2^2
 \end{matrix} \biggr]
 \tag{14.11}\]</span></span></p>
-<p>A <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a>, plotam-se densidades bivariadas de dados de um caso de classificação binária.</p>
+<p>A <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> plota densidades bivariadas de dados de um caso de classificação binária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-denbivbin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -419,13 +459,17 @@ Figura&nbsp;14.4: Fronteira de discriminação binária para caso em função de
 </div>
 </div>
 </div>
+<p>A função discriminante linear para o caso de múltiplas variáveis independentes e duas classes é definida na <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.16</span></a>.</p>
+<p><span id="eq-discfuncc"><span class="math display">\[
+u(x) = (\mu_1-\mu_2)\Sigma^{-1}\mathbf x
+\tag{14.13}\]</span></span></p>
 </section>
 <section id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">14.3</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</h2>
 <p>No caso de três ou mais classes é conveniente trabalhar uma função discriminante a partir do teorema de Bayes, sem uso da razão de chance. Tomando apenas o numerador, uma vez que o denominador é constante à todas as classes, tem-se para a <span class="math inline">\(c\)</span>-ésima classe a probabilidade condicional de pertencer a <span class="math inline">\(c\)</span> conforme <span class="quarto-unresolved-ref">?eq-eq-pcondc</span>, <span class="math inline">\(c=1,2,...,C\)</span>.</p>
 <p><span id="eq-pcondc"><span class="math display">\[
 p(y=c|\mathbf{x}) =p(\mathbf{x}|y=c)p(y=c)
-\tag{14.13}\]</span></span></p>
+\tag{14.14}\]</span></span></p>
 <p>Aplicando o logaritmo, pode-se eliminar o segundo termo da soma dos logs, uma vez que este será igual para todas as classes em casos de igualdade de observações entre estas, <span class="math inline">\(n_1,n_2,...,n_c\)</span>. Após aplicar a verossimilhança pode-se também eliminar o termo <span class="math inline">\(\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}\)</span>, uma vez que será constante para todas as classes.</p>
 <p><span id="eq-lnpcondc"><span class="math display">\[
 \begin{align}
@@ -433,15 +477,15 @@ p(y=c|\mathbf{x}) =p(\mathbf{x}|y=c)p(y=c)
 &amp; = \text{ln }  p(\mathbf{x}|y=c) + \not{\text{ln }p(y=c)} \\
 &amp; \simeq \text{ln } \frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c)} \\
 \end{align}
-\tag{14.14}\]</span></span></p>
-<p>Logo, a função discriminante para a c-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.15</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe.</p>
+\tag{14.15}\]</span></span></p>
+<p>Logo, a função discriminante para a c-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.16</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe.</p>
 <p><span id="eq-discfuncc"><span class="math display">\[
 \begin{align}
 u(\mathbf{x}) &amp; = -\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c) \\
 &amp; = \not{-\frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mathbf{x}} + \frac{1}{2}\mu_c^T\Sigma^{-1}\mathbf{x} + \frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
 u(\mathbf{x}) &amp; = \mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
 \end{align}
-\tag{14.15}\]</span></span></p>
+\tag{14.16}\]</span></span></p>
 <p>Considere o famoso conjunto de dados Iris, comumente atribuído a Fisher, o qual contém medições em centímetros do comprimento e largura de pétalas e sépalas de três distintas espécies de orquídeas. A <a href="#tbl-iris" class="quarto-xref">Tabela&nbsp;<span>14.1</span></a> exibe as primeiras linhas de tal conjunto de dados.</p>
 <div class="cell">
 <div id="tbl-iris" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -978,7 +1022,7 @@ Figura&nbsp;14.5: Diagramas de dispersão e correlações aos pares para o conju
 </div>
 </div>
 </div>
-<p>Tomando aleatoriamente 75% das observações para treino, um modelo obtido via LDA é obtido conforme segue.</p>
+<p>Tomando aleatoriamente 75% das observações para treino, um modelo obtido via LDA é obtido conforme segue. O resultado da modalegam expõe as probabilidades à priori, que consiste nas proporções de observações cada classe segundo dados de treino, os vetores de médias de cada classe, considerando as variáveis independentes e os coeficientes para discriminação linear, além da importância destes para discriminação (proporção do traço).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
@@ -1016,8 +1060,757 @@ y            setosa versicolor virginica
   virginica       0          0        11</code></pre>
 </div>
 </div>
+</section>
+<section id="análise-discriminante-quadrática" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="análise-discriminante-quadrática"><span class="header-section-number">14.4</span> Análise discriminante quadrática</h2>
+<p>A análise discriminante quadrática é útil para casos onde as variâncias da variável independente, no caso simples, ou as matrizes de covariâncias das variáveis independentes, no caso múltiplo, para as <span class="math inline">\(C\)</span> classes são distintas. A <a href="#fig-denbivquad" class="quarto-xref">Figura&nbsp;<span>14.6</span></a> plota densidades bivariadas de dados de um caso de classificação binária com distintas variâncias entre classes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-denbivquad" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-denbivquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-denbivquad-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.6: Densidades teóricas de duas classes em função de duas variáveis para matrizes de covariâncias distintas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A fronteira de classificação em tais casos não será linear, conforme ilustrado na <a href="#fig-denbivquad2" class="quarto-xref">Figura&nbsp;<span>14.7</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-denbivquad2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-denbivquad2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-denbivquad2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivquad2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.7: Fronteira de discriminação binária para caso em função de duas variáveis considerando matrizes de covariâncias distintas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A função discriminante quadrática para a <span class="math inline">\(c\)</span>-ésima classe pode ser escrita conforme <a href="#eq-fundiscquad" class="quarto-xref">Equação&nbsp;<span>14.17</span></a>. Pode-se observar que neste caso não se desconsideram termos dependentes da matriz de covariância, uma vez que esta é diferente para cada classe. Deve-se calcular o valor de <span class="math inline">\(u_c\)</span>, <span class="math inline">\(c=1,\dots,C\)</span>, de forma a decidir sobre a classe com maior probabilidade.</p>
+<p><span id="eq-fundiscquad"><span class="math display">\[
+u_c = (\mathbf x) = -\frac 1 2 (\mathbf x - \mu_c)^T \Sigma_c^{-1}(\mathbf x - \mu_c)-\frac 1 2 \text{log }(\Sigma_c)
+\tag{14.17}\]</span></span></p>
+<p>Seja um conjunto de dados de medições de características de folhas de distintas espécies de árvores frutíferas encontradas no Brasil. A <a href="#tbl-folhas" class="quarto-xref">Tabela&nbsp;<span>14.2</span></a> expõe as primeiras observações do conjunto de dados.</p>
+<div class="cell">
+<div id="tbl-folhas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-folhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;14.2: Observações do conjunto de dados folhas
+</figcaption>
+<div aria-describedby="tbl-folhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="hpnuyfvhux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hpnuyfvhux table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hpnuyfvhux thead, #hpnuyfvhux tbody, #hpnuyfvhux tfoot, #hpnuyfvhux tr, #hpnuyfvhux td, #hpnuyfvhux th {
+  border-style: none;
+}
+
+#hpnuyfvhux p {
+  margin: 0;
+  padding: 0;
+}
+
+#hpnuyfvhux .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hpnuyfvhux .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hpnuyfvhux .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hpnuyfvhux .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hpnuyfvhux .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hpnuyfvhux .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hpnuyfvhux .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hpnuyfvhux .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hpnuyfvhux .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hpnuyfvhux .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hpnuyfvhux .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hpnuyfvhux .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hpnuyfvhux .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hpnuyfvhux .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hpnuyfvhux .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpnuyfvhux .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hpnuyfvhux .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hpnuyfvhux .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hpnuyfvhux .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpnuyfvhux .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hpnuyfvhux .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpnuyfvhux .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hpnuyfvhux .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpnuyfvhux .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hpnuyfvhux .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hpnuyfvhux .gt_left {
+  text-align: left;
+}
+
+#hpnuyfvhux .gt_center {
+  text-align: center;
+}
+
+#hpnuyfvhux .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hpnuyfvhux .gt_font_normal {
+  font-weight: normal;
+}
+
+#hpnuyfvhux .gt_font_bold {
+  font-weight: bold;
+}
+
+#hpnuyfvhux .gt_font_italic {
+  font-style: italic;
+}
+
+#hpnuyfvhux .gt_super {
+  font-size: 65%;
+}
+
+#hpnuyfvhux .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hpnuyfvhux .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hpnuyfvhux .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hpnuyfvhux .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hpnuyfvhux .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hpnuyfvhux .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hpnuyfvhux .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hpnuyfvhux .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hpnuyfvhux div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="especie" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">especie</th>
+<th id="area" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">area</th>
+<th id="perimetro" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">perimetro</th>
+<th id="raiomedio" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomedio</th>
+<th id="raiosd" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiosd</th>
+<th id="raiomin" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomin</th>
+<th id="raiomax" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomax</th>
+<th id="eixomaior" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">eixomaior</th>
+<th id="ecentricidade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ecentricidade</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">2.3587161</td>
+<td class="gt_row gt_right" headers="perimetro">5.575758</td>
+<td class="gt_row gt_right" headers="raiomedio">0.9105212</td>
+<td class="gt_row gt_right" headers="raiosd">0.1573576</td>
+<td class="gt_row gt_right" headers="raiomin">0.6948606</td>
+<td class="gt_row gt_right" headers="raiomax">1.1568970</td>
+<td class="gt_row gt_right" headers="eixomaior">2.313212</td>
+<td class="gt_row gt_right" headers="ecentricidade">789</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">2.2907601</td>
+<td class="gt_row gt_right" headers="perimetro">5.818182</td>
+<td class="gt_row gt_right" headers="raiomedio">0.9124121</td>
+<td class="gt_row gt_right" headers="raiosd">0.1605576</td>
+<td class="gt_row gt_right" headers="raiomin">0.6507515</td>
+<td class="gt_row gt_right" headers="raiomax">1.2462788</td>
+<td class="gt_row gt_right" headers="eixomaior">2.232667</td>
+<td class="gt_row gt_right" headers="ecentricidade">763</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">1.8871878</td>
+<td class="gt_row gt_right" headers="perimetro">5.103030</td>
+<td class="gt_row gt_right" headers="raiomedio">0.8239879</td>
+<td class="gt_row gt_right" headers="raiosd">0.1680606</td>
+<td class="gt_row gt_right" headers="raiomin">0.5723879</td>
+<td class="gt_row gt_right" headers="raiomax">1.1024121</td>
+<td class="gt_row gt_right" headers="eixomaior">2.146024</td>
+<td class="gt_row gt_right" headers="ecentricidade">819</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">1.2324738</td>
+<td class="gt_row gt_right" headers="perimetro">5.224242</td>
+<td class="gt_row gt_right" headers="raiomedio">0.7478909</td>
+<td class="gt_row gt_right" headers="raiosd">0.2848121</td>
+<td class="gt_row gt_right" headers="raiomin">0.2493576</td>
+<td class="gt_row gt_right" headers="raiomax">1.2367152</td>
+<td class="gt_row gt_right" headers="eixomaior">2.335758</td>
+<td class="gt_row gt_right" headers="ecentricidade">941</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">0.9707225</td>
+<td class="gt_row gt_right" headers="perimetro">3.684848</td>
+<td class="gt_row gt_right" headers="raiomedio">0.6013455</td>
+<td class="gt_row gt_right" headers="raiosd">0.1543394</td>
+<td class="gt_row gt_right" headers="raiomin">0.3110061</td>
+<td class="gt_row gt_right" headers="raiomax">0.8603394</td>
+<td class="gt_row gt_right" headers="eixomaior">1.675248</td>
+<td class="gt_row gt_right" headers="ecentricidade">868</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="especie">goiaba</td>
+<td class="gt_row gt_right" headers="area">2.1489390</td>
+<td class="gt_row gt_right" headers="perimetro">6.072727</td>
+<td class="gt_row gt_right" headers="raiomedio">0.9169333</td>
+<td class="gt_row gt_right" headers="raiosd">0.2829576</td>
+<td class="gt_row gt_right" headers="raiomin">0.4715758</td>
+<td class="gt_row gt_right" headers="raiomax">1.4316727</td>
+<td class="gt_row gt_right" headers="eixomaior">2.711770</td>
+<td class="gt_row gt_right" headers="ecentricidade">909</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A <a href="#fig-pairsfolhas" class="quarto-xref">Figura&nbsp;<span>14.8</span></a> exibe gráficos de dispersão e correlações aos pares bem como histogramas e densidades amostrais dentro de cada espécie considerada no conjunto de daos folha. Pode-se constatar que, dado a variação nas densidades amostrais para cada espécie nas distintas variáveis, a análise quadrática discriminante talvez seja mais adequada ao problema de clssificação em questão.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pairsfolhas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pairsfolhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-pairsfolhas-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pairsfolhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.8: Diagramas de dispersão e correlações aos pares para o conjunto de dados folhas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Tomando aleatoriamente 75% das observações para treino, um modelo obtido via QDA é obtido conforme segue.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+qda(especie ~ ., data = data.treino2)
+
+Prior probabilities of groups:
+   acerola     cereja     goiaba jabuticaba      limao   mexerica 
+ 0.2291667  0.1666667  0.1666667  0.1527778  0.1458333  0.1388889 
+
+Group means:
+                area perimetro raiomedio    raiosd   raiomin   raiomax
+acerola    4.6199258  8.300373 1.2320808 0.2681082 0.8241248 1.7416843
+cereja     0.5802029  3.094874 0.4704354 0.1517791 0.2589256 0.7737258
+goiaba     1.2797672  4.347291 0.6925562 0.1658400 0.4252010 0.9866172
+jabuticaba 1.6047352  4.922163 0.7575936 0.2188675 0.4270077 1.1733904
+limao      2.4424181  5.434424 0.8563618 0.2373312 0.5054323 1.3197574
+mexerica   0.9791802  3.597199 0.5411255 0.1668078 0.2871625 0.8697244
+           eixomaior ecentricidade
+acerola     3.261431      835.0303
+cereja      1.360406      907.8750
+goiaba      1.883029      848.2500
+jabuticaba  2.159333      879.9091
+limao       2.436449      881.6667
+mexerica    1.495607      869.9500</code></pre>
+</div>
+</div>
+<p>Tal modelo apresentou 88,89% de acuracidade. Sugere-se comparar o desempenho com o da análise discriminante linear.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>            pred
+y            acerola cereja goiaba jabuticaba limao mexerica
+  acerola         19      0      0          0     0        0
+  cereja           1     20      2          2     5        0
+  goiaba           0      0     18          3     3        0
+  jabuticaba       0      0      1         20     4        1
+  limao            1      1      0          3    17        0
+  mexerica         1      0      0          0     2       19</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7902098</code></pre>
+</div>
+</div>
+</section>
+<section id="implementações-em-r" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">14.5</span> Implementações em R</h2>
+<p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
+<section id="análise-linear-discriminante" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="análise-linear-discriminante"><span class="header-section-number">14.5.1</span> Análise linear discriminante</h3>
+<p>Carregando pacotes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TreeDiagram)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Conjunto de dados iris.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> iris</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando correlações e distribuição dentro das classes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(data, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">col=</span>Species, <span class="at">alpha=</span>.<span class="dv">5</span>), </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">progress=</span>F) <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Separando dados de treino e teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data), tr, <span class="at">replace =</span> F)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data.treino <span class="ot">&lt;-</span> data[treino,]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>data.teste <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Análise linear discriminante.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit.lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> ., data.treino)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fit.lda1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Matriz de confusão para dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lda.pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda1, <span class="at">newdata=</span>data.teste)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste<span class="sc">$</span>Species, <span class="at">pred=</span>lda.pred1<span class="sc">$</span>class)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análise-discriminante-quadrática-1" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="análise-discriminante-quadrática-1"><span class="header-section-number">14.5.2</span> Análise discriminante quadrática</h3>
+<p>Leitura de dados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"folhas.csv"</span>, <span class="at">header=</span>T)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data2) <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando correlações e distribuição dentro das classes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(data2, <span class="fu">aes</span>(<span class="at">col=</span>especie, <span class="at">alpha=</span>.<span class="dv">5</span>), <span class="at">progress=</span>F) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Separando dados de treino e teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tr2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data2))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>treino2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data2), tr2, <span class="at">replace =</span> F)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>data.treino2 <span class="ot">&lt;-</span> data2[treino2,]</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>data.teste2 <span class="ot">&lt;-</span> data2[<span class="sc">-</span>treino2,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Modelagem via LDA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit.lda2 <span class="ot">&lt;-</span> <span class="fu">lda</span>(especie <span class="sc">~</span> ., data.treino2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit.lda2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lda.pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda2, <span class="at">newdata=</span>data.teste2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cm2 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste2<span class="sc">$</span>especie, <span class="at">pred=</span>lda.pred2<span class="sc">$</span>class)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>cm2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm2))<span class="sc">/</span><span class="fu">sum</span>(cm2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Modelagem via QDA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit.qda2 <span class="ot">&lt;-</span> <span class="fu">qda</span>(especie <span class="sc">~</span> ., data.treino2)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fit.qda2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Desempenho de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>qda.pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.qda2, <span class="at">newdata=</span>data.teste2)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cm3 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste2<span class="sc">$</span>especie, <span class="at">pred=</span>qda.pred2<span class="sc">$</span>class)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>cm3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm3))<span class="sc">/</span><span class="fu">sum</span>(cm3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
