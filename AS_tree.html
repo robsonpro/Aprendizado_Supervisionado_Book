@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>4&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>4&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -393,7 +393,7 @@ Figura&nbsp;4.4: Gráfico de correlação para o conjunto de dados Hitters
 </div>
 </div>
 </div>
-<p>Seja um modelo de árvore de regressão para prever o salário em função das demais variáveis considerando metade dos dados selecionados aleatoriamente para treino do modelo. Po-de se observar que o modelo de árvore de decisão detalhado abaixo pode ser descrito como um conjunto de regras “se”, ’se não”. Por exemplo, tomando as seguintes partições <code>CRuns &lt; 325.5 82  6125000  296.3</code> e <code>CRuns &gt; 208.5 22   514100  498.8 *</code>, tem-se o valor previsto do salário do jogador igual a 498.8 unidades monetárias com soma dos quadrados dos erros igual a 514100.</p>
+<p>Seja um modelo de árvore de regressão para prever o salário em função das demais variáveis considerando metade dos dados selecionados aleatoriamente para treino do modelo. Pode-se observar que o modelo de árvore de decisão detalhado abaixo pode ser descrito como um conjunto de regras “se”, “se não”. Por exemplo, tomando as seguintes partições <code>CRuns &lt; 325.5 82  6125000  296.3</code> e <code>CRuns &gt; 208.5 22   514100  498.8 *</code>, tem-se o valor previsto do salário do jogador igual a 498.8 unidades monetárias com soma dos quadrados dos erros igual a 514100.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -1659,6 +1659,10 @@ Figura&nbsp;4.10: Gráfico de superfície para um modelo de regressão via baggi
 </div>
 </div>
 </div>
+<p>A <span class="quarto-unresolved-ref">?eq-bag</span> expõe o modelo de regressão obtido via <em>bagging</em>, onde <span class="math inline">\(\hat f^*_b(\mathbf x)\)</span> é a a <span class="math inline">\(b\)</span>-ésima árvore de regressão obtida após a <span class="math inline">\(b\)</span>-ésima reamostragem, <span class="math inline">\(b=1,\dots,B\)</span>.</p>
+<p><span class="math display">\[
+\hat f(\mathbf x) = \frac{1}{B} \sum_{b=1}^B \hat f^*_b(\mathbf x)
+\]</span></p>
 </section>
 <section id="floresta-aleatória" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">4.3</span> Floresta aleatória</h2>

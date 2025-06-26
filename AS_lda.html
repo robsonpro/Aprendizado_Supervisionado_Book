@@ -322,13 +322,13 @@ window.Quarto = {
 
 <section id="análise-discriminante-linear-binária-simples" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="análise-discriminante-linear-binária-simples"><span class="header-section-number">14.1</span> Análise discriminante linear binária simples</h2>
-<p>A análise linear discriminante é um método de estatística multivariada concebido por Fisher, hoje usado para aprendizado supervisionado para classificação. Seja um problema de classificação binária de um supervisor de interesse, <span class="math inline">\(y=\{1,2\}\)</span> em função de uma variável independente, <span class="math inline">\(x \in \mathcal{R}\)</span>. Pelo teorema de Bayes, pode-se trabalhar a probabilidade condicional de <span class="math inline">\(y\)</span> pertencer a uma classe de interesse dado um valor de <span class="math inline">\(x\)</span>, por exemplo, <span class="math inline">\(p(y=1|x)\)</span>, conforme <a href="#eq-bayes" class="quarto-xref">Equação&nbsp;<span>14.1</span></a>.</p>
+<p>A análise linear discriminante é um método de estatística multivariada concebido por Fisher, usado para classificação. Seja um problema de classificação binária de um supervisor de interesse, <span class="math inline">\(y=\{1,2\}\)</span> em função de uma variável independente, <span class="math inline">\(x \in \mathcal{R}\)</span>. Pelo teorema de Bayes, pode-se trabalhar a probabilidade condicional de <span class="math inline">\(y\)</span> pertencer a uma classe de interesse dado um valor de <span class="math inline">\(x\)</span>, por exemplo, <span class="math inline">\(p(y=1|x)\)</span>, conforme <a href="#eq-bayes" class="quarto-xref">Equação&nbsp;<span>14.1</span></a>.</p>
 <p><span id="eq-bayes"><span class="math display">\[
 p(y=1|x) =  \frac{p(x|y=1)p(y=1)}{p(x)}
 \tag{14.1}\]</span></span></p>
 <p>Onde <span class="math inline">\(p(x|y=1)\)</span> é a verossimilhança que consiste na probabilidade de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span> é verdade, podendo ser aproximada pela função densidade de probabilidade de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>. <span class="math inline">\(p(y=1)\)</span> seria a probabilidade de <span class="math inline">\(y\)</span> pertencer à classe 1, a qual pode ser estimada a partir da proporção dos dados de treino correspondentes. Por fim, <span class="math inline">\(p(x)\)</span> seria a probabilidade da variável independente, que pode ser aproximada pela lei da probabilidade total e será constante e independente das classes. Tomando a distribuição normal, a verossimilhança pode ser aproximada conforme <a href="#eq-veross" class="quarto-xref">Equação&nbsp;<span>14.2</span></a>, onde <span class="math inline">\(\mu_1\)</span> e <span class="math inline">\(\sigma_1\)</span> são, respectivamente, a média e o desvio-padrão da distribuição de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>, os quais podem ser aproximados por dados amostrais.</p>
 <p><span id="eq-veross"><span class="math display">\[
-p(x|y=1)=f_1(x)=\frac{1}{\sqrt{2\pi}\sigma_1}e^\frac{-(x-\mu_1)^2}{2\sigma_1}
+p(x|y=1)=f_1(x)=\frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{1}{2}\bigl(\frac{x-\mu_1}{\sigma_1}\bigr)^2}
 \tag{14.2}\]</span></span></p>
 <p>A análise discriminante linear considera que as distribuições de <span class="math inline">\(x\)</span> para as classes de interesse apresentam igual variabilidade, <span class="math inline">\(\sigma=\sigma_1=\sigma_2\)</span>. No caso de problemas de classificação deseja-se ao final saber o valor de <span class="math inline">\(x\)</span> que discrimina as classes de interesse. A <a href="#fig-twoclass" class="quarto-xref">Figura&nbsp;<span>14.1</span></a> exibe dados de duas classes distintas em função de uma única variável regressora e as densidades teóricas correspondentes de <span class="math inline">\(x\)</span> para cada uma das classes.</p>
 <div class="cell">
@@ -345,40 +345,40 @@ Figura&nbsp;14.1: Observações e densidades teóricas de duas classes em funç�
 </div>
 </div>
 </div>
-<p>Aplicando os conceitos explicados na formulação inicial obtém-se a <span class="quarto-unresolved-ref">?eq-py1</span>.</p>
-<p><span class="math display">\[
-p(y=1|x) =  \frac{p(y=1)\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu_1)^2}{2\sigma}}{p(x)}
-\]</span> {eq-py1}</p>
-<p>Assim como na regressão logística, pode-se usar o log da razão de chance para facilitar a discriminação, conforme <a href="#eq-logdds" class="quarto-xref">Equação&nbsp;<span>14.3</span></a>. O logaritmo facilita a separação dos produtos e da razão em soma e subtração, respectivamente.</p>
+<p>Pode-se observar que a análise discriminante linear considera <span class="math inline">\(\sigma_1=\sigma_2=\sigma\)</span>, ou seja, o desvio-padrão e, consequentemente, a variância é constante para as classes. Aplicando os conceitos explicados na formulação inicial obtém-se a <a href="#eq-py1" class="quarto-xref">Equação&nbsp;<span>14.3</span></a>.</p>
+<p><span id="eq-py1"><span class="math display">\[
+p(y=1|x) =  \frac{p(y=1)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\bigl(\frac{x-\mu_1}{\sigma}\bigr)^2}}{p(x)}
+\tag{14.3}\]</span></span></p>
+<p>Assim como na regressão logística, pode-se usar o log da razão de chance para facilitar a discriminação, conforme <a href="#eq-logdds" class="quarto-xref">Equação&nbsp;<span>14.4</span></a>. O logaritmo facilita a separação dos produtos e da razão em soma e subtração, respectivamente.</p>
 <p><span id="eq-logdds"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \text{ln } \biggl(\frac{f_1(x)}{f_2(x)}\frac{p(y=1)}{p(y=2)}\biggr) \\
 &amp; =\text{ln } \frac{f_1(x)}{f_2(x)}+ \text{ln }\frac{p(y=1)}{p(y=2)} \\
 \end{align}
-\tag{14.3}\]</span></span></p>
-<p>Supondo o equilíbro entre as classes, <span class="math inline">\(\text{ln }\frac{p(y=1)}{p(y=2)} = 0\)</span>. Logo, obtém-se o resultado da <a href="#eq-logdds2" class="quarto-xref">Equação&nbsp;<span>14.4</span></a>.</p>
+\tag{14.4}\]</span></span></p>
+<p>Supondo o equilíbro entre as classes, <span class="math inline">\(\text{ln }\frac{p(y=1)}{p(y=2)} = 0\)</span>. Logo, obtém-se o resultado da <a href="#eq-logdds2" class="quarto-xref">Equação&nbsp;<span>14.5</span></a>.</p>
 <p><span id="eq-logdds2"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \text{ln }  \frac{\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu_1)^2}{\sigma}}{\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu_2)^2}{\sigma}}
 \end{align}
-\tag{14.4}\]</span></span></p>
-<p>Fazendo as devidas simplificações, obtém-se a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.5</span></a>.</p>
+\tag{14.5}\]</span></span></p>
+<p>Fazendo as devidas simplificações, obtém-se a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.6</span></a>.</p>
 <p><span id="eq-logdds3"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \frac{\mu_2^2-\mu_1^2}{2\sigma^2} + x\frac{\mu_1-\mu_2}{\sigma^2}
 \end{align}
-\tag{14.5}\]</span></span></p>
-<p>Se o log da razão de chance for maior que 0, então classifica-se <span class="math inline">\(y\)</span> como pertencente à classe 1. Se, ao contrário, for menor que 0, <span class="math inline">\(y\)</span> é classificado para a classe 2. As estimativas da média condicional e da variância comum são calculadas conforme <a href="#eq-condstats" class="quarto-xref">Equação&nbsp;<span>14.6</span></a>, onde <span class="math inline">\(c = {1,2}\)</span> e o número de classes <span class="math inline">\(C=2\)</span> para o caso binário.</p>
+\tag{14.6}\]</span></span></p>
+<p>Se o log da razão de chance for maior que 0, então classifica-se <span class="math inline">\(y\)</span> como pertencente à classe 1. Se, ao contrário, for menor que 0, <span class="math inline">\(y\)</span> é classificado para a classe 2. As estimativas da média condicional e da variância comum são calculadas conforme <a href="#eq-condstats" class="quarto-xref">Equação&nbsp;<span>14.7</span></a>, onde <span class="math inline">\(c = {1,2}\)</span> e o número de classes <span class="math inline">\(C=2\)</span> para o caso binário.</p>
 <p><span id="eq-condstats"><span class="math display">\[
 \begin{align}
 \hat{\mu}_c &amp; = \frac{1}{n_c}\sum_{i:y_i=c}x_i \\
 \hat{\sigma}^2 &amp;=\frac{1}{n-C}\sum_{c=1}^C\sum_{i:y_i=c}(x_i-\hat{\mu}_i)^2 \\
 \end{align}
-\tag{14.6}\]</span></span></p>
-<p>Considerando o log da razão de chance nulo e resolvendo para <span class="math inline">\(x\)</span> a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.5</span></a>, pode-se obter a fronteira de decisão pela <a href="#eq-decfront" class="quarto-xref">Equação&nbsp;<span>14.7</span></a>, que no caso simples consiste na média das médias da variável independente condicional às classes.</p>
+\tag{14.7}\]</span></span></p>
+<p>Considerando o log da razão de chance nulo e resolvendo para <span class="math inline">\(x\)</span> a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.6</span></a>, pode-se obter a fronteira de decisão pela <a href="#eq-decfront" class="quarto-xref">Equação&nbsp;<span>14.8</span></a>, que no caso simples consiste na média das médias da variável independente condicional às classes.</p>
 <p><span id="eq-decfront"><span class="math display">\[
 x=\frac{\mu_1+\mu_2}{2}
-\tag{14.7}\]</span></span></p>
+\tag{14.8}\]</span></span></p>
 <p>Neste sentido, pode-se retomar o exemplo plotado anteriormente com a fronteira de decisão na <a href="#fig-decfront" class="quarto-xref">Figura&nbsp;<span>14.2</span></a>. Pode-se observar que a fronteira maximiza as probabilidades de verdadeiros positivos e negativos e minimiza as probabilidades de falsos positivo e negativo.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -396,35 +396,35 @@ Figura&nbsp;14.2: Fronteira de decisão para análise discriminante linear simpl
 </div>
 <section id="analogia-com-a-regressão-logística" class="level3" data-number="14.1.1">
 <h3 data-number="14.1.1" class="anchored" data-anchor-id="analogia-com-a-regressão-logística"><span class="header-section-number">14.1.1</span> Analogia com a regressão logística</h3>
-<p>Tomando novamente o logaritmo da razão de chance, os coeficientes de regressão logística podem ser definidos com base nestes parâmetros segundo a <a href="#eq-ldalogr" class="quarto-xref">Equação&nbsp;<span>14.8</span></a>, de forma que os resultados dos dois classificadores são análogos.</p>
+<p>Tomando novamente o logaritmo da razão de chance, os coeficientes de regressão logística podem ser definidos com base nestes parâmetros segundo a <a href="#eq-ldalogr" class="quarto-xref">Equação&nbsp;<span>14.9</span></a>, de forma que os resultados dos dois classificadores são análogos.</p>
 <p><span id="eq-ldalogr"><span class="math display">\[
 \begin{align}
 \beta_0 &amp;= \frac{\mu_2^2-\mu_1^2}{2\sigma^2} \\
 \beta_1 &amp;= \frac{\mu_1-\mu_2}{\sigma^2} \\
 \end{align}
-\tag{14.8}\]</span></span></p>
+\tag{14.9}\]</span></span></p>
 </section>
 <section id="função-linear-discriminante-de-ficher" class="level3" data-number="14.1.2">
 <h3 data-number="14.1.2" class="anchored" data-anchor-id="função-linear-discriminante-de-ficher"><span class="header-section-number">14.1.2</span> Função linear discriminante de Ficher</h3>
-<p>Fisher também determinou uma função linear discriminante, a qual visa maximizar a variância entre os grupos relativamente à variância comum dentro dos grupos. A função é expressa na <a href="#eq-discfunc" class="quarto-xref">Equação&nbsp;<span>14.9</span></a>, consistindo no termo do log da razão de chance que contém <span class="math inline">\(x\)</span>.</p>
+<p>Fisher também determinou uma função linear discriminante, a qual visa maximizar a variância entre os grupos relativamente à variância comum dentro dos grupos. A função é expressa na <a href="#eq-discfunc" class="quarto-xref">Equação&nbsp;<span>14.10</span></a>, consistindo no termo do log da razão de chance que contém <span class="math inline">\(x\)</span>.</p>
 <p><span id="eq-discfunc"><span class="math display">\[
 u(x) = \frac{\mu_1-\mu_2}{\sigma^2}x
-\tag{14.9}\]</span></span></p>
+\tag{14.10}\]</span></span></p>
 </section>
 </section>
 <section id="lda-para-k-variáveis-independentes-e-duas-classes" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="lda-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">14.2</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</h2>
-<p>Seja o caso onde deseja-se realizar uma classificação binária em função de <span class="math inline">\(k\)</span> variáveis independentes, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>. Tais variáveis podem ser condensadas em um vetor <span class="math inline">\(k\)</span>-dimensional, <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span>. O teorema de Bayes pode ser novamente usado, porém a verossimilhança será expressa pela função densidade de probabilidade multivariada, que no caso normal, considerando a classe <span class="math inline">\(y=1\)</span>, consiste na <a href="#eq-vermult" class="quarto-xref">Equação&nbsp;<span>14.10</span></a>.</p>
+<p>Seja o caso onde deseja-se realizar uma classificação binária em função de <span class="math inline">\(k\)</span> variáveis independentes, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>. Tais variáveis podem ser condensadas em um vetor <span class="math inline">\(k\)</span>-dimensional, <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span>. O teorema de Bayes pode ser novamente usado, porém a verossimilhança será expressa pela função densidade de probabilidade multivariada, que no caso normal, considerando a classe <span class="math inline">\(y=1\)</span>, consiste na <a href="#eq-vermult" class="quarto-xref">Equação&nbsp;<span>14.11</span></a>.</p>
 <p><span id="eq-vermult"><span class="math display">\[
-p(\mathbf{x}|y=1)=f_1(\mathbf{x})=\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_1)^T|\Sigma|^{-1}(\mathbf{x}-\mu_1)}
-\tag{14.10}\]</span></span></p>
-<p>Na função de densidade normal multivariada, <span class="math inline">\(\mu_1\)</span> consiste no vetor de médias para as <span class="math inline">\(k\)</span> variáveis independentes, condicional a <span class="math inline">\(y=1\)</span>, <span class="math inline">\(\mu_1 = [\bar{x}_{1,y=1},\bar{x}_{2,y=1},...,\bar{x}_{k,y=1}]^T\)</span> e <span class="math inline">\(\Sigma\)</span> consiste na matriz de covariância comum às duas classes, segundo <a href="#eq-covmat" class="quarto-xref">Equação&nbsp;<span>14.11</span></a>.</p>
+p(\mathbf{x}|y=1)=f_1(\mathbf{x})=\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_1)^T\Sigma^{-1}(\mathbf{x}-\mu_1)}
+\tag{14.11}\]</span></span></p>
+<p>Na função de densidade normal multivariada, <span class="math inline">\(\mu_1\)</span> consiste no vetor de médias para as <span class="math inline">\(k\)</span> variáveis independentes, condicional a <span class="math inline">\(y=1\)</span>, <span class="math inline">\(\mu_1 = [\bar{x}_{1,y=1},\bar{x}_{2,y=1},...,\bar{x}_{k,y=1}]^T\)</span> e <span class="math inline">\(\Sigma\)</span> consiste na matriz de covariância comum às duas classes, segundo <a href="#eq-covmat" class="quarto-xref">Equação&nbsp;<span>14.12</span></a>.</p>
 <p><span id="eq-covmat"><span class="math display">\[
 \Sigma = \biggl[ \begin{matrix}
 \sigma_1^2 &amp; \sigma_{12} \\
 \sigma_{21} &amp; \sigma_2^2
 \end{matrix} \biggr]
-\tag{14.11}\]</span></span></p>
+\tag{14.12}\]</span></span></p>
 <p>A <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> plota densidades bivariadas de dados de um caso de classificação binária.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -440,10 +440,10 @@ Figura&nbsp;14.3: Densidades teóricas de duas classes em função de duas vari�
 </div>
 </div>
 </div>
-<p>Sem a necessidade de repetir as deduções anteriores, pode-se escrever o log da razão de chance para o caso multivariado conforme <a href="#eq-oddsratiomult" class="quarto-xref">Equação&nbsp;<span>14.12</span></a>. Se o logit for maior que 0, então y=1. De forma análoga pode-se considerar a função discriminante como parte do logit que é função de <span class="math inline">\(\mathbf{x}\)</span>.</p>
+<p>Sem a necessidade de repetir as deduções anteriores, pode-se escrever o log da razão de chance para o caso multivariado conforme <a href="#eq-oddsratiomult" class="quarto-xref">Equação&nbsp;<span>14.13</span></a>. Se o logit for maior que 0, então y=1. De forma análoga pode-se considerar a função discriminante como parte do logit que é função de <span class="math inline">\(\mathbf{x}\)</span>.</p>
 <p><span id="eq-oddsratiomult"><span class="math display">\[
 \text{ln } \biggl(\frac{p(y=1|\mathbf{x})}{p(y=2|\mathbf{x})}\biggr) = (\mu_1-\mu_2)^T\Sigma^{-1}\mathbf{x} - \frac{1}{2}(\mu_1-\mu_2)^T\Sigma^{-1}(\mu_1+\mu_2)
-\tag{14.12}\]</span></span></p>
+\tag{14.13}\]</span></span></p>
 <p>Na <a href="#fig-denbivbin2" class="quarto-xref">Figura&nbsp;<span>14.4</span></a> o exemplo plotado na <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> é novamente exibido em curvas de contorno com a fronteira obtida para discriminar as classes, além dos dados amostrais considerados.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -459,17 +459,17 @@ Figura&nbsp;14.4: Fronteira de discriminação binária para caso em função de
 </div>
 </div>
 </div>
-<p>A função discriminante linear para o caso de múltiplas variáveis independentes e duas classes é definida na <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.16</span></a>.</p>
+<p>A função discriminante linear para o caso de múltiplas variáveis independentes e duas classes é definida na <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.14</span></a>.</p>
 <p><span id="eq-discfuncc"><span class="math display">\[
 u(x) = (\mu_1-\mu_2)\Sigma^{-1}\mathbf x
-\tag{14.13}\]</span></span></p>
+\tag{14.14}\]</span></span></p>
 </section>
 <section id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">14.3</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</h2>
 <p>No caso de três ou mais classes é conveniente trabalhar uma função discriminante a partir do teorema de Bayes, sem uso da razão de chance. Tomando apenas o numerador, uma vez que o denominador é constante à todas as classes, tem-se para a <span class="math inline">\(c\)</span>-ésima classe a probabilidade condicional de pertencer a <span class="math inline">\(c\)</span> conforme <span class="quarto-unresolved-ref">?eq-eq-pcondc</span>, <span class="math inline">\(c=1,2,...,C\)</span>.</p>
 <p><span id="eq-pcondc"><span class="math display">\[
 p(y=c|\mathbf{x}) =p(\mathbf{x}|y=c)p(y=c)
-\tag{14.14}\]</span></span></p>
+\tag{14.15}\]</span></span></p>
 <p>Aplicando o logaritmo, pode-se eliminar o segundo termo da soma dos logs, uma vez que este será igual para todas as classes em casos de igualdade de observações entre estas, <span class="math inline">\(n_1,n_2,...,n_c\)</span>. Após aplicar a verossimilhança pode-se também eliminar o termo <span class="math inline">\(\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}\)</span>, uma vez que será constante para todas as classes.</p>
 <p><span id="eq-lnpcondc"><span class="math display">\[
 \begin{align}
@@ -477,15 +477,15 @@ p(y=c|\mathbf{x}) =p(\mathbf{x}|y=c)p(y=c)
 &amp; = \text{ln }  p(\mathbf{x}|y=c) + \not{\text{ln }p(y=c)} \\
 &amp; \simeq \text{ln } \frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c)} \\
 \end{align}
-\tag{14.15}\]</span></span></p>
-<p>Logo, a função discriminante para a c-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.16</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe.</p>
-<p><span id="eq-discfuncc"><span class="math display">\[
+\tag{14.16}\]</span></span></p>
+<p>Logo, a função discriminante para a c-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.14</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe.</p>
+<p><span class="math display">\[
 \begin{align}
 u(\mathbf{x}) &amp; = -\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c) \\
 &amp; = \not{-\frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mathbf{x}} + \frac{1}{2}\mu_c^T\Sigma^{-1}\mathbf{x} + \frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
 u(\mathbf{x}) &amp; = \mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
 \end{align}
-\tag{14.16}\]</span></span></p>
+\]</span></p>
 <p>Considere o famoso conjunto de dados Iris, comumente atribuído a Fisher, o qual contém medições em centímetros do comprimento e largura de pétalas e sépalas de três distintas espécies de orquídeas. A <a href="#tbl-iris" class="quarto-xref">Tabela&nbsp;<span>14.1</span></a> exibe as primeiras linhas de tal conjunto de dados.</p>
 <div class="cell">
 <div id="tbl-iris" class="cell quarto-float quarto-figure quarto-figure-center anchored">
