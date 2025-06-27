@@ -266,6 +266,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -1659,10 +1665,10 @@ Figura&nbsp;4.10: Gráfico de superfície para um modelo de regressão via baggi
 </div>
 </div>
 </div>
-<p>A <span class="quarto-unresolved-ref">?eq-bag</span> expõe o modelo de regressão obtido via <em>bagging</em>, onde <span class="math inline">\(\hat f^*_b(\mathbf x)\)</span> é a a <span class="math inline">\(b\)</span>-ésima árvore de regressão obtida após a <span class="math inline">\(b\)</span>-ésima reamostragem, <span class="math inline">\(b=1,\dots,B\)</span>.</p>
-<p><span class="math display">\[
+<p>A <a href="#eq-bag" class="quarto-xref">Equação&nbsp;<span>4.3</span></a> expõe o modelo de regressão obtido via <em>bagging</em>, onde <span class="math inline">\(\hat f^*_b(\mathbf x)\)</span> é a a <span class="math inline">\(b\)</span>-ésima árvore de regressão obtida após a <span class="math inline">\(b\)</span>-ésima reamostragem, <span class="math inline">\(b=1,\dots,B\)</span>.</p>
+<p><span id="eq-bag"><span class="math display">\[
 \hat f(\mathbf x) = \frac{1}{B} \sum_{b=1}^B \hat f^*_b(\mathbf x)
-\]</span></p>
+\tag{4.3}\]</span></span></p>
 </section>
 <section id="floresta-aleatória" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">4.3</span> Floresta aleatória</h2>

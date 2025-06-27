@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robson Bruno Dutra Pereira">
+
+<title>16&nbsp; Classificação via árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./AS_svm.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_treec.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_Intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao aprendizado supervisionado</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressão por máquinas de reforço de gradiente</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_GAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#árvores-de-decisão-para-classificação" id="toc-árvores-de-decisão-para-classificação" class="nav-link active" data-scroll-target="#árvores-de-decisão-para-classificação"><span class="header-section-number">16.1</span> Árvores de decisão para classificação</a></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">16.2</span> <em>Bagging</em></a></li>
+  <li><a href="#floresta-aleatória" id="toc-floresta-aleatória" class="nav-link" data-scroll-target="#floresta-aleatória"><span class="header-section-number">16.3</span> Floresta aleatória</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">16.4</span> Implementações em R</a>
+  <ul class="collapse">
+  <li><a href="#árvores-de-decisão" id="toc-árvores-de-decisão" class="nav-link" data-scroll-target="#árvores-de-decisão"><span class="header-section-number">16.4.1</span> Árvores de decisão</a></li>
+  <li><a href="#bagging-e-floresta-aleatória" id="toc-bagging-e-floresta-aleatória" class="nav-link" data-scroll-target="#bagging-e-floresta-aleatória"><span class="header-section-number">16.4.2</span> <em>Bagging</em> e floresta aleatória</a></li>
+  </ul></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Robson Bruno Dutra Pereira </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="árvores-de-decisão-para-classificação" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="árvores-de-decisão-para-classificação"><span class="header-section-number">16.1</span> Árvores de decisão para classificação</h2>
+<p>As árvores de decisão podem ser usadas para classificação, sendo construídas de forma similar às de regressão. Conforme já dito, o método foi concebido para classificação e posteriormente aplicado em regressão. Entretanto, neste livro foram apresentados primeiro os métodos para regressão. De forma similar às árvores de regressão as árvores de classificação dividem o espaço dos preditores em regiões retangulares, sendo a classificação realizada segundo a classe com mais observações na região. O conjunto de regras que define as regiões também pode ser representado em um diagrama de árvore similar ao da <a href="#fig-treec" class="quarto-xref">Figura&nbsp;<span>16.1</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-treec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-treec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-treec-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.1: Diagrama de árvore de decisão para classificação
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-surftreec" class="quarto-xref">Figura&nbsp;<span>16.2</span></a> exibe um gráfico com as divisões no espaço dos preditores e regiões para as duas classes para um modelo de árvore de decisão para classificação binária correspondente ao modelo da <a href="#fig-treec" class="quarto-xref">Figura&nbsp;<span>16.1</span></a>. Também são exibidos dados de teste. Observa-se que neste caso são determinadas 5 regiões para ao final definir um retângulo central quepara a classe 0, com as regiões ao redor para a classe 1.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-surftreec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surftreec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-surftreec-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surftreec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.2: Divisões no espaço dos preditores e regiões para as duas classes para um modelo de árvore de decisão para classificação binária
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Sejam <span class="math inline">\(k\)</span> variáveis de entrada e uma resposta categórica, ou seja, <span class="math inline">\((\mathbf{x}_i,y_i)\)</span>, com <span class="math inline">\(\mathbf{x} = (x_{i1}, x_{i2},..., x_{iK})\)</span>, para <span class="math inline">\(i=1,...,N\)</span> observações de treino, e <span class="math inline">\(y_i = \{1,2,\dots,C\}\)</span>. O algoritmo de (<em>Classification and Regression Trees</em> - CART) para classificação, de forma análoga à regressão define a cada iteração a variável preditora e o seu nível para particionar o espaço dos preditores. Considerando <span class="math inline">\(J\)</span> regiões <span class="math inline">\(R_1, R_2, ..., R_J\)</span>, <span class="math inline">\(\gamma_j\)</span> consiste na classe predita na região <span class="math inline">\(j\)</span>, <span class="math inline">\(j=1,...,J\)</span>. Portanto, o modelo de árvore de regressão pode ser definido conforme a <a href="#eq-treemodelc" class="quarto-xref">Equação&nbsp;<span>16.1</span></a>, <span class="math inline">\(\{R_j,\gamma_j\}, j=1,\ldots,J\)</span>, onde <span class="math inline">\(I(\mathbf{x} \in R_j)\)</span> é uma função indicativa que recebe 1 se <span class="math inline">\(\mathbf{x}\)</span> pertence à região <span class="math inline">\(R_j\)</span> e 0 caso contrário. Logo a diferença é qual critério usar em classificação para definir a classe em cada região via CART.</p>
+<p><span id="eq-treemodelc"><span class="math display">\[
+\begin{aligned}
+f(\mathbf{x}) = T(\mathbf{x},R_j,\gamma_j) = \sum_{j=1}^J \gamma_jI(\mathbf{x} \in R_j)
+\end{aligned}
+\tag{16.1}\]</span></span></p>
+<p>Considerando métricas de minimização, um critério simples poderia ser a proporção de classificações incorretas, <span class="math inline">\(E(R_j)\)</span>, conforme <a href="#eq-erroclass" class="quarto-xref">Equação&nbsp;<span>16.2</span></a>, onde <span class="math inline">\(N_j\)</span> é o número de observações na região <span class="math inline">\(j\)</span> e <span class="math inline">\(I(y_i \neq c)\)</span> recebe um 1 se <span class="math inline">\(y_i \neq c\)</span> e 0 caso contrário.</p>
+<p><span id="eq-erroclass"><span class="math display">\[
+E(R_j) = \frac{1}{N_j} \sum_{\mathbf x_i \in R_j} I(y_i \neq c)
+\tag{16.2}\]</span></span></p>
+<p>O índice de Gini é uma métrica muito comum como função de impureza nas regiões, sendo calculado conforme <a href="#eq-giniindex" class="quarto-xref">Equação&nbsp;<span>16.3</span></a>, onde <span class="math inline">\(\hat{p}_{cj}\)</span> consiste na proporção de observações da classe <span class="math inline">\(c\)</span> na região <span class="math inline">\(j\)</span>. Este índice é minimizado quando todas as proporções são 0 ou 1, garantindo uma região pura.</p>
+<p><span id="eq-giniindex"><span class="math display">\[
+G(R_j) = 1 - \sum_{c=1}^C \sum_{\mathbf x_i \in R_j} \hat{p}_{cj}(1-\hat{p}_{cj})
+\tag{16.3}\]</span></span></p>
+<p>De forma similar, a entropia também é bastante utilizada, sendo calculada conforme <a href="#eq-entropy" class="quarto-xref">Equação&nbsp;<span>16.4</span></a>. A entropia também é minima quando todas as proporções são 0 ou 1. Os dois últimos índices são mais fáceis de otimizar, por serem deriváveis, sendo mais comuns como função perda na classificação.</p>
+<p><span id="eq-entropy"><span class="math display">\[
+H(R_j) = 1 - \sum_{c=1}^C \sum_{\mathbf x_i \in R_j}  \hat{p}_{cj} \text{log }\hat{p}_{cj}
+\tag{16.4}\]</span></span></p>
+<p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca a variável para o particionamento e o valor desta na divisão para mnimizar o erro de classificação. Considerando o índice de Gini, em cada partição busca-se minimizar a <a href="#eq-cartlossg" class="quarto-xref">Equação&nbsp;<span>16.5</span></a>, onde <span class="math inline">\(|.|\)</span> consiste no número de observações, de forma que os índicers de Gini em cada região são ponderados pelas proporções de observações nas regiões geradas pela partição.</p>
+<p><span id="eq-cartlossg"><span class="math display">\[
+\begin{aligned}
+    \min_{k,s} \left[
+        \frac{|R_1(k,s)|}{|R|} \cdot G(R_1(k,s)) +
+        \frac{|R_2(k,s)|}{|R|} \cdot G(R_2(k,s))
+    \right]
+\end{aligned}
+\tag{16.5}\]</span></span></p>
+<p>O algoritmo CART repete o particionamento recursivamente até um determinado critério de parada ser alcançado, por exemplo, até um número mínimo de observações em cada partição ser atingido.</p>
+<p>Seja um conjunto de dados sintético para classificação binária exibido na <a href="#fig-classdata" class="quarto-xref">Figura&nbsp;<span>16.3</span></a>. Pode-se observar que os dados da classe 0 estão ilhados, cercados por observações da classe 1.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-classdata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-classdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-classdata-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-classdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.3: Conjunto de dados sintético para classificação binária
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Um modelo de árvore de decisão inicial é exibido abaixo. De forma análoga ao já explicado em regressão, o modelo de árvore para classificação pode ser descrito como um conjunto de regras “se” “se não”. Observa-se que neste caso foram geradas muitas partições.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
+
+   1) root 800 1109.000 0 ( 0.50250 0.49750 )  
+     2) x1 &lt; 1.2536 704  961.700 0 ( 0.57102 0.42898 )  
+       4) x2 &lt; -1.15635 94   33.080 1 ( 0.04255 0.95745 )  
+         8) x1 &lt; 0.269346 76    0.000 1 ( 0.00000 1.00000 ) *
+         9) x1 &gt; 0.269346 18   19.070 1 ( 0.22222 0.77778 ) *
+       5) x2 &gt; -1.15635 610  788.000 0 ( 0.65246 0.34754 )  
+        10) x2 &lt; 1.24347 544  634.800 0 ( 0.72978 0.27022 )  
+          20) x1 &lt; -1.2288 57   10.070 1 ( 0.01754 0.98246 ) *
+          21) x1 &gt; -1.2288 487  469.100 0 ( 0.81314 0.18686 )  
+            42) x1 &lt; -0.782317 75  101.700 0 ( 0.58667 0.41333 )  
+              84) x2 &lt; 0.0867716 34   28.390 1 ( 0.14706 0.85294 )  
+               168) x2 &lt; -0.386035 22    0.000 1 ( 0.00000 1.00000 ) *
+               169) x2 &gt; -0.386035 12   16.300 1 ( 0.41667 0.58333 ) *
+              85) x2 &gt; 0.0867716 41   15.980 0 ( 0.95122 0.04878 ) *
+            43) x1 &gt; -0.782317 412  342.000 0 ( 0.85437 0.14563 )  
+              86) x2 &lt; 0.582024 330  177.100 0 ( 0.92424 0.07576 )  
+               172) x2 &lt; -0.973146 23   31.840 0 ( 0.52174 0.47826 )  
+                 344) x1 &lt; -0.220439 10    0.000 1 ( 0.00000 1.00000 ) *
+                 345) x1 &gt; -0.220439 13    7.051 0 ( 0.92308 0.07692 ) *
+               173) x2 &gt; -0.973146 307  113.800 0 ( 0.95440 0.04560 )  
+                 346) x1 &lt; 0.932356 270   64.950 0 ( 0.97407 0.02593 )  
+                   692) x2 &lt; -0.634514 47   39.560 0 ( 0.85106 0.14894 )  
+                    1384) x1 &lt; -0.433689 9    9.535 1 ( 0.22222 0.77778 ) *
+                    1385) x1 &gt; -0.433689 38    0.000 0 ( 1.00000 0.00000 ) *
+                   693) x2 &gt; -0.634514 223    0.000 0 ( 1.00000 0.00000 ) *
+                 347) x1 &gt; 0.932356 37   35.890 0 ( 0.81081 0.18919 )  
+                   694) x2 &lt; 0.0589345 27    0.000 0 ( 1.00000 0.00000 ) *
+                   695) x2 &gt; 0.0589345 10   12.220 1 ( 0.30000 0.70000 ) *
+              87) x2 &gt; 0.582024 82  111.900 0 ( 0.57317 0.42683 )  
+               174) x1 &lt; 0.652175 62   68.610 0 ( 0.75806 0.24194 )  
+                 348) x1 &lt; -0.0253264 33   15.090 0 ( 0.93939 0.06061 ) *
+                 349) x1 &gt; -0.0253264 29   39.890 0 ( 0.55172 0.44828 )  
+                   698) x2 &lt; 0.778214 9    0.000 0 ( 1.00000 0.00000 ) *
+                   699) x2 &gt; 0.778214 20   25.900 1 ( 0.35000 0.65000 ) *
+               175) x1 &gt; 0.652175 20    0.000 1 ( 0.00000 1.00000 ) *
+        11) x2 &gt; 1.24347 66   10.360 1 ( 0.01515 0.98485 ) *
+     3) x1 &gt; 1.2536 96    0.000 1 ( 0.00000 1.00000 ) *</code></pre>
+</div>
+</div>
+<p>Para evitar overfitting, pode-se usar de validação cruzada para “podar” a árvore. A <a href="#fig-treecv" class="quarto-xref">Figura&nbsp;<span>16.4</span></a> plota o erro na validação cruzada segundo a dimensão da árvore. Pode-se observar que 15 divisões ou folhas acarretou no menor erro.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-treecv" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-treecv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-treecv-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treecv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.4: Erro na validação cruzada para definir a dimensão da árvore
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A árvore de decisão resumida abaixo consiste na obtida com 15 folhas.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
+
+   1) root 800 1109.000 0 ( 0.50250 0.49750 )  
+     2) x1 &lt; 1.2536 704  961.700 0 ( 0.57102 0.42898 )  
+       4) x2 &lt; -1.15635 94   33.080 1 ( 0.04255 0.95745 ) *
+       5) x2 &gt; -1.15635 610  788.000 0 ( 0.65246 0.34754 )  
+        10) x2 &lt; 1.24347 544  634.800 0 ( 0.72978 0.27022 )  
+          20) x1 &lt; -1.2288 57   10.070 1 ( 0.01754 0.98246 ) *
+          21) x1 &gt; -1.2288 487  469.100 0 ( 0.81314 0.18686 )  
+            42) x1 &lt; -0.782317 75  101.700 0 ( 0.58667 0.41333 )  
+              84) x2 &lt; 0.0867716 34   28.390 1 ( 0.14706 0.85294 ) *
+              85) x2 &gt; 0.0867716 41   15.980 0 ( 0.95122 0.04878 ) *
+            43) x1 &gt; -0.782317 412  342.000 0 ( 0.85437 0.14563 )  
+              86) x2 &lt; 0.582024 330  177.100 0 ( 0.92424 0.07576 )  
+               172) x2 &lt; -0.973146 23   31.840 0 ( 0.52174 0.47826 )  
+                 344) x1 &lt; -0.220439 10    0.000 1 ( 0.00000 1.00000 ) *
+                 345) x1 &gt; -0.220439 13    7.051 0 ( 0.92308 0.07692 ) *
+               173) x2 &gt; -0.973146 307  113.800 0 ( 0.95440 0.04560 )  
+                 346) x1 &lt; 0.932356 270   64.950 0 ( 0.97407 0.02593 )  
+                   692) x2 &lt; -0.634514 47   39.560 0 ( 0.85106 0.14894 )  
+                    1384) x1 &lt; -0.433689 9    9.535 1 ( 0.22222 0.77778 ) *
+                    1385) x1 &gt; -0.433689 38    0.000 0 ( 1.00000 0.00000 ) *
+                   693) x2 &gt; -0.634514 223    0.000 0 ( 1.00000 0.00000 ) *
+                 347) x1 &gt; 0.932356 37   35.890 0 ( 0.81081 0.18919 )  
+                   694) x2 &lt; 0.0589345 27    0.000 0 ( 1.00000 0.00000 ) *
+                   695) x2 &gt; 0.0589345 10   12.220 1 ( 0.30000 0.70000 ) *
+              87) x2 &gt; 0.582024 82  111.900 0 ( 0.57317 0.42683 )  
+               174) x1 &lt; 0.652175 62   68.610 0 ( 0.75806 0.24194 ) *
+               175) x1 &gt; 0.652175 20    0.000 1 ( 0.00000 1.00000 ) *
+        11) x2 &gt; 1.24347 66   10.360 1 ( 0.01515 0.98485 ) *
+     3) x1 &gt; 1.2536 96    0.000 1 ( 0.00000 1.00000 ) *</code></pre>
+</div>
+</div>
+<p>Tomando observações de teste pode-se plotar a árvore de classificação no espaço dos preditores conforme <a href="#fig-surftree15" class="quarto-xref">Figura&nbsp;<span>16.5</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-surftree15" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surftree15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-surftree15-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surftree15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.5: Fronteira de decisão para a árvore de decisão após poda
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bagging" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="bagging"><span class="header-section-number">16.2</span> <em>Bagging</em></h2>
+<p>De forma similar à regressão a agregação por <em>bootstrap</em> ou <em>bagging</em> visa agregar a previsão de várias árvores de decisão. Para tal, são realizadas reamostragens com reposição ou <em>bootstrap</em> dos dados de treino e para cada reamostragem com reposição uma nova árvore é obtida. Apartri de <span class="math inline">\(B\)</span> reamostragens e <span class="math inline">\(B\)</span> árvores, para uma observação de teste ou futura <span class="math inline">\(\mathbf x_0\)</span> obtém-se <span class="math inline">\(B classificações\)</span>. A partir de tais classificações sabe a proporção de árvores que prevêem cada classe e, ao final, a partir da maior proporção, realiza-se a classificação para a observação de interesse. Tal classificador pode ser escrito conforme a <a href="#eq-bagclassf" class="quarto-xref">Equação&nbsp;<span>16.6</span></a>, como sendo a moda das classificações das <span class="math inline">\(B\)</span> árvores obtidas via <em>bootstrap</em>.</p>
+<p><span id="eq-bagclassf"><span class="math display">\[
+\text{Mo } \{\hat f^*_1(\mathbf x), \hat f^*_2(\mathbf x), \dots, \hat f^*_B(\mathbf x)\}
+\tag{16.6}\]</span></span></p>
+<p>A <a href="#fig-surfbag" class="quarto-xref">Figura&nbsp;<span>16.6</span></a> ilustra a classificação para os dados de teste considerando um modelo obtido via <em>bagging</em> com 300 árvores. É importante realizar validação cruzada para definir o número de árvores ideal para o conjunto de dados de interesse.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-surfbag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surfbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-surfbag-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.6: Fronteira de decisão obtida via <em>bagging</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="floresta-aleatória" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">16.3</span> Floresta aleatória</h2>
+<p>Conforme já discutido em regressão, o modelo de floresta aleatória consiste em uma evolução do modelo <em>bagging</em> com a finalidade de diminuir a variância deste, limitando o número de variáveis a serem consideradas em cada particionamento binário recursivo, afim de decorrelacionar as árvores de decisão geradas. Geralmente para classificação recomenda-se <span class="math inline">\(m=\sqrt{k}\)</span>.</p>
+</section>
+<section id="implementações-em-r" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">16.4</span> Implementações em R</h2>
+<p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
+<section id="árvores-de-decisão" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="árvores-de-decisão"><span class="header-section-number">16.4.1</span> Árvores de decisão</h3>
+<p>Carregando pacotes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Simulando dados para classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parametros para simular dados</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>) <span class="co"># vetor de medias</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>S <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="dv">1</span>), <span class="dv">2</span>) <span class="co"># matriz de covariancia</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulando dados</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">1000</span>,  <span class="at">mean =</span> m, <span class="at">sigma =</span> S)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># calculando distancia para separar classes</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">1</span>), <span class="dv">2</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">mahalanobis</span>(dados, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), S2)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># transformando em data.frame</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(dados)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x1"</span>,<span class="st">"x2"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo coluna com classes</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(dist <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(dados), <span class="at">sd =</span> <span class="fl">0.3</span>) <span class="sc">&lt;</span> <span class="fl">1.7</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>y)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Separando dados de treino e teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(dados), <span class="fl">0.8</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> dados[treino,]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> dados[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando dados de treino e teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">mutate</span>(<span class="at">tipo =</span> <span class="fu">ifelse</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados)<span class="sc">%in%</span>treino, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"treino"</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"teste"</span>)), </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(x1,x2, <span class="at">col =</span> y)) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols=</span><span class="fu">vars</span>(tipo)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Árvore de decisão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree1 <span class="ot">&lt;-</span> <span class="fu">tree</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2, dados_treino)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tree1</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(tree1)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># text(tree1)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Validação cruzada para podar a árvore.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cv.tree1 <span class="ot">&lt;-</span> <span class="fu">cv.tree</span>(tree1)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.tree1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Árvore de decisão após “poda”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prune1 <span class="ot">&lt;-</span> <span class="fu">prune.tree</span>(tree1, <span class="at">best =</span> <span class="dv">15</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prune1)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(prune1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando a fronteira de classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>x1), <span class="fu">max</span>(dados<span class="sc">$</span>x1), <span class="at">length =</span> <span class="dv">30</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ys <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>x2), <span class="fu">max</span>(dados<span class="sc">$</span>x2), <span class="at">length =</span> <span class="dv">30</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>xys <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x1=</span>xs,<span class="at">x2=</span>ys)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>xys<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(prune1, xys, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> xys, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> x2, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> x1,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> <span class="fu">as.factor</span>(y)), </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span> (<span class="st">"palevioletred"</span>, <span class="st">"lightseagreen"</span>)) <span class="sc">+</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_test, </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>x2, <span class="at">col =</span> <span class="fu">as.factor</span>(y))) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"y"</span>, <span class="at">fill =</span> <span class="st">"y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="bagging-e-floresta-aleatória" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="bagging-e-floresta-aleatória"><span class="header-section-number">16.4.2</span> <em>Bagging</em> e floresta aleatória</h3>
+<p>O mesmo comando serve para fazer bagging e floresta aleatória. Deve-se entender que ao definir o argumento <code>mtry</code> como o inteiro mais próximo de <span class="math inline">\(\sqrt{k}\)</span> o resultado é um modelo de floresta aleatória. Caso, <span class="math inline">\(mtry=k\)</span>, então obtém-se um modelo <em>bagging</em>. A seguir o código para obter um modelo de classificação via <em>bagging</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)  </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bag1 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(y<span class="sc">~</span>x1<span class="sc">+</span>x2, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     dados_treino,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">mtry =</span> <span class="dv">2</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">importance =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ntree =</span> <span class="dv">300</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>bag1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando a fronteira de decisão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xys<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(bag1, xys, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> xys, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> x2, </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> x1,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> <span class="fu">as.factor</span>(y)), </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span> (<span class="st">"palevioletred"</span>, <span class="st">"lightseagreen"</span>)) <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_test, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>x2, <span class="at">col =</span> <span class="fu">as.factor</span>(y))) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"y"</span>, <span class="at">fill =</span> <span class="st">"y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="referências" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
+<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
+<p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./AS_svm.html" class="pagination-link" aria-label="Máquinas de vetores de suporte">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
