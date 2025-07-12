@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>13&nbsp; Classificação via regressão logística – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>13&nbsp; Classificação via regressão logística – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -266,6 +266,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -283,13 +289,15 @@ window.Quarto = {
   </ul></li>
   <li><a href="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" id="toc-avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="nav-link" data-scroll-target="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">13.3</span> Avaliação da capacidade de previsão do modelo de regressão</a></li>
   <li><a href="#regressão-logística-multinomial" id="toc-regressão-logística-multinomial" class="nav-link" data-scroll-target="#regressão-logística-multinomial"><span class="header-section-number">13.4</span> Regressão logística multinomial</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">13.5</span> Implementações em R</a>
+  <li><a href="#regularização-rígida-e-lasso-em-regressão-logística" id="toc-regularização-rígida-e-lasso-em-regressão-logística" class="nav-link" data-scroll-target="#regularização-rígida-e-lasso-em-regressão-logística"><span class="header-section-number">13.5</span> Regularização rígida e LASSO em regressão logística</a></li>
+  <li><a href="#regressão-logística-por-componentes-principais-e-outras-possibilidades" id="toc-regressão-logística-por-componentes-principais-e-outras-possibilidades" class="nav-link" data-scroll-target="#regressão-logística-por-componentes-principais-e-outras-possibilidades"><span class="header-section-number">13.6</span> Regressão logística por componentes principais e outras possibilidades</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">13.7</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" id="toc-implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="nav-link" data-scroll-target="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</a></li>
-  <li><a href="#regressão-logística-binária-simples-via-glm" id="toc-regressão-logística-binária-simples-via-glm" class="nav-link" data-scroll-target="#regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.5.2</span> Regressão logística binária simples via <code>glm</code></a></li>
-  <li><a href="#regressão-logística-múltipla" id="toc-regressão-logística-múltipla" class="nav-link" data-scroll-target="#regressão-logística-múltipla"><span class="header-section-number">13.5.3</span> Regressão logística múltipla</a></li>
-  <li><a href="#regressão-logística-múltipla-com-mais-variáveis" id="toc-regressão-logística-múltipla-com-mais-variáveis" class="nav-link" data-scroll-target="#regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.5.4</span> Regressão logística múltipla com mais variáveis</a></li>
-  <li><a href="#regressão-logística-rígida-para-o-exemplo-anterior" id="toc-regressão-logística-rígida-para-o-exemplo-anterior" class="nav-link" data-scroll-target="#regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.5.5</span> Regressão logística rígida para o exemplo anterior</a></li>
+  <li><a href="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" id="toc-implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="nav-link" data-scroll-target="#implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.7.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</a></li>
+  <li><a href="#regressão-logística-binária-simples-via-glm" id="toc-regressão-logística-binária-simples-via-glm" class="nav-link" data-scroll-target="#regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.7.2</span> Regressão logística binária simples via <code>glm</code></a></li>
+  <li><a href="#regressão-logística-múltipla" id="toc-regressão-logística-múltipla" class="nav-link" data-scroll-target="#regressão-logística-múltipla"><span class="header-section-number">13.7.3</span> Regressão logística múltipla</a></li>
+  <li><a href="#regressão-logística-múltipla-com-mais-variáveis" id="toc-regressão-logística-múltipla-com-mais-variáveis" class="nav-link" data-scroll-target="#regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.7.4</span> Regressão logística múltipla com mais variáveis</a></li>
+  <li><a href="#regressão-logística-rígida-para-o-exemplo-anterior" id="toc-regressão-logística-rígida-para-o-exemplo-anterior" class="nav-link" data-scroll-target="#regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.7.5</span> Regressão logística rígida para o exemplo anterior</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   </ul>
@@ -417,41 +425,41 @@ p(y=0|x)=\frac{e^{-(\beta_0+\beta_1x)}}{1 + e^{-(\beta_0+\beta_1x)}} \\
 </section>
 <section id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">13.2</span> Estimativa dos coeficientes do modelo de regressão logística</h2>
-<p>A estimativa dos coeficientes do modelo de regressão é realizada pela maximização da função de verossimilhança. Para simplificar a notação, considere <span class="math inline">\(p(y_i|x_i,\beta_0,\beta_1)=p(x_i)\)</span>. Seja o log da máxima verossimilhança expresso conforme segue.</p>
+<p>A estimativa dos coeficientes do modelo de regressão é realizada pela maximização da função de verossimilhança ou do log desta. Para simplificar a notação, considere <span class="math inline">\(p(y_i|x_i,\beta_0,\beta_1)=p(x_i)\)</span>. Seja o log da máxima verossimilhança expresso conforme segue.</p>
 <p><span class="math display">\[
 \begin{align}
-l(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^Np(x_i) \\
-l(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^N p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i}\\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N \text{log } \bigl\{ p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i} \bigr\} \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log }  p(x_i) + (1-y_i)\text{log }\bigl[1-p(x_i)\bigr] \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log } \Bigl( \frac{p(x_i)}{1-p(x_i)} \Bigr) + \text{log }\bigl[1-p(x_i)\bigr] \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl(1- \frac{1}{1+e^{-(\beta_0+\beta_1x_i)}} \Bigr) \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{e^{-(\beta_0+\beta_1x_i)}}{1+e^{-(\beta_0+\beta_1x_i)}} \times \frac{e^{(\beta_0+\beta_1x_i)}}{e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{1}{1+ e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
-l(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) - \text{log } \bigl( 1+ e^{(\beta_0+\beta_1x_i)} \bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^Np(x_i) \\
+\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^N p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i}\\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N \text{log } \bigl\{ p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i} \bigr\} \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log }  p(x_i) + (1-y_i)\text{log }\bigl[1-p(x_i)\bigr] \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log } \Bigl( \frac{p(x_i)}{1-p(x_i)} \Bigr) + \text{log }\bigl[1-p(x_i)\bigr] \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl(1- \frac{1}{1+e^{-(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{e^{-(\beta_0+\beta_1x_i)}}{1+e^{-(\beta_0+\beta_1x_i)}} \times \frac{e^{(\beta_0+\beta_1x_i)}}{e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{1}{1+ e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) - \text{log } \bigl( 1+ e^{(\beta_0+\beta_1x_i)} \bigr) \\
 \end{align}
 \]</span></p>
 <p>Considerando o modelo de regressão logística em notação matricial, podemos reescrever a função do log da verossimilhança, conforme <a href="#eq-lver" class="quarto-xref">Equação&nbsp;<span>13.4</span></a>.</p>
 <p><span id="eq-lver"><span class="math display">\[
-l(\beta) = \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
+\ell(\beta) = \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
 \tag{13.4}\]</span></span></p>
-<p>O vetor <span class="math inline">\(\beta\)</span> considera ambos os coeficientes <span class="math inline">\(\beta = [\beta_0,\beta_1]^T\)</span> enquanto o vetor <span class="math inline">\(\mathbf{x}_i\)</span> considera a constante e a observação da variável regressora, <span class="math inline">\(\mathbf{x}_i = [1,x]^T\)</span>. Para maximizar o log da verossimilhança, igualamos a derivada da função a zero, isto é:</p>
+<p>O vetor <span class="math inline">\(\beta\)</span> considera ambos os coeficientes <span class="math inline">\(\beta = [\beta_0,\beta_1]^T\)</span> enquanto o vetor <span class="math inline">\(\mathbf{x}_i\)</span> considera a constante e a observação da variável regressora, <span class="math inline">\(\mathbf{x}_i = [1,x]^T\)</span>. Para maximizar o log da verossimilhança, igualamos a derivada da função ou gradiente a zero, isto é:</p>
 <p><span class="math display">\[
 \begin{align}
-\frac{\partial l(\beta)}{\partial \beta} &amp;= \frac{\partial }{\partial \beta} \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
-\frac{\partial l(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - \frac{e^{\beta^T\mathbf{x}_i}}{1+e^{\beta^T\mathbf{x}_i}}\mathbf{x}_i \\
-\frac{\partial l(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - \frac{1}{1+e^{-\beta^T\mathbf{x}_i}}\mathbf{x}_i \\
-\frac{\partial l(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - p(\mathbf{x}_i,\beta)\mathbf{x}_i \\
-\frac{\partial l(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N \mathbf{x}_i(y_i - p(\mathbf{x}_i,\beta)) = 0 \\
+\frac{\partial \ell(\beta)}{\partial \beta} &amp;= \frac{\partial }{\partial \beta} \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
+\frac{\partial \ell(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - \frac{e^{\beta^T\mathbf{x}_i}}{1+e^{\beta^T\mathbf{x}_i}}\mathbf{x}_i \\
+\frac{\partial \ell(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - \frac{1}{1+e^{-\beta^T\mathbf{x}_i}}\mathbf{x}_i \\
+\frac{\partial \ell(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N y_i\mathbf{x}_i - p(\mathbf{x}_i,\beta)\mathbf{x}_i \\
+\frac{\partial \ell(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N \mathbf{x}_i(y_i - p(\mathbf{x}_i,\beta)) = 0 \\
 \end{align}
 \]</span></p>
 <p>Tal resultado consite em um sistema de duas equações não lineares para o caso simples. Para resolver este problema pode-se usar o método de Newton-Raphson. Este requer além do gradiente a derivada segunda ou a Hessiana da função do log da verossimilhança, conforme <a href="#eq-der2nr" class="quarto-xref">Equação&nbsp;<span>13.5</span></a>.</p>
 <p><span id="eq-der2nr"><span class="math display">\[
-\frac{\partial^2 l(\beta)}{\partial \beta \partial\beta^T} = \sum_{i=1}^N \mathbf{x}_i\mathbf{x}_i^Tp(\mathbf{x}_i,\beta)(y_i - p(\mathbf{x}_i,\beta))
+\frac{\partial^2 \ell(\beta)}{\partial \beta \partial\beta^T} = \sum_{i=1}^N \mathbf{x}_i\mathbf{x}_i^Tp(\mathbf{x}_i,\beta)(y_i - p(\mathbf{x}_i,\beta))
 \tag{13.5}\]</span></span></p>
 <p>Uma atualização de <span class="math inline">\(\beta\)</span> é obtida conforme <a href="#eq-atuanr" class="quarto-xref">Equação&nbsp;<span>13.6</span></a>.</p>
 <p><span id="eq-atuanr"><span class="math display">\[
-\beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 l(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial l(\beta)}{\partial \beta}
+\beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 \ell(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial \ell(\beta)}{\partial \beta}
 \tag{13.6}\]</span></span></p>
 <p>Considere o caso onde deseja-se prever se uma pessoa tem ou não diabetes segundo o nível de glicose. Considere as primeiras linhas expostas na <a href="#tbl-diab1" class="quarto-xref">Tabela&nbsp;<span>13.1</span></a> de um conjunto de dados com observações de 763 pacientes.</p>
 <div class="cell">
@@ -1004,10 +1012,10 @@ p(y=1|\mathbf x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x_1+\beta_2x_2+\ldots+\beta_
 \tag{13.7}\]</span></span></p>
 <p>Seja a matrix de observações das variáveis preditoras <span class="math inline">\(\mathbf{X}_{[N\times (k+1)]}\)</span>, com <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span> como o vetor de coeficientes, <span class="math inline">\(\mathbf{y}_{[N]}\)</span> o vetor de observações da resposta binária, <span class="math inline">\(\mathbf{p}_{[N]}\)</span> o vetor de probabilidades ajustadas com <span class="math inline">\(i\)</span>-ésimo elemento <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})\)</span> e <span class="math inline">\(\mathbf{W}_{[N\times N]}\)</span> uma matriz diagonal de pesos com o <span class="math inline">\(i\)</span>-ésimo elemento diagonal igual a <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})(1-p(\mathbf{x}_i,\beta_{t}))\)</span>. Temos o gradiente e a hessina tomando tal notação conforme segue.</p>
 <p><span class="math display">\[
-\frac{\partial l(\beta)}{\partial \beta} = \mathbf{X}^T(\mathbf{y}-\mathbf{p}) \\
+\frac{\partial \ell(\beta)}{\partial \beta} = \mathbf{X}^T(\mathbf{y}-\mathbf{p}) \\
 \]</span></p>
 <p><span class="math display">\[
-\frac{\partial^2 l(\beta)}{\partial \beta \partial\beta^T} = -\mathbf{X}^T\mathbf{W}\mathbf{X}
+\frac{\partial^2 \ell(\beta)}{\partial \beta \partial\beta^T} = -\mathbf{X}^T\mathbf{W}\mathbf{X}
 \]</span></p>
 <p>A atualização no método de Newton-Raphson para <span class="math inline">\(\beta\)</span> fica conforme segue:</p>
 <p><span class="math display">\[
@@ -2702,13 +2710,52 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 \end{align}
 \]</span></p>
 <p>O modelo de regressão logística multinomial simples pode ser obviamente estendido ao caso múltiplo.</p>
-<p>Assim como na regressão linear para respostas contínuas, a regressão logística também permite a aplicação de técnicas de regularização como regressão logística rígida e LASSO. Ademais, é possível considerar termos polinomiais e de interação e até mesmo expansões de base, como <em>splines</em> e GAM.</p>
 </section>
-<section id="implementações-em-r" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">13.5</span> Implementações em R</h2>
+<section id="regularização-rígida-e-lasso-em-regressão-logística" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="regularização-rígida-e-lasso-em-regressão-logística"><span class="header-section-number">13.5</span> Regularização rígida e LASSO em regressão logística</h2>
+<p>Assim como na regressão linear para respostas contínuas, a regressão logística também permite a aplicação de técnicas de regularização como regressão logística rígida e LASSO tanto para casos binários, casos multinomiais considerando uma ou mais variáveis independentes.</p>
+<p>Na regressão logística rígida subtrai-se ao log-verossimilhança uma penalização proporcional ao quadrado da norma dos coeficientes, conforme <a href="#eq-lbetaridge" class="quarto-xref">Equação&nbsp;<span>13.10</span></a>. É importante infatizar que, como queremos maximizar o log da máxima verossimilhança, deve-se subtrair o termo de penalização, uma vez que deseja-se penalizr a função, diminuindo-a com oc rescimento dos coeficientes, de forma a evitar a inflação destes devido multicolineariedade. Na regressão múltipla por mínimos quadrados para respostas medidas em um domínio real, onde se minimiza uma função perda quadrática, tal termo é somado.</p>
+<p><span id="eq-lbetaridge"><span class="math display">\[
+\ell_\lambda^{\text{Ridge}}(\beta) =
+\ell(\beta) - \lambda \sum_{j=1}^{p} \beta_j^2
+\tag{13.10}\]</span></span></p>
+<p>ou, em notação vetorial conforme <a href="#eq-lbetaridgev" class="quarto-xref">Equação&nbsp;<span>13.11</span></a>.</p>
+<p><span id="eq-lbetaridgev"><span class="math display">\[
+\ell_\lambda^{\text{Ridge}}(\beta) =
+\ell(\beta) - \lambda  \beta^T\beta
+\tag{13.11}\]</span></span></p>
+<p>A condição de primeira ordem (gradiente) modificada é apresentada na <a href="#eq-gradlridge" class="quarto-xref">Equação&nbsp;<span>13.12</span></a>.</p>
+<p><span id="eq-gradlridge"><span class="math display">\[
+\frac{\partial l_\lambda^{\text{Ridge}}(\beta)}{\partial \beta} =
+\sum_{i=1}^N \mathbf{x}_i (y_i - p(\mathbf{x}_i, \beta)) - 2\lambda \beta
+\tag{13.12}\]</span></span></p>
+<p>E a Hessiana penalizada fica conforme <a href="#eq-hessrid" class="quarto-xref">Equação&nbsp;<span>13.13</span></a>.</p>
+<p><span id="eq-hessrid"><span class="math display">\[
+\frac{\partial^2 \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta \partial \beta^T} =
+- \sum_{i=1}^N \mathbf{x}_i \mathbf{x}_i^T p_i(1 - p_i) - 2\lambda \mathbf{I}
+\tag{13.13}\]</span></span></p>
+<p>A atualização no método de Newton-Raphson é ajustada considerando tais modificações segundo a <a href="#eq-nrrid" class="quarto-xref">Equação&nbsp;<span>13.14</span></a>.</p>
+<p><span id="eq-nrrid"><span class="math display">\[
+\beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta}
+\tag{13.14}\]</span></span></p>
+<p>No caso da penalização LASSO, aplica-se uma penalidade proporcional à soma dos módulos dos coeficientes, conforme <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.15</span></a></p>
+<p><span id="eq-logrlasso"><span class="math display">\[
+\ell_\lambda^{\text{Lasso}}(\beta) =
+\ell(\beta) - \lambda \sum_{j=1}^{p} |\beta_j|
+\tag{13.15}\]</span></span></p>
+<p>Como a <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.15</span></a> não diferenciável, são usados métodos de otimização baseados em subgradiente ou descentes coordenados.</p>
+<p>Ambas as abordagens de regularização visam evitar <em>overfitting</em>, melhorar a <em>generalização</em> e facilitar a <em>interpretação</em> em contextos de multicolineariedade.</p>
+</section>
+<section id="regressão-logística-por-componentes-principais-e-outras-possibilidades" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="regressão-logística-por-componentes-principais-e-outras-possibilidades"><span class="header-section-number">13.6</span> Regressão logística por componentes principais e outras possibilidades</h2>
+<p>Assim como na regressão múltipla por mínimos quadrados para respostas contínuas, na regressão logística a análise de componentes principais também pode ser usada para tratar a multicolineariedade dos preditores. O objetivo da análise seria o mesmo de obter novas variáveis não correlacionadas que detêm parte considerável da informação das variáveis independentes originais a partir das quais será realizada a regressão logística.</p>
+<p>Ademais, é possível considerar termos polinomiais e de interação e até mesmo expansões de base, como <em>splines</em> e modelos generalizados aditivos (GAM).</p>
+</section>
+<section id="implementações-em-r" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">13.7</span> Implementações em R</h2>
 <p>A seguir será expostos as implementações necessárias para obter os resultados do capítulo. Alguns exemplos aqui expostos são distintos dos do capítulo, sendo os resultados das implementações apresentados integralmente.</p>
-<section id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="level3" data-number="13.5.1">
-<h3 data-number="13.5.1" class="anchored" data-anchor-id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.5.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</h3>
+<section id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r" class="level3" data-number="13.7.1">
+<h3 data-number="13.7.1" class="anchored" data-anchor-id="implementação-de-um-modelo-de-regressao-logística-binária-simples-passo-a-passo-na-linguagem-r"><span class="header-section-number">13.7.1</span> Implementação de um modelo de regressao logística binária simples passo a passo na linguagem R</h3>
 <p>Seja o exemplo de previsão se o paciente tem diabetes em função da concentração de glicose.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlbench)</span>
@@ -2829,8 +2876,8 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(beta0, beta1, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-binária-simples-via-glm" class="level3" data-number="13.5.2">
-<h3 data-number="13.5.2" class="anchored" data-anchor-id="regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.5.2</span> Regressão logística binária simples via <code>glm</code></h3>
+<section id="regressão-logística-binária-simples-via-glm" class="level3" data-number="13.7.2">
+<h3 data-number="13.7.2" class="anchored" data-anchor-id="regressão-logística-binária-simples-via-glm"><span class="header-section-number">13.7.2</span> Regressão logística binária simples via <code>glm</code></h3>
 <p>Carregando pacotes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
@@ -2904,8 +2951,8 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>cm[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm[<span class="dv">1</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-múltipla" class="level3" data-number="13.5.3">
-<h3 data-number="13.5.3" class="anchored" data-anchor-id="regressão-logística-múltipla"><span class="header-section-number">13.5.3</span> Regressão logística múltipla</h3>
+<section id="regressão-logística-múltipla" class="level3" data-number="13.7.3">
+<h3 data-number="13.7.3" class="anchored" data-anchor-id="regressão-logística-múltipla"><span class="header-section-number">13.7.3</span> Regressão logística múltipla</h3>
 <p>Leitura dos dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> PimaIndiansDiabetes2 <span class="sc">|&gt;</span></span>
@@ -2993,8 +3040,8 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color=</span>label)) <span class="sc">+</span> <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-múltipla-com-mais-variáveis" class="level3" data-number="13.5.4">
-<h3 data-number="13.5.4" class="anchored" data-anchor-id="regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.5.4</span> Regressão logística múltipla com mais variáveis</h3>
+<section id="regressão-logística-múltipla-com-mais-variáveis" class="level3" data-number="13.7.4">
+<h3 data-number="13.7.4" class="anchored" data-anchor-id="regressão-logística-múltipla-com-mais-variáveis"><span class="header-section-number">13.7.4</span> Regressão logística múltipla com mais variáveis</h3>
 <p>Leitura dos dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> PimaIndiansDiabetes2</span>
@@ -3048,8 +3095,8 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>cm3[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sum</span>(cm3[<span class="dv">1</span>,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-logística-rígida-para-o-exemplo-anterior" class="level3" data-number="13.5.5">
-<h3 data-number="13.5.5" class="anchored" data-anchor-id="regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.5.5</span> Regressão logística rígida para o exemplo anterior</h3>
+<section id="regressão-logística-rígida-para-o-exemplo-anterior" class="level3" data-number="13.7.5">
+<h3 data-number="13.7.5" class="anchored" data-anchor-id="regressão-logística-rígida-para-o-exemplo-anterior"><span class="header-section-number">13.7.5</span> Regressão logística rígida para o exemplo anterior</h3>
 <p>Pré-processamento inicial.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(glucose <span class="sc">~</span> ., data3)[,<span class="sc">-</span><span class="dv">1</span>]</span>
