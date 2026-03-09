@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>1&nbsp; Introdução ao aprendizado supervisionado – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>1&nbsp; Introdução ao aprendizado supervisionado – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -266,6 +266,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -281,14 +287,19 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#um-brasileiro-importante" id="toc-um-brasileiro-importante" class="nav-link" data-scroll-target="#um-brasileiro-importante"><span class="header-section-number">1.2.1</span> Um brasileiro importante</a></li>
   </ul></li>
-  <li><a href="#aprendizado-supervisionado" id="toc-aprendizado-supervisionado" class="nav-link" data-scroll-target="#aprendizado-supervisionado"><span class="header-section-number">1.3</span> Aprendizado Supervisionado</a></li>
-  <li><a href="#aprendizado-não-supervisionado" id="toc-aprendizado-não-supervisionado" class="nav-link" data-scroll-target="#aprendizado-não-supervisionado"><span class="header-section-number">1.4</span> Aprendizado Não-supervisionado</a></li>
+  <li><a href="#aprendizado-supervisionado" id="toc-aprendizado-supervisionado" class="nav-link" data-scroll-target="#aprendizado-supervisionado"><span class="header-section-number">1.3</span> Aprendizado Supervisionado</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-de-problema-de-regressão" id="toc-exemplo-de-problema-de-regressão" class="nav-link" data-scroll-target="#exemplo-de-problema-de-regressão"><span class="header-section-number">1.3.1</span> Exemplo de problema de regressão</a></li>
+  <li><a href="#exemplo-de-problema-de-classificação" id="toc-exemplo-de-problema-de-classificação" class="nav-link" data-scroll-target="#exemplo-de-problema-de-classificação"><span class="header-section-number">1.3.2</span> Exemplo de problema de classificação</a></li>
+  </ul></li>
+  <li><a href="#aprendizado-não-supervisionado" id="toc-aprendizado-não-supervisionado" class="nav-link" data-scroll-target="#aprendizado-não-supervisionado"><span class="header-section-number">1.4</span> Aprendizado Não supervisionado</a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">1.5</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#exemplo-de-problema-de-regressão" id="toc-exemplo-de-problema-de-regressão" class="nav-link" data-scroll-target="#exemplo-de-problema-de-regressão"><span class="header-section-number">1.5.1</span> Exemplo de problema de regressão</a></li>
-  <li><a href="#exemplo-de-problema-de-classificação" id="toc-exemplo-de-problema-de-classificação" class="nav-link" data-scroll-target="#exemplo-de-problema-de-classificação"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</a></li>
+  <li><a href="#exemplo-de-problema-de-regressão-1" id="toc-exemplo-de-problema-de-regressão-1" class="nav-link" data-scroll-target="#exemplo-de-problema-de-regressão-1"><span class="header-section-number">1.5.1</span> Exemplo de problema de regressão</a></li>
+  <li><a href="#exemplo-de-problema-de-classificação-1" id="toc-exemplo-de-problema-de-classificação-1" class="nav-link" data-scroll-target="#exemplo-de-problema-de-classificação-1"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">1.6</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -322,7 +333,20 @@ window.Quarto = {
 
 <section id="aprendizado" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="aprendizado"><span class="header-section-number">1.1</span> Aprendizado</h2>
-<p>No contexto da ciência de dados (<em>data science</em>) o <strong>aprendizado</strong> consiste em adquirir um determinado comportamento a partir dos dados disponíveis. Mais especificamente, este comportamento a ser aprendido está relacionado a previsão de uma determinada resposta de interesse em função de outras variáveis ou atributos disponíveis nos dados. Esta resposta pode ser quantitativa, ou seja, medida em uma esclaa real, ou qualitativa, constando de um conjunto finito de possibilidades. Para tal, obviamente faz-se necessário a utilização de dados. Estes, por sua vez, apesar de estarem atualmente disponíveis em abundância, tanto nas organizações privadas quanto via acesso público, nem sempre estão prontos para análise.</p>
+<p>No contexto da ciência de dados (<em>data science</em>) o <strong>aprendizado</strong> consiste em adquirir um determinado comportamento. Mais especificamente, este comportamento a ser aprendido está relacionado a previsão de uma determinada resposta de interesse em função de outras variáveis ou atributos disponíveis. Esta resposta pode ser quantitativa, ou seja, medida em uma escala real, ou qualitativa, constando de um conjunto finito de possibilidades. Para tal, faz-se necessário a utilização de dados.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Apesar de atualmente disponíveis em abundância, tanto nas organizações privadas quanto em domínio público, nem sempre os <strong>dados</strong> estão prontos para análise.</p>
+</div>
+</div>
 <p>Existem dois campos que regem a teoria do Aprendizado:</p>
 <ul>
 <li>Estatístico (<em>statistical learning</em>);</li>
@@ -333,9 +357,22 @@ window.Quarto = {
 <section id="um-pouco-de-história" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="um-pouco-de-história"><span class="header-section-number">1.2</span> Um pouco de história</h2>
 <p>Inicialmente serão citados alguns teóricos importantes para a estatística frequentista e paramétrica. Porém, alguns métodos propostos, por exemplo a análise discriminante linear de Fisher é utilizada hoje como método de aprendizado supervisionado para classificação.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A estatística paramétrica engloba métodos que pressupõem uma distribuição de probabilidade para os dados.</p>
+</div>
+</div>
 <ul>
 <li><p>Willian Gosset (Student), 1908-1909: criou o teste t e a distribuição t de Student quando trabalhava na cervejaria Guiness. Sua intenção era criar uma aproximação da distribuição normal para amostras de tamanhos limitados.</p></li>
-<li><p>Ronald Fisher, 1920-1940: Criou vários testes e conceitos estatísticos importantes, como a ANOVA, análise discriminante linear, p-valor, entre outros. Seus principais desenvolvimentos foram realizados especialmente enquanto trabalhava na estação agrícola <em>Rothamsted Research</em> no Reino Unido.</p></li>
+<li><p>Ronald Fisher, 1920-1940: Criou vários testes e conceitos estatísticos importantes, como a análise de variância (ANOVA), a análise discriminante linear, o p-valor, entre outros. Seus principais desenvolvimentos foram realizados especialmente enquanto trabalhava na estação agrícola <em>Rothamsted Research</em> no Reino Unido.</p></li>
 <li><p>George Box, 1948-1992: Considerado uma dos maiores pesquisadores em estatística do século XX, desenvolveu trabalhos e métodos em controle de qualidade, planejamento de experimentos, séries temporais e inferência Bayesiana. Cunhou a famosa frase: “<em>All models are wrong, some are usefull</em>”.</p></li>
 </ul>
 <div class="cell">
@@ -362,13 +399,13 @@ window.Quarto = {
 <img src="figs/tukeyjeff.png" class="img-fluid figure-img" width="375">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tukey_wu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.1: Tukey e wu
+Figura&nbsp;1.1: Tukey e Wu
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Vários bioestatísticos de Stanford tiveram contribuições importantes no campo do aprendizado estatístico. Bradley Efron desenvolveu nas décadas de 70 e 80 o método <em>bootstrap</em>, um método que visa estimar o erro a partir da amostragem com reposição amplamente usado em inferência e em aprendizado de máquina. Jerome Friedman desenvolveu o método floresta aleatória e o reforço de gradiente. Trevor Hastie propôs os modelos aditivos generalizados e Robert Tibshirani propôs a regularização via LASSO. Estes autores, <a href="#fig-efht" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>, tiveram outras contribuições importantes na estatística e computação.</p>
+<p>Vários bioestatísticos de Stanford tiveram contribuições importantes no campo do aprendizado estatístico. Bradley Efron desenvolveu nas décadas de 70 e 80 o método <em>bootstrap</em>, um método que visa estimar o erro a partir da amostragem com reposição. Tal abordagem é amplamente usada em inferência e em aprendizado de máquina. Jerome Friedman desenvolveu o método floresta aleatória e o aprendizado por reforço de gradiente. Trevor Hastie propôs os modelos aditivos generalizados e Robert Tibshirani propôs a regularização via LASSO. Estes autores, <a href="#fig-efht" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>, tiveram outras contribuições importantes na estatística e computação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-efht" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -383,7 +420,7 @@ Figura&nbsp;1.2: Efron, Friedman, Hastie e Tibishirani
 </div>
 </div>
 </div>
-<p>A densa teoria do aprendizado estatístico foi cunhada pelo matemático russo Vladmir Vapnik, <a href="#fig-vapnik" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>, visando obter um modelo preditivo a partir dos dados. Inicialmente não foi proposto um método específico, mas o arcabouço teórico necessário para sustentar a capacidade de generalização de modelos obtidos a partir de amostras limitadas, porém suficientes. Posteriormente Vapnik e co-autores propuseram as máquinas de vetores de suporte, método aplicado com sucesso até hoje em problemas de aprendizado supervisionado. Seus principais trabalhos foram publicados na década de 90.</p>
+<p>A densa teoria do aprendizado estatístico foi cunhada pelo matemático russo Vladimir Vapnik, <a href="#fig-vapnik" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>, visando obter um modelo preditivo a partir dos dados. Inicialmente não foi proposto um método específico, mas o arcabouço teórico necessário para sustentar a capacidade de generalização de modelos obtidos a partir de amostras limitadas, porém suficientes. Posteriormente, Vapnik e co-autores propuseram as máquinas de vetores de suporte, método aplicado com sucesso até hoje em problemas de aprendizado supervisionado. Seus principais trabalhos foram publicados na década de 90.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-vapnik" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -404,7 +441,7 @@ Figura&nbsp;1.3: Vapnik
 <div id="fig-bishop_ng" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bishop_ng-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/bishop_ng.png" class="img-fluid figure-img" width="1238">
+<img src="figs/bishop_ng.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bishop_ng-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.4: Bishop e Andrew
@@ -415,7 +452,7 @@ Figura&nbsp;1.4: Bishop e Andrew
 </div>
 <section id="um-brasileiro-importante" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="um-brasileiro-importante"><span class="header-section-number">1.2.1</span> Um brasileiro importante</h3>
-<p>Carlos Guestrin, <a href="#fig-guestrin" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>, é um brasileiro que tem feito um excelente trabalho na área de aprendizado por reforço, é professor da Universidade de Stanford, foi diretor sênior de <em>Machine Learning</em> da <strong>Apple</strong> (2016-2021). Co-criador do método recente de <strong>reforço por gradiente extremo</strong> (<em>extreme gradient boosting</em>), usado com sucesso em aprendizado supervisionado.</p>
+<p>Carlos Guestrin, <a href="#fig-guestrin" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>, é um brasileiro que tem feito um excelente trabalho na área de aprendizado por reforço. Guestrin é professor da Universidade de Stanford, foi diretor sênior de <em>Machine Learning</em> da <strong>Apple</strong> (2016-2021) e é co-criador do impressionante método recente de <strong>reforço por gradiente extremo</strong> (<em>extreme gradient boosting</em>), usado com sucesso em aprendizado supervisionado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-guestrin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -435,27 +472,74 @@ Figura&nbsp;1.5: Carlos Guestrin
 </section>
 <section id="aprendizado-supervisionado" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="aprendizado-supervisionado"><span class="header-section-number">1.3</span> Aprendizado Supervisionado</h2>
-<p>Seja um conjunto de variáveis de entrada, independentes ou preditores <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span> e uma variável dependente ou supervisora <span class="math inline">\(y\)</span>. Dado uma amostra de observações para tais variáveis, o aprendizado supervisionado visa prever o comportamento ou resultado de <span class="math inline">\(y\)</span>, considerando valores futuros de <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{x}_0\)</span>. O aprendizado supervisionado pode ser classificado em dois tipos:</p>
+<p>Seja um conjunto de variáveis de entrada, independentes ou preditores <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span> e uma variável dependente ou supervisora <span class="math inline">\(y\)</span>. Dado uma amostra de observações para tais variáveis, <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N\)</span>, o aprendizado supervisionado visa prever o comportamento ou resultado de <span class="math inline">\(y\)</span>, considerando valores futuros de <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{x}_0\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O aprendizado supervisionado consiste na busca ou <strong>treinamento</strong> de um modelo para prever um supervisor, variável independente ou resposta de interesse a partir de dados.</p>
+</div>
+</div>
+<p>O aprendizado supervisionado pode ser classificado em dois tipos:</p>
 <ul>
-<li><p>Regressão, <span class="math inline">\(y \in \mathbb{R}\)</span>, ou seja, quando a resposta ou supervisor pode ser medida em uma escala real (há casos para variáveis de processos de contagem em uma taxa média de ocorrência, entre outros);</p></li>
+<li><p>Regressão, <span class="math inline">\(y \in \mathbb{R}\)</span>, ou seja, quando a resposta ou supervisor apresenta escala numérica, mais comumente no domínio real (há casos para variáveis de processos de contagem, taxa média de ocorrência, entre outros).</p></li>
 <li><p>Classificação, <span class="math inline">\(y \in \{A, B, C, ...\}\)</span>, ou seja, quando a resposta pertence a um conjunto finito de categorias.</p></li>
 </ul>
-<p>A <a href="#fig-consumorenda" class="quarto-xref">Figura&nbsp;<span>1.6</span></a> ilustra o resultado de um exemplo de aplicação de regressão linear simples para prever o consumo em função da renda. O modelo foi treinado com um conjunto de dados de 33 observações e aplicado em 11 observações de teste. É importante observar uma boa aproximação do modelo aos dados, especialmente para os dados de teste ou futuros. É importante a utilização de métricas de ajuste para melhor avaliar a acuracidade dos modelos. Algumas métricas comumente usadas serão abordadas posteriormente.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os métodos de regressão que pressupõem uma distribuição condicional para a resposta segundo as observações das variáveis independentes. Neste curso será dada ênfase em métodos livres de distribuição, visando não somente explorar a capacidade e flexibilidade de modelos estatísticos e computacionais modernos, mas também ferramentas de interpretação destes. Porém, sugere-se ao leitor interessado o estudo de <em>modelos lineares generalizados</em>.</p>
+</div>
+</div>
+<section id="exemplo-de-problema-de-regressão" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="exemplo-de-problema-de-regressão"><span class="header-section-number">1.3.1</span> Exemplo de problema de regressão</h3>
+<p>Um dos métodos mais simples utilizados para regressão é a regressão linear simples, com coeficientes estimados por mínimos quadrados. Tal método será melhor detalhado no Capítulo 3.</p>
+<p>A <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.6</span></a> ilustra o resultado de um exemplo de aplicação de regressão linear simples para prever o preço de carros usados do modelo Honda Fit em função do ano de fabricação. O modelo foi treinado com um conjunto de dados de 13 observações e aplicado em 10 observações de teste. Naturalmente, há um crescimento linear do preço com o ano de fabricação do veículo. Observa-se uma boa aproximação do modelo aos dados separados para teste, o que supõe uma boa capacidade de generalização do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-consumorenda" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-hfit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-consumorenda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_Intro_files/figure-html/fig-consumorenda-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-hfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_Intro_files/figure-html/fig-hfit-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-consumorenda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.6: Consumo e renda nos EUA de 1950-1993
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.6: Modelo de regressão linear simples para previsão do preço de carros Honda Fit usados
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-diabetes_glicose" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> apresenta o resultado gráfico de um exemplo de aplicação de classificação, sendo estimado um modelo de regressão logística para classificação de pessoas com diabetes em relação ao nível de glicose, onde “1” = diabético e “0” = não diabético. O modelo prevê a probabilidade de pertencer a classe 1, isto é, <span class="math inline">\(P(y=1|x)\)</span>. A discriminação é realizada considerando a probabilidade intermediária, isto é,</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para bem avaliar a acuracidade e capacidade de generalização dos modelos, são utilizadas de métricas de ajuste. Para regressão, as métricas medem, por exemplo, o erro de previsão.</p>
+</div>
+</div>
+</section>
+<section id="exemplo-de-problema-de-classificação" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="exemplo-de-problema-de-classificação"><span class="header-section-number">1.3.2</span> Exemplo de problema de classificação</h3>
+<p>Um dos métodos mais simples utilizados para classificação é a regressão logística. Tal método será melhor detalhado no Capítulo 13.</p>
+<p>A <a href="#fig-feijaoreglog" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> apresenta o resultado gráfico de um exemplo de aplicação de classificação, sendo estimado um modelo de regressão logística para classificação de feijões pretos e vermelhos segundo o nível de diabetes, com 1 = “vermelho” e 0 = “preto”. O modelo prevê a probabilidade de pertencer a classe 1 em função do comprimento do feijão, isto é, <span class="math inline">\(P(y=1|x)\)</span>. A classificação pode ser realizada considerando a probabilidade intermediária, isto é, considera-se o feijão vermelho, <span class="math inline">\(y=1\)</span> se <span class="math inline">\(p\geq0,5\)</span> e preto caso contrário, conforme segue.</p>
 <p><span class="math display">\[
 \bigg\{\begin{matrix}
 y = 1, \text{ se } p&gt;0,5, \\
@@ -464,37 +548,64 @@ y = 0, \text{ cc}.
 \]</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-diabetes_glicose" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-feijaoreglog" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diabetes_glicose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_Intro_files/figure-html/fig-diabetes_glicose-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-feijaoreglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_Intro_files/figure-html/fig-feijaoreglog-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diabetes_glicose-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.7: Regressão logística para diabetes em função do nível de glicose
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaoreglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.7: Modelo de regressão logística para prever a probabilidade de o feijão ser vermelho em detrimento do preto em função do comprimento
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Neste segundo exemplo da <a href="#fig-diabetes_glicose2" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> considera-se além da glicose a idade do paciente para obter um modelo de regressão logística de forma a classificar pacientes com diabetes. Foram consideradas 294 observações para treinamento e 98 para teste do modelo.</p>
+<p>Neste segundo exemplo da <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> considera-se além do comprimento a largura do feijão para obter um modelo de regressão logística para prever a probabilidade de o feijão ser vermelho entre vermelhos e pretos. No gráfico é plotada a fronteira de classificação, isto é, <span class="math inline">\(p(y=1) = 0,5\)</span>. Foram consideradas 75 observações para treinamento e 17 para teste do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-diabetes_glicose2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-feijaoreglog2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diabetes_glicose2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_Intro_files/figure-html/fig-diabetes_glicose2-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-feijaoreglog2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_Intro_files/figure-html/fig-feijaoreglog2-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diabetes_glicose2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaoreglog2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.8: Regressão logística para diabetes em função do nível de glicose e idade
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para classificação as métricas podem medir a proporção de acertos, de verdadeiros positivos, de verdadeiros negativos, entre outras.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="aprendizado-não-supervisionado" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="aprendizado-não-supervisionado"><span class="header-section-number">1.4</span> Aprendizado Não-supervisionado</h2>
-<p>Seja um conjunto de <span class="math inline">\(N\)</span> observações, <span class="math inline">\(\mathbf{x}_1\)</span>, <span class="math inline">\(\mathbf{x}_2\)</span>, …, <span class="math inline">\(\mathbf{x}_N\)</span>, de <span class="math inline">\(k\)</span> variáveis independentes <span class="math inline">\(\mathbf{x}=[x_1, x_2, ..., x_k]^T\)</span>. O aprendizado não-supervisionado visa obter informações a partir dos próprios dados, sem a necessidade de um supervisor ou variável dependente. Constitui-se de técnicas de agrupamento e de redução de dimensionalidade.</p>
+<h2 data-number="1.4" class="anchored" data-anchor-id="aprendizado-não-supervisionado"><span class="header-section-number">1.4</span> Aprendizado Não supervisionado</h2>
+<p>Seja um conjunto de <span class="math inline">\(N\)</span> observações, <span class="math inline">\(\mathbf{x}_1\)</span>, <span class="math inline">\(\mathbf{x}_2\)</span>, …, <span class="math inline">\(\mathbf{x}_N\)</span>, de <span class="math inline">\(k\)</span> variáveis independentes <span class="math inline">\(\mathbf{x}=[x_1, x_2, ..., x_k]^T\)</span>. O aprendizado não-supervisionado visa obter informações a partir dos próprios dados, sem a necessidade de um supervisor ou variável dependente. Constitui-se de técnicas de agrupamento, de redução de dimensionalidade e tratamento da estrutura de covariância dos dados. A matriz de correlação amostral é geralmente estimada para avaliar a força da relação entre as variáveis de interesse, permitindo o julgamento da necessidade ou não de empregar um método de aprendizado não supervisionado.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Alguns métodos de aprendizado supervisionado usam de técnicas de aprendizado não supervisionado, visando diminuir o erro dos modelos e melhorar a capacidade de generalização destes. Por exemplo, a regressão por componentes principais, visa expressar os regressores correlacionados em termos de um número menor de novas variáveis não correlacionadas.</p>
+</div>
+</div>
 <p>A <a href="#fig-kmeans" class="quarto-xref">Figura&nbsp;<span>1.9</span></a> expõe um gráfico do resultado de um agrupamento por <span class="math inline">\(k\)</span>-médias considerando distintos índices de demografia dos EUA. São plotados os dois índices mais importantes.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -529,163 +640,176 @@ Figura&nbsp;1.10: Análise de componentes principais para encontrar uma nova var
 <section id="implementações-em-r" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">1.5</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="exemplo-de-problema-de-regressão" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="exemplo-de-problema-de-regressão"><span class="header-section-number">1.5.1</span> Exemplo de problema de regressão</h3>
-<p>Carregando as bibliotecas (pacotes) para análise.</p>
+<section id="exemplo-de-problema-de-regressão-1" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="exemplo-de-problema-de-regressão-1"><span class="header-section-number">1.5.1</span> Exemplo de problema de regressão</h3>
+<p>Carregando as bibliotecas (pacotes) para análise. A biblioteca <code>sjdatar</code> contém conjuntos de dados. O pacote <code>ggpplot2</code> consiste em um pacote gráfico. O pacote <code>dplyr</code> consiste em uma biblioteca muito útil à manipulação, análise e tratamento de dados. O pacote <code>tidymodels</code> consiste em uma biblioteca de modelagem estatística e de aprendizado de máquina que reune os melhores recursos de diversas bibliotecas, padronizando a sintaxe e viabilizando um fluxo de trabalho profissional, independente do método a ser utilizado.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER) <span class="co"># para base de dados</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co"># para gráficos</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Carregando base de dados.</p>
+<p>No código à seguir é carregada a base de dados. O conjunto de dados <code>carrosusados2025webmotors</code> do pacote <code>sjdatar</code> será usado. Neste caso, são filtrados apenas os dados do modelo FIT usando o comando filter do pacote <code>dplyr</code>. O comando <code>|&gt;</code>, chamado de pipe nativo da linguagem R, serve para empilhar operações. Outra opção seria o pipe do pacote <code>dplyr</code>, <code>%&gt;%</code>. A sintaxe <code>filter(carrosusados2025webmotors, Carro == "FIT")</code> tem resultado análogo, porém, quando se deseja empilhar vários comandos o pipe facilita o encadeamento de operações. Por exemplo, <code>round(sqrt(abs(-17)), 2)</code> com o pipe fica <code>-17 |&gt; abs() |&gt; sqrt() |&gt; round(2)</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(USConsump1993)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?USConsump1993</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(carrosusados2025webmotors)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> carrosusados2025webmotors <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Carro <span class="sc">==</span> <span class="st">"FIT"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O comando <code>head</code> serve para visualizar as primeiras linhas de um conjunto de dados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>À seguir separam-se 60% dos dados para treino do modelo e 40% para teste. Utiliza-se, neste caso, o comando <code>initial_split</code> do pacote <code>rsample</code>, incluido no <code>tidymodels</code>. Posteriormente, são necessários os comandos <code>training</code> e <code>testing</code> para separar os dados sorteados, segundo a proporção definida, para treino e teste do modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">36</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.60</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dados_split</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Antes de treinar um modelo de regressão linear simples, deve-se definir o método de modelagem a ser utilizado, sendo usado <code>linear_reg</code> para regressão linear.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O argumento <code>penalty = 0</code> implica na não utilização da penalização para regressão rígida, método a ser discutido no Capítulo 5.</p>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Consumo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(USConsump1993)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Consumo)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Separando 75% dos dados para treino do modelo e 25% para teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(Consumo))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Consumo), tr, <span class="at">replace =</span> F)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Consumo.tr <span class="ot">&lt;-</span> Consumo[treino,]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Consumo.te <span class="ot">&lt;-</span> Consumo[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Em seguida, realiza-se a modelagem. Inicialmente chama-se o método anteriormente definido, sendo o supervisor e o preditor dados no comando <code>fit</code>, sempre no argumento <code>formula</code> com <code>y ~ x</code>, isto é, resposta em função da variável independente. Deve-se, também, definir no argumento <code>data</code> os dados usados para treinar o modelo. Outra possibilidade seria usar os comandos nativos da linguagem R para obter o mesmo modelo, <code>lm(Preco ~ Ano, data = dados_treino)</code> e, em seguida, usar <code>summary()</code> para ver o modelo e os resultados do teste t para os coeficientes de regressão. Entretanto, sugere-se ao leitor o uso da abordagem <code>tidymodels</code> a qual viabilizará, um fluxo de trabalho padronizado com saída mais profissional, especialmente em casos onde deseja-se comparar modelos e otimizar hiperparâmetros.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Em R em diversas situações não é necessário definir os nomes dos argumentos. Por exemplo <code>fit(Preco ~ Ano, dados_treino)</code> também está correto, sendo os argumentos <code>formula</code> e <code>data</code> automaticamente identificados.</p>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Consumo.tr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lm_form_fit <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  lm_model <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">formula =</span> Preco <span class="sc">~</span> Ano, <span class="at">data =</span> dados_treino)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm_form_fit)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em sequência realiza-se a plotagem do modelo com os dados de treino usando o comando <code>ggplot</code>. Inicialmentem deve-se definir os dados em <code>data</code> e a estética do gráfico em <code>aes</code>, determinando as variáveis de cada eixo cartesiano. Posteriormente, são adicionadas camadas com <code>+</code>, às quais definirão qual tipo de gráfico será realizado, bem como customizações. Por exemplo, o comando <code>geom_point</code>é usado para realizar um gráfico de pontos ou dispersão. O comando <code>geom_smoth</code> permite a criação de um modelo de regressão linear internamente a partir dos dados. O modelo é plotado com intervalo de confiança. Caso deseja-se ocultá-lo, deve-se usar o argumento <code>se=FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dados_treino, <span class="fu">aes</span>(<span class="at">x =</span> Ano, <span class="at">y =</span> Preco)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">'red'</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Preço (R$)"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, são realizadas previsões com o modelo. Deve-se fornecer o modelo e os dados, sendo comum fornecer dados de teste ou futuros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_form_fit, <span class="at">new_data =</span> dados_teste)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Consumo.te)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm_form_fit, <span class="at">new_data =</span> <span class="fu">data.frame</span>(<span class="at">Ano =</span> <span class="dv">2017</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Treinando um modelo de regressão linear simples.</p>
+<p>É interessante plotar o modelo com os dados de teste, de forma a avaliar graficamente a aproximação deste aos dados separados para validação. Neste caso, deve-se atentar para não fornecer os dados em <code>ggplot</code>, mas separar os dados de treino em <code>geom_smooth</code> e os de teste em <code>geom_point</code>, evitando que o modelo seja treinado com os dados de teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(expenditure <span class="sc">~</span> income, <span class="at">data =</span> Consumo.tr)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Plotando o modelo com dados de treino.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Consumo.tr, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> expenditure)) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">'red'</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">"renda"</span>) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">"consumo"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Realizando previsão com o modelo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(lm1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">income =</span> <span class="dv">9000</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Previsão para todos dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Consumo.te<span class="sc">$</span>exp_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">newdata =</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">data.frame</span>(<span class="at">income =</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                              Consumo.te<span class="sc">$</span>income))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># head(Consumo.te)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Plotando o modelo com os dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> Consumo.te, <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> expenditure), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> Consumo.tr,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> income, <span class="at">y =</span> expenditure)) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"renda"</span>) <span class="sc">+</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"consumo"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Criando uma função de métricas de desempenho.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho do modelo para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(Consumo.te<span class="sc">$</span>expenditure, Consumo.te<span class="sc">$</span>exp_pred)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste, <span class="fu">aes</span>(<span class="at">x =</span> Ano, <span class="at">y =</span> Preco), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> dados_treino,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> Ano, <span class="at">y =</span> Preco)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Ano"</span>) <span class="sc">+</span> </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Preço"</span>) <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exemplo-de-problema-de-classificação" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="exemplo-de-problema-de-classificação"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</h3>
+<section id="exemplo-de-problema-de-classificação-1" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="exemplo-de-problema-de-classificação-1"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</h3>
+<p>Neste exemplo será usado o conjunto de dados <code>feijoes</code>, porém considerando apenas as classes “preto” e “vermelho”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlbench)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>feijoes <span class="ot">&lt;-</span> feijoes <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feijao <span class="sc">==</span> <span class="st">"preto"</span> <span class="sc">|</span> feijao <span class="sc">==</span> <span class="st">"vermelho"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">feijao =</span> <span class="fu">as.factor</span>(feijao))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>O comando <code>tail</code> retorna as últimas linhas do data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PimaIndiansDiabetes2)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?PimaIndiansDiabetes2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>feijoes <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>A seguir são separados os dados de treino e teste, deixando 75% para treino.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>PimaIndiansDiabetes2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(PimaIndiansDiabetes2)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>PimaIndiansDiabetes2<span class="sc">$</span>diabetes <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(PimaIndiansDiabetes2<span class="sc">$</span>diabetes<span class="sc">==</span><span class="st">"neg"</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> PimaIndiansDiabetes2</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(feijoes, <span class="at">prop =</span> <span class="fl">0.75</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dados_split</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Define-se e obtém-se um modelo de regressão logística simples para prever a probabilidade do feijão ser “vermelho” em função do seu comprimento.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(dados), <span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> dados[treino,]</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>dados_test <span class="ot">&lt;-</span> dados[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(<span class="at">penalty=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>reglog1 <span class="ot">&lt;-</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  logit_model <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(feijao <span class="sc">~</span> comprimento, <span class="at">data =</span> dados_treino)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># model_feijao &lt;- </span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   reglog1 |&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   extract_fit_engine() |&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   summary()</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># param_est &lt;- coef(model_feijao)</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># param_est</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(reglog1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Obtendo um modelo de regressão logística simples a partir dos dados de treino considerando apenas uma variável regressora, o nível de glicose.</p>
+<p>O gráfico abaixo plota a probabilidade do feijão ser vermelho em função do comprimento.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">glm</span>( diabetes <span class="sc">~</span> glucose, <span class="at">data =</span> dados_treino, <span class="at">family =</span> binomial)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> dados_teste <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">feijao_num =</span> <span class="fu">as.numeric</span>(feijao <span class="sc">==</span> <span class="st">"vermelho"</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">feijao_num =</span> <span class="fu">as.numeric</span>(feijao <span class="sc">==</span> <span class="st">"vermelho"</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_teste, <span class="fu">aes</span>(<span class="at">x =</span> comprimento, <span class="at">y =</span> feijao_num, <span class="at">color =</span> feijao)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dados_treino,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> comprimento, <span class="at">y =</span> feijao_num),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"glm"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"grey"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"black"</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"preto"</span>, <span class="st">"vermelho"</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Comprimento"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probabilidade (vermelho)"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"Feijão"</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Plotando o modelo com os dados de treino.</p>
+<p>Previsão com os dados de teste.É possível prever a classe ou, usando <code>type = "prob</code>, as probabilidades de o feijão ser preto ou vermelho.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_treino, <span class="fu">aes</span>(glucose, diabetes)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> <span class="fu">as.factor</span>(diabetes)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>), <span class="at">fill =</span> <span class="st">"grey"</span>, <span class="at">col =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Concentracao de glicose"</span>, <span class="at">y =</span> <span class="st">"Probabilidade de ter diabetes"</span>, <span class="at">col =</span> <span class="st">"diabetes"</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Plotando o modelo com os dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_test, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(glucose, diabetes, <span class="at">col =</span> <span class="fu">as.factor</span>(diabetes)), </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> dados_treino, </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(glucose, diabetes), </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">"glm"</span>, </span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>), </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Concentracao de glicose"</span>, <span class="at">y =</span> <span class="st">"Probabilidade de ter diabetes"</span>, <span class="at">col =</span> <span class="st">"diabetes"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Previsão com os dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dados_test<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">glucose =</span> dados_test<span class="sc">$</span>glucose), </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">type =</span> <span class="st">'response'</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>dados_test<span class="sc">$</span>y_pred <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(dados_test<span class="sc">$</span>prob <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_test)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Matriz de confusão para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">data =</span> dados_test<span class="sc">$</span>diabetes, <span class="at">model =</span> dados_test<span class="sc">$</span>y_pred)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Proporção de observações de teste classificadas corretamente.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dados_test<span class="sc">$</span>diabetes <span class="sc">==</span> dados_test<span class="sc">$</span>y_pred)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(reglog1, <span class="at">new_data =</span> dados_teste)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(reglog1, <span class="at">new_data =</span> dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -699,6 +823,38 @@ Figura&nbsp;1.10: Análise de componentes principais para encontrar uma nova var
 <p>Student. “The probable error of a mean.” Biometrika (1908): 1-25.</p>
 <p>Tukey, John W. “Exploratory data analysis.” Reading/Addison-Wesley (1977).</p>
 <p>Vapnik, Vladimir. “The nature of statistical learning theory.” John Wiley google schola 2 (1995): 259-275.</p>
+</section>
+<section id="exercícios" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">1.6</span> Exercícios</h2>
+<ol type="1">
+<li>Nos problemas à seguir, identifique o supervisor e os preditores.</li>
+</ol>
+<ol type="a">
+<li><p>Deseja-se prever se um tumor é maligno ou benígno segundo a área, perímetro, raio e concavidade do tumor.</p></li>
+<li><p>Deseja-se prever o preço de casas segundo a área, número de quartos, número de banheiros e localização.</p></li>
+<li><p>Deseja-se prever se uma pessoa compra um ou não um produto <em>on-line</em> segundo o número de cliques e o tempo de navegação na página do produto.</p></li>
+<li><p>Deseja-se prever a resistência mecânica de um produto metalúrgico segundo a composição química e a temperatura de conformação.</p></li>
+</ol>
+<ol start="2" type="1">
+<li><p>Em relação aos problemas descritos no exercício anterior, defina quais são de classificação e quais são de regressão.</p></li>
+<li><p>Qual a principal vantagem dos métodos não paramétricos em relação aos paramétricos?</p></li>
+<li><p>Identifique <span class="math inline">\(N\)</span> e <span class="math inline">\(k\)</span> em cada problema.</p></li>
+</ol>
+<ol type="a">
+<li><p>Deseja-se classificar espécies de árvores frutíferas segundo a área, perímetro, comprimento, largura e excentricidade de folhas considerando 235 observações.</p></li>
+<li><p>Deseja-se prever o preço de computadores desktop usando uma amostra de 350 observações considerando a memória, ram, HD, marca, modelo, ano de fabricação e sistema operacional.</p></li>
+</ol>
+<ol start="5" type="1">
+<li><p>Dê dois exemplos de problemas de regressão e dois de classificação. Sugira possíveis preditores para cada caso.</p></li>
+<li><p>Tomando a <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.6</span></a> aproximadamente qual o preço previsto para um Honda Fit ano 2025?</p></li>
+<li><p>Seja o problema de classificação de feijões usando o comprimento e largura destes, com modelo plotado na <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> junto aos dados de teste. COnsidere a classe “preto” referência e a “vermelho” como sendo a que se deseja prever e responda:</p></li>
+</ol>
+<ol type="a">
+<li><p>Qual a proporção de acertos do modelo para os feijões pretos (especificidade)?</p></li>
+<li><p>QUal a proporção de acertos para os feijões vermelhos (sensitividade)?</p></li>
+<li><p>Qual a proporção total de acertos (acuracidade)?</p></li>
+<li><p>Qual a proporção total de erros?</p></li>
+</ol>
 
 
 </section>
