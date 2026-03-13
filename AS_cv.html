@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>6&nbsp; Validação cruzada e grid search – Aprendizado Supervisionado, uma abordagem com implementações em R</title>
+<title>6&nbsp; Validação cruzada e grid search – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Aprendizado Supervisionado, uma abordagem com implementações em R</a> 
+      <a href="./">Aprendizado Supervisionado com implementações em R</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -266,6 +266,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -325,20 +331,7 @@ window.Quarto = {
 </section>
 <section id="validação-cruzada-por-dados-de-treino-e-teste" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="validação-cruzada-por-dados-de-treino-e-teste"><span class="header-section-number">6.2</span> Validação cruzada por dados de treino e teste</h2>
-<p>A validação cruzada por dados de treino e teste é basicamente o que foi feito nos métodos aprendidos até aqui. As <span class="math inline">\(N\)</span> observações disponíveis, <span class="math inline">\(\mathcal{T}\)</span>, são divididas em observações de treino e teste. O modelo é estimado usando as observações de treino e testado nas observações de teste. Conforme explicado, a própria função perda pode ser usada para avaliar a capacidade de generalização do modelo, mas, na prática, algumas outras métricas podem ser úteis para avaliar o erro em dados de teste.</p>
-<p>A métrica <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2 \in [0,1]\)</span>, denominada coeficiente de determinação, consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
-<p><span class="math display">\[
-    R^2(y,\hat{y})  = 1 - \frac{\sum_{i=1}^{n}{(y_i - \hat{y}_i)}^2}{\sum_{i=1}^{n}{(y_i - \bar{y})}^2}
-\]</span></p>
-<p>Se o modelo for pior do que um modelo simples que prevê a média, <span class="math inline">\(\hat{y} = \overline{y}\)</span>, o <span class="math inline">\(R^2\)</span> pode ser negativo. Isso ocorre porque o denominador, que representa a variabilidade total da resposta, pode ser menor do que o numerador, que expressa a variabilidade explicada pelo modelo. Essa situação pode ocorrer na validação cruzada, na qual os modelos são testados em dados futuros, e, posteriormente, a métrica é calculada.</p>
-<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE) consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
-<p><span class="math display">\[
-    RMSE (y,\hat{y})  = \sqrt{\frac{1}{n} \sum_{i=1}^{n}{(y_i - \hat{y}_i)}^2}
-\]</span></p>
-<p>O erro médio absoluto (<em>mean absolute error</em> - MAE) mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
-<p><span class="math display">\[
-    MAE (y,\hat{y})  = \frac{1}{n} \sum_{i=1}^{n}\left|y_i - \hat{y}_i\right|
-\]</span></p>
+<p>A validação cruzada por dados de treino e teste é basicamente o que foi feito nos métodos aprendidos até aqui. As <span class="math inline">\(N\)</span> observações disponíveis, <span class="math inline">\(\mathcal{T}\)</span>, são divididas em observações de treino e teste. O modelo é estimado usando as observações de treino e testado nas observações de teste. Conforme explicado, a própria função perda pode ser usada para avaliar a capacidade de generalização do modelo, mas, na prática, as métricas de ajuste são úteis úteis para avaliar o erro em dados de teste.</p>
 <p>Há dois problemas mais latentes na abordagem treino e teste. O erro estimado nos dados de teste apresentam alta variabilidade dependendo das observações que foram sorteadas para treino e teste. Devido uma parte significativa das observações ser separada para teste, geralmente a abordagem em questão tende a superestimar o erro do modelo quando aplicado em todo conjunto de dados (GARETH et al., 2013).</p>
 </section>
 <section id="validação-cruzada-por-k-dobras" class="level2" data-number="6.3">
@@ -403,23 +396,23 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
 </figcaption>
 <div aria-describedby="tbl-datafocas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="pbnghejjcv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pbnghejjcv table {
+<div id="unntzfzbzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#unntzfzbzm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pbnghejjcv thead, #pbnghejjcv tbody, #pbnghejjcv tfoot, #pbnghejjcv tr, #pbnghejjcv td, #pbnghejjcv th {
+#unntzfzbzm thead, #unntzfzbzm tbody, #unntzfzbzm tfoot, #unntzfzbzm tr, #unntzfzbzm td, #unntzfzbzm th {
   border-style: none;
 }
 
-#pbnghejjcv p {
+#unntzfzbzm p {
   margin: 0;
   padding: 0;
 }
 
-#pbnghejjcv .gt_table {
+#unntzfzbzm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -445,12 +438,12 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-left-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_caption {
+#unntzfzbzm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pbnghejjcv .gt_title {
+#unntzfzbzm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -462,7 +455,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-width: 0;
 }
 
-#pbnghejjcv .gt_subtitle {
+#unntzfzbzm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -474,7 +467,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-width: 0;
 }
 
-#pbnghejjcv .gt_heading {
+#unntzfzbzm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -486,13 +479,13 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_bottom_border {
+#unntzfzbzm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_col_headings {
+#unntzfzbzm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -507,7 +500,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_col_heading {
+#unntzfzbzm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -527,7 +520,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#pbnghejjcv .gt_column_spanner_outer {
+#unntzfzbzm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -539,15 +532,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 4px;
 }
 
-#pbnghejjcv .gt_column_spanner_outer:first-child {
+#unntzfzbzm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pbnghejjcv .gt_column_spanner_outer:last-child {
+#unntzfzbzm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pbnghejjcv .gt_column_spanner {
+#unntzfzbzm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -559,11 +552,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   width: 100%;
 }
 
-#pbnghejjcv .gt_spanner_row {
+#unntzfzbzm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pbnghejjcv .gt_group_heading {
+#unntzfzbzm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -589,7 +582,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   text-align: left;
 }
 
-#pbnghejjcv .gt_empty_group_heading {
+#unntzfzbzm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -604,15 +597,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: middle;
 }
 
-#pbnghejjcv .gt_from_md > :first-child {
+#unntzfzbzm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pbnghejjcv .gt_from_md > :last-child {
+#unntzfzbzm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pbnghejjcv .gt_row {
+#unntzfzbzm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -631,7 +624,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   overflow-x: hidden;
 }
 
-#pbnghejjcv .gt_stub {
+#unntzfzbzm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -644,7 +637,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#pbnghejjcv .gt_stub_row_group {
+#unntzfzbzm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -658,15 +651,15 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   vertical-align: top;
 }
 
-#pbnghejjcv .gt_row_group_first td {
+#unntzfzbzm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pbnghejjcv .gt_row_group_first th {
+#unntzfzbzm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pbnghejjcv .gt_summary_row {
+#unntzfzbzm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -676,16 +669,16 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#pbnghejjcv .gt_first_summary_row {
+#unntzfzbzm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_first_summary_row.thick {
+#unntzfzbzm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pbnghejjcv .gt_last_summary_row {
+#unntzfzbzm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -695,7 +688,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_grand_summary_row {
+#unntzfzbzm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -705,7 +698,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#pbnghejjcv .gt_first_grand_summary_row {
+#unntzfzbzm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,7 +708,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-top-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_last_grand_summary_row_top {
+#unntzfzbzm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,11 +718,11 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_striped {
+#unntzfzbzm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pbnghejjcv .gt_table_body {
+#unntzfzbzm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -738,7 +731,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-bottom-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_footnotes {
+#unntzfzbzm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -752,7 +745,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_footnote {
+#unntzfzbzm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -761,7 +754,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#pbnghejjcv .gt_sourcenotes {
+#unntzfzbzm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -775,7 +768,7 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   border-right-color: #D3D3D3;
 }
 
-#pbnghejjcv .gt_sourcenote {
+#unntzfzbzm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -783,72 +776,72 @@ Tabela&nbsp;6.1: Conjunto de dados de idade e massa de órgãos de focas
   padding-right: 5px;
 }
 
-#pbnghejjcv .gt_left {
+#unntzfzbzm .gt_left {
   text-align: left;
 }
 
-#pbnghejjcv .gt_center {
+#unntzfzbzm .gt_center {
   text-align: center;
 }
 
-#pbnghejjcv .gt_right {
+#unntzfzbzm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pbnghejjcv .gt_font_normal {
+#unntzfzbzm .gt_font_normal {
   font-weight: normal;
 }
 
-#pbnghejjcv .gt_font_bold {
+#unntzfzbzm .gt_font_bold {
   font-weight: bold;
 }
 
-#pbnghejjcv .gt_font_italic {
+#unntzfzbzm .gt_font_italic {
   font-style: italic;
 }
 
-#pbnghejjcv .gt_super {
+#unntzfzbzm .gt_super {
   font-size: 65%;
 }
 
-#pbnghejjcv .gt_footnote_marks {
+#unntzfzbzm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pbnghejjcv .gt_asterisk {
+#unntzfzbzm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pbnghejjcv .gt_indent_1 {
+#unntzfzbzm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pbnghejjcv .gt_indent_2 {
+#unntzfzbzm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pbnghejjcv .gt_indent_3 {
+#unntzfzbzm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pbnghejjcv .gt_indent_4 {
+#unntzfzbzm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pbnghejjcv .gt_indent_5 {
+#unntzfzbzm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pbnghejjcv .katex-display {
+#unntzfzbzm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pbnghejjcv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#unntzfzbzm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>

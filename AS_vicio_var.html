@@ -332,7 +332,7 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Uma função perda mensura a diferença entre os valores previstos do modelo e as observações reais disponíveis. Tal função é otimizada durante o treinamento do modelo, de forma a garantir menor perda ou, em outras palavras, melhor aproximação do modelo em relação aos dados.</p>
+<p>Uma <strong>função perda</strong> mensura a diferença entre os valores previstos do modelo e as observações reais disponíveis. Tal função é otimizada durante o treinamento do modelo, de forma a garantir menor perda ou, em outras palavras, melhor aproximação do modelo em relação aos dados.</p>
 </div>
 </div>
 <p>A função perda mais comum para problemas de regressão é a função perda quadrática, apresentada na <a href="#eq-perda-quad" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
@@ -376,27 +376,27 @@ Figura&nbsp;2.1: Exemplo de dados para regressão linear simples
 <p><span class="math display">\[
 E_D\{\hat f_D(x) - f(x)\}^2 = \underbrace{E_D\{\hat f_D(x) - E_D[\hat f_D(x)]\}^2}_\text{variância} + \underbrace{\{E_D[\hat f_D(x)] - f(x)\}^2}_\text{vício}
 \]</span></p>
-<p>Agora considerando um valor específico de <span class="math inline">\(x\)</span>, <span class="math inline">\(x_0\)</span>, em detrimento dos conjuntos de dados <span class="math inline">\(D\)</span>, uma vez que <span class="math inline">\(E[\varepsilon]=0\)</span>, tem-se para o vício:</p>
-<p><span class="math display">\[
+<p>Agora considerando um valor específico de <span class="math inline">\(x\)</span>, <span class="math inline">\(x_0\)</span>, em detrimento dos conjuntos de dados <span class="math inline">\(D\)</span>, uma vez que <span class="math inline">\(E[\varepsilon]=0\)</span>, o vício pode ser obtido via <a href="#eq-vicio" class="quarto-xref">Equação&nbsp;<span>2.2</span></a>.</p>
+<p><span id="eq-vicio"><span class="math display">\[
 \begin{aligned}
 Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0) - f(x_0)] = E_D[\hat f(x_0) - (y + \varepsilon)] \\
 Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0)] - E_D[y]
 \end{aligned}
-\]</span></p>
-<p>E para a variância:</p>
-<p><span class="math display">\[
+\tag{2.2}\]</span></span></p>
+<p>A variância, por sua vez, é obtida via <a href="#eq-var" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>.</p>
+<p><span id="eq-var"><span class="math display">\[
 \begin{aligned}
 Var_D[\hat f(x)] &amp;= E_D[(\hat f_D(x) - E_D{\hat f(x)})^2]
 \end{aligned}
-\]</span></p>
+\tag{2.3}\]</span></span></p>
 <p>Seja o ajuste aos dados disponíveis de três modelos de regressão com distintas complexidades, um linear, um cúbico e um modelo polinomial de décima ordem.</p>
-<p>Tais modelos são apresentados de forma genérica na <a href="#eq-models" class="quarto-xref">Equação&nbsp;<span>2.2</span></a>.</p>
+<p>Tais modelos são apresentados de forma genérica na <a href="#eq-models" class="quarto-xref">Equação&nbsp;<span>2.4</span></a>.</p>
 <p><span id="eq-models"><span class="math display">\[
 \begin{align}
 \hat y_1 =&amp; \beta_0 + \beta_1x\\
 \hat y_3 =&amp; \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3\\
 \hat y_{10} =&amp; \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + \beta_4x^4 + ... + \beta_{10}x^{10} \end{align}
-\tag{2.2}\]</span></span></p>
+\tag{2.4}\]</span></span></p>
 <p>Os modelos são estimados por mínimos quadrados e plotados com os dados na <a href="#fig-lmdata" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1528,7 +1528,7 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O sobreajuste ou <em>overfitting</em> consiste em uma alta capacidade de previsão para os dados de treino com concomitante baixa capacidade de previsão para os dados de teste. Geralmente acontece em modelos com alta variância.</p>
+<p>O <strong>sobreajuste</strong> ou <em>overfitting</em> consiste em uma alta capacidade de previsão para os dados de treino com concomitante baixa capacidade de previsão para os dados de teste. Geralmente acontece em modelos com alta variância.</p>
 </div>
 </div>
 <p>O melhor modelo seria aquele que apresenta mais proximidade entre os erros para os dados de treinamento e teste, que, no exemplo plotado na <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>2.9</span></a>, seria o de terceira ordem.</p>
