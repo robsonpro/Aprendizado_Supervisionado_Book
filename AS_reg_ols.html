@@ -4310,37 +4310,43 @@ Figura&nbsp;3.6: Dados da área de folhas de árvores frutíferas em função do
 </div>
 </div>
 <p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-folhassresi" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
-<div class="cell" data-fig-caption="Resíduos do modelo de regressão linear">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-folhassresi" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-folhassresi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_reg_ols_files/figure-html/fig-folhassresi-1.png" id="fig-folhassresi" class="img-fluid figure-img" width="672">
+<img src="AS_reg_ols_files/figure-html/fig-folhassresi-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.7
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.7: Resíduos do modelo de regressão linear
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar a área da folha em função do comprimento. A curva plotada na <a href="#fig-arealm2" class="quarto-xref">Figura&nbsp;<span>3.8</span></a> consiste em tal modelo.</p>
-<div class="cell" data-fig-caption="Modelo de regressão quadrática para a área de folhas">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-arealm2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-arealm2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-arealm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_reg_ols_files/figure-html/fig-arealm2-1.png" id="fig-arealm2" class="img-fluid figure-img" width="672">
+<img src="AS_reg_ols_files/figure-html/fig-arealm2-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-arealm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.8
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arealm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.8: Modelo de regressão quadrática para a área de folhas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <span class="quarto-unresolved-ref">?tbl-quadfolhas</span>.</p>
-<div id="tbl-quadfolhas" class="cell anchored" data-tbl-caption="Modelo de regressão polinomial de segunda ordem para área de folhas em função do comprimento">
+<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span>3.8</span></a>.</p>
+<div class="cell">
+<div id="tbl-quadf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.8: Modelo de regressão polinomial de segunda ordem
+</figcaption>
+<div aria-describedby="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="xmjzswbgrd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#xmjzswbgrd table {
@@ -4792,7 +4798,7 @@ Figura&nbsp;3.8
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -4830,16 +4836,19 @@ Figura&nbsp;3.8
 </div>
 </div>
 </div>
+</figure>
+</div>
+</div>
 <p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-folhassresi2" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>.</p>
-<div class="cell" data-fig-caption="Resíduos para o modelo quadrático">
+<div class="cell">
 <div class="cell-output-display">
-<div id="fig-folhassresi2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-folhassresi2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-folhassresi2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_reg_ols_files/figure-html/fig-folhassresi2-1.png" id="fig-folhassresi2" class="img-fluid figure-img" width="672">
+<img src="AS_reg_ols_files/figure-html/fig-folhassresi2-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-folhassresi2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.9
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhassresi2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.9: Resíduos para o modelo quadrático
 </figcaption>
 </figure>
 </div>
