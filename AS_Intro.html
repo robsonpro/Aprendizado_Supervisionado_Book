@@ -472,7 +472,7 @@ Figura&nbsp;1.5: Carlos Guestrin
 </section>
 <section id="aprendizado-supervisionado" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="aprendizado-supervisionado"><span class="header-section-number">1.3</span> Aprendizado Supervisionado</h2>
-<p>Seja um conjunto de variáveis de entrada, independentes ou preditores <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span> e uma variável dependente ou supervisora <span class="math inline">\(y\)</span>. Dado uma amostra de observações para tais variáveis, <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, ..., \mathbf{x}_N\)</span>, o aprendizado supervisionado visa prever o comportamento ou resultado de <span class="math inline">\(y\)</span>, considerando valores futuros de <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{x}_0\)</span>.</p>
+<p>Seja um conjunto de variáveis de entrada, independentes ou preditores <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span> e uma variável dependente ou supervisora <span class="math inline">\(y\)</span>. Dado uma amostra de observações para tais variáveis, <span class="math inline">\((\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2)..., (\mathbf{x}_n,y_n)\)</span>, o aprendizado supervisionado visa prever o comportamento ou resultado de <span class="math inline">\(y\)</span>, considerando valores futuros de <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{x}_0\)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -585,7 +585,7 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para classificação as métricas podem medir a proporção de acertos, de verdadeiros positivos, de verdadeiros negativos, entre outras.</p>
+<p>Para classificação, as métricas de ajuste, incluem a proporção de acertos, de verdadeiros positivos e de verdadeiros negativos.</p>
 </div>
 </div>
 </section>
@@ -699,7 +699,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Em R em diversas situações não é necessário definir os nomes dos argumentos. Por exemplo <code>fit(Preco ~ Ano, dados_treino)</code> também está correto, sendo os argumentos <code>formula</code> e <code>data</code> automaticamente identificados.</p>
+<p>Na linguagem <code>R</code> em diversas situações não é necessário definir os nomes dos argumentos. Por exemplo, <code>fit(Preco ~ Ano, dados_treino)</code> também está correto, sendo os argumentos <code>formula</code> e <code>data</code> automaticamente identificados.</p>
 </div>
 </div>
 <div class="cell">

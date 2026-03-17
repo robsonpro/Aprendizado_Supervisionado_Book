@@ -1027,10 +1027,10 @@ Definição
 <p>O <strong>ajuste</strong> de um modelo consiste em sua capacidade de generalização ou, em outras palavras, seu desempenho para realizar previsões próximas dos resultados reais.</p>
 </div>
 </div>
-<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>3.5</span></a>. O <span class="math inline">\(R^2\)</span> é denominado coeficiente de determinação e consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
+<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>3.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
-R^2 = 1- \frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{n}(y_i-\overline{y})^2},
+R^2 = 1- \frac{\sum_{i=n+1}^{m}(y_i-\hat{y}_i)^2}{\sum_{i=n+1}^{m}(y_i-\overline{y})^2},
 \end{align}
 \tag{3.5}\]</span></span></p>
 <p>Se o modelo for pior do que um modelo simples que prevê a média, <span class="math inline">\(\hat{y} = \overline{y}\)</span>, o <span class="math inline">\(R^2\)</span> pode ser negativo. Isso ocorre porque o denominador, que representa a variabilidade total da resposta, pode ser menor do que o numerador, que expressa a soma dos quadrados dos erros do modelo. Essa situação pode ocorrer na validação cruzada, quando considerados dados de teste.</p>
@@ -1047,13 +1047,26 @@ Definição
 <p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas no capítulo 6.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considerando um conjunto de dados de teste, <span class="math inline">\(i=n+1,...,m\)</span>, contendo observações distintas das consideradas para treino, <span class="math inline">\(i=1,...,n\)</span>, isto é, <span class="math inline">\([(\mathbf x_{n+1},y_{n+1}),(\mathbf x_{n+2},y_{n+2}),...,(\mathbf x_m,y_m)] \neq [(\mathbf x_1,y_1),(\mathbf x_2,y_2),...,(\mathbf x_n,y_n)]\)</span>, sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar a capacidade de generalização dos modelos.</p>
+</div>
+</div>
 <p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>3.6</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
-    RMSE (y,\hat{y})  = \sqrt{\frac{1}{n} \sum_{i=1}^{n}{(y_i - \hat{y}_i)}^2}
+    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
 \tag{3.6}\]</span></span></p>
 <p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>3.7</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
-    MAE (y,\hat{y})  = \frac{1}{n} \sum_{i=1}^{n}\left|y_i - \hat{y}_i\right|
+    MAE (y,\hat{y})  = \frac{1}{m} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
 \tag{3.7}\]</span></span></p>
 </section>
 </section>
