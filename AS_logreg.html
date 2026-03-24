@@ -245,7 +245,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -333,8 +333,8 @@ window.Quarto = {
 
 <section id="regressão-logística-binária-simples" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="regressão-logística-binária-simples"><span class="header-section-number">13.1</span> Regressão logística binária simples</h2>
-<p>Seja um supervisor uma variável categórica com duas categorias, <span class="math inline">\(y \in \{c_1,c_2\}\)</span>, dita binária ou dicotômica, a qual suspeita-se ser dependente de uma única variável contínua ou real, <span class="math inline">\(x\)</span>, <span class="math inline">\(x \in \mathcal{R}\)</span>. Respostas binárias incluem categorias “sim” e “não” ou “sucesso” e “fracasso”. Um modelo de regressão logística visa prever a probabilidade de sucesso dado um valor de x, isto é <span class="math inline">\(p(y=sucesso|x)\)</span>. O sucesso deve ser entendido não literalmente, mas como a categoria de mais interesse a ser prevista. Obviamente, a remanescente terá probabilidade complementar.</p>
-<p>Considere o caso onde deseja-se prever se a pessoa compra ou não um iphone de última geração tomando como variável independente o seu salário. Tais categorias são codificadas respectivamente em 1 e 0. A <a href="#fig-iphone" class="quarto-xref">Figura&nbsp;<span>13.1</span></a> ilustra algumas observações de tal problema, onde o salário é plotado no eixo horizontal e indivíduos que compraram iphone são marcados em círculos vermelhos e codificado em zero no eixo vertical, enquanto indivíduos que compraram são marcados em triângulos azuais e codificados em 1 no eixo vertical.</p>
+<p>Seja um supervisor uma variável categórica com duas categorias, <span class="math inline">\(y \in \{c_1,c_2\}\)</span>, dita binária ou dicotômica, a qual suspeita-se ser dependente de uma única variável contínua ou real, <span class="math inline">\(x\)</span>, <span class="math inline">\(x \in \mathcal{R}\)</span>. Respostas binárias incluem categorias “sim” e “não” ou “sucesso” e “fracasso”. Um modelo de regressão logística visa prever a probabilidade de sucesso dado um valor de x, isto é <span class="math inline">\(p(y=sucesso|x)\)</span>. O sucesso deve ser entendido não literalmente, mas como a categoria de mais interesse a ser prevista. Obviamente, a remanescente terá probabilidade complementar e é dita categoria de referência.</p>
+<p>Considere o caso onde deseja-se prever se a pessoa compra ou não um iphone de última geração tomando como variável independente o seu salário. Tais categorias são codificadas respectivamente em 1 e 0. A <a href="#fig-iphone" class="quarto-xref">Figura&nbsp;<span>13.1</span></a> ilustra algumas observações de tal problema, onde o salário é plotado no eixo horizontal e indivíduos que não compraram iphone são marcados em círculos vermelhos e codificado em zero no eixo vertical, enquanto indivíduos que compraram são marcados em triângulos azuis e codificados em 1 no eixo vertical.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-iphone" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -349,11 +349,11 @@ Figura&nbsp;13.1: Dados de indivíduos com distintos salários que compraram ou 
 </div>
 </div>
 </div>
-<p>Inicialmente alguém poderia pensar em estimar uma reta via mínimos quadrados para prever a probabilidade do indivíduo comprar o iphone segundo o seu salário, isto é:</p>
+<p>Inicialmente, alguém poderia pensar em estimar uma reta via mínimos quadrados para prever a probabilidade do indivíduo comprar o iphone segundo o seu salário, isto é:</p>
 <p><span class="math display">\[
 p(y=1|x) =\beta_0+\beta_1x
 \]</span></p>
-<p>Tal procedimento resultaria na regressão da <a href="#fig-regiphone" class="quarto-xref">Figura&nbsp;<span>13.2</span></a>. O problema é que a reta obtida prevê probabilidades negativas para salários menores que R$3200 reais e probabilidades maiores que 1 para salários maiores que R$19300. Tais previsões são irreais, uma vez que <span class="math inline">\(p(y) \in [0,1]\)</span>.</p>
+<p>Tal procedimento resultaria na regressão da <a href="#fig-regiphone" class="quarto-xref">Figura&nbsp;<span>13.2</span></a>. O problema é que a reta obtida prevê probabilidades negativas para salários menores que R$3200 reais e probabilidades maiores que 1 para salários maiores que R$19300. Tais previsões são inapropriadas, uma vez que <span class="math inline">\(p(y) \in [0,1]\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-regiphone" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -368,7 +368,7 @@ Figura&nbsp;13.2: Usando erroneamente regressão linear para prever a probabilid
 </div>
 </div>
 </div>
-<p>Para garantir previsões no domínio da probabilidade, podem ser aplicadas diversas funções. A função logit ou sigmoid é uma delas. Estas função é definida matematicamente segundo a <a href="#eq-logit" class="quarto-xref">Equação&nbsp;<span>13.1</span></a> e plotada na <a href="#fig-logit" class="quarto-xref">Figura&nbsp;<span>13.3</span></a>.</p>
+<p>Para garantir previsões no domínio da probabilidade, podem ser aplicadas diversas funções. A função logit ou sigmoid é uma delas. Esta função é definida matematicamente segundo a <a href="#eq-logit" class="quarto-xref">Equação&nbsp;<span>13.1</span></a> e plotada na <a href="#fig-logit" class="quarto-xref">Figura&nbsp;<span>13.3</span></a>.</p>
 <p><span id="eq-logit"><span class="math display">\[
 p(z)=\frac{1}{1+e^{-z}}=\frac{e^z}{e^z+1}
 \tag{13.1}\]</span></span></p>
@@ -414,35 +414,35 @@ p(y=0|x)=\frac{1 + e^{-(\beta_0+\beta_1x)}-1}{1 + e^{-(\beta_0+\beta_1x)}} \\
 p(y=0|x)=\frac{e^{-(\beta_0+\beta_1x)}}{1 + e^{-(\beta_0+\beta_1x)}} \\
 \end{matrix}
 \]</span></p>
-<p>Tomando a razão entre <span class="math inline">\(p(y=1|x)\)</span> e <span class="math inline">\(1-p(y=1|x)\)</span> ou <span class="math inline">\(p(y=0|x)\)</span>, chamada de razão de chance ou <em>odds ratio</em>, tem-se:</p>
-<p><span class="math display">\[
+<p>Tomando a razão entre <span class="math inline">\(p(y=1|x)\)</span> e <span class="math inline">\(1-p(y=1|x)\)</span> ou <span class="math inline">\(p(y=0|x)\)</span>, chamada de razão de chance ou <em>odds ratio</em>, segundo a <a href="#eq-oddsratiorl" class="quarto-xref">Equação&nbsp;<span>13.3</span></a>.</p>
+<p><span id="eq-oddsratiorl"><span class="math display">\[
 \frac{p(y=1|x)}{1-p(y=1|x)} = e^{\beta_0+\beta_1x}.
-\]</span></p>
-<p>Tal razão tem domínio entre 0 e <span class="math inline">\(\infty\)</span>, com uma razão unitária indicando chance igual de ocorrência de ambos grupos, uma razão maior que 1 indicando maior chance de ocorrência do grupo 1 e uma razão menor que 1 indicando maior probabilidade de ocorrência do grupo 0. Aplicando logaritmo em ambos os lados do último resultado, verifica-se que o modelo de regressão logística (entenda-se aqui log como o logaritmo neperiano), obtido a partir da aplicação da função logit, pode ser concebido como um modelo de regressão linear simples para o log da razão de chance, conforme <a href="#eq-lnodds" class="quarto-xref">Equação&nbsp;<span>13.3</span></a>. O lado esquerdo da relação é chamado de <em>log-odds</em> ou logit, que viabiliza a obtenção da subtração das probabilidades em escala log, <span class="math inline">\(\text{log }\frac{p}{(1-p)} = \text{log } p - \text{log }(1-p)\)</span>. Ademais, o logit permite converter a probabilidade que tem dom+inio de 0 a 1 para uma resposta que tem domínio em <span class="math inline">\((-\infty,+\infty)\)</span>.</p>
+\tag{13.3}\]</span></span></p>
+<p>Tal razão tem domínio entre 0 e <span class="math inline">\(\infty\)</span>, com uma razão unitária indicando chance igual de ocorrência de ambos grupos, uma razão maior que 1 indicando maior chance de ocorrência do grupo 1 e uma razão menor que 1 indicando maior probabilidade de ocorrência do grupo 0. Aplicando logaritmo em ambos os lados da <a href="#eq-oddsratiorl" class="quarto-xref">Equação&nbsp;<span>13.3</span></a>, verifica-se que o modelo de regressão logística (entenda-se aqui log como o logaritmo neperiano), obtido a partir da aplicação da função logit, pode ser concebido como um modelo de regressão linear simples para o log da razão de chance, segundo a <a href="#eq-lnodds" class="quarto-xref">Equação&nbsp;<span>13.4</span></a>. O lado esquerdo da relação é chamado de <em>log-odds</em> ou logit, que viabiliza a obtenção da subtração das probabilidades em escala log, <span class="math inline">\(\text{log }\frac{p}{(1-p)} = \text{log } p - \text{log }(1-p)\)</span>. Ademais, o logit permite converter a função de regressão logística, a qual tem domínio entre 0 e 1, para uma função que tem domínio em <span class="math inline">\((-\infty,+\infty)\)</span>.</p>
 <p><span id="eq-lnodds"><span class="math display">\[
 \text{log } \biggl(\frac{p(y=1|x)}{1-p(y=1|x)}\biggr) = \beta_0+\beta_1x
-\tag{13.3}\]</span></span></p>
+\tag{13.4}\]</span></span></p>
 </section>
 <section id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="estimativa-dos-coeficientes-do-modelo-de-regressão-logística"><span class="header-section-number">13.2</span> Estimativa dos coeficientes do modelo de regressão logística</h2>
 <p>A estimativa dos coeficientes do modelo de regressão é realizada pela maximização da função de verossimilhança ou do log desta. Para simplificar a notação, considere <span class="math inline">\(p(y_i|x_i,\beta_0,\beta_1)=p(x_i)\)</span>. Seja o log da máxima verossimilhança expresso conforme segue.</p>
 <p><span class="math display">\[
 \begin{align}
-\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^Np(x_i) \\
-\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^N p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i}\\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N \text{log } \bigl\{ p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i} \bigr\} \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log }  p(x_i) + (1-y_i)\text{log }\bigl[1-p(x_i)\bigr] \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i\text{log } \Bigl( \frac{p(x_i)}{1-p(x_i)} \Bigr) + \text{log }\bigl[1-p(x_i)\bigr] \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl(1- \frac{1}{1+e^{-(\beta_0+\beta_1x_i)}} \Bigr) \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{e^{-(\beta_0+\beta_1x_i)}}{1+e^{-(\beta_0+\beta_1x_i)}} \times \frac{e^{(\beta_0+\beta_1x_i)}}{e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{1}{1+ e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
-\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^N y_i(\beta_0+\beta_1x_i) - \text{log } \bigl( 1+ e^{(\beta_0+\beta_1x_i)} \bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^np(x_i) \\
+\ell(\beta_0,\beta_1) &amp;= \text{log } \prod_{i=1}^n p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i}\\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n \text{log } \bigl\{ p(x_i)^{y_i}\bigl[1-p(x_i)\bigr]^{1-y_i} \bigr\} \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i\text{log }  p(x_i) + (1-y_i)\text{log }\bigl[1-p(x_i)\bigr] \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i\text{log } \Bigl( \frac{p(x_i)}{1-p(x_i)} \Bigr) + \text{log }\bigl[1-p(x_i)\bigr] \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl(1- \frac{1}{1+e^{-(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{e^{-(\beta_0+\beta_1x_i)}}{1+e^{-(\beta_0+\beta_1x_i)}} \times \frac{e^{(\beta_0+\beta_1x_i)}}{e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i(\beta_0+\beta_1x_i) + \text{log } \Bigl( \frac{1}{1+ e^{(\beta_0+\beta_1x_i)}} \Bigr) \\
+\ell(\beta_0,\beta_1) &amp;= \sum_{i=1}^n y_i(\beta_0+\beta_1x_i) - \text{log } \bigl( 1+ e^{(\beta_0+\beta_1x_i)} \bigr) \\
 \end{align}
 \]</span></p>
-<p>Considerando o modelo de regressão logística em notação matricial, podemos reescrever a função do log da verossimilhança, conforme <a href="#eq-lver" class="quarto-xref">Equação&nbsp;<span>13.4</span></a>.</p>
+<p>Considerando o modelo de regressão logística em notação matricial, podemos reescrever a função do log da verossimilhança, conforme <a href="#eq-lver" class="quarto-xref">Equação&nbsp;<span>13.5</span></a>.</p>
 <p><span id="eq-lver"><span class="math display">\[
 \ell(\beta) = \sum_{i=1}^N y_i(\beta^T\mathbf{x}_i) - \text{log } \bigl( 1+ e^{(\beta^T\mathbf{x}_i)} \bigr) \\
-\tag{13.4}\]</span></span></p>
+\tag{13.5}\]</span></span></p>
 <p>O vetor <span class="math inline">\(\beta\)</span> considera ambos os coeficientes <span class="math inline">\(\beta = [\beta_0,\beta_1]^T\)</span> enquanto o vetor <span class="math inline">\(\mathbf{x}_i\)</span> considera a constante e a observação da variável regressora, <span class="math inline">\(\mathbf{x}_i = [1,x]^T\)</span>. Para maximizar o log da verossimilhança, igualamos a derivada da função ou gradiente a zero, isto é:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -453,14 +453,14 @@ p(y=0|x)=\frac{e^{-(\beta_0+\beta_1x)}}{1 + e^{-(\beta_0+\beta_1x)}} \\
 \frac{\partial \ell(\beta)}{\partial \beta} &amp;= \sum_{i=1}^N \mathbf{x}_i(y_i - p(\mathbf{x}_i,\beta)) = 0 \\
 \end{align}
 \]</span></p>
-<p>Tal resultado consite em um sistema de duas equações não lineares para o caso simples. Para resolver este problema pode-se usar o método de Newton-Raphson. Este requer além do gradiente a derivada segunda ou a Hessiana da função do log da verossimilhança, conforme <a href="#eq-der2nr" class="quarto-xref">Equação&nbsp;<span>13.5</span></a>.</p>
+<p>Tal resultado consite em um sistema de duas equações não lineares para o caso simples. Para resolver este problema pode-se usar o método de Newton-Raphson. Este requer, além do gradiente, a derivada segunda ou a Hessiana da função do log da verossimilhança, conforme <a href="#eq-der2nr" class="quarto-xref">Equação&nbsp;<span>13.6</span></a>.</p>
 <p><span id="eq-der2nr"><span class="math display">\[
 \frac{\partial^2 \ell(\beta)}{\partial \beta \partial\beta^T} = \sum_{i=1}^N \mathbf{x}_i\mathbf{x}_i^Tp(\mathbf{x}_i,\beta)(y_i - p(\mathbf{x}_i,\beta))
-\tag{13.5}\]</span></span></p>
-<p>Uma atualização de <span class="math inline">\(\beta\)</span> é obtida conforme <a href="#eq-atuanr" class="quarto-xref">Equação&nbsp;<span>13.6</span></a>.</p>
+\tag{13.6}\]</span></span></p>
+<p>Uma atualização de <span class="math inline">\(\beta\)</span> é obtida conforme <a href="#eq-atuanr" class="quarto-xref">Equação&nbsp;<span>13.7</span></a>.</p>
 <p><span id="eq-atuanr"><span class="math display">\[
 \beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 \ell(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial \ell(\beta)}{\partial \beta}
-\tag{13.6}\]</span></span></p>
+\tag{13.7}\]</span></span></p>
 <p>Considere o caso onde deseja-se prever se uma pessoa tem ou não diabetes segundo o nível de glicose. Considere as primeiras linhas expostas na <a href="#tbl-diab1" class="quarto-xref">Tabela&nbsp;<span>13.1</span></a> de um conjunto de dados com observações de 763 pacientes.</p>
 <div class="cell">
 <div id="tbl-diab1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1006,10 +1006,10 @@ p(y=1|x) = \frac{1}{1 + e^{-(-5.712+0.040x)}}
 <section id="regressão-logística-binária-múltipla" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="regressão-logística-binária-múltipla"><span class="header-section-number">13.2.1</span> Regressão logística binária múltipla</h3>
 <p>Seja o caso onde deseja-se estudar a probabilidade de sucesso de uma variável de resposta categórica binária em função de múltiplos preditores, <span class="math inline">\(x_1,x_2,\ldots,x_k\)</span>, <span class="math inline">\(p(y=1|x_1,x_2,\ldots,x_k)\)</span>.</p>
-<p>Um modelo de regressão logística múltipla pode ser escrito conforme <a href="#eq-lregmult" class="quarto-xref">Equação&nbsp;<span>13.7</span></a>.</p>
+<p>Um modelo de regressão logística múltipla pode ser escrito conforme <a href="#eq-lregmult" class="quarto-xref">Equação&nbsp;<span>13.8</span></a>.</p>
 <p><span id="eq-lregmult"><span class="math display">\[
 p(y=1|\mathbf x) = \frac{1}{1 + e^{-(\beta_0+\beta_1x_1+\beta_2x_2+\ldots+\beta_kx_k)}}
-\tag{13.7}\]</span></span></p>
+\tag{13.8}\]</span></span></p>
 <p>Seja a matrix de observações das variáveis preditoras <span class="math inline">\(\mathbf{X}_{[N\times (k+1)]}\)</span>, com <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span> como o vetor de coeficientes, <span class="math inline">\(\mathbf{y}_{[N]}\)</span> o vetor de observações da resposta binária, <span class="math inline">\(\mathbf{p}_{[N]}\)</span> o vetor de probabilidades ajustadas com <span class="math inline">\(i\)</span>-ésimo elemento <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})\)</span> e <span class="math inline">\(\mathbf{W}_{[N\times N]}\)</span> uma matriz diagonal de pesos com o <span class="math inline">\(i\)</span>-ésimo elemento diagonal igual a <span class="math inline">\(p(\mathbf{x}_i,\beta_{t})(1-p(\mathbf{x}_i,\beta_{t}))\)</span>. Temos o gradiente e a hessina tomando tal notação conforme segue.</p>
 <p><span class="math display">\[
 \frac{\partial \ell(\beta)}{\partial \beta} = \mathbf{X}^T(\mathbf{y}-\mathbf{p}) \\
@@ -2666,14 +2666,14 @@ y    0  1
   1 12 20</code></pre>
 </div>
 </div>
-<p>Em problemas de classificação da área de saúde a sensitividade a especificidade são usadas, sendo a primeira a probabilidade de prever a doença dado que a pessoa é de fato doente, enquanto a especificidade consiste na probabilidade de prever como não doente dado que a pessoa de fato não o é, conforme <a href="#eq-senesp" class="quarto-xref">Equação&nbsp;<span>13.8</span></a>. Para o exemplo estudado, considerando o último modelo obtido, tem-se uma sensibilidade igual a 62,5% e uma especificidade igual a 92,42%.</p>
+<p>Em problemas de classificação da área de saúde a sensitividade a especificidade são usadas, sendo a primeira a probabilidade de prever a doença dado que a pessoa é de fato doente, enquanto a especificidade consiste na probabilidade de prever como não doente dado que a pessoa de fato não o é, conforme <a href="#eq-senesp" class="quarto-xref">Equação&nbsp;<span>13.9</span></a>. Para o exemplo estudado, considerando o último modelo obtido, tem-se uma sensibilidade igual a 62,5% e uma especificidade igual a 92,42%.</p>
 <p><span id="eq-senesp"><span class="math display">\[
 \biggl\{
 \begin{matrix}
 Sens = \frac{TP}{TP+FN} \\
 Spec = \frac{TN}{TN+FP}
 \end{matrix}
-\tag{13.8}\]</span></span></p>
+\tag{13.9}\]</span></span></p>
 <p>A curva ROC (<em>receiver operating characteristics</em>) mede graficamente a relação entre tais a sensitividade e 1 menos a especificidade, sendo plotada para o exemplo a seguir na <a href="#fig-roc" class="quarto-xref">Figura&nbsp;<span>13.7</span></a>. Pode-se observar que para obter uma especificidade igual a 92% tem-se 62,5% de sensitividade.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2693,7 +2693,7 @@ Figura&nbsp;13.7: Curva ROC para o modelo de regressão logística para prever a
 </section>
 <section id="regressão-logística-multinomial" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="regressão-logística-multinomial"><span class="header-section-number">13.4</span> Regressão logística multinomial</h2>
-<p>Considere o caso onde a variável dependente apresenta mais de duas classes, <span class="math inline">\(y \in \{c_1,c_2,\ldots,c_Q\}\)</span>, <span class="math inline">\(Q&gt;2\)</span>. Um modelo de regressão logística multinomial simples pode ser escrito conforme <a href="#eq-reglogmultinom" class="quarto-xref">Equação&nbsp;<span>13.9</span></a>.</p>
+<p>Considere o caso onde a variável dependente apresenta mais de duas classes, <span class="math inline">\(y \in \{c_1,c_2,\ldots,c_Q\}\)</span>, <span class="math inline">\(Q&gt;2\)</span>. Um modelo de regressão logística multinomial simples pode ser escrito conforme <a href="#eq-reglogmultinom" class="quarto-xref">Equação&nbsp;<span>13.10</span></a>.</p>
 <p><span id="eq-reglogmultinom"><span class="math display">\[
 \begin{align}
 \text{log } \biggl(\frac{p(y=1|x)}{p(y=Q|x)}\biggr) &amp;= \beta_{10}+\beta_1x \\
@@ -2701,7 +2701,7 @@ Figura&nbsp;13.7: Curva ROC para o modelo de regressão logística para prever a
 \vdots \\
 \text{log } \biggl(\frac{p(y=Q-1|x)}{p(y=Q|x)}\biggr) &amp;= \beta_{(Q-1)0}+\beta_{(Q-1)}x \\
 \end{align}
-\tag{13.9}\]</span></span></p>
+\tag{13.10}\]</span></span></p>
 <p>O modelo foi especificado considerando <span class="math inline">\(Q-1\)</span> transformações logit. A classe considerada no denominador é definida arbitrariamente. De forma análoga ao modelo binário, tem-se:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -2714,36 +2714,36 @@ p(y=Q|x) &amp;=\frac{1}{1 + \sum_{l=1}^{Q-1} e^{\beta_{q0}+\beta_qx}} \\
 <section id="regularização-rígida-e-lasso-em-regressão-logística" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="regularização-rígida-e-lasso-em-regressão-logística"><span class="header-section-number">13.5</span> Regularização rígida e LASSO em regressão logística</h2>
 <p>Assim como na regressão linear para respostas contínuas, a regressão logística também permite a aplicação de técnicas de regularização como regressão logística rígida e LASSO tanto para casos binários, casos multinomiais considerando uma ou mais variáveis independentes.</p>
-<p>Na regressão logística rígida subtrai-se ao log-verossimilhança uma penalização proporcional ao quadrado da norma dos coeficientes, conforme <a href="#eq-lbetaridge" class="quarto-xref">Equação&nbsp;<span>13.10</span></a>. É importante infatizar que, como queremos maximizar o log da máxima verossimilhança, deve-se subtrair o termo de penalização, uma vez que deseja-se penalizr a função, diminuindo-a com oc rescimento dos coeficientes, de forma a evitar a inflação destes devido multicolineariedade. Na regressão múltipla por mínimos quadrados para respostas medidas em um domínio real, onde se minimiza uma função perda quadrática, tal termo é somado.</p>
+<p>Na regressão logística rígida subtrai-se ao log-verossimilhança uma penalização proporcional ao quadrado da norma dos coeficientes, conforme <a href="#eq-lbetaridge" class="quarto-xref">Equação&nbsp;<span>13.11</span></a>. É importante infatizar que, como queremos maximizar o log da máxima verossimilhança, deve-se subtrair o termo de penalização, uma vez que deseja-se penalizr a função, diminuindo-a com oc rescimento dos coeficientes, de forma a evitar a inflação destes devido multicolineariedade. Na regressão múltipla por mínimos quadrados para respostas medidas em um domínio real, onde se minimiza uma função perda quadrática, tal termo é somado.</p>
 <p><span id="eq-lbetaridge"><span class="math display">\[
 \ell_\lambda^{\text{Ridge}}(\beta) =
 \ell(\beta) - \lambda \sum_{j=1}^{p} \beta_j^2
-\tag{13.10}\]</span></span></p>
-<p>ou, em notação vetorial conforme <a href="#eq-lbetaridgev" class="quarto-xref">Equação&nbsp;<span>13.11</span></a>.</p>
+\tag{13.11}\]</span></span></p>
+<p>ou, em notação vetorial conforme <a href="#eq-lbetaridgev" class="quarto-xref">Equação&nbsp;<span>13.12</span></a>.</p>
 <p><span id="eq-lbetaridgev"><span class="math display">\[
 \ell_\lambda^{\text{Ridge}}(\beta) =
 \ell(\beta) - \lambda  \beta^T\beta
-\tag{13.11}\]</span></span></p>
-<p>A condição de primeira ordem (gradiente) modificada é apresentada na <a href="#eq-gradlridge" class="quarto-xref">Equação&nbsp;<span>13.12</span></a>.</p>
+\tag{13.12}\]</span></span></p>
+<p>A condição de primeira ordem (gradiente) modificada é apresentada na <a href="#eq-gradlridge" class="quarto-xref">Equação&nbsp;<span>13.13</span></a>.</p>
 <p><span id="eq-gradlridge"><span class="math display">\[
 \frac{\partial l_\lambda^{\text{Ridge}}(\beta)}{\partial \beta} =
 \sum_{i=1}^N \mathbf{x}_i (y_i - p(\mathbf{x}_i, \beta)) - 2\lambda \beta
-\tag{13.12}\]</span></span></p>
-<p>E a Hessiana penalizada fica conforme <a href="#eq-hessrid" class="quarto-xref">Equação&nbsp;<span>13.13</span></a>.</p>
+\tag{13.13}\]</span></span></p>
+<p>E a Hessiana penalizada fica conforme <a href="#eq-hessrid" class="quarto-xref">Equação&nbsp;<span>13.14</span></a>.</p>
 <p><span id="eq-hessrid"><span class="math display">\[
 \frac{\partial^2 \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta \partial \beta^T} =
 - \sum_{i=1}^N \mathbf{x}_i \mathbf{x}_i^T p_i(1 - p_i) - 2\lambda \mathbf{I}
-\tag{13.13}\]</span></span></p>
-<p>A atualização no método de Newton-Raphson é ajustada considerando tais modificações segundo a <a href="#eq-nrrid" class="quarto-xref">Equação&nbsp;<span>13.14</span></a>.</p>
+\tag{13.14}\]</span></span></p>
+<p>A atualização no método de Newton-Raphson é ajustada considerando tais modificações segundo a <a href="#eq-nrrid" class="quarto-xref">Equação&nbsp;<span>13.15</span></a>.</p>
 <p><span id="eq-nrrid"><span class="math display">\[
 \beta_{t+1}=\beta_t - \Biggl(\frac{\partial^2 \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta \partial\beta^T}\Biggr)^{-1}\frac{\partial \ell_\lambda^{\text{Ridge}}(\beta)}{\partial \beta}
-\tag{13.14}\]</span></span></p>
-<p>No caso da penalização LASSO, aplica-se uma penalidade proporcional à soma dos módulos dos coeficientes, conforme <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.15</span></a></p>
+\tag{13.15}\]</span></span></p>
+<p>No caso da penalização LASSO, aplica-se uma penalidade proporcional à soma dos módulos dos coeficientes, conforme <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.16</span></a></p>
 <p><span id="eq-logrlasso"><span class="math display">\[
 \ell_\lambda^{\text{Lasso}}(\beta) =
 \ell(\beta) - \lambda \sum_{j=1}^{p} |\beta_j|
-\tag{13.15}\]</span></span></p>
-<p>Como a <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.15</span></a> não diferenciável, são usados métodos de otimização baseados em subgradiente ou descentes coordenados.</p>
+\tag{13.16}\]</span></span></p>
+<p>Como a <a href="#eq-logrlasso" class="quarto-xref">Equação&nbsp;<span>13.16</span></a> não diferenciável, são usados métodos de otimização baseados em subgradiente ou descentes coordenados.</p>
 <p>Ambas as abordagens de regularização visam evitar <em>overfitting</em>, melhorar a <em>generalização</em> e facilitar a <em>interpretação</em> em contextos de multicolineariedade.</p>
 </section>
 <section id="regressão-logística-por-componentes-principais-e-outras-possibilidades" class="level2" data-number="13.6">
@@ -3578,8 +3578,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_class.html" class="pagination-link" aria-label="Introdução a classificação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span>
+      <a href="./AS_class.html" class="pagination-link" aria-label="Introdução à classificação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

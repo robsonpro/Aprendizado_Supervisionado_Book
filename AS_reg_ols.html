@@ -245,7 +245,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução a classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -333,7 +333,7 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">3.1</span> Regressão linear simples</h2>
-<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Conforme a <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde observam-se dados do preço de carros Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
+<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que desperta interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Portanto, supõe-se Conforme a <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde observam-se dados do preço de carros Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -350,7 +350,7 @@ Figura&nbsp;3.1: Exemplo de conjunto de dados para regressão linear simples
 </div>
 <p>Tal aproximação pode ser descrita pela Equação à seguir, onde <span class="math inline">\(\hat{y}\)</span> consiste no valor predito de <span class="math inline">\(y\)</span>, <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> são coeficientes chamados de intercepto ou constante e coeficiente linear ou inclinação, respectivamente. Enquanto <span class="math inline">\(\beta_0\)</span> mede o valor da resposta prevista para <span class="math inline">\(x=0\)</span>, <span class="math inline">\(\beta_1\)</span> consiste na mudança média da resposta para o incremento de uma unidade no preditor, <span class="math inline">\(x\)</span>, ou seja, para o exemplo, o acréscimo no preço de revenda para a adição de uma unidade no ano de fabricação.</p>
 <p><span class="math display">\[
-\hat{y} = \beta_0 + \beta_1x
+\hat{y}_i = \beta_0 + \beta_1x_i
 \]</span></p>
 <p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> plota o modelo de regressão linear simples obtido juntamente com os dados de treino.</p>
 <div class="cell">
@@ -954,10 +954,10 @@ y_{n}\\
 \varepsilon_{n}\\
 \end{bmatrix} =
 \begin{bmatrix}
-3652.679\\
-3397.143\\
+3652,679\\
+3397,143\\
 \vdots \\
-682.3214\\
+682,3214\\
 \end{bmatrix}\text{,    e} \\
 \]</span></p>
 <p><span class="math display">\[
@@ -1027,6 +1027,20 @@ Definição
 <p>O <strong>ajuste</strong> de um modelo consiste em sua capacidade de generalização ou, em outras palavras, seu desempenho para realizar previsões próximas dos resultados reais.</p>
 </div>
 </div>
+<p>Sejam dados separados para avaliar o ajuste do modelo, ditos dados de teste, <span class="math inline">\((x_{n+1},y_{n+1}), (x_{n+2},y_{n+2}),\dots, (x_m,y_m)\)</span>, <span class="math inline">\(m\geq n\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os dados de treinamento, isto é, aqueles usados para estimar o modelo, são aqui denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>, enquanto os dados de teste, isto é, aqueles usados para medir a capacidade de generalização do modelo, são aqui denotados por <span class="math inline">\((x_{n+1},y_{n+1}), (x_{n+2},y_{n+2}),\dots, (x_m,y_m)\)</span>, <span class="math inline">\(m\geq n\)</span>. Considerando um conjunto de dados de teste, <span class="math inline">\(i=n+1,...,m\)</span>, contendo observações distintas das consideradas para treino, <span class="math inline">\(i=1,...,n\)</span>, isto é, <span class="math inline">\([(\mathbf x_{n+1},y_{n+1}),(\mathbf x_{n+2},y_{n+2}),...,(\mathbf x_m,y_m)] \neq [(\mathbf x_1,y_1),(\mathbf x_2,y_2),...,(\mathbf x_n,y_n)]\)</span>, sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar melhor a capacidade de generalização do modelo.</p>
+</div>
+</div>
 <p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>3.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
@@ -1047,26 +1061,13 @@ Definição
 <p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas no capítulo 6.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Considerando um conjunto de dados de teste, <span class="math inline">\(i=n+1,...,m\)</span>, contendo observações distintas das consideradas para treino, <span class="math inline">\(i=1,...,n\)</span>, isto é, <span class="math inline">\([(\mathbf x_{n+1},y_{n+1}),(\mathbf x_{n+2},y_{n+2}),...,(\mathbf x_m,y_m)] \neq [(\mathbf x_1,y_1),(\mathbf x_2,y_2),...,(\mathbf x_n,y_n)]\)</span>, sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar a capacidade de generalização dos modelos.</p>
-</div>
-</div>
 <p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>3.6</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
-    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
+    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m-n} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
 \tag{3.6}\]</span></span></p>
 <p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>3.7</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
-    MAE (y,\hat{y})  = \frac{1}{m} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
+    MAE (y,\hat{y})  = \frac{1}{m-n} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
 \tag{3.7}\]</span></span></p>
 </section>
 </section>
@@ -1106,7 +1107,7 @@ H_0:&amp; \beta_j = 0 \\
 H_1:&amp; \beta_j \neq 0, j = 1, ..., k\\
 \end{align}
 \]</span></p>
-<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>3.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor da <span class="math inline">\(j\)</span>-ésima linha e <span class="math inline">\(j\)</span>-ésima coluna da matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>, correspondente à <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(t_{0j} &gt; t_{[\alpha/2,N-k]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
+<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>3.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>, na <span class="math inline">\(j\)</span>-ésima linha e na <span class="math inline">\(j\)</span>-ésima coluna, correspondente à <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(t_{0j} &gt; t_{[\alpha/2,N-k]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
 <p><span id="eq-testet"><span class="math display">\[
 t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(N-k)}}
 \tag{3.10}\]</span></span></p>
@@ -1131,7 +1132,7 @@ Figura&nbsp;3.5: Modelo de regressão linear múltipla para prever o preço de c
 </div>
 <p>O modelo pode ser escrito segundo a <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>3.12</span></a>, onde <span class="math inline">\(x_1\)</span> consiste no Ano de fabricação e <span class="math inline">\(x_2\)</span> na quilometragem. Portanto, quanto maior o ano e menor a quilometragem, maior o preço estimado. Os coeficientes foram estimados nas unidades originais das variáveis. Porém, para fins de inferência, é importante padronizar as variáveis regressoras.</p>
 <p><span id="eq-modelregmult"><span class="math display">\[
-\hat{y} = -7.560\times 10^6 +3.788\times 10^3x_1 -6.789\times 10^{-2}x_2
+\hat{y} = -7,560\times 10^6 +3,788\times 10^3x_1 -6,789\times 10^{-2}x_2
 \tag{3.12}\]</span></span></p>
 <p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>3.13</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>3.12</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,N-k}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos, uma vez que <span class="math inline">\(t_{0j} &gt; t_{\alpha/2,N-k}\)</span>, <span class="math inline">\(\forall j = 1, ..., k\)</span>.</p>
 <p><span id="eq-normx"><span class="math display">\[
