@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Perreira">
 
-<title>3&nbsp; Regressão linear simples, múltipla e polinomial – Aprendizado Supervisionado com implementações em R</title>
+<title>2&nbsp; Regressão linear simples, múltipla e polinomial – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AS_tree.html" rel="next">
-<link href="./AS_vicio_var.html" rel="prev">
+<link href="./AS_vicio_var.html" rel="next">
+<link href="./AS_Intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_reg_ols.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_reg_ols.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -184,14 +184,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
+  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
+  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -282,24 +282,24 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-linear-simples" id="toc-regressão-linear-simples" class="nav-link active" data-scroll-target="#regressão-linear-simples"><span class="header-section-number">3.1</span> Regressão linear simples</a>
+  <li><a href="#regressão-linear-simples" id="toc-regressão-linear-simples" class="nav-link active" data-scroll-target="#regressão-linear-simples"><span class="header-section-number">2.1</span> Regressão linear simples</a>
   <ul class="collapse">
-  <li><a href="#métricas-de-ajuste-para-regressão" id="toc-métricas-de-ajuste-para-regressão" class="nav-link" data-scroll-target="#métricas-de-ajuste-para-regressão"><span class="header-section-number">3.1.1</span> Métricas de ajuste para regressão</a></li>
+  <li><a href="#métricas-de-ajuste-para-regressão" id="toc-métricas-de-ajuste-para-regressão" class="nav-link" data-scroll-target="#métricas-de-ajuste-para-regressão"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</a></li>
   </ul></li>
-  <li><a href="#regressão-linear-múltipla" id="toc-regressão-linear-múltipla" class="nav-link" data-scroll-target="#regressão-linear-múltipla"><span class="header-section-number">3.2</span> Regressão linear múltipla</a>
+  <li><a href="#regressão-linear-múltipla" id="toc-regressão-linear-múltipla" class="nav-link" data-scroll-target="#regressão-linear-múltipla"><span class="header-section-number">2.2</span> Regressão linear múltipla</a>
   <ul class="collapse">
-  <li><a href="#codificação-de-variáveis-categóricas-em-regressão-múltipla" id="toc-codificação-de-variáveis-categóricas-em-regressão-múltipla" class="nav-link" data-scroll-target="#codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">3.2.1</span> Codificação de variáveis categóricas em regressão múltipla</a></li>
+  <li><a href="#codificação-de-variáveis-categóricas-em-regressão-múltipla" id="toc-codificação-de-variáveis-categóricas-em-regressão-múltipla" class="nav-link" data-scroll-target="#codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</a></li>
   </ul></li>
-  <li><a href="#regressão-polinomial" id="toc-regressão-polinomial" class="nav-link" data-scroll-target="#regressão-polinomial"><span class="header-section-number">3.3</span> Regressão polinomial</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">3.4</span> Implementações em R</a>
+  <li><a href="#regressão-polinomial" id="toc-regressão-polinomial" class="nav-link" data-scroll-target="#regressão-polinomial"><span class="header-section-number">2.3</span> Regressão polinomial</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">2.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#regressão-linear-múltipla-1" id="toc-regressão-linear-múltipla-1" class="nav-link" data-scroll-target="#regressão-linear-múltipla-1"><span class="header-section-number">3.4.1</span> Regressão linear múltipla</a></li>
-  <li><a href="#sec-implregmultint" id="toc-sec-implregmultint" class="nav-link" data-scroll-target="#sec-implregmultint"><span class="header-section-number">3.4.2</span> Regressão múltipla com termos de interação</a></li>
-  <li><a href="#sec-implregmulbin" id="toc-sec-implregmulbin" class="nav-link" data-scroll-target="#sec-implregmulbin"><span class="header-section-number">3.4.3</span> Regressão múltipla com variáveis categóricas</a></li>
-  <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">3.4.4</span> Regressão polinomial</a></li>
+  <li><a href="#regressão-linear-múltipla-1" id="toc-regressão-linear-múltipla-1" class="nav-link" data-scroll-target="#regressão-linear-múltipla-1"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</a></li>
+  <li><a href="#sec-implregmultint" id="toc-sec-implregmultint" class="nav-link" data-scroll-target="#sec-implregmultint"><span class="header-section-number">2.4.2</span> Regressão múltipla com termos de interação</a></li>
+  <li><a href="#sec-implregmulbin" id="toc-sec-implregmulbin" class="nav-link" data-scroll-target="#sec-implregmulbin"><span class="header-section-number">2.4.3</span> Regressão múltipla com variáveis categóricas</a></li>
+  <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">2.4.4</span> Regressão polinomial</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">3.5</span> Exercícios</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">2.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -308,7 +308,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></h1>
 </div>
 
 
@@ -331,9 +331,9 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-linear-simples" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">3.1</span> Regressão linear simples</h2>
-<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que desperta interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Portanto, supõe-se Conforme a <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde observam-se dados do preço de carros Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
+<section id="regressão-linear-simples" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">2.1</span> Regressão linear simples</h2>
+<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que desperta interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Portanto, supõe-se Conforme a <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-data</span></a>, onde observam-se dados do preço de carros Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -342,7 +342,7 @@ window.Quarto = {
 <img src="AS_reg_ols_files/figure-html/fig-data-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.1: Exemplo de conjunto de dados para regressão linear simples
+Figura&nbsp;2.1: Exemplo de conjunto de dados para regressão linear simples
 </figcaption>
 </figure>
 </div>
@@ -352,7 +352,7 @@ Figura&nbsp;3.1: Exemplo de conjunto de dados para regressão linear simples
 <p><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_i
 \]</span></p>
-<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> plota o modelo de regressão linear simples obtido juntamente com os dados de treino.</p>
+<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-lm</span></a> plota o modelo de regressão linear simples obtido juntamente com os dados de treino.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -361,17 +361,17 @@ Figura&nbsp;3.1: Exemplo de conjunto de dados para regressão linear simples
 <img src="AS_reg_ols_files/figure-html/fig-lm-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.2: Modelo de regressão linear simples
+Figura&nbsp;2.2: Modelo de regressão linear simples
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para este caso inicial, os coeficientes de regressão estimados são, <span class="math inline">\(\beta_0 = -8024077\)</span> e <span class="math inline">\(\beta_1\)</span> = 4015, sendo o modelo escrito conforme <a href="#eq-regfit1" class="quarto-xref">Equação&nbsp;<span>3.1</span></a>, onde <span class="math inline">\(\hat y\)</span> seria o preço previsto.</p>
+<p>Para este caso inicial, os coeficientes de regressão estimados são, <span class="math inline">\(\beta_0 = -8024077\)</span> e <span class="math inline">\(\beta_1\)</span> = 4015, sendo o modelo escrito conforme <a href="#eq-regfit1" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regfit1</span></a>, onde <span class="math inline">\(\hat y\)</span> seria o preço previsto.</p>
 <p><span id="eq-regfit1"><span class="math display">\[
 \hat y = -8024077 + 4015x
-\tag{3.1}\]</span></span></p>
-<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
+\tag{2.1}\]</span></span></p>
+<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-erros</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -380,26 +380,26 @@ Figura&nbsp;3.2: Modelo de regressão linear simples
 <img src="AS_reg_ols_files/figure-html/fig-erros-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-erros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.3: Erros do modelo de regressão linear simples
+Figura&nbsp;2.3: Erros do modelo de regressão linear simples
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Neste sentido, as observações da variável dependente ou resposta podem ser descritas conforme <a href="#eq-obslm" class="quarto-xref">Equação&nbsp;<span>3.2</span></a>.</p>
+<p>Neste sentido, as observações da variável dependente ou resposta podem ser descritas conforme <a href="#eq-obslm" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-obslm</span></a>.</p>
 <p><span id="eq-obslm"><span class="math display">\[
 \begin{aligned}
 y_i = \hat{y}_i + \varepsilon_i \\
 y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\
 \end{aligned}
-\tag{3.2}\]</span></span></p>
+\tag{2.2}\]</span></span></p>
 <p>Tomando <span class="math inline">\(n\)</span> observações retiradas da população de interesse, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão para a amostra disponível. Uma vez que o erro é normalmente distribuído, com média nula, <span class="math inline">\(\mu_\varepsilon=E(\varepsilon)=0\)</span>, e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2\)</span>.</p>
-<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> expõe algumas das observações para os dados plotados anteriormente, bem como os valores preditos e erros associados.</p>
+<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dados</span></a> expõe algumas das observações para os dados plotados anteriormente, bem como os valores preditos e erros associados.</p>
 <div class="cell">
 <div id="tbl-dados" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.1: Dados para regressão linear simples e previsões
+Tabela&nbsp;2.1: Dados para regressão linear simples e previsões
 </figcaption>
 <div aria-describedby="tbl-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -908,12 +908,12 @@ Tabela&nbsp;3.1: Dados para regressão linear simples e previsões
 </figure>
 </div>
 </div>
-<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span>3.3</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
+<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-obslm2</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
 <p><span id="eq-obslm2"><span class="math display">\[
 \begin{aligned}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\varepsilon}
 \end{aligned}
-\tag{3.3}\]</span></span></p>
+\tag{2.3}\]</span></span></p>
 <p>Tais elementos matriciais podem ser escritos de forma genérica conforme segue.</p>
 <p><span class="math display">\[
 \mathbf{X} =
@@ -982,9 +982,9 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \frac{\partial L}{\partial \mathbf{\beta}} = -2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{\beta} = 0 \\
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
-\tag{3.4}\]</span></span></p>
-<p>A solução exposta na <a href="#eq-eqnormols" class="quarto-xref">Equação&nbsp;<span>3.4</span></a> constitui as chamadas equações normais de mínimos quadrados.</p>
-<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade do modelo, homocedasticidade, bem como para identificação de observações não usuais.</p>
+\tag{2.4}\]</span></span></p>
+<p>A solução exposta na <a href="#eq-eqnormols" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-eqnormols</span></a> constitui as chamadas equações normais de mínimos quadrados.</p>
+<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-resi</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade do modelo, homocedasticidade, bem como para identificação de observações não usuais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -993,7 +993,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 <img src="AS_reg_ols_files/figure-html/fig-resi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.4: Resíduos do modelo de regressão linear simples
+Figura&nbsp;2.4: Resíduos do modelo de regressão linear simples
 </figcaption>
 </figure>
 </div>
@@ -1012,8 +1012,8 @@ Nota
 <p>Neste curso de aprendizado supervisionado, serão estudados diversos métodos que não implicam qualquer distribuição acerca dos resíduos ou dados sendo, portanto, livres de distribuição e ditos não-paramétricos. Portanto, será dada mais ênfase em previsão e interpretação e menos em pressuposições.</p>
 </div>
 </div>
-<section id="métricas-de-ajuste-para-regressão" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="métricas-de-ajuste-para-regressão"><span class="header-section-number">3.1.1</span> Métricas de ajuste para regressão</h3>
+<section id="métricas-de-ajuste-para-regressão" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="métricas-de-ajuste-para-regressão"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1041,12 +1041,12 @@ Nota
 <p>Os dados de treinamento, isto é, aqueles usados para estimar o modelo, são aqui denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>, enquanto os dados de teste, isto é, aqueles usados para medir a capacidade de generalização do modelo, são aqui denotados por <span class="math inline">\((x_{n+1},y_{n+1}), (x_{n+2},y_{n+2}),\dots, (x_m,y_m)\)</span>, <span class="math inline">\(m\geq n\)</span>. Considerando um conjunto de dados de teste, <span class="math inline">\(i=n+1,...,m\)</span>, contendo observações distintas das consideradas para treino, <span class="math inline">\(i=1,...,n\)</span>, isto é, <span class="math inline">\([(\mathbf x_{n+1},y_{n+1}),(\mathbf x_{n+2},y_{n+2}),...,(\mathbf x_m,y_m)] \neq [(\mathbf x_1,y_1),(\mathbf x_2,y_2),...,(\mathbf x_n,y_n)]\)</span>, sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar melhor a capacidade de generalização do modelo.</p>
 </div>
 </div>
-<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>3.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
+<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-r2</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
 R^2 = 1- \frac{\sum_{i=n+1}^{m}(y_i-\hat{y}_i)^2}{\sum_{i=n+1}^{m}(y_i-\overline{y})^2},
 \end{align}
-\tag{3.5}\]</span></span></p>
+\tag{2.5}\]</span></span></p>
 <p>Se o modelo for pior do que um modelo simples que prevê a média, <span class="math inline">\(\hat{y} = \overline{y}\)</span>, o <span class="math inline">\(R^2\)</span> pode ser negativo. Isso ocorre porque o denominador, que representa a variabilidade total da resposta, pode ser menor do que o numerador, que expressa a soma dos quadrados dos erros do modelo. Essa situação pode ocorrer na validação cruzada, quando considerados dados de teste.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1061,28 +1061,28 @@ Definição
 <p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas no capítulo 6.</p>
 </div>
 </div>
-<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>3.6</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
+<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-rmse</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
     RMSE (y,\hat{y})  = \sqrt{\frac{1}{m-n} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
-\tag{3.6}\]</span></span></p>
-<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>3.7</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
+\tag{2.6}\]</span></span></p>
+<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-mae</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
     MAE (y,\hat{y})  = \frac{1}{m-n} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
-\tag{3.7}\]</span></span></p>
+\tag{2.7}\]</span></span></p>
 </section>
 </section>
-<section id="regressão-linear-múltipla" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">3.2</span> Regressão linear múltipla</h2>
-<p>No caso onde há múltiplas variáveis independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-regmult" class="quarto-xref">Equação&nbsp;<span>3.8</span></a>.</p>
+<section id="regressão-linear-múltipla" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">2.2</span> Regressão linear múltipla</h2>
+<p>No caso onde há múltiplas variáveis independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-regmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmult</span></a>.</p>
 <p><span id="eq-regmult"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_kx_{ik} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{ij},  
-\tag{3.8}\]</span></span></p>
-<p>ou de forma matricial segundo a <a href="#eq-regmult2" class="quarto-xref">Equação&nbsp;<span>3.9</span></a>, com <span class="math inline">\(\mathbf{X}_{[n\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
+\tag{2.8}\]</span></span></p>
+<p>ou de forma matricial segundo a <a href="#eq-regmult2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmult2</span></a>, com <span class="math inline">\(\mathbf{X}_{[n\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
 <p><span id="eq-regmult2"><span class="math display">\[
 \begin{aligned}
 \hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
 \end{aligned},
-\tag{3.9}\]</span></span></p>
+\tag{2.9}\]</span></span></p>
 <p>com:</p>
 <p><span class="math display">\[
 \mathbf{X} =
@@ -1107,15 +1107,15 @@ H_0:&amp; \beta_j = 0 \\
 H_1:&amp; \beta_j \neq 0, j = 1, ..., k\\
 \end{align}
 \]</span></p>
-<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>3.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>, na <span class="math inline">\(j\)</span>-ésima linha e na <span class="math inline">\(j\)</span>-ésima coluna, correspondente à <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(t_{0j} &gt; t_{[\alpha/2,N-k]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
+<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-testet</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>, na <span class="math inline">\(j\)</span>-ésima linha e na <span class="math inline">\(j\)</span>-ésima coluna, correspondente à <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(t_{0j} &gt; t_{[\alpha/2,N-k]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
 <p><span id="eq-testet"><span class="math display">\[
 t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(N-k)}}
-\tag{3.10}\]</span></span></p>
-<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span>3.11</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança de encontrar os verdadeiros valores dos coeficientes de regressão.</p>
+\tag{2.10}\]</span></span></p>
+<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-betaic</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança de encontrar os verdadeiros valores dos coeficientes de regressão.</p>
 <p><span id="eq-betaic"><span class="math display">\[
 \hat{\beta}_j \pm t_{[\alpha/2,N-k]}\sqrt{C_jSS_E/(N-k)}
-\tag{3.11}\]</span></span></p>
-<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros Honda Fit usados em função do ano de fabricação e quilometragem.</p>
+\tag{2.11}\]</span></span></p>
+<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-mulreg</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros Honda Fit usados em função do ano de fabricação e quilometragem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mulreg" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1124,20 +1124,20 @@ t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(N-k)}}
 <img src="AS_reg_ols_files/figure-html/fig-mulreg-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mulreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.5: Modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e idade
+Figura&nbsp;2.5: Modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e idade
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O modelo pode ser escrito segundo a <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>3.12</span></a>, onde <span class="math inline">\(x_1\)</span> consiste no Ano de fabricação e <span class="math inline">\(x_2\)</span> na quilometragem. Portanto, quanto maior o ano e menor a quilometragem, maior o preço estimado. Os coeficientes foram estimados nas unidades originais das variáveis. Porém, para fins de inferência, é importante padronizar as variáveis regressoras.</p>
+<p>O modelo pode ser escrito segundo a <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modelregmult</span></a>, onde <span class="math inline">\(x_1\)</span> consiste no Ano de fabricação e <span class="math inline">\(x_2\)</span> na quilometragem. Portanto, quanto maior o ano e menor a quilometragem, maior o preço estimado. Os coeficientes foram estimados nas unidades originais das variáveis. Porém, para fins de inferência, é importante padronizar as variáveis regressoras.</p>
 <p><span id="eq-modelregmult"><span class="math display">\[
 \hat{y} = -7,560\times 10^6 +3,788\times 10^3x_1 -6,789\times 10^{-2}x_2
-\tag{3.12}\]</span></span></p>
-<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>3.13</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>3.12</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,N-k}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos, uma vez que <span class="math inline">\(t_{0j} &gt; t_{\alpha/2,N-k}\)</span>, <span class="math inline">\(\forall j = 1, ..., k\)</span>.</p>
+\tag{2.12}\]</span></span></p>
+<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-normx</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modelregmult</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,N-k}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos, uma vez que <span class="math inline">\(t_{0j} &gt; t_{\alpha/2,N-k}\)</span>, <span class="math inline">\(\forall j = 1, ..., k\)</span>.</p>
 <p><span id="eq-normx"><span class="math display">\[
 x_{j,norm} = \frac{x_j-\mu_j}{\sigma_j}
-\tag{3.13}\]</span></span></p>
+\tag{2.13}\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1155,7 +1155,7 @@ Nota
 <div id="tbl-ttestregmult" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ttestregmult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.2: Teste t para os coeficientes do modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e ano de fabricação
+Tabela&nbsp;2.2: Teste t para os coeficientes do modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e ano de fabricação
 </figcaption>
 <div aria-describedby="tbl-ttestregmult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1650,7 +1650,7 @@ Tabela&nbsp;3.2: Teste t para os coeficientes do modelo de regressão linear mú
 </figure>
 </div>
 </div>
-<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
+<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1664,12 +1664,12 @@ Importante
 <p>O p-valor não é a probabilidade de <span class="math inline">\(H_0\)</span> ser verdadeira, nem a probabilidade de os dados terem ocorrido por acaso. Ele representa a probabilidade de se obter um resultado tão ou mais extremo que o observado, assumindo <span class="math inline">\(H_0\)</span> verdadeira. Um p-valor significativo (<span class="math inline">\(p &lt; \alpha\)</span>) não implica relevância prática - apenas indica evidência estatística contra <span class="math inline">\(H_0\)</span>. O efeito e o contexto do problema devem sempre ser considerados na interpretação.</p>
 </div>
 </div>
-<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>3.3</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
+<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ic</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
 <div class="cell">
 <div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.3: Intervalos de confiança para os coeficientes de regressão múltipla
+Tabela&nbsp;2.3: Intervalos de confiança para os coeficientes de regressão múltipla
 </figcaption>
 <div aria-describedby="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2160,12 +2160,12 @@ Tabela&nbsp;3.3: Intervalos de confiança para os coeficientes de regressão mú
 </figure>
 </div>
 </div>
-<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span>3.4</span></a>.</p>
+<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult2</span></a>.</p>
 <div class="cell">
 <div id="tbl-ttestregmult2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ttestregmult2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.4: Teste t para os coeficientes do modelo de regressão linear múltipla com interação
+Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear múltipla com interação
 </figcaption>
 <div aria-describedby="tbl-ttestregmult2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2680,14 +2680,14 @@ Importante
 <p>É importante esclarecer que, no caso de modelos de regressão múltipla com termos de interação, a matriz <span class="math inline">\(\mathbf{X}\)</span> apresentará mais que <span class="math inline">\(k+1\)</span> colunas, sendo adicionadas as colunas das respectivas interações, como sendo o produto das colunas das variáveis envolvidas em cada termo adicionado.</p>
 </div>
 </div>
-<section id="codificação-de-variáveis-categóricas-em-regressão-múltipla" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">3.2.1</span> Codificação de variáveis categóricas em regressão múltipla</h3>
-<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span>3.5</span></a> expõe algumas observações do conjunto de dados.</p>
+<section id="codificação-de-variáveis-categóricas-em-regressão-múltipla" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</h3>
+<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carrr</span></a> expõe algumas observações do conjunto de dados.</p>
 <div class="cell">
 <div id="tbl-carrr" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-carrr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.5: Dados de preços de carros usados
+Tabela&nbsp;2.5: Dados de preços de carros usados
 </figcaption>
 <div aria-describedby="tbl-carrr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3225,16 +3225,16 @@ x_4 = \bigg\{
 0, \text{ cc}\\
 \end{matrix}
 \]</span></p>
-<p>O modelo de regressão pode ser escrito conforme <a href="#eq-regmultdummy" class="quarto-xref">Equação&nbsp;<span>3.14</span></a>.</p>
+<p>O modelo de regressão pode ser escrito conforme <a href="#eq-regmultdummy" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmultdummy</span></a>.</p>
 <p><span id="eq-regmultdummy"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3x_{i3} + \beta_4x_{i4}
-\tag{3.14}\]</span></span></p>
-<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Fit</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para o caso <code>Onix</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Corolla</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span>3.6</span></a>.</p>
+\tag{2.14}\]</span></span></p>
+<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Fit</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para o caso <code>Onix</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Corolla</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carsint</span></a>.</p>
 <div class="cell">
 <div id="tbl-carsint" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-carsint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.6: Dados de carros com colunas das variáveis dicotômicas
+Tabela&nbsp;2.6: Dados de carros com colunas das variáveis dicotômicas
 </figcaption>
 <div aria-describedby="tbl-carsint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3763,12 +3763,12 @@ Nota
 <p>Uma codificação binária muito comum para variáveis categóricas em aprendizado supervisionado é o <em>one-hot encoding</em>. Tal codificação genaria uma coluna para cada categoria. Entretanto, não recomenda-se o uso de tal codificação, uma vez que criaria uma coluna desnecessária, além de acarretar em correlação entre os coeficientes, visto que, <span class="math inline">\(q-1\)</span> colunas de variáveis binárias são suficientes para representar todas as <span class="math inline">\(q\)</span> categorias.</p>
 </div>
 </div>
-<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span>3.7</span></a>.</p>
+<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-modeldummy</span></a>.</p>
 <div class="cell">
 <div id="tbl-modeldummy" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modeldummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.7: Modelo de regressão linear múltipla com variáveis dicotômicas
+Tabela&nbsp;2.7: Modelo de regressão linear múltipla com variáveis dicotômicas
 </figcaption>
 <div aria-describedby="tbl-modeldummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -4279,8 +4279,8 @@ Tabela&nbsp;3.7: Modelo de regressão linear múltipla com variáveis dicotômic
 </div>
 </section>
 </section>
-<section id="regressão-polinomial" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="regressão-polinomial"><span class="header-section-number">3.3</span> Regressão polinomial</h2>
+<section id="regressão-polinomial" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="regressão-polinomial"><span class="header-section-number">2.3</span> Regressão polinomial</h2>
 <p>Em regressão simples ou múltipla, é possível realizar transformações nos preditores, de forma a incluir termos polinomiais associados à uma ou mais variáveis independentes. Para o caso simples, um modelo de regressão polinomial pode ser escrito conforme segue, onde <span class="math inline">\(p\)</span> é a ordem do modelo de regressão.</p>
 <p><span class="math display">\[
 \hat{y} = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + ... \beta_px^p
@@ -4308,7 +4308,7 @@ Nota
 1 &amp; x_{n} &amp; x_{n}^2 &amp; \cdots &amp; x_{n}^p \\
 \end{bmatrix}\\
 \]</span></p>
-<p>Sejam os dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior, conforme <a href="#fig-folhass" class="quarto-xref">Figura&nbsp;<span>3.6</span></a>.</p>
+<p>Sejam os dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior, conforme <a href="#fig-folhass" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-folhass</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-folhass" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4317,13 +4317,13 @@ Nota
 <img src="AS_reg_ols_files/figure-html/fig-folhass-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.6: Dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior
+Figura&nbsp;2.6: Dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-folhassresi" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
+<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-folhassresi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-folhassresi</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-folhassresi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4332,13 +4332,13 @@ Figura&nbsp;3.6: Dados da área de folhas de árvores frutíferas em função do
 <img src="AS_reg_ols_files/figure-html/fig-folhassresi-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.7: Resíduos do modelo de regressão linear
+Figura&nbsp;2.7: Resíduos do modelo de regressão linear
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar a área da folha em função do comprimento. A curva plotada na <a href="#fig-arealm2" class="quarto-xref">Figura&nbsp;<span>3.8</span></a> consiste em tal modelo.</p>
+<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar a área da folha em função do comprimento. A curva plotada na <a href="#fig-arealm2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-arealm2</span></a> consiste em tal modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-arealm2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4347,18 +4347,18 @@ Figura&nbsp;3.7: Resíduos do modelo de regressão linear
 <img src="AS_reg_ols_files/figure-html/fig-arealm2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arealm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.8: Modelo de regressão quadrática para a área de folhas
+Figura&nbsp;2.8: Modelo de regressão quadrática para a área de folhas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span>3.8</span></a>.</p>
+<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-quadf</span></a>.</p>
 <div class="cell">
 <div id="tbl-quadf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;3.8: Modelo de regressão polinomial de segunda ordem
+Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
 </figcaption>
 <div aria-describedby="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -4853,7 +4853,7 @@ Tabela&nbsp;3.8: Modelo de regressão polinomial de segunda ordem
 </figure>
 </div>
 </div>
-<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-folhassresi2" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>.</p>
+<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-folhassresi2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-folhassresi2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-folhassresi2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4862,22 +4862,22 @@ Tabela&nbsp;3.8: Modelo de regressão polinomial de segunda ordem
 <img src="AS_reg_ols_files/figure-html/fig-folhassresi2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhassresi2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.9: Resíduos para o modelo quadrático
+Figura&nbsp;2.9: Resíduos para o modelo quadrático
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Finalmente, o modelo quadrático é escrito na <a href="#eq-modquadf" class="quarto-xref">Equação&nbsp;<span>3.15</span></a>.</p>
+<p>Finalmente, o modelo quadrático é escrito na <a href="#eq-modquadf" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modquadf</span></a>.</p>
 <p><span id="eq-modquadf"><span class="math display">\[
 \hat{y} = 1,40 +10,14x + 2,67x^2
-\tag{3.15}\]</span></span></p>
+\tag{2.15}\]</span></span></p>
 </section>
-<section id="implementações-em-r" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">3.4</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">2.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo. A implementação para obtenção de um modelo de regressão linear simples já foi realizada no Capítulo 1.</p>
-<section id="regressão-linear-múltipla-1" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="regressão-linear-múltipla-1"><span class="header-section-number">3.4.1</span> Regressão linear múltipla</h3>
+<section id="regressão-linear-múltipla-1" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="regressão-linear-múltipla-1"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</h3>
 <p>Carregando pacotes para dados, modelagem e gráficos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
@@ -4909,7 +4909,7 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>No capítulo 1 não utilizamos uma receita. Porém, esta abordagem é recomendada, uma vez que viabilizará o pré-processamento e tratamento dos preditores. A receita, definida com o comando <code>recipe</code> do pacote <code>recipes</code>, incluído no ecosistema <code>tidymodels</code>, inclui a fórmula e os dados. O comando <code>step_normalize</code> faz a normalização dos preditores, segundo <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>3.13</span></a>. Há diversos comandos que começam com <code>step</code>, os quais serão úteis neste curso para engenharia de atributos.</p>
+<p>No capítulo 1 não utilizamos uma receita. Porém, esta abordagem é recomendada, uma vez que viabilizará o pré-processamento e tratamento dos preditores. A receita, definida com o comando <code>recipe</code> do pacote <code>recipes</code>, incluído no ecosistema <code>tidymodels</code>, inclui a fórmula e os dados. O comando <code>step_normalize</code> faz a normalização dos preditores, segundo <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-normx</span></a>. Há diversos comandos que começam com <code>step</code>, os quais serão úteis neste curso para engenharia de atributos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> Preco <span class="sc">~</span> Ano <span class="sc">+</span> Km, <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4953,8 +4953,8 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sec-implregmultint" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="sec-implregmultint"><span class="header-section-number">3.4.2</span> Regressão múltipla com termos de interação</h3>
+<section id="sec-implregmultint" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="sec-implregmultint"><span class="header-section-number">2.4.2</span> Regressão múltipla com termos de interação</h3>
 <p>Neste caso, deve-se definir uma nova receita com um novo tratamento para gerar os termos de interação, com <code>step_interact</code>. Opcionalmente, o comando <code>prep</code> serve para que receitas com no mínimo um pré-processamento (step), possa ser depois usada para outros conjuntos de dados, enquanto o comando <code>bake</code> aplica tal pré-processamento aos novos dados. Porém, quando considera-se <code>new_data = NULL</code>, o <code>bake</code> serve para visualizar o conjunto de dados de treino após a engenharia de atributos, neste exemplo após a normalização e após a criação da coluna de interação.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>receita2 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Preco <span class="sc">~</span> Ano<span class="sc">+</span>Km, <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
@@ -4982,8 +4982,8 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sec-implregmulbin" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="sec-implregmulbin"><span class="header-section-number">3.4.3</span> Regressão múltipla com variáveis categóricas</h3>
+<section id="sec-implregmulbin" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="sec-implregmulbin"><span class="header-section-number">2.4.3</span> Regressão múltipla com variáveis categóricas</h3>
 <p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outros modelos de veículos. Porém, para este exemplo, serão considerados apenas <code>COROLLA</code>, <code>FIT</code> e <code>ONIX</code>. O comando <code>step_dummy</code> é utilizado para codificação binária. Caso haja duas ou mais variáveis categóricas a serem codificadas de forma binária, pode-se usar <code>all_nominal_predictors()</code> em <code>step_dummy</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dados2 <span class="ot">&lt;-</span> carrosusados2025webmotors <span class="sc">|&gt;</span></span>
@@ -5020,8 +5020,8 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-polinomial-1" class="level3" data-number="3.4.4">
-<h3 data-number="3.4.4" class="anchored" data-anchor-id="regressão-polinomial-1"><span class="header-section-number">3.4.4</span> Regressão polinomial</h3>
+<section id="regressão-polinomial-1" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="regressão-polinomial-1"><span class="header-section-number">2.4.4</span> Regressão polinomial</h3>
 <p>O conjunto de dados <code>folhasfrutas</code> do pacote <code>sjdatar</code> inclui medições de folhas de árvores frutíferas distintas. Tais medições foram realizadas por análise de imagem.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
@@ -5039,8 +5039,8 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>receita_area <span class="ot">&lt;-</span> <span class="fu">recipe</span>(area <span class="sc">~</span> majoraxis, <span class="at">data =</span> folhas_treino) <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(majoraxis)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>receita_area <span class="ot">&lt;-</span> <span class="fu">recipe</span>(area <span class="sc">~</span> majoraxis, <span class="at">data =</span> folhas_treino) <span class="co"># |&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_normalize(majoraxis)</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>area_workflow <span class="ot">&lt;-</span> </span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
@@ -5094,15 +5094,15 @@ Figura&nbsp;3.9: Resíduos para o modelo quadrático
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
 <p>KUHN, Max; SILGE, Julia. Tidy modeling with R: A framework for modeling in the tidyverse. ” O’Reilly Media, Inc.”, 2022.</p>
 </section>
-<section id="exercícios" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">3.5</span> Exercícios</h2>
+<section id="exercícios" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">2.5</span> Exercícios</h2>
 <ol type="1">
-<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span>Seção 3.4.2</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
-<li><p>Na implementação realizada no item <a href="#sec-implregmulbin" class="quarto-xref"><span>Seção 3.4.3</span></a>, para regressão múltipla com variáveis categóricas, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmultint</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste. Este modelo é melhor que o modelo obtido na implementação da <a href="#sec-implregmul" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmul</span></a>?</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregmulbin" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmulbin</span></a>, para regressão múltipla com variáveis categóricas, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
 <li><p>Considerando o problema de previsão de preços de carros, compare os resultados de ajuste de teste para o caso de regressão múltipla considerando o ano e a quilometragem e regressão múltipla considerando a interação entre tais variáveis.</p></li>
-<li><p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outras variáveis ainda não exploradas, a saber: Marca, Carro, Ano, Km, Cambio, Motor, Valvulas, Combustivel e Preco. Ademais, há outros modelos de veículos ainda não explorados. Primeiro abra o conjunto de dados e estude tais variáveis. QUais você sugere acrescentar ao modelo? Quais talvez não sejam importantes?</p></li>
-<li><p>Qual tipo de pré-processamento você sugere para cada novo preditor a ser considerado no novo modelo?</p></li>
-<li><p>Realize todos os passos para obter um modelo considerando as novas variáveis do conjunto de dados <code>carrosusados2025webmotors</code>. Considere 75% dos dados para treinamento. Na receita, sugere-se considerar apenas variáveis que apresentem variação nas colunas, ou então considerar todas e usar <code>step_zv</code> para remover variáveis com valor único. Avalie o ajuste do modelo aos dados de teste.</p></li>
+<li><p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outras variáveis ainda não exploradas, a saber: Marca, Carro, Ano, Km, Cambio, Motor, Valvulas e Combustivel. Ademais, há outros modelos de veículos ainda não explorados. Primeiro abra o conjunto de dados e estude tais variáveis. QUais você sugere acrescentar ao modelo? Quais talvez não sejam importantes?</p></li>
+<li><p>Ainda em relação ao conjunto de dados <code>carrosusados2025webmotors</code>, qual tipo de pré-processamento você sugere para cada novo preditor a ser considerado no novo modelo?</p></li>
+<li><p>Realize todos os passos para obter um modelo considerando as novas variáveis do conjunto de dados <code>carrosusados2025webmotors</code>. Considere 75% dos dados para treinamento. Na receita, sugere-se considerar apenas variáveis que apresentem variação nas colunas, ou então considerar todas e usar <code>step_zv</code> ao final da receita para remover variáveis com valor único. Avalie o ajuste do modelo aos dados de teste.</p></li>
 </ol>
 
 
@@ -5528,13 +5528,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_vicio_var.html" class="pagination-link" aria-label="Conflito entre vício e variância no aprendizado supervisionado">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span>
+      <a href="./AS_Intro.html" class="pagination-link" aria-label="Introdução ao aprendizado supervisionado">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução ao aprendizado supervisionado</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_tree.html" class="pagination-link" aria-label="Regressão por árvores de decisão e floresta aleatória">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_vicio_var.html" class="pagination-link" aria-label="Conflito entre vício e variância no aprendizado supervisionado">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

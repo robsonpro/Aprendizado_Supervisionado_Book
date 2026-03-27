@@ -150,14 +150,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
+  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_reg_ols.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressão linear simples, múltipla e polinomial</span></span></a>
+  <a href="./AS_vicio_var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -252,6 +252,7 @@ window.Quarto = {
   <li><a href="#estimador-de-máxima-verossimilhança" id="toc-estimador-de-máxima-verossimilhança" class="nav-link" data-scroll-target="#estimador-de-máxima-verossimilhança"><span class="header-section-number">12.2</span> Estimador de máxima verossimilhança</a></li>
   <li><a href="#máximo-à-posteriori" id="toc-máximo-à-posteriori" class="nav-link" data-scroll-target="#máximo-à-posteriori"><span class="header-section-number">12.3</span> Máximo à posteriori</a></li>
   <li><a href="#minimização-empírica-do-erro" id="toc-minimização-empírica-do-erro" class="nav-link" data-scroll-target="#minimização-empírica-do-erro"><span class="header-section-number">12.4</span> Minimização empírica do erro</a></li>
+  <li><a href="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" id="toc-avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="nav-link" data-scroll-target="#avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">12.5</span> Avaliação da capacidade de previsão do modelo de regressão</a></li>
   </ul>
 </nav>
     </div>
@@ -365,6 +366,532 @@ L_{01}=I(\hat{y} \neq y) = \bigg\{ \begin{matrix}
 \overline{err} =\frac{1}{n}\sum_{i=1}^nI(\hat{y} \neq y)=p(\hat{y} \neq y)
 \tag{12.9}\]</span></span></p>
 <p>Entretanto, assim como nos problemas de regressão, deve-se na prática buscar um modelo que minimize o erro de classificação para observações futuras, ou o erro de generalização, <span class="math inline">\(Err_\mathcal{T} = E[I(\hat{y}_0 \neq y_0)]\)</span>. Para tal, deve-se utilizar de validação cruzada.</p>
+</section>
+<section id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="avaliação-da-capacidade-de-previsão-do-modelo-de-regressão"><span class="header-section-number">12.5</span> Avaliação da capacidade de previsão do modelo de regressão</h2>
+<p>A matriz de confusão resume todas as possíveis combinações de classificações considerando a realidade e o modelo. Tal matriz para o caso de classificação binária pode ser expressa segundo a <a href="#tbl-confmat" class="quarto-xref">Tabela&nbsp;<span>12.1</span></a>.</p>
+<div class="cell">
+<div id="tbl-confmat" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-confmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;12.1: Matriz de confusão
+</figcaption>
+<div aria-describedby="tbl-confmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="mfdfmeuvah" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mfdfmeuvah table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mfdfmeuvah thead, #mfdfmeuvah tbody, #mfdfmeuvah tfoot, #mfdfmeuvah tr, #mfdfmeuvah td, #mfdfmeuvah th {
+  border-style: none;
+}
+
+#mfdfmeuvah p {
+  margin: 0;
+  padding: 0;
+}
+
+#mfdfmeuvah .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mfdfmeuvah .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mfdfmeuvah .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mfdfmeuvah .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mfdfmeuvah .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mfdfmeuvah .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mfdfmeuvah .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mfdfmeuvah .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mfdfmeuvah .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mfdfmeuvah .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mfdfmeuvah .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mfdfmeuvah .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mfdfmeuvah .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mfdfmeuvah .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mfdfmeuvah .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mfdfmeuvah .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mfdfmeuvah .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mfdfmeuvah .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mfdfmeuvah .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mfdfmeuvah .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mfdfmeuvah .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mfdfmeuvah .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mfdfmeuvah .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mfdfmeuvah .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mfdfmeuvah .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mfdfmeuvah .gt_left {
+  text-align: left;
+}
+
+#mfdfmeuvah .gt_center {
+  text-align: center;
+}
+
+#mfdfmeuvah .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mfdfmeuvah .gt_font_normal {
+  font-weight: normal;
+}
+
+#mfdfmeuvah .gt_font_bold {
+  font-weight: bold;
+}
+
+#mfdfmeuvah .gt_font_italic {
+  font-style: italic;
+}
+
+#mfdfmeuvah .gt_super {
+  font-size: 65%;
+}
+
+#mfdfmeuvah .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mfdfmeuvah .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mfdfmeuvah .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mfdfmeuvah .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mfdfmeuvah .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mfdfmeuvah .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mfdfmeuvah .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mfdfmeuvah .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mfdfmeuvah div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="prev_verdade">Previsto \ Verdade</td>
+<td class="gt_row gt_left" headers="classe_1">classe 1 (pos)</td>
+<td class="gt_row gt_left" headers="classe_0">classe 0 (neg)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="prev_verdade">classe 1 (pos)</td>
+<td class="gt_row gt_left" headers="classe_1">Verdadeiro Positivo (TP)</td>
+<td class="gt_row gt_left" headers="classe_0">Falso Negativo (FN)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="prev_verdade">classe 0 (neg)</td>
+<td class="gt_row gt_left" headers="classe_1">Falso Positivo (FP)</td>
+<td class="gt_row gt_left" headers="classe_0">Verdadeiro Negativo (TN)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A partir da matriz de confusão é possível calcular a acuracidade do modelo.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>De forma geral, a <strong>acuracidade</strong> do modelo pode ser expressa considerando a proporção de acertos, conforme segue, onde TP é o número de verdadeiros positivos (<em>true positive</em>), TN é o número de verdadeiros negativos (<em>true negative</em>), FP é o número de falsos positivos e FN é o número de false negativos. De forma geral, <span class="math inline">\(I(\hat{y}=y)\)</span> é uma função indicativa que retorna 1, se veraddeira, sendo que a soma <span class="math inline">\(\sum I(\hat{y}=y)\)</span> considera o total de classificações corretas, <span class="math inline">\(TP+TN\)</span>, sendo <span class="math inline">\(m-n\)</span> o total de observações de teste.</p>
+</div>
+</div>
+<p><span class="math display">\[
+Acc = \frac{TP+TN}{TP+TN+FP+FN} = \frac{\sum I(\hat{y}=y)}{m-n}
+\]</span> ::: callout-tip ## Definição Em problemas de classificação a <strong>sensitividade</strong> e a <strong>especificidade</strong> são usadas, sendo a primeira a probabilidade de prever a classe de interesse (positivo) dado que a observação é positiva, enquanto a especificidade consiste na probabilidade de prever a classe negativa dado que a observação de fato o é, conforme <a href="#eq-senesp" class="quarto-xref">Equação&nbsp;<span>12.10</span></a>. :::</p>
+<p><span id="eq-senesp"><span class="math display">\[
+\begin{cases}
+Sens = \dfrac{TP}{TP+FN} \\[8pt]
+Esp = \dfrac{TN}{TN+FP}
+\end{cases}
+\tag{12.10}\]</span></span></p>
+<p>A curva característica de operação do receptor (<em>Receiver Operating Characteristic</em> - ROC) é comumente utilizada para avaliar o desempenho de modelos de classificação binária, plotando a sensitividade - ou taxa de verdadeiros positivos em relação ao complementar da especificidade, isto é, a taxa de falsos positivos. A curva mede a capacidade do modelo distinguir entre as classes positivo e negativo. É eficaz para conjuntos de dados desequilibrados, focando na distinção entre as classes e não apenas na acuracidade. Quanto maior a área abaixo da curva ROC (<em>area under curve</em> - AUC), <span class="math inline">\(AUC \in [0,1]\)</span>, melhor o modelo. A <a href="#fig-roc" class="quarto-xref">Figura&nbsp;<span>12.1</span></a> plota uma curva ROC arbitrária. Caso a curva esteja próxima da linha diagonal, o modelo não apresenta maior capacidade de distinção que o acaso.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-roc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_class_files/figure-html/fig-roc-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.1: Curva ROC
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
