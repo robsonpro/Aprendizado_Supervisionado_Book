@@ -918,5 +918,15 @@
     "crumbs": [
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Classificação via árvores de decisão e floresta aleatória</span>"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Aprendizado Supervisionado com implementações em R",
+    "section": "",
+    "text": "Prefácio\nLivro de Aprendizado Supervisionado com Implementações em R.\nEste livro surgiu do desejo de apresentar um material em português que ao mesmo tempo tenha um nível de clareza teórica adequado a cursos de graduação e mestrado, além de explicitar as potencialidades da linguagem de Programação R, sugerindo-a como ferramenta para condução de trabalhos acadêmicos e de aplicações práticas de regressão e classificação.\nA imagem da capa foi feita com a AI Gemini do Google. O camaleão tem a capacidade de mudar a cor de sua pele segundo as cores do ambiente ao seu redor. De modo similar, no aprendizado supervisionado um modelo tenta realizar previsões para um supervisor ou variável independente a partir de variáveis independentes e dados.",
+    "crumbs": [
+      "Prefácio"
+    ]
   }
 ]
