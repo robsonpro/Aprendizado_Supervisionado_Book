@@ -1063,11 +1063,11 @@ Definição
 </div>
 <p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
-    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m-n} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
+    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
 \tag{2.6}\]</span></span></p>
 <p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>2.7</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
-    MAE (y,\hat{y})  = \frac{1}{m-n} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
+    MAE (y,\hat{y})  = \frac{1}{m} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
 \tag{2.7}\]</span></span></p>
 </section>
 </section>
