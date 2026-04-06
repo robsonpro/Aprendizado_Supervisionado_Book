@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>5&nbsp; Regressão rígida e LASSO – Aprendizado Supervisionado com implementações em R</title>
+<title>4&nbsp; Regressão rígida e LASSO – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AS_cv.html" rel="next">
-<link href="./AS_tree.html" rel="prev">
+<link href="./AS_tree.html" rel="next">
+<link href="./AS_vicio_var.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_ridge_LASSO.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_ridge_LASSO.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,14 +196,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -282,17 +282,16 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-rígida" id="toc-regressão-rígida" class="nav-link active" data-scroll-target="#regressão-rígida"><span class="header-section-number">5.1</span> Regressão rígida</a></li>
-  <li><a href="#regressão-via-lasso" id="toc-regressão-via-lasso" class="nav-link" data-scroll-target="#regressão-via-lasso"><span class="header-section-number">5.2</span> Regressão via LASSO</a></li>
-  <li><a href="#formulações-alternativas-para-regressão-rígida-e-lasso" id="toc-formulações-alternativas-para-regressão-rígida-e-lasso" class="nav-link" data-scroll-target="#formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">5.3</span> Formulações alternativas para regressão rígida e LASSO</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</a>
+  <li><a href="#regressão-rígida" id="toc-regressão-rígida" class="nav-link active" data-scroll-target="#regressão-rígida"><span class="header-section-number">4.1</span> Regressão rígida</a></li>
+  <li><a href="#regressão-via-lasso" id="toc-regressão-via-lasso" class="nav-link" data-scroll-target="#regressão-via-lasso"><span class="header-section-number">4.2</span> Regressão via LASSO</a></li>
+  <li><a href="#formulações-alternativas-para-regressão-rígida-e-lasso" id="toc-formulações-alternativas-para-regressão-rígida-e-lasso" class="nav-link" data-scroll-target="#formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">4.3</span> Formulações alternativas para regressão rígida e LASSO</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#obtenção-dos-dados-e-processamento-inicial" id="toc-obtenção-dos-dados-e-processamento-inicial" class="nav-link" data-scroll-target="#obtenção-dos-dados-e-processamento-inicial"><span class="header-section-number">5.4.1</span> Obtenção dos dados e processamento inicial</a></li>
-  <li><a href="#regressão-rígida-1" id="toc-regressão-rígida-1" class="nav-link" data-scroll-target="#regressão-rígida-1"><span class="header-section-number">5.4.2</span> Regressão rígida</a></li>
-  <li><a href="#regressão-via-lasso-1" id="toc-regressão-via-lasso-1" class="nav-link" data-scroll-target="#regressão-via-lasso-1"><span class="header-section-number">5.4.3</span> Regressão via LASSO</a></li>
-  <li><a href="#regressão-por-mínimos-quadrados-ordinários" id="toc-regressão-por-mínimos-quadrados-ordinários" class="nav-link" data-scroll-target="#regressão-por-mínimos-quadrados-ordinários"><span class="header-section-number">5.4.4</span> Regressão por mínimos quadrados ordinários</a></li>
+  <li><a href="#regressão-rígida-1" id="toc-regressão-rígida-1" class="nav-link" data-scroll-target="#regressão-rígida-1"><span class="header-section-number">4.4.1</span> Regressão rígida</a></li>
+  <li><a href="#regressão-via-lasso-1" id="toc-regressão-via-lasso-1" class="nav-link" data-scroll-target="#regressão-via-lasso-1"><span class="header-section-number">4.4.2</span> Regressão via LASSO</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">4.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -301,7 +300,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></h1>
 </div>
 
 
@@ -324,11 +323,38 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-rígida" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="regressão-rígida"><span class="header-section-number">5.1</span> Regressão rígida</h2>
-<p>Quando um modelo de regressão linear múltipla apresenta muitas variáveis correlacionadas, seus coeficientes podem ser mal estimados, acarretando em alta variância das estimativas. Tais modelos costumam ter seus coeficientes inflados devido à correlação. A regressão rígida tem por finalizadade encolher ou diminuir coeficientes de variáveis correlacionadas, com a finalidade de minimizar a variância do modelo.</p>
-<p>Para encolher os coeficientes, a regressão rígida usa uma alteração na função perda otimizada nas estimativas de mínimos quadrados.</p>
-<p>Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
+<section id="regressão-rígida" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="regressão-rígida"><span class="header-section-number">4.1</span> Regressão rígida</h2>
+<p>Quando um modelo de regressão linear múltipla apresenta muitos preditores correlacionadas, seus coeficientes podem ser mal estimados, acarretando em alta variância das estimativas. Tais modelos costumam ter seus coeficientes inflados devido à correlação entre os preditores. A regressão rígida tem por finalizadade encolher ou diminuir coeficientes de variáveis correlacionadas, com a finalidade de minimizar a variância do modelo. A regressão rígida, portanto, lida com o problema de <strong>multicolineariedade</strong>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>Multicolineariedade</strong> é um problema passível de ocorrência tanto em regressão quanto em classificação quando a correlação entre distintos preditores dificulta a distinção de seus efeitos individuais na resposta de interesse.</p>
+</div>
+</div>
+<p>A <a href="#fig-multicol" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> expõe gráficos de dispersão aos pares, além dos coeficientes de correlação de Pearson, também aos pares e densidades amostrais individuais para as variáveis do conjunto de dados de dimensões em folhas de árvores frutíferas. Observa-se, entre diversos pares de variáveis, correlação positiva alta, <span class="math inline">\(r \rightarrow 1\)</span>. É claro que, ao aumentar a área de uma folha em relação às demais, o perímetro e outras dimensões possivelmente aumentarão.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-multicol" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-multicol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_ridge_LASSO_files/figure-html/fig-multicol-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multicol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.1: Diagramas de dispersão e correlações aos pares e densidades individuais para os dados de dimensões em folhas de árvores frutíferas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para evitar a inflação dos cioeficientes devido a multicolineariedade, a regressão rígida usa uma alteração na função perda otimizada nas estimativas de mínimos quadrados. Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
 <p><span class="math display">\[
 \begin{align}
 L(\mathbf{\beta}) =&amp; \sum_{i=1}^N \varepsilon_i^2 = \sum_{i=1}^N(y_i-\hat{y}_i)^2 =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\\
@@ -336,114 +362,1102 @@ L(\mathbf{\beta}) =&amp; \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y
 =&amp;\mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}
 \end{align}
 \]</span></p>
-<p>Minimizando tal quantidade pela escolha de <span class="math inline">\(\beta\)</span>, conforme visto anteriormente, resulta nas equações normais de mínimos quadrados, <span class="math inline">\(\hat{\beta}=(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})\)</span>. Adicionado o termo de penalização de encolhimento dos coeficientes, <span class="math inline">\(\lambda\beta^T\beta\)</span>, tem-se:</p>
-<p><span class="math display">\[
+<p>Minimizando tal quantidade pela escolha de <span class="math inline">\(\beta\)</span>, conforme visto anteriormente, resulta nas equações normais de mínimos quadrados, <span class="math inline">\(\hat{\beta}=(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})\)</span>. A função perda quadrática para regressão rígida, tem um termo adicional, <span class="math inline">\(\lambda\beta^T\beta\)</span> ou em notação escalar, <span class="math inline">\(\lambda\sum_{j=1}^k \beta_j^2\)</span>. Ao somar tal termo na perda quadrática, garante-se que na otimização não seja somente minimizada a soma dos quadrados dos erros, mas também a soma dos quadrados dos coeficientes, evitando a inflação destes comum em casos de multicolineariedade. O termo <span class="math inline">\(\lambda\)</span>, consiste em uma constante não negativa chamada de penalização de encolhimento (<em>shrinkage penalty</em>), a qual regulariza tal conflito entre minimização do erro e encolhimento dos coeficientes.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quando há multicolineariedade, minimizar puramente a função perda quadrática resulta em um modelo com maior variância, portanto, com possibilidade de sobreajuste (<em>overfitting</em>). Logo, a regressão rígida visa obter um modelo menos flexível, diminuindo a variância de previsão, porém aumentando o vício. Busca-se, por conseguinte, um bom custo-benefício entre vício e variância quando há preditores correlacionados. Deve-se buscar obter, via validação cruzada, um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
+</div>
+</div>
+<p>A função perda quadrática para regressão rígida é exposta na <a href="#eq-lossridge" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>.</p>
+<p><span id="eq-lossridge"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) = \mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta} + \lambda\beta^T\beta
 \end{aligned}
-\]</span></p>
-<p>Em notação algébrica a quantidade acima, pode ser escrita como:</p>
-<p><span class="math display">\[
+\tag{4.1}\]</span></span></p>
+<p>Em notação algébrica a função perda pode ser escrita segundo a <a href="#eq-lossridge2" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>.</p>
+<p><span id="eq-lossridge2"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
 \end{aligned}
-\]</span></p>
-<p>Onde <span class="math inline">\(\lambda\)</span> é uma constante não negativa de penalização de encolhimento (<em>shrinkage penalty</em>), que previne a inflação dos coeficientes. O termo <span class="math inline">\(\lambda\sum_{j=1}^k\beta_j^2\)</span> também é chamado de de termo de regularização. Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de presença de multicolineariedade, implicarão em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício ou viés. A regressão rígida visa, portanto, trabalhar o conflito entre vício e variância em modelos de regressão múltipla. Deve-se buscar um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
-<p>Tomando a notação matricial, resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida ficam:</p>
-<p><span class="math display">\[
+\tag{4.2}\]</span></span></p>
+<p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de presença de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício ou viés. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
+<p><span id="eq-olsridge"><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial \mathbf{\beta}} = -2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{\beta} +2\lambda\beta= 0 \\
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
-\]</span></p>
-<p>Seja um conjunto de dados com informações de custos de empresas de manufatura. Pode-se observar na <a href="#fig-pairscost" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> a presença de alta correlação entre algumas das variáveis de custo consideradas.</p>
+\tag{4.3}\]</span></span></p>
+<p>Em um modelo de regressão rígida considerando a área como resposta e as demais variáveis como preditores, a <a href="#tbl-coefsols" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> apresenta os coeficientes obtidos sem uso de regularização rígida.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pairscost" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pairscost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_ridge_LASSO_files/figure-html/fig-pairscost-1.png" class="img-fluid figure-img" width="864">
+<div id="rthzrfnhft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rthzrfnhft table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rthzrfnhft thead, #rthzrfnhft tbody, #rthzrfnhft tfoot, #rthzrfnhft tr, #rthzrfnhft td, #rthzrfnhft th {
+  border-style: none;
+}
+
+#rthzrfnhft p {
+  margin: 0;
+  padding: 0;
+}
+
+#rthzrfnhft .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rthzrfnhft .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rthzrfnhft .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rthzrfnhft .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rthzrfnhft .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rthzrfnhft .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rthzrfnhft .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rthzrfnhft .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rthzrfnhft .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rthzrfnhft .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rthzrfnhft .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rthzrfnhft .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rthzrfnhft .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rthzrfnhft .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rthzrfnhft .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rthzrfnhft .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rthzrfnhft .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rthzrfnhft .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rthzrfnhft .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rthzrfnhft .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rthzrfnhft .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rthzrfnhft .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rthzrfnhft .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rthzrfnhft .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rthzrfnhft .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rthzrfnhft .gt_left {
+  text-align: left;
+}
+
+#rthzrfnhft .gt_center {
+  text-align: center;
+}
+
+#rthzrfnhft .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rthzrfnhft .gt_font_normal {
+  font-weight: normal;
+}
+
+#rthzrfnhft .gt_font_bold {
+  font-weight: bold;
+}
+
+#rthzrfnhft .gt_font_italic {
+  font-style: italic;
+}
+
+#rthzrfnhft .gt_super {
+  font-size: 65%;
+}
+
+#rthzrfnhft .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rthzrfnhft .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rthzrfnhft .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rthzrfnhft .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rthzrfnhft .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rthzrfnhft .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rthzrfnhft .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rthzrfnhft .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rthzrfnhft div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">1.50</td>
+<td class="gt_row gt_right" headers="std.error">0.02</td>
+<td class="gt_row gt_right" headers="statistic">98.66</td>
+<td class="gt_row gt_right" headers="p.value">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">perimeter</td>
+<td class="gt_row gt_right" headers="estimate">−0.31</td>
+<td class="gt_row gt_right" headers="std.error">0.19</td>
+<td class="gt_row gt_right" headers="statistic">−1.60</td>
+<td class="gt_row gt_right" headers="p.value">0.12</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.mean</td>
+<td class="gt_row gt_right" headers="estimate">0.78</td>
+<td class="gt_row gt_right" headers="std.error">0.28</td>
+<td class="gt_row gt_right" headers="statistic">2.77</td>
+<td class="gt_row gt_right" headers="p.value">0.01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.sd</td>
+<td class="gt_row gt_right" headers="estimate">−0.06</td>
+<td class="gt_row gt_right" headers="std.error">0.21</td>
+<td class="gt_row gt_right" headers="statistic">−0.26</td>
+<td class="gt_row gt_right" headers="p.value">0.79</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.min</td>
+<td class="gt_row gt_right" headers="estimate">0.02</td>
+<td class="gt_row gt_right" headers="std.error">0.08</td>
+<td class="gt_row gt_right" headers="statistic">0.25</td>
+<td class="gt_row gt_right" headers="p.value">0.80</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.max</td>
+<td class="gt_row gt_right" headers="estimate">0.08</td>
+<td class="gt_row gt_right" headers="std.error">0.21</td>
+<td class="gt_row gt_right" headers="statistic">0.40</td>
+<td class="gt_row gt_right" headers="p.value">0.69</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">majoraxis</td>
+<td class="gt_row gt_right" headers="estimate">−0.07</td>
+<td class="gt_row gt_right" headers="std.error">0.20</td>
+<td class="gt_row gt_right" headers="statistic">−0.33</td>
+<td class="gt_row gt_right" headers="p.value">0.75</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pairscost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.1: Gráfico de correlações aos pares para os custos de manufatura
+</div>
+</div>
+<p>O gráfico da <a href="#fig-coefrig" class="quarto-xref">Figura&nbsp;<span>4.2</span></a> expõe as estimativas dos coeficientes em relação à oenalização de encolhimento, <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que forneça uma boa relação entre soma dos quadrados dos erros e encolhimento dos coeficientes.</p>
+<div id="tbl-coefsols" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a área da folha em função das demais variáveis dimensionais
+</figcaption>
+<div aria-describedby="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+</figure>
+</div>
+<div class="cell" data-tbl-cap="Coeficientes de regressão rígida versus penalização de encolhimento">
+<div class="cell-output-display">
+<div id="fig-coefrig" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coefrig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_ridge_LASSO_files/figure-html/fig-coefrig-1.png" id="fig-coefrig" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-coefrig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.2
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O gráfico de correlação da <a href="#fig-heatscost" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe as correlações aos pares em um mapa de calor, de forma que as positivas tendem para o azul escuro, enquanto as negativas para vermelho escuro.</p>
+<p>A <a href="#tbl-coefridge" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a> expõe os coeficientes obtidos via regressão rígida para a área da folha. Para este caso, <span class="math inline">\(\lambda^* = 1 \times 10^{-9}\)</span>.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="fig-heatscost" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-heatscost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_ridge_LASSO_files/figure-html/fig-heatscost-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatscost-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.2: Mapa de calor de correlações para os custos de manufatura
+<div id="tbl-coefridge" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.2: Coeficientes de regressão rígida para prever a área da folha em função das demais variáveis dimensionais
 </figcaption>
+<div aria-describedby="tbl-coefridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="tcvubwfzjh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tcvubwfzjh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tcvubwfzjh thead, #tcvubwfzjh tbody, #tcvubwfzjh tfoot, #tcvubwfzjh tr, #tcvubwfzjh td, #tcvubwfzjh th {
+  border-style: none;
+}
+
+#tcvubwfzjh p {
+  margin: 0;
+  padding: 0;
+}
+
+#tcvubwfzjh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tcvubwfzjh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tcvubwfzjh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tcvubwfzjh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tcvubwfzjh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tcvubwfzjh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tcvubwfzjh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tcvubwfzjh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tcvubwfzjh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tcvubwfzjh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tcvubwfzjh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tcvubwfzjh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tcvubwfzjh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tcvubwfzjh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tcvubwfzjh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcvubwfzjh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tcvubwfzjh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tcvubwfzjh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tcvubwfzjh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcvubwfzjh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tcvubwfzjh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcvubwfzjh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tcvubwfzjh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcvubwfzjh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tcvubwfzjh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tcvubwfzjh .gt_left {
+  text-align: left;
+}
+
+#tcvubwfzjh .gt_center {
+  text-align: center;
+}
+
+#tcvubwfzjh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tcvubwfzjh .gt_font_normal {
+  font-weight: normal;
+}
+
+#tcvubwfzjh .gt_font_bold {
+  font-weight: bold;
+}
+
+#tcvubwfzjh .gt_font_italic {
+  font-style: italic;
+}
+
+#tcvubwfzjh .gt_super {
+  font-size: 65%;
+}
+
+#tcvubwfzjh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tcvubwfzjh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tcvubwfzjh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tcvubwfzjh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tcvubwfzjh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tcvubwfzjh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tcvubwfzjh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tcvubwfzjh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tcvubwfzjh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">1.50</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">perimeter</td>
+<td class="gt_row gt_right" headers="estimate">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.mean</td>
+<td class="gt_row gt_right" headers="estimate">0.17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.sd</td>
+<td class="gt_row gt_right" headers="estimate">−0.06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.min</td>
+<td class="gt_row gt_right" headers="estimate">0.18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.max</td>
+<td class="gt_row gt_right" headers="estimate">0.10</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">majoraxis</td>
+<td class="gt_row gt_right" headers="estimate">0.04</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </figure>
 </div>
 </div>
-</div>
-<p>Em um modelo de regressão rígida considerando o custo como resposta e as demais variáveis como preditores, o gráfico da <a href="#fig-coefrigid" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> expõe os níveis dos coeficientes em relação à constante de encolhimento <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que minimize o erro do modelo. Por exemplo, para o custo de energia, pode-se observar que um <span class="math inline">\(\lambda=0\)</span> implica em alta magnitude dos coeficientes, sendo observado o encolhimento destes com o aumento de <span class="math inline">\(\lambda\)</span>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-coefrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-coefrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_ridge_LASSO_files/figure-html/fig-coefrigid-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coefrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.3: Coeficientes <em>versus</em> penalização de encolhimento na regressão rígida
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>A partir de validação cruzada pode-se selecionar o valor de <span class="math inline">\(\lambda\)</span> dado um grid de valores. A <a href="#fig-cvrigid" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> plota os resultados. Para o exemplo o melhor nível seria <span class="math inline">\(\lambda^*=12.022\)</span>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-cvrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cvrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_ridge_LASSO_files/figure-html/fig-cvrigid-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.4: Validação cruzada e <em>grid search</em> para buscar o lambda ótimo na regressão rígida
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Os coeficientes de regressão rígida para o <span class="math inline">\(\lambda\)</span> ótimo são expostos à seguir.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>9 x 1 sparse Matrix of class "dgCMatrix"
-                        s0
-(Intercept)      123.25007
-capitalcost    -3408.22133
-laborcost       1363.79881
-energycost     -8394.77369
-materialscost   -386.30713
-capitalprice      72.51032
-laborprice       117.87583
-energyprice       95.02103
-materialsprice   201.05565</code></pre>
-</div>
-</div>
+<p>A partir de validação cruzada pode-se selecionar o valor ótimo de <span class="math inline">\(\lambda\)</span> dado um grid de valores.</p>
 </section>
-<section id="regressão-via-lasso" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="regressão-via-lasso"><span class="header-section-number">5.2</span> Regressão via LASSO</h2>
-<p>Um problema da regressão rígida, se comparada aos métodos de seleção de variáveis, como a eliminação para trás, é que esse método não faz seleção de coeficientes ou termos no modelo. Ou seja, a regressão rígida não reduz o modelo a partir da exclusão de variáveis correlacionadas, o que implica na manutenção de preditores redundantes no modelo. Como visto, a regressão rígida apenas encolhe os coeficientes.</p>
-<p>Uma alternativa à regressão rígida que promove a seleção de coeficientes é a regressão pelo operador de seleção e contração mínima absoluta ou <em>Least Absolute Shrinkage and Selection Operator - LASSO</em>. A regressão LASSO muda a penalização da função perda considerando a norma <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\sum_{j=1}^k|\beta_j|\)</span> em detrimento da norma <span class="math inline">\(L_2\)</span>, <span class="math inline">\(\sum_{j=1}^k\beta_j^2\)</span>, usada no caso rígido.</p>
-<p><span class="math display">\[
+<section id="regressão-via-lasso" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="regressão-via-lasso"><span class="header-section-number">4.2</span> Regressão via LASSO</h2>
+<p>Um problema da regressão rígida é que este método não faz seleção de coeficientes ou termos a serem mantidos no modelo. Ou seja, a regressão rígida não reduz o modelo a partir da exclusão de variáveis correlacionadas, apenas encolhe os coeficientes relaiconados, o que implica na manutenção de preditores redundantes no modelo, mesmo que seus coeficientes sejam drasticamente reduzidos.</p>
+<p>Uma alternativa à regressão rígida que promove não somente o encolhimento, mas também a seleção de preditores é a regressão pelo operador de seleção e contração mínima absoluta ou <em>Least Absolute Shrinkage and Selection Operator - LASSO</em>. A regressão LASSO muda a penalização da função perda considerando a norma <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\sum_{j=1}^k|\beta_j|\)</span>, em detrimento da norma <span class="math inline">\(L_2\)</span>, <span class="math inline">\(\sum_{j=1}^k\beta_j^2\)</span>, usada no caso rígido.</p>
+<p><span id="eq-lossLASSO"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
 \end{aligned}
-\]</span></p>
-<p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como no caso rígido. Logo, a formulação acima deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
-<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> plota os valores dos coeficientes no exemplo anterior em função do parâmetro de encolhimento e seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes vão sendo anulados e, portanto, excluídos do modelo.</p>
+\tag{4.4}\]</span></span></p>
+<p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como na regressão rígida. Logo, a <a href="#eq-lossLASSO" class="quarto-xref">Equação&nbsp;<span>4.4</span></a> deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
+<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span>4.3</span></a> plota as estimativas dos coeficientes para o exemplo anterior em função do parâmetro de encolhimento e de seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que, à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes são anulados e, portanto, os preditores relacionados são excluídos do modelo. De forma análoga à regressão rígida, na regressão via LASSO deve-se obter o <span class="math inline">\(\lambda\)</span> ótimo via validação cruzada. Para o exemplo, a penalização de encolhimento ótima é <span class="math inline">\(\lambda^* = 7,9 \times 10 ^{-4}\)</span>, destacada via linha de referência tracejada cinza.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-coeflasso" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -452,61 +1466,534 @@ L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^
 <img src="AS_ridge_LASSO_files/figure-html/fig-coeflasso-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.5: Coeficientes <em>versus</em> penalização de encolhimento na regressão via LASSO
+Figura&nbsp;4.3: Coeficientes <em>versus</em> penalização de encolhimento na regressão via LASSO
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Tomando o exemplo anterior para o caso LASSO, o valor ótimo do parâmetro de encolhimento e selção é <span class="math inline">\(\lambda^*=2,2\)</span>, conforme <a href="#fig-cvlasso" class="quarto-xref">Figura&nbsp;<span>5.6</span></a>.</p>
+<p>Finalmente, a <a href="#tbl-coeflasso" class="quarto-xref">Tabela&nbsp;<span>4.3</span></a> apresenta os coeficientes obtidos por regressão via LASSO. Observa-se neste caso que apenas uma variável, <code>majoraxis</code>, foi excluída do modelo, dado que seu coeficiente foi anulado.</p>
 <div class="cell">
+<div id="tbl-coeflasso" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.3: Coeficientes de regressão via LASSO para prever a área da folha em função das demais variáveis dimensionais
+</figcaption>
+<div aria-describedby="tbl-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fig-cvlasso" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cvlasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_ridge_LASSO_files/figure-html/fig-cvlasso-1.png" class="img-fluid figure-img" width="672">
+<div id="dydgjrmuvs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dydgjrmuvs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dydgjrmuvs thead, #dydgjrmuvs tbody, #dydgjrmuvs tfoot, #dydgjrmuvs tr, #dydgjrmuvs td, #dydgjrmuvs th {
+  border-style: none;
+}
+
+#dydgjrmuvs p {
+  margin: 0;
+  padding: 0;
+}
+
+#dydgjrmuvs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dydgjrmuvs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dydgjrmuvs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dydgjrmuvs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dydgjrmuvs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dydgjrmuvs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dydgjrmuvs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dydgjrmuvs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dydgjrmuvs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dydgjrmuvs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dydgjrmuvs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dydgjrmuvs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dydgjrmuvs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dydgjrmuvs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dydgjrmuvs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydgjrmuvs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dydgjrmuvs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dydgjrmuvs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dydgjrmuvs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydgjrmuvs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dydgjrmuvs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydgjrmuvs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dydgjrmuvs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydgjrmuvs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dydgjrmuvs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dydgjrmuvs .gt_left {
+  text-align: left;
+}
+
+#dydgjrmuvs .gt_center {
+  text-align: center;
+}
+
+#dydgjrmuvs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dydgjrmuvs .gt_font_normal {
+  font-weight: normal;
+}
+
+#dydgjrmuvs .gt_font_bold {
+  font-weight: bold;
+}
+
+#dydgjrmuvs .gt_font_italic {
+  font-style: italic;
+}
+
+#dydgjrmuvs .gt_super {
+  font-size: 65%;
+}
+
+#dydgjrmuvs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dydgjrmuvs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dydgjrmuvs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dydgjrmuvs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dydgjrmuvs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dydgjrmuvs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dydgjrmuvs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dydgjrmuvs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dydgjrmuvs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">1.50</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">perimeter</td>
+<td class="gt_row gt_right" headers="estimate">−0.08</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.mean</td>
+<td class="gt_row gt_right" headers="estimate">0.56</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.sd</td>
+<td class="gt_row gt_right" headers="estimate">−0.11</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">radius.min</td>
+<td class="gt_row gt_right" headers="estimate">0.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">radius.max</td>
+<td class="gt_row gt_right" headers="estimate">0.04</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">majoraxis</td>
+<td class="gt_row gt_right" headers="estimate">0.00</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvlasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.6: Validação cruzada e <em>grid search</em> para buscar o lambda ótimo na regressão via LASSO
-</figcaption>
+</div>
+</div>
 </figure>
-</div>
-</div>
-</div>
-<p>Os coeficientes de regressão via LASSO para o <span class="math inline">\(\lambda\)</span> ótimo são expostos à seguir. Pode-se observar que neste caso é realizada a seleção dos coeficientes mais importantes, sendo removidos aqueles das variáveis que apresentam multicolineariedade e, logo, menor importância em relação às selecionadas.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>9 x 1 sparse Matrix of class "dgCMatrix"
-                       s0
-(Intercept)      179.2195
-capitalcost     -175.5755
-laborcost          .     
-energycost     -6210.1544
-materialscost      .     
-capitalprice       .     
-laborprice       276.2006
-energyprice        .     
-materialsprice     .     </code></pre>
 </div>
 </div>
 </section>
-<section id="formulações-alternativas-para-regressão-rígida-e-lasso" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">5.3</span> Formulações alternativas para regressão rígida e LASSO</h2>
-<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa como segue, onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
-<p><span class="math display">\[
+<section id="formulações-alternativas-para-regressão-rígida-e-lasso" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">4.3</span> Formulações alternativas para regressão rígida e LASSO</h2>
+<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa na [@-eq-ridgeformalt], onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
+<p><span id="eq-ridgeformalt"><span class="math display">\[
 \begin{aligned}
 Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k\beta_j^2 \leq s
 \end{aligned}
-\]</span></p>
-<p>Para o caso da regressão via LASSO a formulação fica conforme segue.</p>
-<p><span class="math display">\[
+\tag{4.5}\]</span></span></p>
+<p>Para o caso da regressão via LASSO a formulação fica conforme a <a href="#eq-lassoformalt" class="quarto-xref"><span>4.6</span></a>.</p>
+<p><span id="eq-lassoformalt"><span class="math display">\[
 \begin{aligned}
 Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k|\beta_j| \leq s
 \end{aligned}
-\]</span></p>
-<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> ilustra a função perda quadrática sendo minimizada segundo a formulação de regressão rígida exposta. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta.</p>
+\tag{4.6}\]</span></span></p>
+<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> ilustra a função perda quadrática sendo minimizada respeitando à restrição rígida ou LASSO, segundo às formulações expostas expostas. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta, enquanto no caso LASSO observa-se não somente o encolhimento, mas a manutenção de apenas o segundo preditor no modelo, uma vez que <span class="math inline">\(\beta_1\)</span> foi anulado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-errorrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -515,138 +2002,179 @@ st.:\sum_{j=1}^k|\beta_j| \leq s
 <img src="AS_ridge_LASSO_files/figure-html/fig-errorrigid-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-errorrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.7: Perda na regressão rígida versus mínims quadrados
+Figura&nbsp;4.4: Perda na regressão rígida versus mínims quadrados
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="implementações-em-r" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="obtenção-dos-dados-e-processamento-inicial" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="obtenção-dos-dados-e-processamento-inicial"><span class="header-section-number">5.4.1</span> Obtenção dos dados e processamento inicial</h3>
+<section id="regressão-rígida-1" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="regressão-rígida-1"><span class="header-section-number">4.4.1</span> Regressão rígida</h3>
+<p>Carregando as bibliotecas (pacotes) para análise. O pacote <code>yardstick</code> é usado para cálculo de métricas de ajuste dos modelos. Já o pacote <code>tune</code> serve para realizar <em>grid search</em> com validação cruzada para otimizar os hiperparâmetros. O conjunto de dados <code>folhasfrutas</code> é filtrado para a espécie <code>jabuticaba</code> apenas, exclui-se a linha 46, dada a presença de um valor discrepante e, por fim, exclui-se a variável <code>eccentricity</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yardstick)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tune)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(folhasfrutas) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">46</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(especie <span class="sc">==</span> <span class="st">"jabuticaba"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(especie,eccentricity))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>O comando <code>ggpairs</code> do pacote <code>GGally</code> é útil para visualizar distribuições individuais, além de correlações aos pares.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"ManufactCosts"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ManufactCosts)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dados) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dados) <span class="sc">+</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Separando dados de teste e de treino.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(r, </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"color"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">type =</span> <span class="st">"upper"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">order =</span> <span class="st">"hclust"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tl.srt =</span> <span class="dv">45</span>, <span class="at">diag =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">36</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.60</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Definindo a receita, método e workflow. O modelo de regressão rígida também é definido via <code>linear_reg</code>, porém com argumento <code>penalty</code> diferente de zero, o qual define o <span class="math inline">\(\lambda\)</span>. Recomenda-se fazer <code>penalty = tune()</code> de forma a otimizá-lo. Se <code>mixture = 0</code> faz-se regularização rígida. Sugere-se tanto para regressão rígida quanto para LASSO <code>set_engine("glmnet")</code>. Define-se um modelo de regressão linear múltipla sem regularização, para fins de comparação.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(cost <span class="sc">~</span> ., dados)[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dados<span class="sc">$</span>cost</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.5</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">45</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados), tr, <span class="at">replace =</span> F)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>X.treino <span class="ot">&lt;-</span> X[treino,]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y.treino <span class="ot">&lt;-</span> y[treino]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> area <span class="sc">~</span>., </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>())</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ridge_model <span class="ot">&lt;-</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">mixture =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>area_workflow <span class="ot">&lt;-</span> </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(ridge_model)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realizando o treinamento do modelo de regressão linear múltipla.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>area_workflow_ols <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>area_fit_lm <span class="ot">&lt;-</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  area_workflow_ols <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>area_fit_lm <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Realizando o treinamento do modelo de regressão rígida. Neste caso, sugere-se realizar a validação cruzada via k-dobras com <em>grid search</em> para otimizar <span class="math inline">\(\lambda\)</span>. O comando <code>grid_regular</code> é usado para criar um vetor de valores candidatos para <span class="math inline">\(\lambda\)</span>. O comando <code>vfold_cv</code> é usado para definir o número de partições realizadas nos dados, com o arugmento <code>v</code>. Com <code>tune_grid</code> realiza-se a validação cruzada testando para todas as partições dos dados cada valor candidato de <span class="math inline">\(\lambda\)</span>. Deve-se definir a métrica de erro de teste, além de fornecer o workflow. O comando <code>select_best</code> extrai o melhor valor tentativo para a penalização de encolhimento. Por fim, deve-se novamente chamar o workflow e finalizá-lo com <code>finalize_workflow</code>, fixando a penalização no nível ótimo e estimando o modelo final nos dados de treino com <code>fit</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grid_penalty <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">penalty</span>(), <span class="at">levels =</span> <span class="dv">30</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>tune_result <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  area_workflow,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid      =</span> grid_penalty,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics   =</span> <span class="fu">metric_set</span>(rmse)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># autoplot(tune_result) + theme_bw()</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>best_penalty <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_result, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># best_penalty</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>area_fit_rid_final <span class="ot">&lt;-</span> area_workflow <span class="sc">|&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(best_penalty) <span class="sc">|&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>area_fit_rid_final <span class="sc">|&gt;</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e métricas nos dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pred_rig <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(area_fit_lm, dados_teste),   </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_rig <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> area, <span class="at">estimate =</span> .pred)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e métricas nos dados de teste para o modelo obtido via mínimos quadrados ordinários.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pred_ols <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(area_fit_rid_final, dados_teste),   </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_rig <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> area, <span class="at">estimate =</span> .pred)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-rígida-1" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="regressão-rígida-1"><span class="header-section-number">5.4.2</span> Regressão rígida</h3>
-<p>Obtenção do modelo para todo o <em>grid</em> do hiperparâmetro lambda.</p>
+<section id="regressão-via-lasso-1" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="regressão-via-lasso-1"><span class="header-section-number">4.4.2</span> Regressão via LASSO</h3>
+<p>Para a regularização via LASSO deve-se considerar no modelo <code>mixture = 1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rid1 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">lambda =</span> grid)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rid1, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lasso_model <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">mixture =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>area_workflow2 <span class="ot">&lt;-</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lasso_model)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Validação cruzada e <em>grid search</em> para seleção do lambda ótimo.</p>
+<p>Otimização de <span class="math inline">\(\lambda\)</span> via validação cruzada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rid.cv <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rid.cv)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bestlam <span class="ot">&lt;-</span> rid.cv<span class="sc">$</span>lambda.min <span class="co"># melhor lambda</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tune_result2 <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  area_workflow2,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid      =</span> grid_penalty,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics   =</span> <span class="fu">metric_set</span>(rmse)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># autoplot(tune_result) + theme_bw()</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>best_penalty2 <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tune_result2, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># best_penalty</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>area_fit_lasso_final <span class="ot">&lt;-</span> area_workflow2 <span class="sc">|&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(best_penalty2) <span class="sc">|&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>area_fit_lasso_final <span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Obtendo os coeficientes de regressão rígica com lambda ótimo.</p>
+<p>Previsão com dados de teste e ajuste. Observa-se melhores resultados que a regressão via mínimos quadrados ordinários.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">0</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(out, <span class="at">type =</span> <span class="st">"coefficients"</span>, <span class="at">s =</span> bestlam)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred.teste <span class="ot">&lt;-</span> <span class="fu">predict</span>(out, <span class="at">type =</span> <span class="st">"response"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">newx =</span> X[<span class="sc">-</span>treino,], </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">s =</span> bestlam)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="regressão-via-lasso-1" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="regressão-via-lasso-1"><span class="header-section-number">5.4.3</span> Regressão via LASSO</h3>
-<p>Obtenção do modelo para todo o <em>grid</em> do hiperparâmetro lambda.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">10</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lasso1 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> grid)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso1, <span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">colnames</span>(X.treino), <span class="at">cex =</span> <span class="fl">0.7</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Validação cruzada e <em>grid search</em> para seleção do lambda ótimo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lasso.cv <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso.cv)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>bestlam2 <span class="ot">&lt;-</span> lasso.cv<span class="sc">$</span>lambda.min <span class="co"># lambda otimo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Obtendo os coeficientes de regressão rígica com lambda ótimo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X.treino, y.treino, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(out2, <span class="at">type =</span> <span class="st">"coefficients"</span>, <span class="at">s =</span> bestlam2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred.teste2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(out2, <span class="at">type =</span> <span class="st">"response"</span>,</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">newx =</span> X[<span class="sc">-</span>treino,], </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">s =</span> bestlam2)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="regressão-por-mínimos-quadrados-ordinários" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="regressão-por-mínimos-quadrados-ordinários"><span class="header-section-number">5.4.4</span> Regressão por mínimos quadrados ordinários</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cost <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred.teste3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(y[<span class="sc">-</span>treino], pred.teste3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred_lasso <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(area_fit_lasso_final, dados_teste),   </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_lasso <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> area, <span class="at">estimate =</span> .pred)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -654,6 +2182,14 @@ Figura&nbsp;5.7: Perda na regressão rígida versus mínims quadrados
 <h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
 <p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
+</section>
+<section id="exercícios" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">4.5</span> Exercícios</h2>
+<ol type="1">
+<li><p>Considerando os resultados do exemplo de regressão rígida para prever a área de folhas de jabuticaba, por que não houve diferença nos resultados de teste entre o modelo de regressão rígida e o modelo de regressão múltipla obtido via mínimos quadrados sem regularização?</p></li>
+<li><p>Porque a regularização via LASSO é às vezes mais interessante que a regressão rígida?</p></li>
+<li><p>Retome o problema de previsão de preços de carros do modelo honda Fit considerando como regressores a quilometragem e o ano e obtenha modelos de regressão rígida e LASSO, de forma a tratar a multicolineariedade entre estes preditores. Qual modelo apresenta melhores resultados para os dados de teste? Qual o <span class="math inline">\(lambda\)</span> ótimo para cada método? Este modelo supera o modelo de regressão linear múltipla obtido no item <span class="quarto-unresolved-ref">?sec-regmul</span>?</p></li>
+</ol>
 
 
 </section>
@@ -1078,13 +2614,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_tree.html" class="pagination-link" aria-label="Regressão por árvores de decisão e floresta aleatória">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span>
+      <a href="./AS_vicio_var.html" class="pagination-link" aria-label="Conflito entre vício e variância no aprendizado supervisionado">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_tree.html" class="pagination-link" aria-label="Regressão por árvores de decisão e floresta aleatória">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
