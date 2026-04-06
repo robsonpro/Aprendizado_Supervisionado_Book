@@ -336,10 +336,10 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <strong>Multicolineariedade</strong> é um problema passível de ocorrência tanto em regressão quanto em classificação quando a correlação entre distintos preditores dificulta a distinção de seus efeitos individuais na resposta de interesse.</p>
+<p>A <strong>Multicolineariedade</strong> é um problema passível de ocorrência tanto em regressão quanto em classificação quando a correlação entre preditores dificulta a distinção de seus efeitos individuais na resposta de interesse.</p>
 </div>
 </div>
-<p>A <a href="#fig-multicol" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> expõe gráficos de dispersão aos pares, além dos coeficientes de correlação de Pearson, também aos pares e densidades amostrais individuais para as variáveis do conjunto de dados de dimensões em folhas de árvores frutíferas. Observa-se, entre diversos pares de variáveis, correlação positiva alta, <span class="math inline">\(r \rightarrow 1\)</span>. É claro que, ao aumentar a área de uma folha em relação às demais, o perímetro e outras dimensões possivelmente aumentarão.</p>
+<p>A <a href="#fig-multicol" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> expõe gráficos de dispersão aos pares, além dos coeficientes de correlação de Pearson, também aos pares, e densidades amostrais individuais para as variáveis do conjunto de dados de dimensões em folhas de uma jaboticabeira. Observa-se, entre diversos pares de variáveis, correlação positiva alta, <span class="math inline">\(r \rightarrow 1\)</span>. É claro que, ao aumentar a área de uma folha em relação às demais, o perímetro e outras dimensões possivelmente aumentarão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-multicol" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -354,7 +354,7 @@ Figura&nbsp;4.1: Diagramas de dispersão e correlações aos pares e densidades 
 </div>
 </div>
 </div>
-<p>Para evitar a inflação dos cioeficientes devido a multicolineariedade, a regressão rígida usa uma alteração na função perda otimizada nas estimativas de mínimos quadrados. Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
+<p>Para evitar a inflação dos cioeficientes devido à multicolineariedade, a regressão rígida usa uma alteração na função perda otimizada nas via mínimos quadrados. Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
 <p><span class="math display">\[
 \begin{align}
 L(\mathbf{\beta}) =&amp; \sum_{i=1}^N \varepsilon_i^2 = \sum_{i=1}^N(y_i-\hat{y}_i)^2 =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\\
@@ -362,7 +362,7 @@ L(\mathbf{\beta}) =&amp; \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y
 =&amp;\mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}
 \end{align}
 \]</span></p>
-<p>Minimizando tal quantidade pela escolha de <span class="math inline">\(\beta\)</span>, conforme visto anteriormente, resulta nas equações normais de mínimos quadrados, <span class="math inline">\(\hat{\beta}=(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})\)</span>. A função perda quadrática para regressão rígida, tem um termo adicional, <span class="math inline">\(\lambda\beta^T\beta\)</span> ou em notação escalar, <span class="math inline">\(\lambda\sum_{j=1}^k \beta_j^2\)</span>. Ao somar tal termo na perda quadrática, garante-se que na otimização não seja somente minimizada a soma dos quadrados dos erros, mas também a soma dos quadrados dos coeficientes, evitando a inflação destes comum em casos de multicolineariedade. O termo <span class="math inline">\(\lambda\)</span>, consiste em uma constante não negativa chamada de penalização de encolhimento (<em>shrinkage penalty</em>), a qual regulariza tal conflito entre minimização do erro e encolhimento dos coeficientes.</p>
+<p>Minimizando tal quantidade pela escolha de <span class="math inline">\(\beta\)</span>, conforme visto anteriormente, resulta nas equações normais de mínimos quadrados, <span class="math inline">\(\hat{\beta}=(\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})\)</span>. A função perda quadrática para regressão rígida, tem um termo adicional, <span class="math inline">\(\lambda\beta^T\beta\)</span> ou em notação escalar, <span class="math inline">\(\lambda\sum_{j=1}^k \beta_j^2\)</span>. Ao somar tal termo na perda quadrática, garante-se que, na otimização e treinamento do modelo, não seja somente minimizada a soma dos quadrados dos erros, mas também a soma dos quadrados dos coeficientes, evitando a inflação destes.O termo <span class="math inline">\(\lambda\)</span>, consiste em uma constante não negativa chamada de penalização de encolhimento (<em>shrinkage penalty</em>), a qual regulariza tal conflito entre minimização do erro e encolhimento dos coeficientes.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -373,7 +373,7 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Quando há multicolineariedade, minimizar puramente a função perda quadrática resulta em um modelo com maior variância, portanto, com possibilidade de sobreajuste (<em>overfitting</em>). Logo, a regressão rígida visa obter um modelo menos flexível, diminuindo a variância de previsão, porém aumentando o vício. Busca-se, por conseguinte, um bom custo-benefício entre vício e variância quando há preditores correlacionados. Deve-se buscar obter, via validação cruzada, um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
+<p>Quando há multicolineariedade, minimizar puramente a função perda quadrática resulta em um modelo com maior variância, portanto, com possibilidade de sobreajuste (<em>overfitting</em>). Logo, a regressão rígida visa obter um modelo menos flexível, diminuindo a variância de previsão, porém aumentando o vício. Busca-se, por conseguinte, um bom custo-benefício entre vício e variância quando há preditores correlacionados. Deve-se selecionar, via validação cruzada, um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
 </div>
 </div>
 <p>A função perda quadrática para regressão rígida é exposta na <a href="#eq-lossridge" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>.</p>
@@ -388,15 +388,21 @@ L(\mathbf{\beta,\lambda}) = \mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}
 L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
 \end{aligned}
 \tag{4.2}\]</span></span></p>
-<p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de presença de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício ou viés. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
+<p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
 <p><span id="eq-olsridge"><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial \mathbf{\beta}} = -2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{\beta} +2\lambda\beta= 0 \\
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \tag{4.3}\]</span></span></p>
-<p>Em um modelo de regressão rígida considerando a área como resposta e as demais variáveis como preditores, a <a href="#tbl-coefsols" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> apresenta os coeficientes obtidos sem uso de regularização rígida.</p>
+<p>Em um modelo de regressão rígida considerando a área como resposta e as demais variáveis como preditores, a <a href="#tbl-coefsols" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> apresenta os coeficientes obtidos sem uso de regularização rígida. Observa-se que poucos coeficientes foram estatisticamente significativos, p.value &gt; <span class="math inline">\(\alpha\)</span> = 0,05.</p>
 <div class="cell">
+<div id="tbl-coefsols" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a área da folha em função das demais variáveis dimensionais
+</figcaption>
+<div aria-describedby="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="rthzrfnhft" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#rthzrfnhft table {
@@ -848,7 +854,7 @@ L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
@@ -914,19 +920,10 @@ L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2
 </div>
 </div>
 </div>
-<p>O gráfico da <a href="#fig-coefrig" class="quarto-xref">Figura&nbsp;<span>4.2</span></a> expõe as estimativas dos coeficientes em relação à oenalização de encolhimento, <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que forneça uma boa relação entre soma dos quadrados dos erros e encolhimento dos coeficientes.</p>
-<div id="tbl-coefsols" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a área da folha em função das demais variáveis dimensionais
-</figcaption>
-<div aria-describedby="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-
-</div>
-</div>
 </figure>
 </div>
+</div>
+<p>O gráfico da <a href="#fig-coefrig" class="quarto-xref">Figura&nbsp;<span>4.2</span></a> expõe as estimativas dos coeficientes em relação à oenalização de encolhimento, <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que forneça uma boa relação entre soma dos quadrados dos erros e encolhimento dos coeficientes.</p>
 <div class="cell" data-tbl-cap="Coeficientes de regressão rígida versus penalização de encolhimento">
 <div class="cell-output-display">
 <div id="fig-coefrig" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -1993,7 +1990,7 @@ Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k|\beta_j| \leq s
 \end{aligned}
 \tag{4.6}\]</span></span></p>
-<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> ilustra a função perda quadrática sendo minimizada respeitando à restrição rígida ou LASSO, segundo às formulações expostas expostas. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta, enquanto no caso LASSO observa-se não somente o encolhimento, mas a manutenção de apenas o segundo preditor no modelo, uma vez que <span class="math inline">\(\beta_1\)</span> foi anulado.</p>
+<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> ilustra a função perda quadrática sendo minimizada respeitando à restrição rígida ou LASSO, segundo às formulações expostas. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta, enquanto no caso LASSO observa-se não somente o encolhimento, mas a manutenção de apenas o segundo preditor no modelo, uma vez que <span class="math inline">\(\beta_1\)</span> foi anulado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-errorrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
