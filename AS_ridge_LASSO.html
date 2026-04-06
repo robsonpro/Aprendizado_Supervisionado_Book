@@ -357,7 +357,7 @@ Figura&nbsp;4.1: Diagramas de dispersão e correlações aos pares e densidades 
 <p>Para evitar a inflação dos cioeficientes devido à multicolineariedade, a regressão rígida usa uma alteração na função perda otimizada nas via mínimos quadrados. Seja a função perda quadrática descrita anteriormente para mínimos quadrados em regressão múltipla.</p>
 <p><span class="math display">\[
 \begin{align}
-L(\mathbf{\beta}) =&amp; \sum_{i=1}^N \varepsilon_i^2 = \sum_{i=1}^N(y_i-\hat{y}_i)^2 =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\\
+L(\mathbf{\beta}) =&amp; \sum_{i=1}^n \varepsilon_i^2 = \sum_{i=1}^n(y_i-\hat{y}_i)^2 =\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\\
 L(\mathbf{\beta}) =&amp; \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})^T(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
 =&amp;\mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta}
 \end{align}
@@ -385,7 +385,7 @@ L(\mathbf{\beta,\lambda}) = \mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}
 <p>Em notação algébrica a função perda pode ser escrita segundo a <a href="#eq-lossridge2" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>.</p>
 <p><span id="eq-lossridge2"><span class="math display">\[
 \begin{aligned}
-L(\mathbf{\beta,\lambda}) =\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
+L(\mathbf{\beta,\lambda}) =\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
 \end{aligned}
 \tag{4.2}\]</span></span></p>
 <p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
@@ -1450,7 +1450,7 @@ Tabela&nbsp;4.2: Coeficientes de regressão rígida para prever a área da folha
 <p>Uma alternativa à regressão rígida que promove não somente o encolhimento, mas também a seleção de preditores é a regressão pelo operador de seleção e contração mínima absoluta ou <em>Least Absolute Shrinkage and Selection Operator - LASSO</em>. A regressão LASSO muda a penalização da função perda considerando a norma <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\sum_{j=1}^k|\beta_j|\)</span>, em detrimento da norma <span class="math inline">\(L_2\)</span>, <span class="math inline">\(\sum_{j=1}^k\beta_j^2\)</span>, usada no caso rígido.</p>
 <p><span id="eq-lossLASSO"><span class="math display">\[
 \begin{aligned}
-L(\mathbf{\beta,\lambda}) = \sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
+L(\mathbf{\beta,\lambda}) = \sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
 \end{aligned}
 \tag{4.4}\]</span></span></p>
 <p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como na regressão rígida. Logo, a <a href="#eq-lossLASSO" class="quarto-xref">Equação&nbsp;<span>4.4</span></a> deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
@@ -1976,17 +1976,17 @@ Tabela&nbsp;4.3: Coeficientes de regressão via LASSO para prever a área da fol
 </section>
 <section id="formulações-alternativas-para-regressão-rígida-e-lasso" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">4.3</span> Formulações alternativas para regressão rígida e LASSO</h2>
-<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa na [@-eq-ridgeformalt], onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
+<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa na formulação <a href="#eq-ridgeformalt" class="quarto-xref"><span>4.5</span></a>, onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
 <p><span id="eq-ridgeformalt"><span class="math display">\[
 \begin{aligned}
-Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
+Min \Biggl\{\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k\beta_j^2 \leq s
 \end{aligned}
 \tag{4.5}\]</span></span></p>
-<p>Para o caso da regressão via LASSO a formulação fica conforme a <a href="#eq-lassoformalt" class="quarto-xref"><span>4.6</span></a>.</p>
+<p>Para o caso da regressão via LASSO a formulação fica conforme a formulação <a href="#eq-lassoformalt" class="quarto-xref"><span>4.6</span></a>.</p>
 <p><span id="eq-lassoformalt"><span class="math display">\[
 \begin{aligned}
-Min \Biggl\{\sum_{i=1}^N(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
+Min \Biggl\{\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k|\beta_j| \leq s
 \end{aligned}
 \tag{4.6}\]</span></span></p>
