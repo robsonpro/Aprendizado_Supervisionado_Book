@@ -286,14 +286,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#métricas-de-ajuste-para-regressão" id="toc-métricas-de-ajuste-para-regressão" class="nav-link" data-scroll-target="#métricas-de-ajuste-para-regressão"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</a></li>
   </ul></li>
-  <li><a href="#regressão-linear-múltipla" id="toc-regressão-linear-múltipla" class="nav-link" data-scroll-target="#regressão-linear-múltipla"><span class="header-section-number">2.2</span> Regressão linear múltipla</a>
+  <li><a href="#sec-regmul" id="toc-sec-regmul" class="nav-link" data-scroll-target="#sec-regmul"><span class="header-section-number">2.2</span> Regressão linear múltipla</a>
   <ul class="collapse">
   <li><a href="#codificação-de-variáveis-categóricas-em-regressão-múltipla" id="toc-codificação-de-variáveis-categóricas-em-regressão-múltipla" class="nav-link" data-scroll-target="#codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</a></li>
   </ul></li>
   <li><a href="#regressão-polinomial" id="toc-regressão-polinomial" class="nav-link" data-scroll-target="#regressão-polinomial"><span class="header-section-number">2.3</span> Regressão polinomial</a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">2.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#regressão-linear-múltipla-1" id="toc-regressão-linear-múltipla-1" class="nav-link" data-scroll-target="#regressão-linear-múltipla-1"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</a></li>
+  <li><a href="#sec-implregmul" id="toc-sec-implregmul" class="nav-link" data-scroll-target="#sec-implregmul"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</a></li>
   <li><a href="#sec-implregmultint" id="toc-sec-implregmultint" class="nav-link" data-scroll-target="#sec-implregmultint"><span class="header-section-number">2.4.2</span> Regressão múltipla com termos de interação</a></li>
   <li><a href="#sec-implregmulbin" id="toc-sec-implregmulbin" class="nav-link" data-scroll-target="#sec-implregmulbin"><span class="header-section-number">2.4.3</span> Regressão múltipla com variáveis categóricas</a></li>
   <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">2.4.4</span> Regressão polinomial</a></li>
@@ -1071,9 +1071,8 @@ Definição
 \tag{2.7}\]</span></span></p>
 </section>
 </section>
-<section id="regressão-linear-múltipla" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="regressão-linear-múltipla"><span class="header-section-number">2.2</span> Regressão linear múltipla</h2>
-<p>{#sec-regmul}</p>
+<section id="sec-regmul" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-regmul"><span class="header-section-number">2.2</span> Regressão linear múltipla</h2>
 <p>No caso onde há múltiplas variáveis independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-regmult" class="quarto-xref">Equação&nbsp;<span>2.8</span></a>.</p>
 <p><span id="eq-regmult"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_kx_{ik} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{ij},  
@@ -4877,8 +4876,8 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <section id="implementações-em-r" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">2.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo. A implementação para obtenção de um modelo de regressão linear simples já foi realizada no Capítulo 1.</p>
-<section id="regressão-linear-múltipla-1" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="regressão-linear-múltipla-1"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</h3>
+<section id="sec-implregmul" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="sec-implregmul"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</h3>
 <p>Carregando pacotes para dados, modelagem e gráficos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
@@ -5098,7 +5097,7 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <section id="exercícios" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">2.5</span> Exercícios</h2>
 <ol type="1">
-<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span>Seção 2.4.2</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste. Este modelo é melhor que o modelo obtido na implementação da <span class="quarto-unresolved-ref">?sec-implregmul</span>?</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span>Seção 2.4.2</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste. Este modelo é melhor que o modelo obtido na implementação da <a href="#sec-implregmul" class="quarto-xref"><span>Seção 2.4.1</span></a>?</p></li>
 <li><p>Na implementação realizada no item <a href="#sec-implregmulbin" class="quarto-xref"><span>Seção 2.4.3</span></a>, para regressão múltipla com variáveis categóricas, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
 <li><p>Considerando o problema de previsão de preços de carros, compare os resultados de ajuste de teste para o caso de regressão múltipla considerando o ano e a quilometragem e regressão múltipla considerando a interação entre tais variáveis.</p></li>
 <li><p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outras variáveis ainda não exploradas, a saber: Marca, Carro, Ano, Km, Cambio, Motor, Valvulas e Combustivel. Ademais, há outros modelos de veículos ainda não explorados. Primeiro abra o conjunto de dados e estude tais variáveis. QUais você sugere acrescentar ao modelo? Quais talvez não sejam importantes?</p></li>
