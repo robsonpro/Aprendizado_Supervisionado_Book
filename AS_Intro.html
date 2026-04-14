@@ -196,14 +196,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -282,7 +282,7 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#aprendizado" id="toc-aprendizado" class="nav-link active" data-scroll-target="#aprendizado"><span class="header-section-number">1.1</span> Aprendizado</a></li>
+  <li><a href="#sec-Intro" id="toc-sec-Intro" class="nav-link active" data-scroll-target="#sec-Intro"><span class="header-section-number">1.1</span> Aprendizado</a></li>
   <li><a href="#um-pouco-de-história" id="toc-um-pouco-de-história" class="nav-link" data-scroll-target="#um-pouco-de-história"><span class="header-section-number">1.2</span> Um pouco de história</a>
   <ul class="collapse">
   <li><a href="#um-brasileiro-importante" id="toc-um-brasileiro-importante" class="nav-link" data-scroll-target="#um-brasileiro-importante"><span class="header-section-number">1.2.1</span> Um brasileiro importante</a></li>
@@ -296,7 +296,7 @@ window.Quarto = {
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">1.5</span> Implementações em R</a>
   <ul class="collapse">
   <li><a href="#exemplo-de-problema-de-regressão-1" id="toc-exemplo-de-problema-de-regressão-1" class="nav-link" data-scroll-target="#exemplo-de-problema-de-regressão-1"><span class="header-section-number">1.5.1</span> Exemplo de problema de regressão</a></li>
-  <li><a href="#exemplo-de-problema-de-classificação-1" id="toc-exemplo-de-problema-de-classificação-1" class="nav-link" data-scroll-target="#exemplo-de-problema-de-classificação-1"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</a></li>
+  <li><a href="#sec-exclass" id="toc-sec-exclass" class="nav-link" data-scroll-target="#sec-exclass"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">1.6</span> Exercícios</a></li>
@@ -331,8 +331,8 @@ window.Quarto = {
 </header>
 
 
-<section id="aprendizado" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="aprendizado"><span class="header-section-number">1.1</span> Aprendizado</h2>
+<section id="sec-Intro" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-Intro"><span class="header-section-number">1.1</span> Aprendizado</h2>
 <p>No contexto da ciência de dados (<em>data science</em>) o <strong>aprendizado</strong> consiste em adquirir um determinado comportamento. Mais especificamente, este comportamento a ser aprendido está relacionado a previsão de uma determinada resposta de interesse em função de outras variáveis ou atributos disponíveis. Esta resposta pode ser quantitativa, ou seja, medida em uma escala real, ou qualitativa, constando de um conjunto finito de possibilidades. Para tal, faz-se necessário a utilização de dados.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -662,7 +662,7 @@ Figura&nbsp;1.10: Análise de componentes principais para encontrar uma nova var
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>No código à seguir é carregada a base de dados. O conjunto de dados <code>carrosusados2025webmotors</code> do pacote <code>sjdatar</code> será usado. Neste caso, são filtrados apenas os dados do modelo FIT usando o comando <code>filter</code> do pacote <code>dplyr</code>. O comando <code>|&gt;</code>, chamado de pipe nativo da linguagem R, serve para empilhar operações. Outra opção seria o pipe do pacote <code>dplyr</code>, <code>%&gt;%</code>. A sintaxe <code>filter(carrosusados2025webmotors, Carro == "FIT")</code> tem resultado análogo, porém, quando se deseja empilhar vários comandos o pipe facilita o encadeamento de operações. Por exemplo, <code>round(sqrt(abs(-17)), 2)</code> com o pipe fica <code>-17 |&gt; abs() |&gt; sqrt() |&gt; round(2)</code>.</p>
+<p>No código à seguir é carregada a base de dados. O conjunto de dados <code>carrosusados2025webmotors</code> do pacote <code>sjdatar</code> será usado. Neste caso, são filtrados apenas os dados do modelo FIT usando o comando <code>filter</code> do pacote <code>dplyr</code>. O comando <code>|&gt;</code>, chamado de pipe nativo da linguagem R, serve para empilhar operações. Outra opção seria o pipe do pacote <code>dplyr</code>, <code>|&gt;</code>. A sintaxe <code>filter(carrosusados2025webmotors, Carro == "FIT")</code> tem resultado análogo, porém, quando se deseja empilhar vários comandos o pipe facilita o encadeamento de operações. Por exemplo, <code>round(sqrt(abs(-17)), 2)</code> com o pipe fica <code>-17 |&gt; abs() |&gt; sqrt() |&gt; round(2)</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(carrosusados2025webmotors)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> carrosusados2025webmotors <span class="sc">|&gt;</span></span>
@@ -749,8 +749,8 @@ Nota
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="exemplo-de-problema-de-classificação-1" class="level3" data-number="1.5.2">
-<h3 data-number="1.5.2" class="anchored" data-anchor-id="exemplo-de-problema-de-classificação-1"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</h3>
+<section id="sec-exclass" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="sec-exclass"><span class="header-section-number">1.5.2</span> Exemplo de problema de classificação</h3>
 <p>Neste exemplo será usado o conjunto de dados <code>feijoes</code>, porém considerando apenas as classes “preto” e “vermelho”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
@@ -775,7 +775,7 @@ Nota
 </div>
 <p>Define-se e obtém-se um modelo de regressão logística simples para prever a probabilidade do feijão ser “vermelho” em função do seu comprimento.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(<span class="at">penalty=</span><span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>logit_model <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(<span class="at">penalty=</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glm"</span>) </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>reglog1 <span class="ot">&lt;-</span> </span>
