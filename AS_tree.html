@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>4&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
+<title>5&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AS_ridge_LASSO.html" rel="next">
-<link href="./AS_vicio_var.html" rel="prev">
+<link href="./AS_cv.html" rel="next">
+<link href="./AS_ridge_LASSO.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_tree.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_tree.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,14 +196,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -282,17 +282,26 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#árvores-de-decisão-para-regressão" id="toc-árvores-de-decisão-para-regressão" class="nav-link active" data-scroll-target="#árvores-de-decisão-para-regressão"><span class="header-section-number">4.1</span> Árvores de decisão para regressão</a></li>
-  <li><a href="#bagged-trees-ou-bagging" id="toc-bagged-trees-ou-bagging" class="nav-link" data-scroll-target="#bagged-trees-ou-bagging"><span class="header-section-number">4.2</span> <em>Bagged trees</em> ou <em>bagging</em></a></li>
-  <li><a href="#floresta-aleatória" id="toc-floresta-aleatória" class="nav-link" data-scroll-target="#floresta-aleatória"><span class="header-section-number">4.3</span> Floresta aleatória</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</a>
+  <li><a href="#árvores-de-decisão-para-regressão" id="toc-árvores-de-decisão-para-regressão" class="nav-link active" data-scroll-target="#árvores-de-decisão-para-regressão"><span class="header-section-number">5.1</span> Árvores de decisão para regressão</a>
   <ul class="collapse">
-  <li><a href="#árvores-para-regressão" id="toc-árvores-para-regressão" class="nav-link" data-scroll-target="#árvores-para-regressão"><span class="header-section-number">4.4.1</span> Árvores para regressão</a></li>
-  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">4.4.2</span> <em>Bagging</em></a></li>
-  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest"><span class="header-section-number">4.4.3</span> <em>Random Forest</em></a></li>
-  <li><a href="#comparando-os-resultados-com-regressão-linear-múltipla" id="toc-comparando-os-resultados-com-regressão-linear-múltipla" class="nav-link" data-scroll-target="#comparando-os-resultados-com-regressão-linear-múltipla"><span class="header-section-number">4.4.4</span> Comparando os resultados com regressão linear múltipla</a></li>
+  <li><a href="#importância-dos-preditores" id="toc-importância-dos-preditores" class="nav-link" data-scroll-target="#importância-dos-preditores"><span class="header-section-number">5.1.1</span> Importância dos preditores</a></li>
+  </ul></li>
+  <li><a href="#bagged-trees-ou-bagging" id="toc-bagged-trees-ou-bagging" class="nav-link" data-scroll-target="#bagged-trees-ou-bagging"><span class="header-section-number">5.2</span> <em>Bagged trees</em> ou <em>bagging</em></a>
+  <ul class="collapse">
+  <li><a href="#importância-dos-preditores-1" id="toc-importância-dos-preditores-1" class="nav-link" data-scroll-target="#importância-dos-preditores-1"><span class="header-section-number">5.2.1</span> Importância dos preditores</a></li>
+  </ul></li>
+  <li><a href="#floresta-aleatória" id="toc-floresta-aleatória" class="nav-link" data-scroll-target="#floresta-aleatória"><span class="header-section-number">5.3</span> Floresta aleatória</a>
+  <ul class="collapse">
+  <li><a href="#importância-dos-preditores-2" id="toc-importância-dos-preditores-2" class="nav-link" data-scroll-target="#importância-dos-preditores-2"><span class="header-section-number">5.3.1</span> Importância dos preditores</a></li>
+  </ul></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</a>
+  <ul class="collapse">
+  <li><a href="#árvores-para-regressão" id="toc-árvores-para-regressão" class="nav-link" data-scroll-target="#árvores-para-regressão"><span class="header-section-number">5.4.1</span> Árvores para regressão</a></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">5.4.2</span> <em>Bagging</em></a></li>
+  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest"><span class="header-section-number">5.4.3</span> <em>Random Forest</em></a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -301,7 +310,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></h1>
 </div>
 
 
@@ -324,9 +333,9 @@ window.Quarto = {
 </header>
 
 
-<section id="árvores-de-decisão-para-regressão" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="árvores-de-decisão-para-regressão"><span class="header-section-number">4.1</span> Árvores de decisão para regressão</h2>
-<p>As árvores de decisão foram inicialmente propostas para problemas de classificação, porém, podem ser adaptadas de forma simples para problemas de regressão. A regressão por árvores de decisão ou simplesmente as árvores de regressão envolvem dividir o espaço preditor em várias regiões retangulares simples tomando como predição a média ou outra medida simples das observações de treinamento da região. O conjunto de regras de divisão usado para segmentar o espaço preditor pode ser resumido em um diagrama semelhante a uma árvore, conforme a <a href="#fig-tree" class="quarto-xref">Figura&nbsp;<span>4.1</span></a>.</p>
+<section id="árvores-de-decisão-para-regressão" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="árvores-de-decisão-para-regressão"><span class="header-section-number">5.1</span> Árvores de decisão para regressão</h2>
+<p>As árvores de decisão foram inicialmente propostas para problemas de classificação, porém, podem ser adaptadas de forma simples para problemas de regressão. Na regressão por árvores de decisão, ou simplesmente por árvores de regressão, divide-se o espaço preditor em várias regiões hiper-retangulares tomando como predição a média ou outra medida simples das observações de treino da região. O conjunto de regras de divisão usado para segmentar o espaço preditor pode ser resumido em um diagrama semelhante a uma árvore, conforme a <a href="#fig-tree" class="quarto-xref">Figura&nbsp;<span>5.1</span></a>. A árvore plotada apresenta quatro nós terminais ou folhas e profundidade igual a 2, isto é, a partir do nó raiz são necessários no máximo 2 partições para atingir qualquer folha.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -335,13 +344,13 @@ window.Quarto = {
 <img src="AS_tree_files/figure-html/fig-tree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.1: Diagrama de árvore de decisão (ou regressão neste caso)
+Figura&nbsp;5.1: Diagrama de árvore de decisão (ou regressão neste caso)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O gráfico de superfície da <a href="#fig-surftree" class="quarto-xref">Figura&nbsp;<span>4.2</span></a> expõe o modelo obtido em função das duas variáveis preditoras, podendo-se observar que o valor previsto é constante em cada região retangular correspondente ao diagrama ilustrado anteriormente.</p>
+<p>O gráfico de superfície da <a href="#fig-surftree" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o modelo obtido em função das duas variáveis preditoras, podendo-se observar que o valor previsto é constante em cada região retangular correspondente ao diagrama ilustrado anteriormente.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surftree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -350,13 +359,13 @@ Figura&nbsp;4.1: Diagrama de árvore de decisão (ou regressão neste caso)
 <img src="AS_tree_files/figure-html/fig-surftree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surftree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.2: Gráfico de superfície para um modelo de regressão baseado em árvore
+Figura&nbsp;5.2: Gráfico de superfície para um modelo de regressão baseado em árvore
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se observar o mesmo modelo de árvore de regressão de forma bidimensional, conforme <a href="#fig-conttree" class="quarto-xref">Figura&nbsp;<span>4.3</span></a>, ficando mais clara a divisão do espaço preditor.</p>
+<p>Pode-se observar o mesmo modelo de árvore de regressão via gráfico de contorno, conforme <a href="#fig-conttree" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>, ficando mais clara a divisão do espaço preditor.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-conttree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -365,85 +374,705 @@ Figura&nbsp;4.2: Gráfico de superfície para um modelo de regressão baseado em
 <img src="AS_tree_files/figure-html/fig-conttree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conttree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.3: Gráfico de contorno para um modelo de regressão baseado em árvore
+Figura&nbsp;5.3: Gráfico de contorno para um modelo de regressão baseado em árvore
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Sejam <span class="math inline">\(k\)</span> variáveis de entrada e uma resposta, ou seja, <span class="math inline">\((\mathbf{x}_i,y_i)\)</span>, com <span class="math inline">\(\mathbf{x} = (x_{i1}, x_{i2},..., x_{iK})\)</span>, para <span class="math inline">\(i=1,...,N\)</span> observações de treino, o algoritmo de (<em>Classification and Regression Trees</em> - CART) para regressão define a cada iteração a variável preditora e o seu nível para particionar o espaço dos preditores. Considerando <span class="math inline">\(J\)</span> regiões <span class="math inline">\(R_1, R_2, ..., R_J\)</span>, o valor predito será uma constante <span class="math inline">\(\gamma_j\)</span>, em cada região, <span class="math inline">\(j=1,...,J\)</span>. Portanto, o modelo de árvore de regressão pode ser definido conforme a <a href="#eq-treemodel" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>, <span class="math inline">\(\{R_j,\gamma_j\}, j=1,\ldots,J\)</span>, onde <span class="math inline">\(I(\mathbf{x} \in R_j)\)</span> é uma função indicativa que recebe 1 se <span class="math inline">\(\mathbf{x}\)</span> pertence à região <span class="math inline">\(R_j\)</span> e 0 caso contrário. O melhor <span class="math inline">\(\gamma_j\)</span> para minimizar a soma dos quadrados é a média das observações na região, <span class="math inline">\(\hat{\gamma}_j = (\bar{y}_i | \mathbf{x}_i \in R_j\)</span>).</p>
+<p>Sejam <span class="math inline">\(k\)</span> preditores, <span class="math inline">\(\mathbf{x} = [x_{1}, x_{2},..., x_{K}]^T\)</span>, uma resposta, <span class="math inline">\(y \in \mathbb{R}\)</span> , e <span class="math inline">\(n\)</span> observações de treino, <span class="math inline">\(\mathcal{D}=(\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>. O algoritmo (<em>Classification and Regression Trees</em> - CART) para regressão define a cada iteração a variável preditora e o seu nível para dividir o espaço dos preditores. Considerando <span class="math inline">\(J\)</span> regiões <span class="math inline">\(R_1, R_2, ..., R_J\)</span>, o valor predito será uma constante <span class="math inline">\(\gamma_j\)</span>, em cada região, <span class="math inline">\(j=1,...,J\)</span>. Portanto, o modelo de árvore de regressão pode ser definido conforme a <a href="#eq-treemodel" class="quarto-xref">Equação&nbsp;<span>5.1</span></a>, <span class="math inline">\(\{R_j,\gamma_j\}, j=1,\ldots,J\)</span>, onde <span class="math inline">\(I(\mathbf{x} \in R_j)\)</span> é uma função indicativa que recebe 1 se <span class="math inline">\(\mathbf{x}\)</span> pertence à região <span class="math inline">\(R_j\)</span> e 0 caso contrário. O melhor <span class="math inline">\(\gamma_j\)</span> para minimizar a soma dos quadrados dos erros é a média das observações na região, <span class="math inline">\(\hat{\gamma}_j = (\bar{y}_i | \mathbf{x}_i \in R_j\)</span>).</p>
 <p><span id="eq-treemodel"><span class="math display">\[
 \begin{aligned}
 f(\mathbf{x}) = T(\mathbf{x},R_j,\gamma_j) = \sum_{j=1}^J \gamma_jI(\mathbf{x} \in R_j)
 \end{aligned}
-\tag{4.1}\]</span></span></p>
-<p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca a variável para o particionamento e o valor desta na divisão resolvendo a <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>.</p>
+\tag{5.1}\]</span></span></p>
+<p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s) = {\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s) = {\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca o preditor para a divisão e o valor deste na divisão resolvendo a <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>5.2</span></a>, ou seja, minimizando a soma dos quadrados dos erros de previsão nas regiões obtidas a partir da escolha de <span class="math inline">\(x_k\)</span> e seu valor <span class="math inline">\(s\)</span>.</p>
 <p><span id="eq-cartloss"><span class="math display">\[
 \begin{aligned}
-    \min_{k,s} \Bigl[ \min_{\gamma_1} \sum_{x_i \in R_1(k,s)} (y_i - \gamma_1)^2 +  \min_{\gamma_2} \sum_{x_i \in R_2(k,s)} (y_i - \gamma_2)^2 \Bigr].
+    \min_{k,s} \Bigl[ \min_{\gamma_1} \sum_{x_i \in R_1(k,s)} (y_i - \gamma_1)^2 +  \min_{\gamma_2} \sum_{x_i \in R_2(k,s)} (y_i - \gamma_2)^2 \Bigr]
 \end{aligned}
-\tag{4.2}\]</span></span></p>
-<p>O algoritmo CART repete o particionamento recursivamente até um determinado critério de parada ser alcançado, por exemplo, até um número mínimo de observações em cada partição ser atingido.</p>
-<p>Seja um conjunto de dados da liga maior americana de Baseball para as temporadas de 1986 e 1987. São disponibilizadas 322 observações de jogadores da liga, incluindo número de batidas, número de corridas, tempo em anos na liga, etc. A variável de interesse a ser predita é o salário do jogador. A <a href="#fig-corrhitters" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> exibe um gráfico de correlação entra tais variáveis.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-corrhitters" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-corrhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_tree_files/figure-html/fig-corrhitters-1.png" class="img-fluid figure-img" width="672">
+\tag{5.2}\]</span></span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corrhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.4: Gráfico de correlação para o conjunto de dados Hitters
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O algoritmo CART repete o particionamento recursivamente até um determinado critério de parada ser alcançado, por exemplo, até um número mínimo de observações em cada partição ser atingido ou até uma profundidade máxima da árvore.</p>
+</div>
+</div>
+<p>Seja um conjunto de dados de preço de venda de apartamentos em algumas cidades pertencentes às regiões de Alto Paraopeba, Zona da Mata e Campos das Vertentes do estado de Minas Gerais. Os dados contém 632 observações constando a cidade, o bairro, a área, número de quartos, número de banheiros, número de salas, número de vagas na garagem, presença de varanda, área gourmet, terraço, copa e de piscina. Algumas linhas são aleatoriamente exibidas na <a href="#tbl-dadosapmg" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a>.</p>
+<div class="cell">
+<div id="tbl-dadosapmg" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dadosapmg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.1: Gráfico de correlação para o conjunto de dados Hitters
 </figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Seja um modelo de árvore de regressão para prever o salário em função das demais variáveis considerando metade dos dados selecionados aleatoriamente para treino do modelo. Pode-se observar que o modelo de árvore de decisão detalhado abaixo pode ser descrito como um conjunto de regras “se”, “se não”. Por exemplo, tomando as seguintes partições <code>CRuns &lt; 325.5 82  6125000  296.3</code> e <code>CRuns &gt; 208.5 22   514100  498.8 *</code>, tem-se o valor previsto do salário do jogador igual a 498.8 unidades monetárias com soma dos quadrados dos erros igual a 514100.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>node), split, n, deviance, yval
-      * denotes terminal node
+<div aria-describedby="tbl-dadosapmg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="irxvtndnag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#irxvtndnag table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  1) root 132 25650000  510.7  
-    2) CRuns &lt; 325.5 82  6125000  296.3  
-      4) CRuns &lt; 208.5 60  4378000  222.1  
-        8) Hits &lt; 45 5  3103000  558.3 *
-        9) Hits &gt; 45 55   659200  191.5  
-         18) CRBI &lt; 114.5 36   100900  131.2 *
-         19) CRBI &gt; 114.5 19   178200  306.0 *
-      5) CRuns &gt; 208.5 22   514100  498.8 *
-    3) CRuns &gt; 325.5 50  9578000  862.2  
-      6) RBI &lt; 103 44  4352000  765.5  
-       12) PutOuts &lt; 1113.5 39  2944000  704.6  
-         24) Runs &lt; 38 7   297000  431.0 *
-         25) Runs &gt; 38 32  2008000  764.5  
-           50) CRuns &lt; 444.5 10   466300  594.7  
-            100) CWalks &lt; 256.5 5    24560  759.4 *
-            101) CWalks &gt; 256.5 5   170400  430.0 *
-           51) CRuns &gt; 444.5 22  1123000  841.7  
-            102) CHmRun &lt; 142.5 9   426800  987.2 *
-            103) CHmRun &gt; 142.5 13   373200  740.9 *
-       13) PutOuts &gt; 1113.5 5   134200 1241.0 *
-      7) RBI &gt; 103 6  1797000 1571.0 *</code></pre>
+#irxvtndnag thead, #irxvtndnag tbody, #irxvtndnag tfoot, #irxvtndnag tr, #irxvtndnag td, #irxvtndnag th {
+  border-style: none;
+}
+
+#irxvtndnag p {
+  margin: 0;
+  padding: 0;
+}
+
+#irxvtndnag .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#irxvtndnag .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#irxvtndnag .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#irxvtndnag .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#irxvtndnag .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#irxvtndnag .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#irxvtndnag .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#irxvtndnag .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#irxvtndnag .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#irxvtndnag .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#irxvtndnag .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#irxvtndnag .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#irxvtndnag .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#irxvtndnag .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#irxvtndnag .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#irxvtndnag .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#irxvtndnag .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#irxvtndnag .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#irxvtndnag .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#irxvtndnag .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#irxvtndnag .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#irxvtndnag .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#irxvtndnag .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#irxvtndnag .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#irxvtndnag .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#irxvtndnag .gt_left {
+  text-align: left;
+}
+
+#irxvtndnag .gt_center {
+  text-align: center;
+}
+
+#irxvtndnag .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#irxvtndnag .gt_font_normal {
+  font-weight: normal;
+}
+
+#irxvtndnag .gt_font_bold {
+  font-weight: bold;
+}
+
+#irxvtndnag .gt_font_italic {
+  font-style: italic;
+}
+
+#irxvtndnag .gt_super {
+  font-size: 65%;
+}
+
+#irxvtndnag .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#irxvtndnag .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#irxvtndnag .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#irxvtndnag .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#irxvtndnag .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#irxvtndnag .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#irxvtndnag .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#irxvtndnag .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#irxvtndnag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Cidade" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Cidade</th>
+<th id="Bairro" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Bairro</th>
+<th id="Area" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Area</th>
+<th id="Valor" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Valor</th>
+<th id="Quartos" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Quartos</th>
+<th id="Banheiros" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Banheiros</th>
+<th id="Vaga" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Vaga</th>
+<th id="Varanda" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Varanda</th>
+<th id="Suite" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Suite</th>
+<th id="Area.Gourmet" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Area.Gourmet</th>
+<th id="Terraco" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Terraco</th>
+<th id="Sala" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sala</th>
+<th id="Copa" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Copa</th>
+<th id="Piscina" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Piscina</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Cidade">Congonhas</td>
+<td class="gt_row gt_left" headers="Bairro">Joaquim Murtinho</td>
+<td class="gt_row gt_right" headers="Area">120.00</td>
+<td class="gt_row gt_right" headers="Valor">200000</td>
+<td class="gt_row gt_right" headers="Quartos">3</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">2</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">0</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Cidade">Juiz de Fora</td>
+<td class="gt_row gt_left" headers="Bairro">Sao Pedro</td>
+<td class="gt_row gt_right" headers="Area">45.00</td>
+<td class="gt_row gt_right" headers="Valor">229900</td>
+<td class="gt_row gt_right" headers="Quartos">2</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">1</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">0</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Cidade">Conselheiro Lafaiete</td>
+<td class="gt_row gt_left" headers="Bairro">Campo Alegre</td>
+<td class="gt_row gt_right" headers="Area">260.00</td>
+<td class="gt_row gt_right" headers="Valor">1500000</td>
+<td class="gt_row gt_right" headers="Quartos">3</td>
+<td class="gt_row gt_right" headers="Banheiros">4</td>
+<td class="gt_row gt_right" headers="Vaga">3</td>
+<td class="gt_row gt_left" headers="Varanda">S</td>
+<td class="gt_row gt_right" headers="Suite">1</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">S</td>
+<td class="gt_row gt_left" headers="Terraco">S</td>
+<td class="gt_row gt_right" headers="Sala">2</td>
+<td class="gt_row gt_left" headers="Copa">S</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Cidade">Juiz de Fora</td>
+<td class="gt_row gt_left" headers="Bairro">Sao Mateus</td>
+<td class="gt_row gt_right" headers="Area">87.00</td>
+<td class="gt_row gt_right" headers="Valor">230000</td>
+<td class="gt_row gt_right" headers="Quartos">2</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">1</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">0</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Cidade">Lavras</td>
+<td class="gt_row gt_left" headers="Bairro">Centenario</td>
+<td class="gt_row gt_right" headers="Area">180.00</td>
+<td class="gt_row gt_right" headers="Valor">880000</td>
+<td class="gt_row gt_right" headers="Quartos">3</td>
+<td class="gt_row gt_right" headers="Banheiros">4</td>
+<td class="gt_row gt_right" headers="Vaga">3</td>
+<td class="gt_row gt_left" headers="Varanda">S</td>
+<td class="gt_row gt_right" headers="Suite">2</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">S</td>
+<td class="gt_row gt_left" headers="Terraco">S</td>
+<td class="gt_row gt_right" headers="Sala">2</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">S</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Cidade">Barbacena</td>
+<td class="gt_row gt_left" headers="Bairro">Centro</td>
+<td class="gt_row gt_right" headers="Area">89.00</td>
+<td class="gt_row gt_right" headers="Valor">399000</td>
+<td class="gt_row gt_right" headers="Quartos">2</td>
+<td class="gt_row gt_right" headers="Banheiros">2</td>
+<td class="gt_row gt_right" headers="Vaga">1</td>
+<td class="gt_row gt_left" headers="Varanda">S</td>
+<td class="gt_row gt_right" headers="Suite">1</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Cidade">Congonhas</td>
+<td class="gt_row gt_left" headers="Bairro">Alto Maranhao</td>
+<td class="gt_row gt_right" headers="Area">300.00</td>
+<td class="gt_row gt_right" headers="Valor">495000</td>
+<td class="gt_row gt_right" headers="Quartos">2</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">3</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">0</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Cidade">Congonhas</td>
+<td class="gt_row gt_left" headers="Bairro">Centro</td>
+<td class="gt_row gt_right" headers="Area">102.00</td>
+<td class="gt_row gt_right" headers="Valor">190000</td>
+<td class="gt_row gt_right" headers="Quartos">3</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">1</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">1</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">S</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Cidade">Sao Joao del Rei</td>
+<td class="gt_row gt_left" headers="Bairro">Vila Belizario</td>
+<td class="gt_row gt_right" headers="Area">98.64</td>
+<td class="gt_row gt_right" headers="Valor">550000</td>
+<td class="gt_row gt_right" headers="Quartos">3</td>
+<td class="gt_row gt_right" headers="Banheiros">2</td>
+<td class="gt_row gt_right" headers="Vaga">2</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">1</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">N</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Cidade">Conselheiro Lafaiete</td>
+<td class="gt_row gt_left" headers="Bairro">Santa Matilde</td>
+<td class="gt_row gt_right" headers="Area">120.00</td>
+<td class="gt_row gt_right" headers="Valor">300000</td>
+<td class="gt_row gt_right" headers="Quartos">2</td>
+<td class="gt_row gt_right" headers="Banheiros">1</td>
+<td class="gt_row gt_right" headers="Vaga">1</td>
+<td class="gt_row gt_left" headers="Varanda">N</td>
+<td class="gt_row gt_right" headers="Suite">0</td>
+<td class="gt_row gt_left" headers="Area.Gourmet">N</td>
+<td class="gt_row gt_left" headers="Terraco">S</td>
+<td class="gt_row gt_right" headers="Sala">1</td>
+<td class="gt_row gt_left" headers="Copa">N</td>
+<td class="gt_row gt_left" headers="Piscina">N</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<p>O diagrama do modelo é plotado na <a href="#fig-modelhitters" class="quarto-xref">Figura&nbsp;<span>4.5</span></a>. Acima tem-se CRBI&lt;325,5 que consiste na primeira partição ou nó raiz. Qualquer subconjunto de partições interligadas da árvore pode ser chamado de sub-árvore. Cada partição gera duas regiões às quais podem ou não ser particionadas novamente. As partições finais são chamadas de nós terminais ou folhas. Neste caso tem-se 10 nós terminais, ou seja, 10 valores previstos distintos para 10 regiões distintas do espaço de preditores.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-modelhitters" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-modelhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_tree_files/figure-html/fig-modelhitters-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-modelhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.5: Diaframa do modelo de regressão baseado em árvore para o conjunto de dados Hitters
-</figcaption>
 </figure>
 </div>
 </div>
+<p>A perda na <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>5.2</span></a> consiste na perda em cada partição gerada no algoritmo CART. A <a href="#eq-losstree" class="quarto-xref">Equação&nbsp;<span>5.3</span></a> expõe a função perda geral a ser minimizada, onde o termo <span class="math inline">\(\alpha |T|\)</span> consiste em um termo de regularização que controla o crescimento da árvore, sendo comumente chamado de termo de poda, sendo <span class="math inline">\(|T|\)</span> o número de nós ou partições finais do modelo e <span class="math inline">\(\alpha\)</span> o parâmetro de regularização que controla o crescimento da árvore, sendo comumente chamado de complexidade de custo.</p>
+<p><span id="eq-losstree"><span class="math display">\[
+\begin{aligned}
+    \min_{T} \sum_{m=1}^{|T|} \sum_{x_i \in R_m} (y_i - \gamma_{R_m})^2 + \alpha |T|
+\end{aligned}
+\tag{5.3}\]</span></span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Pode-se realizar uma validação cruzada para “podar” ou “secar” a árvore com a finalidade de diminuir o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> plota o erro em relação ao tamanho ou número de partições da árvore. Observa-se que um modelo com três ou quatro partições apresenta bom resultado.</p>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, a profundidade da árvore e o número mínimo de observações por partição (<code>min_n</code>).</p>
+</div>
+</div>
+<p>Pode-se realizar uma validação cruzada para otimizar os hiperparâmetros do modelo de árvore de regressão, isto é, definir a profundidade da árvore e a complexidade de custo, <span class="math inline">\(\alpha\)</span>, ideais para os dados em análise e evitar o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> plota o erro em relação a profundidade e a complexidade da árvore. Neste caso, foi considerado <code>min_n = 20</code>. Observa-se que um modelo com profundidade igual a 4 e um valor de complexidade de custo de baixo a intermediário minimiza o erro de teste, isto é, minimiza RMSE ou maximiza <span class="math inline">\(R^2\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvtree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -452,51 +1081,109 @@ Figura&nbsp;4.5: Diaframa do modelo de regressão baseado em árvore para o conj
 <img src="AS_tree_files/figure-html/fig-cvtree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvtree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.6: Validação cruzada para secar/podar a árvore
+Figura&nbsp;5.4: Resultado das métricas de ajuste do modelo de regressão por árvore na validação cruzada
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A árvore podada obtida e plotada na <a href="#fig-prunetree" class="quarto-xref">Figura&nbsp;<span>4.7</span></a> apresenta apenas 4 folhas, com estrutura mais simples, facilitando a interpretação e buscando melhor generalização.</p>
+<p>A seguir, detalha-se o modelo de árvore de decisão obtido. O termo <code>deviance</code> consiste na soma do quadrados dos erros de previsão após cada partição, enquanto <code>yval</code> consiste no valor predito em cada região, <span class="math inline">\(\hat y\)</span>. Os nós terminais ou folhas são marcados com <code>*</code>. O modelo é baseado em regras se/então. Por exemplo, se <code>Area&lt; 81.2</code> &amp; <code>Banheiros&lt; 1.5</code>, então o preço estimado do apartamento é <span class="math inline">\(\hat y = R\$ 217803.1\)</span>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>node), split, n, deviance, yval
+<pre><code>n= 379 
+
+node), split, n, deviance, yval
       * denotes terminal node
 
- 1) root 132 25650000  510.7  
-   2) CRuns &lt; 325.5 82  6125000  296.3 *
-   3) CRuns &gt; 325.5 50  9578000  862.2  
-     6) RBI &lt; 103 44  4352000  765.5  
-      12) PutOuts &lt; 1113.5 39  2944000  704.6 *
-      13) PutOuts &gt; 1113.5 5   134200 1241.0 *
-     7) RBI &gt; 103 6  1797000 1571.0 *</code></pre>
+ 1) root 379 4.355547e+13  466892.5  
+   2) Area&lt; 139.5 263 6.370876e+12  336852.8  
+     4) Area&lt; 81.2 130 1.109841e+12  253479.1  
+       8) Banheiros&lt; 1.5 89 4.015501e+11  217803.1  
+        16) Area&lt; 71 69 2.449756e+11  200949.0 *
+        17) Area&gt;=71 20 6.935295e+10  275950.0 *
+       9) Banheiros&gt;=1.5 41 3.491204e+11  330922.0  
+        18) Cidade_Uba&gt;=0.5 11 5.590455e+10  278636.4 *
+        19) Cidade_Uba&lt; 0.5 30 2.521178e+11  350093.5 *
+     5) Area&gt;=81.2 133 3.474113e+12  418345.9  
+      10) Vaga&lt; 1.5 86 1.555180e+12  372081.4  
+        20) Area&lt; 124 71 1.031850e+12  352549.3 *
+        21) Area&gt;=124 15 3.680337e+11  464533.3 *
+      11) Vaga&gt;=1.5 47 1.398040e+12  503000.0  
+        22) Area&lt; 95.5 14 4.051172e+11  418357.1 *
+        23) Area&gt;=95.5 33 8.500691e+11  538909.1 *
+   3) Area&gt;=139.5 116 2.265383e+13  761723.8  
+     6) Vaga&lt; 1.5 39 2.547188e+12  482179.5  
+      12) Bairro_other&gt;=0.5 31 8.509448e+11  399677.4  
+        24) Area.Gourmet_S&lt; 0.5 22 3.502219e+11  354772.7 *
+        25) Area.Gourmet_S&gt;=0.5 9 3.479222e+11  509444.4 *
+      13) Bairro_other&lt; 0.5 8 6.675969e+11  801875.0 *
+     7) Vaga&gt;=1.5 77 1.551536e+13  903311.2  
+      14) Cidade_Juiz.de.Fora&lt; 0.5 58 5.733488e+12  774001.0  
+        28) Varanda_S&lt; 0.5 19 1.009103e+12  561578.9 *
+        29) Varanda_S&gt;=0.5 39 3.449368e+12  877488.7 *
+      15) Cidade_Juiz.de.Fora&gt;=0.5 19 5.851535e+12 1298047.0 *</code></pre>
 </div>
 </div>
+<p>A <a href="#fig-treemodel" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> apresenta o diagrama do modelo de árvore de regressão para prever o preço de venda de apartamentos. O modelo resume as regras expostas acima. As variáveis categóricas foram codificadas em binárias. Por exemplo, <code>Cidade_Uba &gt;= 0,5</code> implica que a cidade é Ubá se 1 e não é Ubá se 0.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-prunetree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-treemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-prunetree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_tree_files/figure-html/fig-prunetree-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-treemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-treemodel-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prunetree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.7: Modelo de regressão por árvore após poda
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.5: Modelo de árvore de regressão para prever o preço de venda de apartamentos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="importância-dos-preditores" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="importância-dos-preditores"><span class="header-section-number">5.1.1</span> Importância dos preditores</h3>
+<p>Os modelos de árvore de decisão e regressão são simples de interpretar, pois apresentam uma relação direta entre o espaço de decisão particionado e as previsões. As variáveis mais importantes neste tipo de modelo podem ser ranqueadas considerando a redução no erro quadrático de um nó pai para os filhos, segundo a <a href="#eq-deviancevip" class="quarto-xref">Equação&nbsp;<span>5.4</span></a>, onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros.</p>
+<p><span id="eq-deviancevip"><span class="math display">\[
+\text{Importância}(x_j) = \sum_{\text{splits com } x_j} \left(SS_{E_{\text{pai}}} - SS_{E_{\text{filho esq.}}} - SS_{E_{\text{filho dir.}}}\right)
+\tag{5.4}\]</span></span></p>
+<p>A <a href="#fig-vipap" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> apresenta um gráfico de importância de variável, comumente chamado de <em>Variance Importance Plot</em> (VIP). Observa-se que a área do apartamento é o preditor mais importante no preço, seguido do número de vagas na garagem, número de banheiros, suites, etc. Sugere-se o estudo de outros modelos de árvore de decisão com número reduzido de variáveis, de forma a avaliar se é possível obter um modelo mais simples com menor erro.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vipap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vipap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-vipap-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vipap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.6: Gráfico de importância de variável/preditor para prever o preço do aluguel
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="bagged-trees-ou-bagging" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="bagged-trees-ou-bagging"><span class="header-section-number">4.2</span> <em>Bagged trees</em> ou <em>bagging</em></h2>
-<p><em>Bagged trees ou bagging</em> ou, em português, poderia ser traduzido como “árvores ensacadas” é um método baseado em árvore de decisão que pode ser aplicado tanto para regressão quanto para classificação. O método consiste em agregar várias árvores de decisão as quais são estimadas a partir de reamostragem por reposição dos dados de treino. Ou seja, antes de estimar cada árvore, realiza-se um sorteio por reposição dos dados de treino, procedimento este chamado de <em>bootstrap</em> e, posteriormente estima-se a árvore para cada amostra obtida por sorteio com reposição. O modelo final é a média de todas as árvores obtidas via <em>bootstrap</em>. Geralmente um número alto de reamostragens é realizado e, portanto, um número alto de árvores é obtido, resultando em um modelo com maior flexibilidade, porém mais difícil de interpretar. O nome <em>bagging</em> vem de <em>bootstrap aggregated</em> ou agregação por bootstrap.</p>
-<p>Considere um conjunto de dados com <span class="math inline">\(N = 10\)</span> observações, com três preditores e uma variável independente, exibido integralmente na <a href="#tbl-datareg" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>.</p>
+</section>
+<section id="bagged-trees-ou-bagging" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="bagged-trees-ou-bagging"><span class="header-section-number">5.2</span> <em>Bagged trees</em> ou <em>bagging</em></h2>
+<p><em>Bagged trees ou bagging</em> ou, em português, poderia ser traduzido de forma livre como “árvores ensacadas” e consiste em um método baseado em árvores de decisão que pode ser aplicado tanto em regressão quanto em classificação. O método agrega várias árvores de decisão as quais são estimadas a partir de reamostragem por reposição dos dados de treino. Ou seja, antes de estimar cada árvore, realiza-se um sorteio com reposição dos dados de treino, procedimento este chamado de <em>bootstrap</em> e, posteriormente, estima-se a árvore para cada amostra obtida por sorteio com reposição. O modelo final é a média de todas as árvores obtidas após <em>bootstrap</em> dos dados. Geralmente, um número alto de reamostragens é realizado e, portanto, um número alto de árvores é obtido, resultando em um modelo com maior flexibilidade, porém mais difícil de interpretar. O nome <em>BAgging</em> também vem de <em>bootstrap aggregated</em> ou agregação por bootstrap.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Bootstrap</em> é uma técnica estatística de reamostragem por reposição, usada para inferência, simulação e estimativas. Por exemplo, seja um conjunto de dados de treino <span class="math inline">\(\mathcal{D} = (\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>, com <span class="math inline">\(n=7\)</span> observações. Uma amostra <em>bootstrap</em> pode resultar no seguinte conjunto de dados <span class="math inline">\(\mathcal{D^*} = (\mathbf{x}_5,y_5), (\mathbf{x}_7,y_7), (\mathbf{x}_5,y_5),\)</span> <span class="math inline">\((\mathbf{x}_4,y_4), (\mathbf{x}_7,y_7), (\mathbf{x}_3,y_3), (\mathbf{x}_1,y_1)\)</span>. Pode-se demonstrar que, para um <span class="math inline">\(n\)</span> suficientemente grande, no <em>bootstrap</em>, a probabilidade de uma observação ser sorteada ao menos uma vez é igual a <span class="math inline">\(1-e^{-1} = 0,632\)</span>.</p>
+</div>
+</div>
+<p>Considere um conjunto de dados de treino com <span class="math inline">\(n = 10\)</span> observações, com três preditores e uma variável independente, exibido integralmente na <a href="#tbl-datareg" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a>. Cada linha é exibida com uma cor distinta para facilitar a distinção entre estas e entendimento do método <em>bootstrap</em>.</p>
 <div class="cell">
 <div id="tbl-datareg" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-datareg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.1: Conjunto de dados arbitrário para regressão
+Tabela&nbsp;5.2: Conjunto de dados arbitrário para regressão
 </figcaption>
 <div aria-describedby="tbl-datareg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1040,12 +1727,12 @@ Tabela&nbsp;4.1: Conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>Um <em>bootstrap</em> deste conjunto de dados pode resultar na reamostragem exibida na <a href="#tbl-databoot" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a>. Pode-se observar que as observações 4, 5, 6 e 9 foram sorteadas duas vezes, enquanto as observações 1, 3, 7 e 8 não foram sorteadas.</p>
+<p>Um <em>bootstrap</em> deste conjunto de dados pode resultar na reamostragem exibida na <a href="#tbl-databoot" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a>. Pode-se observar que, neste caso, as observações 2, 4, 5, 6, 9 e 10 foram sorteadas, sendo as observações 4, 5, 6 e 9 sorteadas duas vezes, enquanto as observações 1, 3, 7 e 8 não foram sorteadas.</p>
 <div class="cell">
 <div id="tbl-databoot" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-databoot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.2: Bootstrap do conjunto de dados arbitrário para regressão
+Tabela&nbsp;5.3: Bootstrap do conjunto de dados arbitrário para regressão
 </figcaption>
 <div aria-describedby="tbl-databoot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1589,7 +2276,7 @@ Tabela&nbsp;4.2: Bootstrap do conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-treeboot" class="quarto-xref">Figura&nbsp;<span>4.8</span></a> exibe o diagrama de uma árvore de decisão para a amostra obtida via <em>bootstrap</em>. O <em>bagging</em> repete este processso diversas vezes, reamostrando os dados por <em>bootstrap</em> e estimando para cada “nova” amostra uma nova árvore. Ao final é tomada como predição a média de todas as árvores.</p>
+<p>A <a href="#fig-treeboot" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> exibe o diagrama de uma árvore de decisão para a amostra obtida via <em>bootstrap</em>. O <em>bagging</em> repete este processso diversas vezes, reamostrando os dados por <em>bootstrap</em> e estimando para cada “nova” amostra uma nova árvore. Ao final é tomada como predição a média de todas as árvores.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treeboot" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1598,13 +2285,13 @@ Tabela&nbsp;4.2: Bootstrap do conjunto de dados arbitrário para regressão
 <img src="AS_tree_files/figure-html/fig-treeboot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treeboot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.8: Modelo de regressão por árvore após poda
+Figura&nbsp;5.7: Modelo de regressão por árvore após poda
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para o mesmo conjunto de dados, sejam 6 árvores obtidas após reamostragens dos dados via <em>bootstrap</em> exibidas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>4.9</span></a>.</p>
+<p>Para o mesmo conjunto de dados, sejam <span class="math inline">\(B=6\)</span> árvores obtidas após reamostagens via <em>bootstrap</em> apresentadas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>5.8</span></a>. As árvores diferem entre si, pois cada reamostragem produz um conjunto de treino distinto — com repetições e ausências de observações originais — sendo a probabilidade de dois <em>bootstraps</em> coincidirem decrescente com <span class="math inline">\(n\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treesboots" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1613,209 +2300,603 @@ Figura&nbsp;4.8: Modelo de regressão por árvore após poda
 <img src="AS_tree_files/figure-html/fig-treesboots-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treesboots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.9: Modelo de regressão por árvore após poda
+Figura&nbsp;5.8: Modelo de regressão por árvore após poda
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Seja uma observação futura arbitrária com valores exibidos na <a href="#tbl-futobs" class="quarto-xref">Tabela&nbsp;<span>4.3</span></a>.</p>
-<div class="cell">
-<div id="tbl-futobs" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-futobs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.3: Observação futura
-</figcaption>
-<div aria-describedby="tbl-futobs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;">x1</th>
-<th style="text-align: right;">x2</th>
-<th style="text-align: right;">x3</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">3.27</td>
-<td style="text-align: right;">4.57</td>
-</tr>
-</tbody>
-</table>
+<p>Seja uma observação futura arbitrária com <span class="math inline">\(x_1=-1,11\)</span>, <span class="math inline">\(x_2=1,73\)</span> e <span class="math inline">\(x_3=1,92\)</span>. Considerando as 6 árvores obtidas anteriormente, as previsãos destas para esta observação são: 7,10, 3,51, 7,16, 7,18, 6,24 e 4,14. O modelo <em>bagging</em> retorna como resultado a média das previsões das árvores, conforme <a href="#eq-baggmod" class="quarto-xref">Equação&nbsp;<span>5.5</span></a>, onde <span class="math inline">\(B\)</span> consiste no número de árvores obtidas após <em>bootstrap</em> dos dados e <span class="math inline">\(T_b\)</span> consiste na <span class="math inline">\(b\)</span>-ésima árvore, <span class="math inline">\(b=1,...,B\)</span>. Logo, <span class="math inline">\(\hat{y} = \frac{1}{6}\sum_{b=1}^6 T_b(\mathbf{x}_0)\)</span> = <span class="math inline">\((7,10+3,51+7,16+7,18+6,24+4,14)/6 = 5,89\)</span>.</p>
+<p><span id="eq-baggmod"><span class="math display">\[
+\hat{y} = \frac{1}{B}\sum_{b=1}^B T_b(\mathbf{x})
+\tag{5.5}\]</span></span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
 </div>
 </div>
-</figure>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros do método <em>bagging</em> são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, a profundidade da árvore, o número mínimo de observações por partição (min_n) e o número de <em>bootstraps</em>/árvores estimadas.</p>
 </div>
 </div>
-<p>Considerando as 6 árvores obtidas anteriormente, as previsãos destas para a observação da <a href="#tbl-futobs" class="quarto-xref">Tabela&nbsp;<span>4.3</span></a> são: 7,302, 5,730, 6,732, 7,680, 7,680 e 5,490. O modelo <em>bagging</em> retorna como resultado a média das previsões das árvores, isto é, <span class="math inline">\(\hat{y} = \frac{1}{6}\sum_{i=b}^6 T(\mathbf{x}_0)\)</span> = 6,774.</p>
-<p>Para o conjunto de dados Hitters seja um modelo de regressão por <em>Bagging</em> considerando duas variáveis, <code>Cruns</code> e <code>RBI</code>. A <a href="#fig-surfhitters" class="quarto-xref">Figura&nbsp;<span>4.10</span></a> plota um gráfico de superfície do modelo, o qual é muito mais complexo e pretende apresentar uma melhor acuracidade que um modelo baseado em árvore por justamente congregar diversas árvores baseadas na reamostragem dos dados de treino. Porém, Como tais modelos apresentam maior variância que os modelos de árvore para regressão, é importante avaliar se há sobreajuste.</p>
+<p>Seja novamente o caso de previsão do preço de apartamentos. A <a href="#fig-cvbagap" class="quarto-xref">Figura&nbsp;<span>5.9</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis destes que minimizam RMSE são <span class="math inline">\(\alpha = 5,62 \times 10^{-4}\)</span>, profundidade da árvore igual a 8 e número mínimo de observações por partição <code>min_n=11</code>. Foram considerados 50 <em>bootstraps</em> e, logo, 50 árvores.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-surfhitters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-cvbagap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-surfhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_tree_files/figure-html/fig-surfhitters-1.png" class="img-fluid figure-img" width="768">
+<div aria-describedby="fig-cvbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-cvbagap-1.png" class="img-fluid figure-img" width="576">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfhitters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.10: Gráfico de superfície para um modelo de regressão via bagging para o conjunto de dados Hitters
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.9: RMSE do modelo de regressão via <em>bagging</em> na validação cruzada
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#eq-bag" class="quarto-xref">Equação&nbsp;<span>4.3</span></a> expõe o modelo de regressão obtido via <em>bagging</em>, onde <span class="math inline">\(\hat f^*_b(\mathbf x)\)</span> é a a <span class="math inline">\(b\)</span>-ésima árvore de regressão obtida após a <span class="math inline">\(b\)</span>-ésima reamostragem, <span class="math inline">\(b=1,\dots,B\)</span>.</p>
-<p><span id="eq-bag"><span class="math display">\[
-\hat f(\mathbf x) = \frac{1}{B} \sum_{b=1}^B \hat f^*_b(\mathbf x)
-\tag{4.3}\]</span></span></p>
-</section>
-<section id="floresta-aleatória" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">4.3</span> Floresta aleatória</h2>
-<p>O modelo de floresta aleatória consiste em uma evolução do modelo <em>bagging</em> com a finalidade de diminuir a variância deste. Basicamente, em casos onde há multicolineariedade ou correlação entre as variáves regressoras, o <em>bagging</em> pode acarretar na seleção de apenas alguns dos preditores disponíveis durante o particionamento binário recursivo, de forma que as árvores geradas considerando a reamostragem das observações de treino possam apresentar alta correlação entre si, acarretando em alta variabilidade das previsões finais. No modelo de floresta aleatória, antes de cada partição, são selecionadas aleatoriamente <span class="math inline">\(m\)</span> variáveis regressoras, <span class="math inline">\(m&lt;k\)</span>, às quais serão consideradas no processo de particionamento binário. Geralmente para regressão recomenda-se <span class="math inline">\(m=k/3\)</span>.</p>
-<p>A <a href="#fig-surfhitters2" class="quarto-xref">Figura&nbsp;<span>4.11</span></a> apresenta o gráfico de superfície de um modelo de floresta aleatória para o conjunto de dados Hitters considerando duas variáveis, <span class="math inline">\(k=2\)</span>, <code>Cruns</code> e <code>RBI</code>. Para cada particionamento considerou-se <span class="math inline">\(m=2/3 \simeq 1\)</span>.</p>
+<section id="importância-dos-preditores-1" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="importância-dos-preditores-1"><span class="header-section-number">5.2.1</span> Importância dos preditores</h3>
+<p>A <a href="#fig-vipbagap" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta um gráfico de importância de variáveis do modelo <em>bagging</em> para prever o preço de apartamentos. Neste caso, o método de cálculo de importância das variáveis é a permutação. Observa-se que as variáveis mais importantes no preço são <code>Area</code>, <code>Vaga</code>, <code>Cidade</code>, etc. A linha vertical de referência consiste no RMSE de referência para o modelo sem permutação das variáveis. As variáveis com box-plot à direita da linha são aquelas que melhoram o ajuste do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-surfhitters2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-vipbagap" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-surfhitters2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_tree_files/figure-html/fig-surfhitters2-1.png" class="img-fluid figure-img" width="768">
+<div aria-describedby="fig-vipbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-vipbagap-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfhitters2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.11: Gráfico de superfície para um modelo de regressão via floresta aleatória para o conjunto de dados Hitters
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vipbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.10: VIP para o modelo <em>bagging</em> para prever o preço de apartamentos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definição
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>permutação</strong> é um método de medição da importância dos preditores a partir da permutação ou embaralhamento dos valores destes, de forma a avaliar a perda ou ajuste em relação às previsões sem o embaralhamento.</p>
+</div>
+</div>
+<p>A <a href="#fig-surfapbag" class="quarto-xref">Figura&nbsp;<span>5.11</span></a> expõe um gráfico de efeitos, também dito gráfico de dependência parcial, do modelo de regressão obtido via <em>bagging</em> para prever o valor do apartamento em função da área e do número de vagas para carros na garagem. Os outros preditores foram fixados em <code>Quartos = 3</code>, <code>Banheiros = 2</code>, <code>Varanda = "N"</code>, <code>Suite = 1</code>, <code>Sala = 1</code>, <code>Copa = "N"</code> e <code>Piscina = "N"</code>. Observa-se aumento do preço em função da área e número de vagas. Juiz de Fora é a cidade com maiores preços. Tal gráfico pode ser realizado para outras variáveis do modelo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-surfapbag" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surfapbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-surfapbag-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfapbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.11: Gráfico de contorno para um modelo de regressão via bagging para o prever o preço de venda de apartamentos em função da área e do número de vagas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="implementações-em-r" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</h2>
+</section>
+<section id="floresta-aleatória" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">5.3</span> Floresta aleatória</h2>
+<p>O modelo de floresta aleatória consiste em uma evolução do modelo <em>bagging</em> com a finalidade de diminuir a variância deste. Basicamente, em casos onde há multicolineariedade, isto é, correlação entre os múltiplos preditores, o <em>bagging</em> pode acarretar na seleção de apenas alguns dos preditores disponíveis durante o particionamento binário recursivo, os quais apresentam efeito maior e dominariam este processo. Neste caso, as árvores geradas considerando a reamostragem das observações de treino apresentariam alta correlação entre si, acarretando em alta variabilidade das previsões finais. No modelo de floresta aleatória, antes de cada partição, são selecionadas aleatoriamente <span class="math inline">\(m\)</span> variáveis regressoras, <span class="math inline">\(m&lt;k\)</span>, às quais são consideradas no processo de particionamento binário. Geralmente, para regressão recomenda-se <span class="math inline">\(m=k/3\)</span>. Entretanto, este parâmetro pode ser melhor definido via validação cruzada.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros do método floresta aleatória são o número de <em>bootstraps</em>/árvores, o número de preditores sorteados e considerados em cada particionamento binário recursivo, m (<code>mtry</code>) e o número mínimo de observações por partição (<code>min_n</code>).</p>
+</div>
+</div>
+<p>A <a href="#fig-cvrfap" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis que minimizam RMSE são <span class="math inline">\(m = 4\)</span>, 1000 árvores e <code>min_n=2</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cvrfap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cvrfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-cvrfap-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvrfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.12: RMSE do modelo de regressão por floresta aleatória na validação cruzada
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="importância-dos-preditores-2" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="importância-dos-preditores-2"><span class="header-section-number">5.3.1</span> Importância dos preditores</h3>
+<p>A <a href="#fig-viprfap" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> expõe o VIP do modelo de floresta aleatória para prever o preço de apartamentos. As primeiras variáveis mais importantes coincidem com as do modelo obtido via <em>bagging</em>. Sugere-se ao leitor comparar ambos resultados e verificar as diferenças na ordem de importância das variáveis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-viprfap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-viprfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-viprfap-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-viprfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.13: VIP para o modelo de floresta aleatória para prever o preço de apartamentos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-surfaprf" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> apresenta um gráfico de dependência parcial do modelo de floresta aleatória considerando a área e número de vagas na garagem para as cidades consideradas.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-surfaprf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surfaprf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_tree_files/figure-html/fig-surfaprf-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfaprf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.14: Gráfico de contorno para um modelo de regressão por floresta aleatória para o prever o preço de venda de apartamentos em função da área e do número de vagas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="implementações-em-r" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="árvores-para-regressão" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="árvores-para-regressão"><span class="header-section-number">4.4.1</span> Árvores para regressão</h3>
+<section id="árvores-para-regressão" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="árvores-para-regressão"><span class="header-section-number">5.4.1</span> Árvores para regressão</h3>
 <p>Carregando pacotes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Carregando base de dados sobre liga de <em>Baseball</em> americana para as temporadas de de 1986 a 1987.</p>
+<p>Carregando base de dados de preços de apartamentos em cidades de Minas Gerais.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Hitters, <span class="at">package =</span> <span class="st">"ISLR"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Hitters)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Visualizando dados.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">15</span>,<span class="dv">20</span>)])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(r, <span class="at">method=</span><span class="st">"color"</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">type=</span><span class="st">"upper"</span>, <span class="at">order=</span><span class="st">"hclust"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">addCoef.col =</span> <span class="cn">NULL</span>, <span class="at">tl.srt=</span><span class="dv">45</span>, </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">diag=</span><span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dados[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">16</span>,<span class="dv">19</span>)], <span class="fu">aes</span>(<span class="at">color =</span> dados<span class="sc">$</span>Division, <span class="at">alpha =</span> .<span class="dv">2</span>)) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(apartamentos2024mg)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> apartamentos2024mg</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sorteando observações de treino.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.5</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados), tr, <span class="at">replace =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">36</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.60</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dados_split</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Árvore de regressão para prever o salário do jogador em função das variáveis de desempenho deste.</p>
+<p>Definindo a receita. A especificação <code>step_unknown</code> cria a categoria “unknown” para valores <code>NA</code> (desconhecidos) de um preditores categóricos. Por exemplo, pode-se observar que nos dados de treino a décima observação não apresenta o bairro. Já a especificação <code>step_other</code> une categorias infrequentes em uma categoria chamada de “other”, podendo-se definir a proporção de observações de corte com o argumento <code>threshold</code>, sendo 0,05 o <em>default</em>. O preditor <code>Bairro</code> apresenta muitas categorias, possivelmente com baixa frequência, sendo interessante neste caso o uso de tal especififcação.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree1 <span class="ot">&lt;-</span> <span class="fu">tree</span>(Salary <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tree1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> Valor <span class="sc">~</span> ., </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Plotando o diagrama da árvore de regressão.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree1)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree1, <span class="at">cex =</span> <span class="fl">0.6</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Importante
 </div>
-<p>Desempenho do modelo para dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred.teste <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree1, <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados<span class="sc">$</span>Salary[<span class="sc">-</span>treino], pred.teste)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Validação cruzada para podar a árvore.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cv.tree1 <span class="ot">&lt;-</span> <span class="fu">cv.tree</span>(tree1)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.tree1<span class="sc">$</span>size, cv.tree1<span class="sc">$</span>dev, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container callout-body">
+<p>Nos modelos baseados em árvores não é necessário a normalização dos preditores, uma vez que o processo de particionamento binário recursivo é invariante a escala.</p>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prune1 <span class="ot">&lt;-</span> <span class="fu">prune.tree</span>(tree1, <span class="at">best =</span> <span class="dv">4</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>prune1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Definindo o método. Para árvore de decisão/regressão usa-se <code>decision_tree</code> e sugere-se o pacote <code>rpart</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prune1)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(prune1, <span class="at">cex =</span> <span class="fl">0.6</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tree_model <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">decision_tree</span>(<span class="at">cost_complexity =</span> <span class="fu">tune</span>(),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">tree_depth =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Avaliando modelo podado.</p>
+<p>Definindo o grid para estimar os hiperparâmetros via <code>grid_regular</code>, com 5 níveis para cada hiperparâmetro. O particionamento dos dados é realizado via <code>vfold_cv</code>, para validação cruzada e <em>grid search</em>. Em seguida, define-se o workflow e, por fim, realiza-se a otimização de hiperparâmetros via <code>tune_grid</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred.teste2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(prune1, <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados<span class="sc">$</span>Salary[<span class="sc">-</span>treino], pred.teste2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">tree_depth</span>(),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="dv">5</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>tree_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(tree_model) </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>tree_res <span class="ot">&lt;-</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  tree_wf<span class="sc">|&gt;</span> </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> tree_grid</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Coletando métricas de ajuste na validação cruzada via <code>collect_metrics</code>, filtrando e ordenando por RMSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree_res <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para a métrica <span class="math inline">\(R^2\)</span> deve-se ordenar de forma ascendente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tree_res <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plotando o ajuste na validação cruzada em função dos hiperparâmetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tree_res <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tree_depth =</span> <span class="fu">factor</span>(tree_depth)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_complexity, mean, <span class="at">color =</span> tree_depth)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> .metric, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>()) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Complexidade de Custo"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Média"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Profundidade"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Obtendo o modelo de árvore de regressão final, isto é, com melhores níveis dos hiperparâmetros, sendo ajustado aos dados de treino.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>best_tree <span class="ot">&lt;-</span> tree_res <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># best_tree</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>final_tree_wf <span class="ot">&lt;-</span> tree_wf <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(best_tree)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># final_tree_wf</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar no dataset completo de treino</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>final_tree_fit <span class="ot">&lt;-</span> final_tree_wf <span class="sc">|&gt;</span> </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># final_tree_fit</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Diagrama de árvore do modelo obtido.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tree_model <span class="ot">&lt;-</span> final_tree_fit <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(tree_model, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gráfico de importância de variáveis via redução no erro via novas partições para o modelo de árvore de regressão para prever o preço de apartamentos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>final_tree_fit <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vip</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e ajuste aos dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pred_tree <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(best_wf, dados_teste),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_tree <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> Valor, <span class="at">estimate =</span> .pred)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="bagging" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="bagging"><span class="header-section-number">4.4.2</span> <em>Bagging</em></h3>
+<section id="bagging" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="bagging"><span class="header-section-number">5.4.2</span> <em>Bagging</em></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>bag <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Salary <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino, <span class="at">mtry =</span> <span class="dv">19</span>,</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">importance =</span> <span class="cn">TRUE</span>, <span class="at">ntree =</span> <span class="dv">500</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette) <span class="co"># para bagging</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># function fct_reorder para permutacao</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX) <span class="co"># para vip via permutacao</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Definindo método <em>bagging</em> via <code>bag_tree</code>. Os hiperâmetros possíveis de serem definidos ou otimizados são a profundaide da árvore via <code>tree_depth</code>, o número mínimo de observações por partição via <code>min_n</code> e o <span class="math inline">\(\alpha\)</span> ou complexidade de custo via <code>cost_complexity</code>. O número de <em>bootstraps</em>/árvores é definido ao se selecionar o pacote, via argumento <code>times</code>. Sugere-se usar o pacote <code>rpart</code> para modelos de árvores de decisão/regressão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred.bag <span class="ot">&lt;-</span> <span class="fu">predict</span>(bag, <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados<span class="sc">$</span>Salary[<span class="sc">-</span>treino], pred.bag)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>bag_model <span class="ot">&lt;-</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bag_tree</span>(<span class="at">tree_depth =</span> <span class="fu">tune</span>(), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">cost_complexity =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>, <span class="at">times =</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Grid</em> e particionamento dos dados para validação cruzada e otimização de hiperparâmetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>bag_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">min_n</span>(),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">tree_depth</span>(),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="dv">5</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">v =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Definindo-se o workflow e realizando-se a validação cruzada com <em>grid search</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>bag_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(bag_model) </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>bag_res <span class="ot">&lt;-</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  bag_wf<span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> bag_grid</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># tree_res</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Coletando métricas de ajuste via <code>collect_metrics</code>, filtrando e ordenando por RMSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bag_res <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para a métrica <span class="math inline">\(R^2\)</span> deve-se ordenar de forma ascendente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bag_res <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plotando o ajuste na validação cruzada em função dos hiperparâmetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>bag_res <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tree_depth =</span> <span class="fu">factor</span>(tree_depth),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">min_n      =</span> <span class="fu">factor</span>(min_n),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">.metric    =</span> <span class="fu">recode</span>(.metric, <span class="at">rmse =</span> <span class="st">"RMSE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_complexity, mean, <span class="at">color =</span> min_n, <span class="at">group =</span> min_n)) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(tree_depth),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> label_both) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>()) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extraindo o melhor modelo e avaliando-o nos dados de treino.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>best_bag <span class="ot">&lt;-</span> bag_res <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># best_bag</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>final_bag_wf <span class="ot">&lt;-</span> bag_wf <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(best_bag)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># final_bag_wf</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar no dataset completo de treino</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>final_bag_fit <span class="ot">&lt;-</span> final_bag_wf <span class="sc">|&gt;</span> </span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># final_bag_fit</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para avaliar a importância de variáveis via permutação, sugere-se usar as funções <code>explain</code> e <code>model_parts</code> ambas do pacote <code>DALEX</code>. Com <code>plot(vip_bag)</code> já seria possível plotar um VIP. Entretanto, a função <code>ggplot_imp</code> exposta abaixo, desenvolvida por Kuhn e Silge (2023), viabiliza uma saída mais elegante.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>explainer_bag <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> final_bag_fit,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Valor),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>Valor,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"Bagging"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>ggplot_imp <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  metric_name <span class="ot">&lt;-</span> <span class="fu">attr</span>(obj[[<span class="dv">1</span>]], <span class="st">"loss_name"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  metric_lab <span class="ot">&lt;-</span> <span class="fu">paste</span>(metric_name, </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"depois da permutação"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  full_vip <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(obj) <span class="sc">%&gt;%</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_baseline_"</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  perm_vals <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span> </span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">dropout_loss =</span> <span class="fu">mean</span>(dropout_loss))</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">fct_reorder</span>(variable, dropout_loss)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(dropout_loss, variable)) </span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(obj) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(label)) <span class="sc">+</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss, <span class="at">color =</span> label),</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> label, <span class="at">fill =</span> label), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss),</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#91CBD765"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> metric_lab, </span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="cn">NULL</span>,  <span class="at">fill =</span> <span class="cn">NULL</span>,  <span class="at">color =</span> <span class="cn">NULL</span>)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>vip_bag <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_bag, <span class="at">loss_function =</span> loss_root_mean_square)</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_bag)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e ajuste aos dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pred_bag <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(final_bag_fit, dados_teste),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_bag <span class="sc">|&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> Valor, <span class="at">estimate =</span> .pred)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="random-forest" class="level3" data-number="4.4.3">
-<h3 data-number="4.4.3" class="anchored" data-anchor-id="random-forest"><span class="header-section-number">4.4.3</span> <em>Random Forest</em></h3>
-<p>No caso da foresta aleatória deve-se considerar <code>mtry=k/3</code> para problemas de regressão, sendo sorteadas <span class="math inline">\(m\)</span> <em>features</em> das <span class="math inline">\(k\)</span> disponíveis para serem consideradas no particionamento binário recursivo, de forma a “decorrelacionar” as árvores.</p>
+<section id="random-forest" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="random-forest"><span class="header-section-number">5.4.3</span> <em>Random Forest</em></h3>
+<p>O método random forest é definido via <code>rand_forest</code>. Este método não tem como arumento o custo de complexidade, <span class="math inline">\(\alpha\)</span>, sendo a complexidade da árvore controlada apenas via número mínimo de observações por partição, <code>min_n</code>. O hiperparâmetro m, <code>mtry</code>, define o número máximo de preditores considerados via sorteio em cada particionamento binário, para decorrelacionar as árvores. Por fim, é possível otimizar o número de <em>bootstraps</em>/árvores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Salary <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino, <span class="at">mtry =</span> <span class="dv">6</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">importance =</span> <span class="cn">TRUE</span>, <span class="at">ntree =</span> <span class="dv">500</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rand_forest</span>(<span class="at">mtry =</span> <span class="fu">tune</span>(), </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">min_n =</span> <span class="fu">tune</span>(), </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">trees =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Definindo o <code>grid</code> para floresta aleatória. Deve-se utilizar o comando <code>finalize</code> para o <code>mtry</code>, de forma o grid seja definido considerando o número de prditores, <span class="math inline">\(K\)</span>, no conjunto de dados em análise. Posteriormente, realizam-se as partições nos dados para validação cruzada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rf_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(<span class="fu">mtry</span>(), dados_treino),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min_n</span>(),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">trees</span>(),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">5</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">v =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Definindo workflow e realizando validação cruzada com <em>grid search</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>rf_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rf_model) </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>rf_res <span class="ot">&lt;-</span> </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  rf_wf<span class="sc">|&gt;</span> </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> rf_grid</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># rf_res</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Resultados da validação cruzada por métrica de ajuste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rf_res <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pred.rf <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf, <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados<span class="sc">$</span>Salary[<span class="sc">-</span>treino], pred.rf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rf_res <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="comparando-os-resultados-com-regressão-linear-múltipla" class="level3" data-number="4.4.4">
-<h3 data-number="4.4.4" class="anchored" data-anchor-id="comparando-os-resultados-com-regressão-linear-múltipla"><span class="header-section-number">4.4.4</span> Comparando os resultados com regressão linear múltipla</h3>
+<p>Plotando o ajuste em função dos níveis dos hiperparâmetros.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> ., dados, <span class="at">subset =</span> treino)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rf_res <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mtry =</span> <span class="fu">factor</span>(mtry),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">min_n      =</span> <span class="fu">factor</span>(min_n),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">.metric    =</span> <span class="fu">recode</span>(.metric, <span class="at">rmse =</span> <span class="st">"RMSE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trees, mean, <span class="at">color =</span> min_n, <span class="at">group =</span> min_n)) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(mtry),</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> label_both) <span class="sc">+</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Extraindo melhor modelo de floresta aleatória.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pred.lm <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, <span class="at">newdata =</span> dados[<span class="sc">-</span>treino,])</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(dados<span class="sc">$</span>Salary[<span class="sc">-</span>treino], pred.lm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>best_paramsrf <span class="ot">&lt;-</span> rf_res <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixar o modelo com os melhores parâmetros</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>best_rf <span class="ot">&lt;-</span> <span class="fu">rand_forest</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> best_paramsrf<span class="sc">$</span>mtry,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> best_paramsrf<span class="sc">$</span>min_n,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> best_paramsrf<span class="sc">$</span>trees</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"ranger"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>best_wf_rf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(best_rf) <span class="sc">|&gt;</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Obviamente, há muitas possibilidades para melhorar o modelo de regressão múltipla que não foram consideradas nesta rápida implementação. Por exemplo, as variáveis numéricas não foram escalonadas, pode-se tentar reduzir o modelo com eliminação para trás aplicando a função <code>step</code>. Pode-se testar também os métodos de regessão rígida e LASSO, entre outras possibilidades, como considerar termos de interação e polinomiais. Consegue testar algumas possibilidades?</p>
+<p>VIP para modelo de floresta aleatória.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>explainer_rf <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> best_wf_rf,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Valor),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>Valor,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"Random Forest"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>vip_rf  <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_rf)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_rf)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão e ajuste aos dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pred_rf <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(best_wf_rf, dados_teste),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_rf <span class="sc">|&gt;</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> Valor, <span class="at">estimate =</span> .pred)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="referências" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
-<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
+<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
+<p>Kuhn, M., &amp; Silge, J. (2022). Tidy modeling with R: A framework for modeling in the tidyverse. ” O’Reilly Media, Inc.”.</p>
+</section>
+<section id="exercícios" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.5</span> Exercícios</h2>
+<ol type="1">
+<li><p>Tomando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão por árvore. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo, finalize-o e plote o seu diagrama. Obtenha o VIP e avalie a importância dos preditores. Observe o diagrama de árvore do modelo e veja se faz sentido. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
+<li><p>Tomando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão via <em>bagging</em>. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo e finalize-o. Obtenha o VIP via permutação e avalie a importância dos preditores. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
+<li><p>Tomando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão por floresta aleatória. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo e finalize-o. Obtenha o VIP via permutação e avalie a importância dos preditores. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
+</ol>
 
 
 </section>
@@ -2240,13 +3321,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_vicio_var.html" class="pagination-link" aria-label="Conflito entre vício e variância no aprendizado supervisionado">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span>
+      <a href="./AS_ridge_LASSO.html" class="pagination-link" aria-label="Regressão rígida e LASSO">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_ridge_LASSO.html" class="pagination-link" aria-label="Regressão rígida e LASSO">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
