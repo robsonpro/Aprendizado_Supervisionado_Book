@@ -10030,7 +10030,7 @@ Figura&nbsp;13.13: Curva ROC para os dados de teste do modelo de regressão log�
 </section>
 <section id="regressão-logística-múltipla" class="level3" data-number="13.7.2">
 <h3 data-number="13.7.2" class="anchored" data-anchor-id="regressão-logística-múltipla"><span class="header-section-number">13.7.2</span> Regressão logística múltipla</h3>
-<p>Considernado além do comprimento o raio mínimo, `radius.min``, como preditor.</p>
+<p>Considerando além do comprimento o raio mínimo, <code>radius.min</code>, como preditor.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dadosml2 <span class="ot">&lt;-</span> folhasfrutas <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(especie <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"limao"</span>, <span class="st">"mexerica"</span>)) <span class="sc">|&gt;</span></span>
@@ -10170,6 +10170,33 @@ Figura&nbsp;13.13: Curva ROC para os dados de teste do modelo de regressão log�
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>ml_fit_rid_final <span class="sc">|&gt;</span></span>
 <span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span></span>
 <span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(ml_fit_rid_final, dados_teste3) <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(dados_teste3)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>cm3 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred3, <span class="at">truth =</span> especie, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>cm3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred_completo3 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(ml_fit_rid_final, dados_teste3), <span class="co"># previsao discreta              </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(ml_fit_rid_final, dados_teste3, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  dados_teste3                                       </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo3,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> especie,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>         .pred_cereja, .pred_goiaba, .pred_jabuticaba</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>roc_data3 <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo3, <span class="at">truth =</span> especie, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                       .pred_cereja, .pred_goiaba, .pred_jabuticaba)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

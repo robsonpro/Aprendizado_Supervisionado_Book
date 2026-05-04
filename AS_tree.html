@@ -298,7 +298,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#árvores-para-regressão" id="toc-árvores-para-regressão" class="nav-link" data-scroll-target="#árvores-para-regressão"><span class="header-section-number">5.4.1</span> Árvores para regressão</a></li>
   <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">5.4.2</span> <em>Bagging</em></a></li>
-  <li><a href="#random-forest" id="toc-random-forest" class="nav-link" data-scroll-target="#random-forest"><span class="header-section-number">5.4.3</span> <em>Random Forest</em></a></li>
+  <li><a href="#sec-rfimpl" id="toc-sec-rfimpl" class="nav-link" data-scroll-target="#sec-rfimpl"><span class="header-section-number">5.4.3</span> Floresta aleatória</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.5</span> Exercícios</a></li>
@@ -1069,7 +1069,7 @@ Dica
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, a profundidade da árvore e o número mínimo de observações por partição (<code>min_n</code>).</p>
+<p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, o número máximo de nós terminais ou folhas, <span class="math inline">\(|T|\)</span>, e o número mínimo de observações por partição (<code>min_n</code>).</p>
 </div>
 </div>
 <p>Pode-se realizar uma validação cruzada para otimizar os hiperparâmetros do modelo de árvore de regressão, isto é, definir a profundidade da árvore e a complexidade de custo, <span class="math inline">\(\alpha\)</span>, ideais para os dados em análise e evitar o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> plota o erro em relação a profundidade e a complexidade da árvore. Neste caso, foi considerado <code>min_n = 20</code>. Observa-se que um modelo com profundidade igual a 4 e um valor de complexidade de custo de baixo a intermediário minimiza o erro de teste, isto é, minimiza RMSE ou maximiza <span class="math inline">\(R^2\)</span>.</p>
@@ -2758,8 +2758,8 @@ Importante
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="random-forest" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="random-forest"><span class="header-section-number">5.4.3</span> <em>Random Forest</em></h3>
+<section id="sec-rfimpl" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="sec-rfimpl"><span class="header-section-number">5.4.3</span> Floresta aleatória</h3>
 <p>O método random forest é definido via <code>rand_forest</code>. Este método não tem como arumento o custo de complexidade, <span class="math inline">\(\alpha\)</span>, sendo a complexidade da árvore controlada apenas via número mínimo de observações por partição, <code>min_n</code>. O hiperparâmetro m, <code>mtry</code>, define o número máximo de preditores considerados via sorteio em cada particionamento binário, para decorrelacionar as árvores. Por fim, é possível otimizar o número de <em>bootstraps</em>/árvores.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> </span>
