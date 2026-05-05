@@ -357,7 +357,7 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O erro de treino, <span class="math inline">\(\overline{err} = (1/N)\sum_{i=1}^{N}L(y_i,\hat{h}(\mathbf{x}_i, \mathbf{\alpha}))\)</span>, sempre será maior que o erro de generalização, <span class="math inline">\(Err_\mathcal{T}\)</span>. A forma mais eficiente e prática de estimar o erro de generalização é através da validação cruzada (HASTIE et al., 2009).</p>
+<p>O erro de treino, <span class="math inline">\(\overline{err}\)</span>, sempre será maior que o erro de generalização, <span class="math inline">\(Err_\mathcal{T}\)</span>. A forma mais eficiente e prática de estimar o erro de generalização é através da validação cruzada.</p>
 </div>
 </div>
 </section>
@@ -1692,7 +1692,7 @@ Tabela&nbsp;6.2: Conjunto de dados de preços de Saveiros usados ordenado segund
 <img src="AS_cv_files/figure-html/fig-rmsedobras2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rmsedobras2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.5: Intervalo de confiança para o erro do modelo de regressão rígida versus penalização de encolhimento
+Figura&nbsp;6.5: Intervalo de confiança para a média do erro do modelo de regressão rígida na validação cruzada por V-dobras versus penalização de encolhimento
 </figcaption>
 </figure>
 </div>
@@ -1729,7 +1729,19 @@ Figura&nbsp;6.6: Rsultado do <em>Grid search</em> e validação cruzada para oti
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>É importante recordar que após a realização da validação cruzada e otimização dos hiperparâmetros geralmente recomenda-se estimar o modelo com os hiperparâmetros otimizados em todo o conjunto de dados.</p>
+</div>
+</div>
 </section>
 <section id="implementações-em-r" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">6.8</span> Implementações em R</h2>
