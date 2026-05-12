@@ -286,7 +286,7 @@ window.Quarto = {
 
 <section id="teoria-da-decisão" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="teoria-da-decisão"><span class="header-section-number">12.1</span> Teoria da decisão</h2>
-<p>Seja o problema de previsão de uma variável dependente ou supervisor, <span class="math inline">\(y\)</span>, em função de um vetor <span class="math inline">\(k\)</span>-dimensional de preditores, <span class="math inline">\(\mathbf{x}=[x_1,x_2,...x_k]^T\)</span>. Um problema de classificação é aquele no qual o supervisor é uma variável qualitativa ou categórica <span class="math inline">\(y \in \{c_1,c_2, ..., c_Q\}\)</span>, onde <span class="math inline">\(Q\)</span> é o número de classes. Tomando o caso mais simples, <span class="math inline">\(Q=2\)</span>, tem-se um problema de classificação binária, <span class="math inline">\(y \in \{c_1,c_2\}\)</span>. Nestes casos, para alguns métodos, é apropriado codificar as classes em 0 e 1, <span class="math inline">\(c_1=1\)</span> e <span class="math inline">\(c_2=0\)</span>, enquanto outros métodos adotam a codificação em -1 e 1, <span class="math inline">\(c_1=-1\)</span> e <span class="math inline">\(c_2=+1\)</span>.</p>
+<p>Seja o problema de previsão de uma variável dependente ou resposta, <span class="math inline">\(y\)</span>, em função de um vetor <span class="math inline">\(k\)</span>-dimensional de preditores, <span class="math inline">\(\mathbf{x}=[x_1,x_2,...x_k]^T\)</span>. Um problema de classificação é aquele no qual o supervisor é uma variável qualitativa ou categórica <span class="math inline">\(y \in \{c_1,c_2, ..., c_Q\}\)</span>, onde <span class="math inline">\(Q\)</span> é o número de classes. Tomando o caso mais simples, <span class="math inline">\(Q=2\)</span>, tem-se um problema de classificação binária, <span class="math inline">\(y \in \{c_1,c_2\}\)</span>. Nestes casos, para alguns métodos, é apropriado codificar as classes em 0 e 1, <span class="math inline">\(c_1=1\)</span> e <span class="math inline">\(c_2=0\)</span>, enquanto outros métodos adotam a codificação em -1 e 1, <span class="math inline">\(c_1=-1\)</span> e <span class="math inline">\(c_2=+1\)</span>.</p>
 <p>Existem diversas abordagens usadas para problemas de classificação. Alguns métodos de classificação visam estimar uma função discriminante que assinala diretamente a <span class="math inline">\(i\)</span>-ésima observação a uma classe <span class="math inline">\(c_q\)</span>, <span class="math inline">\(q=1,..., Q\)</span>. Outros visam estimar as probabilidades condicionais, <span class="math inline">\(p(y=c_q|\mathbf{x})\)</span>, isto é, a probabilidade condicional de pertencer a uma determinada classe <span class="math inline">\(c_q\)</span>, dado uma determinada observação dos preditores, <span class="math inline">\(\mathbf{x}\)</span>. A partir de tais probabilidades a decisão é tomada. Os métodos que buscam modelar tais probabilidades ainda se dividem em duas abordagens: No primeiro caso as probabilidades condicionais, <span class="math inline">\(p(y=c_q|\mathbf{x})\)</span>, são modeladas de forma direta, por exemplo, a partir de um modelo paramétrico, sendo os parâmetros do modelo estimados a partir dos dados de treino. No segundo caso tais probabilidades são modeladas usando o teorema de Bayes para calcular a probabilidade posterior dadas uma distribuição à priori, <span class="math inline">\(p(\theta)\)</span>, e a verossimilhança ou probabilidade condicional, <span class="math inline">\(p(y=c_q|\mathbf{x})\)</span>. Para melhor entender ambas abordagens, às quais serão encontradas em métodos distintos, é essencial introduzir alguns conceitos, como o estimador de máxima verossimilhança, máximo à posteriori e o conceito de minimização empírica do erro em problemas de classificação.</p>
 </section>
 <section id="estimador-de-máxima-verossimilhança" class="level2" data-number="12.2">
@@ -378,23 +378,23 @@ Tabela&nbsp;12.1: Matriz de confusão
 </figcaption>
 <div aria-describedby="tbl-confmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fljdfvlnzp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fljdfvlnzp table {
+<div id="vewropkuhz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vewropkuhz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fljdfvlnzp thead, #fljdfvlnzp tbody, #fljdfvlnzp tfoot, #fljdfvlnzp tr, #fljdfvlnzp td, #fljdfvlnzp th {
+#vewropkuhz thead, #vewropkuhz tbody, #vewropkuhz tfoot, #vewropkuhz tr, #vewropkuhz td, #vewropkuhz th {
   border-style: none;
 }
 
-#fljdfvlnzp p {
+#vewropkuhz p {
   margin: 0;
   padding: 0;
 }
 
-#fljdfvlnzp .gt_table {
+#vewropkuhz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -420,12 +420,12 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-left-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_caption {
+#vewropkuhz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fljdfvlnzp .gt_title {
+#vewropkuhz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -437,7 +437,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-bottom-width: 0;
 }
 
-#fljdfvlnzp .gt_subtitle {
+#vewropkuhz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -449,7 +449,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-top-width: 0;
 }
 
-#fljdfvlnzp .gt_heading {
+#vewropkuhz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -461,13 +461,13 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-right-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_bottom_border {
+#vewropkuhz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_col_headings {
+#vewropkuhz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -482,7 +482,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-right-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_col_heading {
+#vewropkuhz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,7 +502,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   overflow-x: hidden;
 }
 
-#fljdfvlnzp .gt_column_spanner_outer {
+#vewropkuhz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -514,15 +514,15 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 4px;
 }
 
-#fljdfvlnzp .gt_column_spanner_outer:first-child {
+#vewropkuhz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fljdfvlnzp .gt_column_spanner_outer:last-child {
+#vewropkuhz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fljdfvlnzp .gt_column_spanner {
+#vewropkuhz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -534,11 +534,11 @@ Tabela&nbsp;12.1: Matriz de confusão
   width: 100%;
 }
 
-#fljdfvlnzp .gt_spanner_row {
+#vewropkuhz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fljdfvlnzp .gt_group_heading {
+#vewropkuhz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -564,7 +564,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   text-align: left;
 }
 
-#fljdfvlnzp .gt_empty_group_heading {
+#vewropkuhz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -579,15 +579,15 @@ Tabela&nbsp;12.1: Matriz de confusão
   vertical-align: middle;
 }
 
-#fljdfvlnzp .gt_from_md > :first-child {
+#vewropkuhz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fljdfvlnzp .gt_from_md > :last-child {
+#vewropkuhz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fljdfvlnzp .gt_row {
+#vewropkuhz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -606,7 +606,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   overflow-x: hidden;
 }
 
-#fljdfvlnzp .gt_stub {
+#vewropkuhz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -619,7 +619,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 5px;
 }
 
-#fljdfvlnzp .gt_stub_row_group {
+#vewropkuhz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -633,15 +633,15 @@ Tabela&nbsp;12.1: Matriz de confusão
   vertical-align: top;
 }
 
-#fljdfvlnzp .gt_row_group_first td {
+#vewropkuhz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fljdfvlnzp .gt_row_group_first th {
+#vewropkuhz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fljdfvlnzp .gt_summary_row {
+#vewropkuhz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -651,16 +651,16 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 5px;
 }
 
-#fljdfvlnzp .gt_first_summary_row {
+#vewropkuhz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_first_summary_row.thick {
+#vewropkuhz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fljdfvlnzp .gt_last_summary_row {
+#vewropkuhz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -670,7 +670,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-bottom-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_grand_summary_row {
+#vewropkuhz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -680,7 +680,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 5px;
 }
 
-#fljdfvlnzp .gt_first_grand_summary_row {
+#vewropkuhz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -690,7 +690,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-top-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_last_grand_summary_row_top {
+#vewropkuhz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -700,11 +700,11 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-bottom-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_striped {
+#vewropkuhz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fljdfvlnzp .gt_table_body {
+#vewropkuhz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -713,7 +713,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-bottom-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_footnotes {
+#vewropkuhz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -727,7 +727,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-right-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_footnote {
+#vewropkuhz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -736,7 +736,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 5px;
 }
 
-#fljdfvlnzp .gt_sourcenotes {
+#vewropkuhz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -750,7 +750,7 @@ Tabela&nbsp;12.1: Matriz de confusão
   border-right-color: #D3D3D3;
 }
 
-#fljdfvlnzp .gt_sourcenote {
+#vewropkuhz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -758,72 +758,72 @@ Tabela&nbsp;12.1: Matriz de confusão
   padding-right: 5px;
 }
 
-#fljdfvlnzp .gt_left {
+#vewropkuhz .gt_left {
   text-align: left;
 }
 
-#fljdfvlnzp .gt_center {
+#vewropkuhz .gt_center {
   text-align: center;
 }
 
-#fljdfvlnzp .gt_right {
+#vewropkuhz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fljdfvlnzp .gt_font_normal {
+#vewropkuhz .gt_font_normal {
   font-weight: normal;
 }
 
-#fljdfvlnzp .gt_font_bold {
+#vewropkuhz .gt_font_bold {
   font-weight: bold;
 }
 
-#fljdfvlnzp .gt_font_italic {
+#vewropkuhz .gt_font_italic {
   font-style: italic;
 }
 
-#fljdfvlnzp .gt_super {
+#vewropkuhz .gt_super {
   font-size: 65%;
 }
 
-#fljdfvlnzp .gt_footnote_marks {
+#vewropkuhz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fljdfvlnzp .gt_asterisk {
+#vewropkuhz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fljdfvlnzp .gt_indent_1 {
+#vewropkuhz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fljdfvlnzp .gt_indent_2 {
+#vewropkuhz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fljdfvlnzp .gt_indent_3 {
+#vewropkuhz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fljdfvlnzp .gt_indent_4 {
+#vewropkuhz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fljdfvlnzp .gt_indent_5 {
+#vewropkuhz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fljdfvlnzp .katex-display {
+#vewropkuhz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fljdfvlnzp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vewropkuhz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
