@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AS_tree.html" rel="next">
+<link href="./AS_ridge_LASSO.html" rel="next">
 <link href="./AS_reg_ols.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -196,14 +196,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1528,10 +1528,10 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O <strong>sobreajuste</strong> ou <em>overfitting</em> consiste em uma alta capacidade de previsão para os dados de treino com concomitante baixa capacidade de previsão para os dados de teste. Geralmente acontece em modelos com alta variância.</p>
+<p>O <strong>sobreajuste</strong> ou <em>overfitting</em> consiste em uma alta capacidade de previsão para os dados de treino com concomitante baixa capacidade de previsão para os dados de teste, estando associado a modelos com alta variância.</p>
 </div>
 </div>
-<p>O melhor modelo seria aquele que apresenta mais proximidade entre os erros para os dados de treinamento e teste, que, no exemplo plotado na <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>, seria o de terceira ordem.</p>
+<p>O melhor modelo seria aquele que apresenta menor erro de teste que, no exemplo plotado na <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>, seria o de terceira ordem.</p>
 </section>
 <section id="implementações-em-r" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">3.2</span> Implementações em R</h2>
@@ -2176,8 +2176,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_tree.html" class="pagination-link" aria-label="Regressão por árvores de decisão e floresta aleatória">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_ridge_LASSO.html" class="pagination-link" aria-label="Regressão rígida e LASSO">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
