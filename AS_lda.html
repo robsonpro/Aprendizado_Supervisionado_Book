@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>14&nbsp; Classificação via análise discriminante – Aprendizado Supervisionado com implementações em R</title>
+<title>15&nbsp; Classificação via análise discriminante – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./AS_svm.html" rel="next">
-<link href="./AS_logreg.html" rel="prev">
+<link href="./AS_treec.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_lda.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_lda.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,14 +196,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -282,19 +282,38 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#análise-discriminante-linear-binária-simples" id="toc-análise-discriminante-linear-binária-simples" class="nav-link active" data-scroll-target="#análise-discriminante-linear-binária-simples"><span class="header-section-number">14.1</span> Análise discriminante linear binária simples</a>
+  <li><a href="#análise-discriminante-linear-binária-simples" id="toc-análise-discriminante-linear-binária-simples" class="nav-link active" data-scroll-target="#análise-discriminante-linear-binária-simples"><span class="header-section-number">15.1</span> Análise discriminante linear binária simples</a>
   <ul class="collapse">
-  <li><a href="#analogia-com-a-regressão-logística" id="toc-analogia-com-a-regressão-logística" class="nav-link" data-scroll-target="#analogia-com-a-regressão-logística"><span class="header-section-number">14.1.1</span> Analogia com a regressão logística</a></li>
-  <li><a href="#função-linear-discriminante-de-ficher" id="toc-função-linear-discriminante-de-ficher" class="nav-link" data-scroll-target="#função-linear-discriminante-de-ficher"><span class="header-section-number">14.1.2</span> Função linear discriminante de Ficher</a></li>
+  <li><a href="#analogia-com-a-regressão-logística" id="toc-analogia-com-a-regressão-logística" class="nav-link" data-scroll-target="#analogia-com-a-regressão-logística"><span class="header-section-number">15.1.1</span> Analogia com a regressão logística</a></li>
+  <li><a href="#função-linear-discriminante-de-ficher" id="toc-função-linear-discriminante-de-ficher" class="nav-link" data-scroll-target="#função-linear-discriminante-de-ficher"><span class="header-section-number">15.1.2</span> Função linear discriminante de Ficher</a></li>
+  <li><a href="#discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura" id="toc-discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura" class="nav-link" data-scroll-target="#discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura"><span class="header-section-number">15.1.3</span> Discriminação linear de feijões branco e carioca considerando a espessura</a></li>
   </ul></li>
-  <li><a href="#lda-para-k-variáveis-independentes-e-duas-classes" id="toc-lda-para-k-variáveis-independentes-e-duas-classes" class="nav-link" data-scroll-target="#lda-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">14.2</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</a></li>
-  <li><a href="#lda-para-k-variáveis-independentes-e-três-ou-mais-classes" id="toc-lda-para-k-variáveis-independentes-e-três-ou-mais-classes" class="nav-link" data-scroll-target="#lda-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">14.3</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</a></li>
-  <li><a href="#análise-discriminante-quadrática" id="toc-análise-discriminante-quadrática" class="nav-link" data-scroll-target="#análise-discriminante-quadrática"><span class="header-section-number">14.4</span> Análise discriminante quadrática</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">14.5</span> Implementações em R</a>
+  <li><a href="#análise-discriminante-linear-para-k-variáveis-independentes-e-duas-classes" id="toc-análise-discriminante-linear-para-k-variáveis-independentes-e-duas-classes" class="nav-link" data-scroll-target="#análise-discriminante-linear-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">15.2</span> Análise discriminante linear para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</a>
   <ul class="collapse">
-  <li><a href="#análise-linear-discriminante" id="toc-análise-linear-discriminante" class="nav-link" data-scroll-target="#análise-linear-discriminante"><span class="header-section-number">14.5.1</span> Análise linear discriminante</a></li>
-  <li><a href="#análise-discriminante-quadrática-1" id="toc-análise-discriminante-quadrática-1" class="nav-link" data-scroll-target="#análise-discriminante-quadrática-1"><span class="header-section-number">14.5.2</span> Análise discriminante quadrática</a></li>
+  <li><a href="#discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura-e-a-largura" id="toc-discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura-e-a-largura" class="nav-link" data-scroll-target="#discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.2.1</span> Discriminação linear de feijões branco e carioca considerando a espessura e a largura</a></li>
   </ul></li>
+  <li><a href="#análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes" id="toc-análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes" class="nav-link" data-scroll-target="#análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">15.3</span> Análise linear discriminante para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</a>
+  <ul class="collapse">
+  <li><a href="#discriminação-linear-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" id="toc-discriminação-linear-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="nav-link" data-scroll-target="#discriminação-linear-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.3.1</span> Discriminação linear de feijões branco, carioca e vermelho considerando a espessura e a largura</a></li>
+  </ul></li>
+  <li><a href="#análise-discriminante-quadrática" id="toc-análise-discriminante-quadrática" class="nav-link" data-scroll-target="#análise-discriminante-quadrática"><span class="header-section-number">15.4</span> Análise discriminante quadrática</a>
+  <ul class="collapse">
+  <li><a href="#discriminação-quadrática-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" id="toc-discriminação-quadrática-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="nav-link" data-scroll-target="#discriminação-quadrática-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.4.1</span> Discriminação quadrática de feijões branco, carioca e vermelho considerando a espessura e a largura</a></li>
+  </ul></li>
+  <li><a href="#sec-rda" id="toc-sec-rda" class="nav-link" data-scroll-target="#sec-rda"><span class="header-section-number">15.5</span> Análise discriminante regularizada</a>
+  <ul class="collapse">
+  <li><a href="#discriminação-regularizada-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" id="toc-discriminação-regularizada-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="nav-link" data-scroll-target="#discriminação-regularizada-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.5.1</span> Discriminação regularizada de feijões branco, carioca e vermelho considerando a espessura e a largura</a></li>
+  </ul></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">15.6</span> Implementações em R</a>
+  <ul class="collapse">
+  <li><a href="#análise-discriminante-linear-binária-simples-1" id="toc-análise-discriminante-linear-binária-simples-1" class="nav-link" data-scroll-target="#análise-discriminante-linear-binária-simples-1"><span class="header-section-number">15.6.1</span> Análise discriminante linear binária simples</a></li>
+  <li><a href="#análise-discriminante-linear-binária-múltipla" id="toc-análise-discriminante-linear-binária-múltipla" class="nav-link" data-scroll-target="#análise-discriminante-linear-binária-múltipla"><span class="header-section-number">15.6.2</span> Análise discriminante linear binária múltipla</a></li>
+  <li><a href="#análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes-1" id="toc-análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes-1" class="nav-link" data-scroll-target="#análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes-1"><span class="header-section-number">15.6.3</span> Análise linear discriminante para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</a></li>
+  <li><a href="#análise-discriminante-quadrática-1" id="toc-análise-discriminante-quadrática-1" class="nav-link" data-scroll-target="#análise-discriminante-quadrática-1"><span class="header-section-number">15.6.4</span> Análise discriminante quadrática</a></li>
+  <li><a href="#análise-discriminante-regularizada" id="toc-análise-discriminante-regularizada" class="nav-link" data-scroll-target="#análise-discriminante-regularizada"><span class="header-section-number">15.6.5</span> Análise discriminante regularizada</a></li>
+  </ul></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">15.7</span> Referências</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">15.8</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -303,7 +322,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></h1>
 </div>
 
 
@@ -326,17 +345,17 @@ window.Quarto = {
 </header>
 
 
-<section id="análise-discriminante-linear-binária-simples" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="análise-discriminante-linear-binária-simples"><span class="header-section-number">14.1</span> Análise discriminante linear binária simples</h2>
-<p>A análise linear discriminante é um método de estatística multivariada concebido por Fisher, usado para classificação. Seja um problema de classificação binária de um supervisor de interesse, <span class="math inline">\(y=\{1,2\}\)</span> em função de uma variável independente, <span class="math inline">\(x \in \mathcal{R}\)</span>. Pelo teorema de Bayes, pode-se trabalhar a probabilidade condicional de <span class="math inline">\(y\)</span> pertencer a uma classe de interesse dado um valor de <span class="math inline">\(x\)</span>, por exemplo, <span class="math inline">\(p(y=1|x)\)</span>, conforme <a href="#eq-bayes" class="quarto-xref">Equação&nbsp;<span>14.1</span></a>.</p>
+<section id="análise-discriminante-linear-binária-simples" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="análise-discriminante-linear-binária-simples"><span class="header-section-number">15.1</span> Análise discriminante linear binária simples</h2>
+<p>A análise discriminante linear é um método de estatística multivariada concebido por Fisher, comumente usado para classificação ou discriminação entre variáveis categóricas. Seja um problema de classificação binária de um supervisor de interesse, <span class="math inline">\(y=\{1,2\}\)</span> em função de uma variável independente, <span class="math inline">\(x \in \mathbb{R}\)</span>. Pelo teorema de Bayes, pode-se trabalhar a probabilidade condicional de <span class="math inline">\(y\)</span> pertencer a uma classe de interesse dado um valor de <span class="math inline">\(x\)</span>, por exemplo, <span class="math inline">\(p(y=1|x)\)</span>, conforme <a href="#eq-bayes" class="quarto-xref">Equação&nbsp;<span>15.1</span></a>,</p>
 <p><span id="eq-bayes"><span class="math display">\[
-p(y=1|x) =  \frac{p(x|y=1)p(y=1)}{p(x)}
-\tag{14.1}\]</span></span></p>
-<p>Onde <span class="math inline">\(p(x|y=1)\)</span> é a verossimilhança que consiste na probabilidade de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span> é verdade, podendo ser aproximada pela função densidade de probabilidade de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>. <span class="math inline">\(p(y=1)\)</span> seria a probabilidade de <span class="math inline">\(y\)</span> pertencer à classe 1, a qual pode ser estimada a partir da proporção dos dados de treino correspondentes. Por fim, <span class="math inline">\(p(x)\)</span> seria a probabilidade da variável independente, que pode ser aproximada pela lei da probabilidade total e será constante e independente das classes. Tomando a distribuição normal, a verossimilhança pode ser aproximada conforme <a href="#eq-veross" class="quarto-xref">Equação&nbsp;<span>14.2</span></a>, onde <span class="math inline">\(\mu_1\)</span> e <span class="math inline">\(\sigma_1\)</span> são, respectivamente, a média e o desvio-padrão da distribuição de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>, os quais podem ser aproximados por dados amostrais.</p>
+p(y=1|x) =  \frac{p(x|y=1)p(y=1)}{p(x)},
+\tag{15.1}\]</span></span></p>
+<p>onde <span class="math inline">\(p(x|y=1)\)</span> é a verossimilhança, a qual consiste na probabilidade de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>, podendo ser aproximada pela função densidade de probabilidade de <span class="math inline">\(x\)</span> para <span class="math inline">\(y=1\)</span>. <span class="math inline">\(p(y=1)\)</span> seria a probabilidade de <span class="math inline">\(y\)</span> pertencer à classe 1, a qual pode ser estimada a partir da proporção dos dados de treino correspondentes. Por fim, <span class="math inline">\(p(x)\)</span> seria a probabilidade da variável independente, que pode ser aproximada pela lei da probabilidade total e será constante e independente das classes, não influenciando nos resultados. Tomando a distribuição normal, a verossimilhança pode ser aproximada conforme <a href="#eq-veross" class="quarto-xref">Equação&nbsp;<span>15.2</span></a>, onde <span class="math inline">\(\mu_1\)</span> e <span class="math inline">\(\sigma_1\)</span> são, respectivamente, a média e o desvio-padrão da distribuição de <span class="math inline">\(x\)</span> dado que <span class="math inline">\(y=1\)</span>, os quais podem ser aproximados por dados amostrais.</p>
 <p><span id="eq-veross"><span class="math display">\[
 p(x|y=1)=f_1(x)=\frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{1}{2}\bigl(\frac{x-\mu_1}{\sigma_1}\bigr)^2}
-\tag{14.2}\]</span></span></p>
-<p>A análise discriminante linear considera que as distribuições de <span class="math inline">\(x\)</span> para as classes de interesse apresentam igual variabilidade, <span class="math inline">\(\sigma=\sigma_1=\sigma_2\)</span>. No caso de problemas de classificação deseja-se ao final saber o valor de <span class="math inline">\(x\)</span> que discrimina as classes de interesse. A <a href="#fig-twoclass" class="quarto-xref">Figura&nbsp;<span>14.1</span></a> exibe dados de duas classes distintas em função de uma única variável regressora e as densidades teóricas correspondentes de <span class="math inline">\(x\)</span> para cada uma das classes.</p>
+\tag{15.2}\]</span></span></p>
+<p>A análise discriminante linear pressupõe que as distribuições de <span class="math inline">\(x\)</span> para as classes de interesse apresentam igual variabilidade, <span class="math inline">\(\sigma=\sigma_1=\sigma_2\)</span>. No caso de problemas de classificação, deseja-se ao final saber o valor de <span class="math inline">\(x\)</span> que discrimina, ou seja, separa as classes de interesse. A <a href="#fig-twoclass" class="quarto-xref">Figura&nbsp;<span>15.1</span></a> exibe dados de duas classes distintas em função de uma única variável regressora e as densidades teóricas correspondentes de <span class="math inline">\(x\)</span> para cada uma das classes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-twoclass" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -345,47 +364,47 @@ p(x|y=1)=f_1(x)=\frac{1}{\sqrt{2\pi}\sigma_1}e^{-\frac{1}{2}\bigl(\frac{x-\mu_1}
 <img src="AS_lda_files/figure-html/fig-twoclass-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoclass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.1: Observações e densidades teóricas de duas classes em função de uma variável
+Figura&nbsp;15.1: Observações e densidades teóricas de duas classes em função de uma variável
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se observar que a análise discriminante linear considera <span class="math inline">\(\sigma_1=\sigma_2=\sigma\)</span>, ou seja, o desvio-padrão e, consequentemente, a variância é constante para as classes. Aplicando os conceitos explicados na formulação inicial obtém-se a <a href="#eq-py1" class="quarto-xref">Equação&nbsp;<span>14.3</span></a>.</p>
+<p>Aplicando-se os conceitos explicados na formulação inicial, obtém-se a <a href="#eq-py1" class="quarto-xref">Equação&nbsp;<span>15.3</span></a>.</p>
 <p><span id="eq-py1"><span class="math display">\[
 p(y=1|x) =  \frac{p(y=1)\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\bigl(\frac{x-\mu_1}{\sigma}\bigr)^2}}{p(x)}
-\tag{14.3}\]</span></span></p>
-<p>Assim como na regressão logística, pode-se usar o log da razão de chance para facilitar a discriminação, conforme <a href="#eq-logdds" class="quarto-xref">Equação&nbsp;<span>14.4</span></a>. O logaritmo facilita a separação dos produtos e da razão em soma e subtração, respectivamente.</p>
+\tag{15.3}\]</span></span></p>
+<p>Assim como na regressão logística, pode-se usar o log da razão de chance para facilitar a discriminação, conforme <a href="#eq-logdds" class="quarto-xref">Equação&nbsp;<span>15.4</span></a>. O logaritmo facilita a separação dos produtos e da razão em soma e subtração, respectivamente.</p>
 <p><span id="eq-logdds"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \text{ln } \biggl(\frac{f_1(x)}{f_2(x)}\frac{p(y=1)}{p(y=2)}\biggr) \\
 &amp; =\text{ln } \frac{f_1(x)}{f_2(x)}+ \text{ln }\frac{p(y=1)}{p(y=2)} \\
 \end{align}
-\tag{14.4}\]</span></span></p>
-<p>Supondo o equilíbro entre as classes, <span class="math inline">\(\text{ln }\frac{p(y=1)}{p(y=2)} = 0\)</span>. Logo, obtém-se o resultado da <a href="#eq-logdds2" class="quarto-xref">Equação&nbsp;<span>14.5</span></a>.</p>
+\tag{15.4}\]</span></span></p>
+<p>Supondo o equilíbro entre as classes, <span class="math inline">\(\text{ln }\frac{p(y=1)}{p(y=2)} = 0\)</span>. Logo, obtém-se o resultado da <a href="#eq-logdds2" class="quarto-xref">Equação&nbsp;<span>15.5</span></a>.</p>
 <p><span id="eq-logdds2"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \text{ln }  \frac{\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu_1)^2}{\sigma}}{\frac{1}{\sqrt{2\pi}\sigma}e^\frac{-(x-\mu_2)^2}{\sigma}}
 \end{align}
-\tag{14.5}\]</span></span></p>
-<p>Fazendo as devidas simplificações, obtém-se a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.6</span></a>.</p>
+\tag{15.5}\]</span></span></p>
+<p>Fazendo as devidas simplificações, obtém-se a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>15.6</span></a>.</p>
 <p><span id="eq-logdds3"><span class="math display">\[
 \begin{align}
 \text{ln } \biggl(\frac{p(y=1|x)}{p(y=2|x)}\biggr) &amp; = \frac{\mu_2^2-\mu_1^2}{2\sigma^2} + x\frac{\mu_1-\mu_2}{\sigma^2}
 \end{align}
-\tag{14.6}\]</span></span></p>
-<p>Se o log da razão de chance for maior que 0, então classifica-se <span class="math inline">\(y\)</span> como pertencente à classe 1. Se, ao contrário, for menor que 0, <span class="math inline">\(y\)</span> é classificado para a classe 2. As estimativas da média condicional e da variância comum são calculadas conforme <a href="#eq-condstats" class="quarto-xref">Equação&nbsp;<span>14.7</span></a>, onde <span class="math inline">\(c = {1,2}\)</span> e o número de classes <span class="math inline">\(C=2\)</span> para o caso binário.</p>
+\tag{15.6}\]</span></span></p>
+<p>Se o log da razão de chance for maior que 0, classifica-se <span class="math inline">\(y\)</span> como pertencente à classe 1. Se, ao contrário, for menor que 0, <span class="math inline">\(y\)</span> é classificado para a classe 2. As estimativas da média condicional e da variância comum são calculadas conforme <a href="#eq-condstats" class="quarto-xref">Equação&nbsp;<span>15.7</span></a>, onde <span class="math inline">\(c = {1,2}\)</span> para o caso binário.</p>
 <p><span id="eq-condstats"><span class="math display">\[
 \begin{align}
 \hat{\mu}_c &amp; = \frac{1}{n_c}\sum_{i:y_i=c}x_i \\
 \hat{\sigma}^2 &amp;=\frac{1}{n-C}\sum_{c=1}^C\sum_{i:y_i=c}(x_i-\hat{\mu}_i)^2 \\
 \end{align}
-\tag{14.7}\]</span></span></p>
-<p>Considerando o log da razão de chance nulo e resolvendo para <span class="math inline">\(x\)</span> a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>14.6</span></a>, pode-se obter a fronteira de decisão pela <a href="#eq-decfront" class="quarto-xref">Equação&nbsp;<span>14.8</span></a>, que no caso simples consiste na média das médias da variável independente condicional às classes.</p>
+\tag{15.7}\]</span></span></p>
+<p>Considerando o log da razão de chance nulo e resolvendo para <span class="math inline">\(x\)</span> a <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>15.6</span></a>, pode-se obter a fronteira de decisão, <span class="math inline">\(x^*\)</span>, pela <a href="#eq-decfront" class="quarto-xref">Equação&nbsp;<span>15.8</span></a> que, no caso simples, consiste na média das médias da variável independente condicional às classes.</p>
 <p><span id="eq-decfront"><span class="math display">\[
-x=\frac{\mu_1+\mu_2}{2}
-\tag{14.8}\]</span></span></p>
-<p>Neste sentido, pode-se retomar o exemplo plotado anteriormente com a fronteira de decisão na <a href="#fig-decfront" class="quarto-xref">Figura&nbsp;<span>14.2</span></a>. Pode-se observar que a fronteira maximiza as probabilidades de verdadeiros positivos e negativos e minimiza as probabilidades de falsos positivo e negativo.</p>
+x^*=\frac{\mu_1+\mu_2}{2}
+\tag{15.8}\]</span></span></p>
+<p>Neste sentido, pode-se retomar o exemplo plotado anteriormente com a fronteira de decisão na <a href="#fig-decfront" class="quarto-xref">Figura&nbsp;<span>15.2</span></a>. Pode-se observar que a fronteira maximiza as probabilidades de verdadeiros positivos e negativos e minimiza as probabilidades de falsos positivo e negativo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-decfront" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -394,44 +413,63 @@ x=\frac{\mu_1+\mu_2}{2}
 <img src="AS_lda_files/figure-html/fig-decfront-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decfront-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.2: Fronteira de decisão para análise discriminante linear simples
+Figura&nbsp;15.2: Fronteira de decisão para análise discriminante linear simples
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="analogia-com-a-regressão-logística" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="analogia-com-a-regressão-logística"><span class="header-section-number">14.1.1</span> Analogia com a regressão logística</h3>
-<p>Tomando novamente o logaritmo da razão de chance, os coeficientes de regressão logística podem ser definidos com base nestes parâmetros segundo a <a href="#eq-ldalogr" class="quarto-xref">Equação&nbsp;<span>14.9</span></a>, de forma que os resultados dos dois classificadores são análogos.</p>
+<section id="analogia-com-a-regressão-logística" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="analogia-com-a-regressão-logística"><span class="header-section-number">15.1.1</span> Analogia com a regressão logística</h3>
+<p>É possível deduzir os coeficientes do modelo de regressão logística binária simples a partir dos resultados expostos da análise discriminante linear . Tomando novamente o logaritmo da razão de chance da <a href="#eq-logdds3" class="quarto-xref">Equação&nbsp;<span>15.6</span></a> e comparando com a mesma relação obtida na regressão logística, exposta na <a href="AS_logreg.html#eq-lnodds" class="quarto-xref">Equação&nbsp;<span>13.4</span></a>, os coeficientes de regressão logística podem ser definidos com base nos resultados da análise discriminante linear segundo a <a href="#eq-ldalogr" class="quarto-xref">Equação&nbsp;<span>15.9</span></a>, de forma que os resultados dos dois classificadores são análogos.</p>
 <p><span id="eq-ldalogr"><span class="math display">\[
 \begin{align}
 \beta_0 &amp;= \frac{\mu_2^2-\mu_1^2}{2\sigma^2} \\
 \beta_1 &amp;= \frac{\mu_1-\mu_2}{\sigma^2} \\
 \end{align}
-\tag{14.9}\]</span></span></p>
+\tag{15.9}\]</span></span></p>
 </section>
-<section id="função-linear-discriminante-de-ficher" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="função-linear-discriminante-de-ficher"><span class="header-section-number">14.1.2</span> Função linear discriminante de Ficher</h3>
-<p>Fisher também determinou uma função linear discriminante, a qual visa maximizar a variância entre os grupos relativamente à variância comum dentro dos grupos. A função é expressa na <a href="#eq-discfunc" class="quarto-xref">Equação&nbsp;<span>14.10</span></a>, consistindo no termo do log da razão de chance que contém <span class="math inline">\(x\)</span>.</p>
+<section id="função-linear-discriminante-de-ficher" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="função-linear-discriminante-de-ficher"><span class="header-section-number">15.1.2</span> Função linear discriminante de Ficher</h3>
+<p>Fisher também determinou uma função linear discriminante, a qual visa maximizar a variância entre os grupos relativamente à variância comum dentro dos grupos. A função é expressa na <a href="#eq-discfunc" class="quarto-xref">Equação&nbsp;<span>15.10</span></a>, consistindo no termo do log da razão de chance que contém <span class="math inline">\(x\)</span>. Classifica-se <span class="math inline">\(y\)</span> para classe 1 se, <span class="math inline">\(u(x) \geq u(x^*)\)</span> e para a classe 2, caso contrário.</p>
 <p><span id="eq-discfunc"><span class="math display">\[
 u(x) = \frac{\mu_1-\mu_2}{\sigma^2}x
-\tag{14.10}\]</span></span></p>
+\tag{15.10}\]</span></span></p>
+</section>
+<section id="discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura"><span class="header-section-number">15.1.3</span> Discriminação linear de feijões branco e carioca considerando a espessura</h3>
+<p>A <a href="#fig-feijaobin" class="quarto-xref">Figura&nbsp;<span>15.3</span></a> apresenta as densidades amostrais da espessura de feijões branco e carioca. Observa-se que a variância da espessura das duas espécies é similar.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-feijaobin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-feijaobin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-feijaobin-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaobin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.3: Distribuições amostrais da espessura de feijões branco e carioca
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Toamando 80% dos dados para treino, obtém-se um modelo de análise discriminante linear com <span class="math inline">\(x^* = 5,84\)</span> e coeficiente discriminante linear <span class="math inline">\((\mu_1-\mu_2)/\sigma=1,98\)</span>.</p>
 </section>
 </section>
-<section id="lda-para-k-variáveis-independentes-e-duas-classes" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="lda-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">14.2</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</h2>
-<p>Seja o caso onde deseja-se realizar uma classificação binária em função de <span class="math inline">\(k\)</span> variáveis independentes, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>. Tais variáveis podem ser condensadas em um vetor <span class="math inline">\(k\)</span>-dimensional, <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span>. O teorema de Bayes pode ser novamente usado, porém a verossimilhança será expressa pela função densidade de probabilidade multivariada, que no caso normal, considerando a classe <span class="math inline">\(y=1\)</span>, consiste na <a href="#eq-vermult" class="quarto-xref">Equação&nbsp;<span>14.11</span></a>.</p>
+<section id="análise-discriminante-linear-para-k-variáveis-independentes-e-duas-classes" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="análise-discriminante-linear-para-k-variáveis-independentes-e-duas-classes"><span class="header-section-number">15.2</span> Análise discriminante linear para <span class="math inline">\(k\)</span> variáveis independentes e duas classes</h2>
+<p>Seja o caso onde deseja-se realizar uma classificação binária em função de <span class="math inline">\(k\)</span> variáveis independentes, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>. Tais variáveis podem ser condensadas em um vetor <span class="math inline">\(k\)</span>-dimensional, <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span>. O teorema de Bayes pode ser novamente usado, porém a verossimilhança será expressa pela função densidade de probabilidade multivariada que, no caso normal, considerando a classe <span class="math inline">\(y=1\)</span>, consiste na <a href="#eq-vermult" class="quarto-xref">Equação&nbsp;<span>15.11</span></a>.</p>
 <p><span id="eq-vermult"><span class="math display">\[
 p(\mathbf{x}|y=1)=f_1(\mathbf{x})=\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_1)^T\Sigma^{-1}(\mathbf{x}-\mu_1)}
-\tag{14.11}\]</span></span></p>
-<p>Na função de densidade normal multivariada, <span class="math inline">\(\mu_1\)</span> consiste no vetor de médias para as <span class="math inline">\(k\)</span> variáveis independentes, condicional a <span class="math inline">\(y=1\)</span>, <span class="math inline">\(\mu_1 = [\bar{x}_{1,y=1},\bar{x}_{2,y=1},...,\bar{x}_{k,y=1}]^T\)</span> e <span class="math inline">\(\Sigma\)</span> consiste na matriz de covariância comum às duas classes, segundo <a href="#eq-covmat" class="quarto-xref">Equação&nbsp;<span>14.12</span></a>.</p>
+\tag{15.11}\]</span></span></p>
+<p>Na função de densidade normal multivariada, <span class="math inline">\(\mu_1\)</span> consiste no vetor de médias para as <span class="math inline">\(k\)</span> variáveis independentes, condicional a <span class="math inline">\(y=1\)</span>, <span class="math inline">\(\mu_1 = [\bar{x}_{1,y=1},\bar{x}_{2,y=1},...,\bar{x}_{k,y=1}]^T\)</span> e <span class="math inline">\(\Sigma\)</span> consiste na matriz de covariância comum às duas classes, definida segundo <a href="#eq-covmat" class="quarto-xref">Equação&nbsp;<span>15.12</span></a> para o caso onde <span class="math inline">\(k=2\)</span> regressores, com <span class="math inline">\(\sigma_{12}\)</span> consistindo na covariância entre <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>.</p>
 <p><span id="eq-covmat"><span class="math display">\[
 \Sigma = \biggl[ \begin{matrix}
 \sigma_1^2 &amp; \sigma_{12} \\
 \sigma_{21} &amp; \sigma_2^2
 \end{matrix} \biggr]
-\tag{14.12}\]</span></span></p>
-<p>A <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> plota densidades bivariadas de dados de um caso de classificação binária.</p>
+\tag{15.12}\]</span></span></p>
+<p>A <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>15.4</span></a> plota densidades bivariadas de dados de um caso de classificação binária.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-denbivbin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -440,17 +478,17 @@ p(\mathbf{x}|y=1)=f_1(\mathbf{x})=\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{
 <img src="AS_lda_files/figure-html/fig-denbivbin-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivbin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.3: Densidades teóricas de duas classes em função de duas variáveis
+Figura&nbsp;15.4: Densidades teóricas de duas classes em função de duas variáveis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Sem a necessidade de repetir as deduções anteriores, pode-se escrever o log da razão de chance para o caso multivariado conforme <a href="#eq-oddsratiomult" class="quarto-xref">Equação&nbsp;<span>14.13</span></a>. Se o logit for maior que 0, então y=1. De forma análoga pode-se considerar a função discriminante como parte do logit que é função de <span class="math inline">\(\mathbf{x}\)</span>.</p>
+<p>Sem a necessidade de repetir as deduções anteriores, pode-se escrever o log da razão de chance para o caso multivariado conforme <a href="#eq-oddsratiomult" class="quarto-xref">Equação&nbsp;<span>15.13</span></a>. Se o logit for maior que 0, então <span class="math inline">\(y=1\)</span>. De forma análoga, pode-se considerar a função discriminante como parte do logit que é função de <span class="math inline">\(\mathbf{x}\)</span>.</p>
 <p><span id="eq-oddsratiomult"><span class="math display">\[
 \text{ln } \biggl(\frac{p(y=1|\mathbf{x})}{p(y=2|\mathbf{x})}\biggr) = (\mu_1-\mu_2)^T\Sigma^{-1}\mathbf{x} - \frac{1}{2}(\mu_1-\mu_2)^T\Sigma^{-1}(\mu_1+\mu_2)
-\tag{14.13}\]</span></span></p>
-<p>Na <a href="#fig-denbivbin2" class="quarto-xref">Figura&nbsp;<span>14.4</span></a> o exemplo plotado na <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> é novamente exibido em curvas de contorno com a fronteira obtida para discriminar as classes, além dos dados amostrais considerados.</p>
+\tag{15.13}\]</span></span></p>
+<p>Na <a href="#fig-denbivbin2" class="quarto-xref">Figura&nbsp;<span>15.5</span></a> o exemplo plotado na <a href="#fig-denbivbin" class="quarto-xref">Figura&nbsp;<span>15.4</span></a> é novamente exibido em curvas de contorno com a fronteira obtida para discriminar as classes, além dos dados amostrais considerados.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-denbivbin2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -459,617 +497,114 @@ Figura&nbsp;14.3: Densidades teóricas de duas classes em função de duas vari�
 <img src="AS_lda_files/figure-html/fig-denbivbin2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivbin2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.4: Fronteira de discriminação binária para caso em função de duas variáveis
+Figura&nbsp;15.5: Fronteira de discriminação binária para caso em função de duas variáveis
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A função discriminante linear para o caso de múltiplas variáveis independentes e duas classes é definida na <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.14</span></a>.</p>
+<p>A função discriminante linear para o caso de múltiplas variáveis independentes e duas classes é definida na <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>15.14</span></a>.</p>
 <p><span id="eq-discfuncc"><span class="math display">\[
-u(x) = (\mu_1-\mu_2)\Sigma^{-1}\mathbf x
-\tag{14.14}\]</span></span></p>
+u(x) = (\mu_1-\mu_2)^T\Sigma^{-1}\mathbf x
+\tag{15.14}\]</span></span></p>
+<p>Em aplicações práticas as matrizes de covariância das classes não serão exatamente iguais. Logo, deve-se estimar uma matriz de covariância ponderada a partir dos dados de treino, conforme <a href="#eq-condstatsk3" class="quarto-xref">Equação&nbsp;<span>15.15</span></a>.</p>
+<p><span id="eq-condstatsk3"><span class="math display">\[
+\hat{\Sigma} = \frac{\sum_{c=1}^{C}\sum_{i:g_i=k}
+(\mathbf{x}_i - \hat{\mu}_c)
+(\mathbf{x}_i - \hat{\mu}_c)^T}{N - C} \\
+\tag{15.15}\]</span></span></p>
+<section id="discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura-e-a-largura" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="discriminação-linear-de-feijões-branco-e-carioca-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.2.1</span> Discriminação linear de feijões branco e carioca considerando a espessura e a largura</h3>
+<p>Seja o caso onde consideram-se dois preditores, a saber: espessura e largura, para classificar feijóes branco e carioca. A <a href="#fig-feijaobink2" class="quarto-xref">Figura&nbsp;<span>15.6</span></a> apresenta as distribuições amostrais, diagrama de dispersão e correlações entre tais medidas para as duas espécies. Observa-se boa proximidade entre as variabilidades individuais e conjuntas, justificando ainda o uso da análise linear discriminante. Tomando 80% de observações de treino, a função discriminante neste caso é <span class="math inline">\(-0,13x_1 -2,49x_2=0\)</span>, sendo plotada na <a href="#fig-feijabifront" class="quarto-xref">Figura&nbsp;<span>15.7</span></a> com os dados de teste.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-feijaobink2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-feijaobink2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-feijaobink2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaobink2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.6: Distribuições amostrais de espessura e largura de feijões branco e carioca e correlação entre tais preditores
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-feijabifront" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-feijabifront-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-feijabifront-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijabifront-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.7: Discriminação de feijões branco e carioca em função da espessura e largura
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="lda-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">14.3</span> LDA para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</h2>
-<p>No caso de três ou mais classes é conveniente trabalhar uma função discriminante a partir do teorema de Bayes, sem uso da razão de chance. Tomando apenas o numerador, uma vez que o denominador é constante à todas as classes, tem-se para a <span class="math inline">\(c\)</span>-ésima classe a probabilidade condicional de pertencer a <span class="math inline">\(c\)</span> conforme <span class="quarto-unresolved-ref">?eq-eq-pcondc</span>, <span class="math inline">\(c=1,2,...,C\)</span>.</p>
+</section>
+<section id="análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes"><span class="header-section-number">15.3</span> Análise linear discriminante para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</h2>
+<p>No caso de três ou mais classes, é conveniente trabalhar uma função discriminante a partir do teorema de Bayes, sem uso da razão de chance. Tomando apenas o numerador, uma vez que o denominador é constante à todas as classes, tem-se a probabilidade condicional de pertencer a uma classe <span class="math inline">\(c\)</span> conforme <a href="#eq-pcondc" class="quarto-xref">Equação&nbsp;<span>15.16</span></a>, <span class="math inline">\(c=1,2,...,C\)</span>.</p>
 <p><span id="eq-pcondc"><span class="math display">\[
 p(y=c|\mathbf{x}) =p(\mathbf{x}|y=c)p(y=c)
-\tag{14.15}\]</span></span></p>
-<p>Aplicando o logaritmo, pode-se eliminar o segundo termo da soma dos logs, uma vez que este será igual para todas as classes em casos de igualdade de observações entre estas, <span class="math inline">\(n_1,n_2,...,n_c\)</span>. Após aplicar a verossimilhança pode-se também eliminar o termo <span class="math inline">\(\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}\)</span>, uma vez que será constante para todas as classes.</p>
+\tag{15.16}\]</span></span></p>
+<p>Aplicando o logaritmo, pode-se eliminar o segundo termo da soma dos logs, uma vez que este será igual para todas as classes em casos de igualdade de observações de treino entre estas, <span class="math inline">\(n_1,n_2,...,n_c\)</span>. Após se aplicar a verossimilhança pode-se também eliminar o termo <span class="math inline">\(\frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}\)</span>, uma vez que será constante para todas as classes.</p>
 <p><span id="eq-lnpcondc"><span class="math display">\[
 \begin{align}
 \text{ln }(p(y=c|\mathbf{x})) &amp; =\text{ln }  (p(\mathbf{x}|y=c)p(y=c)) \\
 &amp; = \text{ln }  p(\mathbf{x}|y=c) + \not{\text{ln }p(y=c)} \\
 &amp; \simeq \text{ln } \frac{1}{(2\pi)^{k/2}|\Sigma|^{1/2}}e^{-\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c)} \\
 \end{align}
-\tag{14.16}\]</span></span></p>
-<p>Logo, a função discriminante para a c-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>14.14</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe.</p>
+\tag{15.17}\]</span></span></p>
+<p>Logo, a função discriminante para a <span class="math inline">\(c\)</span>-ésima classe pode ser deduzida conforme <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>15.14</span></a>, sendo o primeiro termo eliminado após a expansão dos produtos, visto que não depende da classe. Esta expansão é necessária para o caso onde <span class="math inline">\(C \geq3\)</span> classes, devendo-se discriminar a observação <span class="math inline">\(\mathbf x_0\)</span> de interesse para a classe que maximize <span class="math inline">\(u_c(\mathbf{x})\)</span>, <span class="math inline">\(c=1,...,C\)</span>, isto é, <span class="math inline">\(\displaystyle\hat{c} = \arg\max_{c} \; u_c(\mathbf{x})\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
-u(\mathbf{x}) &amp; = -\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c) \\
+u_c(\mathbf{x}) &amp; = -\frac{1}{2}(\mathbf{x}-\mu_c)^T|\Sigma|^{-1}(\mathbf{x}-\mu_c) \\
 &amp; = \not{-\frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mathbf{x}} + \frac{1}{2}\mu_c^T\Sigma^{-1}\mathbf{x} + \frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
-u(\mathbf{x}) &amp; = \mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
+u_c(\mathbf{x}) &amp; = \mathbf{x}^T\Sigma^{-1}\mu_c-\frac{1}{2}\mu_c^T\Sigma^{-1}\mu_c \\
 \end{align}
 \]</span></p>
-<p>Considere o famoso conjunto de dados Iris, comumente atribuído a Fisher, o qual contém medições em centímetros do comprimento e largura de pétalas e sépalas de três distintas espécies de orquídeas. A <a href="#tbl-iris" class="quarto-xref">Tabela&nbsp;<span>14.1</span></a> exibe as primeiras linhas de tal conjunto de dados.</p>
-<div class="cell">
-<div id="tbl-iris" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;14.1: Observações do conjunto de dados Iris
-</figcaption>
-<div aria-describedby="tbl-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<div id="gysuzkmnns" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gysuzkmnns table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#gysuzkmnns thead, #gysuzkmnns tbody, #gysuzkmnns tfoot, #gysuzkmnns tr, #gysuzkmnns td, #gysuzkmnns th {
-  border-style: none;
-}
-
-#gysuzkmnns p {
-  margin: 0;
-  padding: 0;
-}
-
-#gysuzkmnns .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#gysuzkmnns .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#gysuzkmnns .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#gysuzkmnns .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#gysuzkmnns .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#gysuzkmnns .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#gysuzkmnns .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#gysuzkmnns .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#gysuzkmnns .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#gysuzkmnns .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#gysuzkmnns .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#gysuzkmnns .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#gysuzkmnns .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#gysuzkmnns .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#gysuzkmnns .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gysuzkmnns .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#gysuzkmnns .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#gysuzkmnns .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#gysuzkmnns .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gysuzkmnns .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#gysuzkmnns .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gysuzkmnns .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#gysuzkmnns .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gysuzkmnns .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#gysuzkmnns .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#gysuzkmnns .gt_left {
-  text-align: left;
-}
-
-#gysuzkmnns .gt_center {
-  text-align: center;
-}
-
-#gysuzkmnns .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#gysuzkmnns .gt_font_normal {
-  font-weight: normal;
-}
-
-#gysuzkmnns .gt_font_bold {
-  font-weight: bold;
-}
-
-#gysuzkmnns .gt_font_italic {
-  font-style: italic;
-}
-
-#gysuzkmnns .gt_super {
-  font-size: 65%;
-}
-
-#gysuzkmnns .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#gysuzkmnns .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#gysuzkmnns .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#gysuzkmnns .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#gysuzkmnns .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#gysuzkmnns .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#gysuzkmnns .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#gysuzkmnns .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#gysuzkmnns div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Sepal.Length" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sepal.Length</th>
-<th id="Sepal.Width" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Sepal.Width</th>
-<th id="Petal.Length" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Petal.Length</th>
-<th id="Petal.Width" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Petal.Width</th>
-<th id="Species" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Species</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_right" headers="Sepal.Length">5.1</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.5</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.4</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.2</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="Sepal.Length">4.9</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.0</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.4</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.2</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="Sepal.Length">4.7</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.2</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.3</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.2</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="Sepal.Length">4.6</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.1</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.5</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.2</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="Sepal.Length">5.0</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.6</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.4</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.2</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="Sepal.Length">5.4</td>
-<td class="gt_row gt_right" headers="Sepal.Width">3.9</td>
-<td class="gt_row gt_right" headers="Petal.Length">1.7</td>
-<td class="gt_row gt_right" headers="Petal.Width">0.4</td>
-<td class="gt_row gt_center" headers="Species">setosa</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Pode-se plotar aos pares tais variáveis considerando também as distribuições individuais e correlações separadas por espécies.</p>
+<section id="discriminação-linear-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="discriminação-linear-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.3.1</span> Discriminação linear de feijões branco, carioca e vermelho considerando a espessura e a largura</h3>
+<p>Seja o caso onde consideram-se três classes e dois preditores. A <a href="#fig-feijaomultik2" class="quarto-xref">Figura&nbsp;<span>15.8</span></a> apresenta as distribuições amostrais, diagrama de dispersão e correlações entre tais medidas para as três espécies. Apesar da dispersão da espessura do feijão vermelho ser um pouco menor, será utilizada a análise discriminante linear para este caso, para fins de exemplificação.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pairsiris" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-feijaomultik2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pairsiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_lda_files/figure-html/fig-pairsiris-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-feijaomultik2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-feijaomultik2-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pairsiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.5: Diagramas de dispersão e correlações aos pares para o conjunto de dados Iris
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaomultik2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.8: Distribuições amostrais de espessura e largura de feijões branco, vermelho e carioca e correlação entre tais preditores
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Tomando aleatoriamente 75% das observações para treino, um modelo obtido via LDA é obtido conforme segue. O resultado da modalegam expõe as probabilidades à priori, que consiste nas proporções de observações cada classe segundo dados de treino, os vetores de médias de cada classe, considerando as variáveis independentes e os coeficientes para discriminação linear, além da importância destes para discriminação (proporção do traço).</p>
+<p>O espaço de discriminação, no caso de <span class="math inline">\(c \geq 3\)</span> nem sempre será composto por <span class="math inline">\(c-1\)</span> fronteiras de decisão, uma vez que a discriminação é realizada considerando <span class="math inline">\(\displaystyle\hat{c} = \arg\max_{c} \; u_c(\mathbf{x})\)</span>. Logo, para cada vetor de valores de interesse dos preditores, deve-se calcular <span class="math inline">\(u_c(\mathbf x)\)</span>, <span class="math inline">\(c=1,...,C\)</span>. A <a href="#fig-feijaomultfront" class="quarto-xref">Figura&nbsp;<span>15.9</span></a> expõe as regiões que discriminam as classes para o exemplo com os dados de teste.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Call:
-lda(Species ~ ., data = data.treino)
-
-Prior probabilities of groups:
-    setosa versicolor  virginica 
- 0.3303571  0.3214286  0.3482143 
-
-Group means:
-           Sepal.Length Sepal.Width Petal.Length Petal.Width
-setosa         5.008108    3.424324     1.459459   0.2486486
-versicolor     5.955556    2.775000     4.313889   1.3277778
-virginica      6.684615    2.984615     5.620513   2.0256410
-
-Coefficients of linear discriminants:
-                    LD1        LD2
-Sepal.Length  0.7777911 -0.3750326
-Sepal.Width   1.6113137 -1.9569617
-Petal.Length -2.1931112  1.0793649
-Petal.Width  -2.6770295 -2.8163545
-
-Proportion of trace:
-   LD1    LD2 
-0.9912 0.0088 </code></pre>
+<div class="cell-output-display">
+<div id="fig-feijaomultfront" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-feijaomultfront-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-feijaomultfront-1.png" class="img-fluid figure-img" width="672">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaomultfront-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.9: Discriminação de feijões branco, carioca e vermelho em função da espessura e largura
+</figcaption>
+</figure>
 </div>
-<p>Aplicando tal modelo aos dados de teste, obtém-se a seguinte matriz de confusão. Pode-se observar que o modelo acertou 100% das classificações de teste.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>            pred
-y            setosa versicolor virginica
-  setosa         13          0         0
-  versicolor      0         14         0
-  virginica       0          0        11</code></pre>
 </div>
 </div>
 </section>
-<section id="análise-discriminante-quadrática" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="análise-discriminante-quadrática"><span class="header-section-number">14.4</span> Análise discriminante quadrática</h2>
-<p>A análise discriminante quadrática é útil para casos onde as variâncias da variável independente, no caso simples, ou as matrizes de covariâncias das variáveis independentes, no caso múltiplo, para as <span class="math inline">\(C\)</span> classes são distintas. A <a href="#fig-denbivquad" class="quarto-xref">Figura&nbsp;<span>14.6</span></a> plota densidades bivariadas de dados de um caso de classificação binária com distintas variâncias entre classes.</p>
+</section>
+<section id="análise-discriminante-quadrática" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="análise-discriminante-quadrática"><span class="header-section-number">15.4</span> Análise discriminante quadrática</h2>
+<p>A análise discriminante quadrática é útil para casos onde as variâncias da variável independente, no caso simples, ou as matrizes de covariâncias das variáveis independentes, no caso múltiplo, para as <span class="math inline">\(C\)</span> classes são distintas. A <a href="#fig-denbivquad" class="quarto-xref">Figura&nbsp;<span>15.10</span></a> plota densidades bivariadas de dados de um caso de classificação binária com distintas variâncias entre classes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-denbivquad" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1078,13 +613,13 @@ y            setosa versicolor virginica
 <img src="AS_lda_files/figure-html/fig-denbivquad-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivquad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.6: Densidades teóricas de duas classes em função de duas variáveis para matrizes de covariâncias distintas
+Figura&nbsp;15.10: Densidades teóricas de duas classes em função de duas variáveis para matrizes de covariâncias distintas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A fronteira de classificação em tais casos não será linear, conforme ilustrado na <a href="#fig-denbivquad2" class="quarto-xref">Figura&nbsp;<span>14.7</span></a>.</p>
+<p>A fronteira de classificação em tais casos não será linear, conforme ilustrado na <a href="#fig-denbivquad2" class="quarto-xref">Figura&nbsp;<span>15.11</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-denbivquad2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1093,730 +628,523 @@ Figura&nbsp;14.6: Densidades teóricas de duas classes em função de duas vari�
 <img src="AS_lda_files/figure-html/fig-denbivquad2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-denbivquad2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.7: Fronteira de discriminação binária para caso em função de duas variáveis considerando matrizes de covariâncias distintas
+Figura&nbsp;15.11: Fronteira de discriminação binária para caso em função de duas variáveis considerando matrizes de covariâncias distintas
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A função discriminante quadrática para a <span class="math inline">\(c\)</span>-ésima classe pode ser escrita conforme <a href="#eq-fundiscquad" class="quarto-xref">Equação&nbsp;<span>14.17</span></a>. Pode-se observar que neste caso não se desconsideram termos dependentes da matriz de covariância, uma vez que esta é diferente para cada classe. Deve-se calcular o valor de <span class="math inline">\(u_c\)</span>, <span class="math inline">\(c=1,\dots,C\)</span>, de forma a decidir sobre a classe com maior probabilidade.</p>
+<p>A função discriminante quadrática para a <span class="math inline">\(c\)</span>-ésima classe pode ser escrita conforme <a href="#eq-fundiscquad" class="quarto-xref">Equação&nbsp;<span>15.18</span></a>. Pode-se observar que neste caso não se desconsideram termos dependentes da matriz de covariância, uma vez que esta é diferente para cada classe. Deve-se calcular o valor de <span class="math inline">\(u_c\)</span>, <span class="math inline">\(c=1,\dots,C\)</span>, de forma a decidir sobre a classe que maximiza tal função, <span class="math inline">\(\displaystyle\hat{c} = \arg\max_{c} \; u_c(\mathbf{x})\)</span>.</p>
 <p><span id="eq-fundiscquad"><span class="math display">\[
 u_c(\mathbf x) = -\frac 1 2 (\mathbf x - \mu_c)^T \Sigma_c^{-1}(\mathbf x - \mu_c)-\frac 1 2 \text{log }(\Sigma_c)
-\tag{14.17}\]</span></span></p>
-<p>Seja um conjunto de dados de medições de características de folhas de distintas espécies de árvores frutíferas encontradas no Brasil. A <a href="#tbl-folhas" class="quarto-xref">Tabela&nbsp;<span>14.2</span></a> expõe as primeiras observações do conjunto de dados.</p>
-<div class="cell">
-<div id="tbl-folhas" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-folhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;14.2: Observações do conjunto de dados folhas
-</figcaption>
-<div aria-describedby="tbl-folhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<div id="hpnuyfvhux" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hpnuyfvhux table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#hpnuyfvhux thead, #hpnuyfvhux tbody, #hpnuyfvhux tfoot, #hpnuyfvhux tr, #hpnuyfvhux td, #hpnuyfvhux th {
-  border-style: none;
-}
-
-#hpnuyfvhux p {
-  margin: 0;
-  padding: 0;
-}
-
-#hpnuyfvhux .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#hpnuyfvhux .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#hpnuyfvhux .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#hpnuyfvhux .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#hpnuyfvhux .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#hpnuyfvhux .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#hpnuyfvhux .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#hpnuyfvhux .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#hpnuyfvhux .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#hpnuyfvhux .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#hpnuyfvhux .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#hpnuyfvhux .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#hpnuyfvhux .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#hpnuyfvhux .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#hpnuyfvhux .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hpnuyfvhux .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#hpnuyfvhux .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#hpnuyfvhux .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#hpnuyfvhux .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hpnuyfvhux .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#hpnuyfvhux .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hpnuyfvhux .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#hpnuyfvhux .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hpnuyfvhux .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#hpnuyfvhux .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hpnuyfvhux .gt_left {
-  text-align: left;
-}
-
-#hpnuyfvhux .gt_center {
-  text-align: center;
-}
-
-#hpnuyfvhux .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#hpnuyfvhux .gt_font_normal {
-  font-weight: normal;
-}
-
-#hpnuyfvhux .gt_font_bold {
-  font-weight: bold;
-}
-
-#hpnuyfvhux .gt_font_italic {
-  font-style: italic;
-}
-
-#hpnuyfvhux .gt_super {
-  font-size: 65%;
-}
-
-#hpnuyfvhux .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#hpnuyfvhux .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#hpnuyfvhux .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#hpnuyfvhux .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#hpnuyfvhux .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#hpnuyfvhux .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#hpnuyfvhux .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#hpnuyfvhux .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#hpnuyfvhux div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="especie" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">especie</th>
-<th id="area" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">area</th>
-<th id="perimetro" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">perimetro</th>
-<th id="raiomedio" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomedio</th>
-<th id="raiosd" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiosd</th>
-<th id="raiomin" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomin</th>
-<th id="raiomax" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">raiomax</th>
-<th id="eixomaior" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">eixomaior</th>
-<th id="ecentricidade" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ecentricidade</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">2.3587161</td>
-<td class="gt_row gt_right" headers="perimetro">5.575758</td>
-<td class="gt_row gt_right" headers="raiomedio">0.9105212</td>
-<td class="gt_row gt_right" headers="raiosd">0.1573576</td>
-<td class="gt_row gt_right" headers="raiomin">0.6948606</td>
-<td class="gt_row gt_right" headers="raiomax">1.1568970</td>
-<td class="gt_row gt_right" headers="eixomaior">2.313212</td>
-<td class="gt_row gt_right" headers="ecentricidade">789</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">2.2907601</td>
-<td class="gt_row gt_right" headers="perimetro">5.818182</td>
-<td class="gt_row gt_right" headers="raiomedio">0.9124121</td>
-<td class="gt_row gt_right" headers="raiosd">0.1605576</td>
-<td class="gt_row gt_right" headers="raiomin">0.6507515</td>
-<td class="gt_row gt_right" headers="raiomax">1.2462788</td>
-<td class="gt_row gt_right" headers="eixomaior">2.232667</td>
-<td class="gt_row gt_right" headers="ecentricidade">763</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">1.8871878</td>
-<td class="gt_row gt_right" headers="perimetro">5.103030</td>
-<td class="gt_row gt_right" headers="raiomedio">0.8239879</td>
-<td class="gt_row gt_right" headers="raiosd">0.1680606</td>
-<td class="gt_row gt_right" headers="raiomin">0.5723879</td>
-<td class="gt_row gt_right" headers="raiomax">1.1024121</td>
-<td class="gt_row gt_right" headers="eixomaior">2.146024</td>
-<td class="gt_row gt_right" headers="ecentricidade">819</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">1.2324738</td>
-<td class="gt_row gt_right" headers="perimetro">5.224242</td>
-<td class="gt_row gt_right" headers="raiomedio">0.7478909</td>
-<td class="gt_row gt_right" headers="raiosd">0.2848121</td>
-<td class="gt_row gt_right" headers="raiomin">0.2493576</td>
-<td class="gt_row gt_right" headers="raiomax">1.2367152</td>
-<td class="gt_row gt_right" headers="eixomaior">2.335758</td>
-<td class="gt_row gt_right" headers="ecentricidade">941</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">0.9707225</td>
-<td class="gt_row gt_right" headers="perimetro">3.684848</td>
-<td class="gt_row gt_right" headers="raiomedio">0.6013455</td>
-<td class="gt_row gt_right" headers="raiosd">0.1543394</td>
-<td class="gt_row gt_right" headers="raiomin">0.3110061</td>
-<td class="gt_row gt_right" headers="raiomax">0.8603394</td>
-<td class="gt_row gt_right" headers="eixomaior">1.675248</td>
-<td class="gt_row gt_right" headers="ecentricidade">868</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="especie">goiaba</td>
-<td class="gt_row gt_right" headers="area">2.1489390</td>
-<td class="gt_row gt_right" headers="perimetro">6.072727</td>
-<td class="gt_row gt_right" headers="raiomedio">0.9169333</td>
-<td class="gt_row gt_right" headers="raiosd">0.2829576</td>
-<td class="gt_row gt_right" headers="raiomin">0.4715758</td>
-<td class="gt_row gt_right" headers="raiomax">1.4316727</td>
-<td class="gt_row gt_right" headers="eixomaior">2.711770</td>
-<td class="gt_row gt_right" headers="ecentricidade">909</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>A <a href="#fig-pairsfolhas" class="quarto-xref">Figura&nbsp;<span>14.8</span></a> exibe gráficos de dispersão e correlações aos pares bem como densidades amostrais dentro de cada espécie considerada no conjunto de dados folha. Pode-se constatar que, dado a variação nas densidades amostrais para cada espécie nas distintas variáveis, a análise quadrática discriminante talvez seja mais adequada ao problema de clssificação em questão.</p>
+\tag{15.18}\]</span></span></p>
+<section id="discriminação-quadrática-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="discriminação-quadrática-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.4.1</span> Discriminação quadrática de feijões branco, carioca e vermelho considerando a espessura e a largura</h3>
+<p>Seja novamente o caso para três classes e dois preditores, porém agora usando a discriminação quadrática.</p>
+<p>A <a href="#fig-frontqdafeij" class="quarto-xref">Figura&nbsp;<span>15.12</span></a> apresenta o resultado no espaço dos preditores para a classificação de feijões branco, carioca e vermelho em função da espessura e largura usando a análise discriminante quadrática. Observa-se capacidade não somente de obtenção de fronteiras não lineares, mas também de ilhas para discriminar classes com domínio limitado no espaço dos preditores.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-pairsfolhas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-frontqdafeij" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pairsfolhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_lda_files/figure-html/fig-pairsfolhas-1.png" class="img-fluid figure-img" width="1152">
+<div aria-describedby="fig-frontqdafeij-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-frontqdafeij-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pairsfolhas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.8: Diagramas de dispersão e correlações aos pares para o conjunto de dados folhas
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-frontqdafeij-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.12: Discriminação de feijões branco, carioca e vermelho em função da espessura e largura via análise discriminante quadrática
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Tomando aleatoriamente 75% das observações para treino, um modelo obtido via QDA é obtido conforme segue.</p>
+</section>
+</section>
+<section id="sec-rda" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="sec-rda"><span class="header-section-number">15.5</span> Análise discriminante regularizada</h2>
+<p>A análise discriminante regularizada busca um equilíbrio entre a análise linear e a análise quadrática discriminantes. Conforme já estudado, enquanto na análise linear consideramos uma matriz de covariância comum, <span class="math inline">\(\hat \Sigma_c\)</span>, estimada de forma ponderada em relação aos dados de treino segundo a <a href="#eq-condstatsk3" class="quarto-xref">Equação&nbsp;<span>15.15</span></a>, no caso quadrático, as matrizes de covariâncias individuais das classes são consideradas, segundo as distribuições amostrais dos preditores das classes, dando mais flexibilidade ao modelo. Uma primeira proposta de regularização considerada por Friedman é realizada a partir uma soma convexa na estimativa da matriz de covariância de cada classe, segundo a <a href="#eq-rda" class="quarto-xref">Equação&nbsp;<span>15.19</span></a>, onde <span class="math inline">\(\alpha \in [0,1]\)</span> consite no parâmetro de regularização que determina este equilíbrio entre tais abordagens.</p>
+<p><span id="eq-rda"><span class="math display">\[
+\hat{\Sigma}_c(\alpha) = \alpha\hat{\Sigma}_c + (1-\alpha)\hat{\Sigma}, \quad c = 1,\ldots,C
+\tag{15.19}\]</span></span></p>
+<p>Uma outra outra possibilidade seria encolher a matriz de covariância para escalar, isto é, eliminar a covariância, conforme <a href="#eq-rda2" class="quarto-xref">Equação&nbsp;<span>15.20</span></a>, onde <span class="math inline">\(\gamma \in [0,1]\)</span> consiste no parâmetro de encolhimento neste caso. Ao substituir tal resultado na <a href="#eq-rda" class="quarto-xref">Equação&nbsp;<span>15.19</span></a> testa-se uma família mais geral de matrizes de covariância, <span class="math inline">\(\hat \Sigma(\alpha,\gamma)\)</span>. Sugere-se estimar os níveis adequados de <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\gamma\)</span> para cada caso via validação cruzada e <em>grid search</em>.</p>
+<p><span id="eq-rda2"><span class="math display">\[
+\hat{\Sigma}_c(\gamma) = \gamma\hat{\Sigma} + (1-\gamma)\hat{\sigma}^2\mathbf{I}, \quad c = 1,\ldots,C
+\tag{15.20}\]</span></span></p>
+<section id="discriminação-regularizada-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="discriminação-regularizada-de-feijões-branco-carioca-e-vermelho-considerando-a-espessura-e-a-largura"><span class="header-section-number">15.5.1</span> Discriminação regularizada de feijões branco, carioca e vermelho considerando a espessura e a largura</h3>
+<p>A <a href="#fig-hprda" class="quarto-xref">Figura&nbsp;<span>15.13</span></a> expõe os resultados da validação cruzada com <em>grid search</em> para selecionar <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\gamma\)</span> que maximizam o AUC para classificar feijões branco, carioca e vermelho, segundo a espessura e largura.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Call:
-qda(especie ~ ., data = data.treino2)
-
-Prior probabilities of groups:
-   acerola     cereja     goiaba jabuticaba      limao   mexerica 
- 0.2291667  0.1666667  0.1666667  0.1527778  0.1458333  0.1388889 
-
-Group means:
-                area perimetro raiomedio    raiosd   raiomin   raiomax
-acerola    4.6199258  8.300373 1.2320808 0.2681082 0.8241248 1.7416843
-cereja     0.5802029  3.094874 0.4704354 0.1517791 0.2589256 0.7737258
-goiaba     1.2797672  4.347291 0.6925562 0.1658400 0.4252010 0.9866172
-jabuticaba 1.6047352  4.922163 0.7575936 0.2188675 0.4270077 1.1733904
-limao      2.4424181  5.434424 0.8563618 0.2373312 0.5054323 1.3197574
-mexerica   0.9791802  3.597199 0.5411255 0.1668078 0.2871625 0.8697244
-           eixomaior ecentricidade
-acerola     3.261431      835.0303
-cereja      1.360406      907.8750
-goiaba      1.883029      848.2500
-jabuticaba  2.159333      879.9091
-limao       2.436449      881.6667
-mexerica    1.495607      869.9500</code></pre>
+<div class="cell-output-display">
+<div id="fig-hprda" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hprda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-hprda-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hprda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.13: AUC na validação cruzada para a análise discriminante regularizada em função dos hiperparâmetros
+</figcaption>
+</figure>
 </div>
 </div>
-<p>Tal modelo apresentou 88,89% de acuracidade. Sugere-se comparar o desempenho com o da análise discriminante linear.</p>
+</div>
+<p>As regiões mais prováveis para cada classe obtidas via análise discriminante regularizada são plotadas na <a href="#fig-rdares" class="quarto-xref">Figura&nbsp;<span>15.14</span></a>.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>            pred
-y            acerola cereja goiaba jabuticaba limao mexerica
-  acerola         19      0      0          0     0        0
-  cereja           1     20      2          2     5        0
-  goiaba           0      0     18          3     3        0
-  jabuticaba       0      0      1         20     4        1
-  limao            1      1      0          3    17        0
-  mexerica         1      0      0          0     2       19</code></pre>
+<div class="cell-output-display">
+<div id="fig-rdares" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rdares-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_lda_files/figure-html/fig-rdares-1.png" class="img-fluid figure-img" width="672">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rdares-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;15.14: Discriminação de feijões branco, carioca e vermelho em função da espessura e largura via análise discriminante regularizada
+</figcaption>
+</figure>
 </div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7902098</code></pre>
 </div>
 </div>
 </section>
-<section id="implementações-em-r" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">14.5</span> Implementações em R</h2>
+</section>
+<section id="implementações-em-r" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">15.6</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="análise-linear-discriminante" class="level3" data-number="14.5.1">
-<h3 data-number="14.5.1" class="anchored" data-anchor-id="análise-linear-discriminante"><span class="header-section-number">14.5.1</span> Análise linear discriminante</h3>
-<p>Carregando pacotes.</p>
+<section id="análise-discriminante-linear-binária-simples-1" class="level3" data-number="15.6.1">
+<h3 data-number="15.6.1" class="anchored" data-anchor-id="análise-discriminante-linear-binária-simples-1"><span class="header-section-number">15.6.1</span> Análise discriminante linear binária simples</h3>
+<p>Carregando pacotes e conjunto de dados. A biblioteca <code>discrim</code> contém um dos modelos disponíveis para análise discriminante linear. O conjunto de dados <code>feijoes</code> contém dados de comprimento, largura, espessura e massa de feijões das espécies fradinho, branco, vermelho, preto e carioca. Neste primeiro exemplo são consideradas apenas as espécies branco e carioca e o preditor espessura.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TreeDiagram)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(discrim)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> feijoes <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feijao <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"branco"</span>, <span class="st">"carioca"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(feijao,espessura) <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">feijao =</span> <span class="fu">factor</span>(feijao))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Conjunto de dados iris.</p>
+<p>Visualizando a distribuição da espessura das espécies com gráfico de densidades amostrais.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> iris</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Visualizando correlações e distribuição dentro das classes.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(data, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">col=</span>Species, <span class="at">alpha=</span>.<span class="dv">5</span>), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">progress=</span>F) <span class="sc">+</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>espessura, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">pch=</span>feijao, <span class="at">col=</span>feijao)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col=</span><span class="st">""</span>, <span class="at">pch=</span><span class="st">""</span>, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Espessura (mm)"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Verossimilhança"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Separando dados de treino e teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data), tr, <span class="at">replace =</span> F)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dados_teste   <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Definição do modelo, receita, workflow e treinamento. Neste primeiro exemplo não é necessária a realização de validação cruzada com <em>grid search</em>, pois, por enquanto, não será realizada a regularização.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lda_model <span class="ot">&lt;-</span> <span class="fu">discrim_linear</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">penalty =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">regularization_method =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"MASS"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> feijao <span class="sc">~</span> espessura, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados_treino)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>feijao_wf <span class="ot">&lt;-</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lda_model)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>feijao_fit <span class="ot">&lt;-</span> feijao_wf <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>feijao_fit <span class="sc">|&gt;</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão para os dados de teste e matriz de confusão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pred_completo <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste), <span class="co"># previsao discreta              </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred_completo, <span class="at">truth =</span> feijao, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Métricas de classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> feijao,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         .pred_branco)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Curva ROC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo, <span class="at">truth =</span> feijao, .pred_branco)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análise-discriminante-linear-binária-múltipla" class="level3" data-number="15.6.2">
+<h3 data-number="15.6.2" class="anchored" data-anchor-id="análise-discriminante-linear-binária-múltipla"><span class="header-section-number">15.6.2</span> Análise discriminante linear binária múltipla</h3>
+<p>Seja novamente o conjunto de dados <code>feijoes</code>, considerando novamente a classificação das espécies branco e carioca, porém agora em função da espessura e da largura.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> feijoes <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feijao <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"branco"</span>, <span class="st">"carioca"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(feijao,espessura,largura) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">feijao =</span> <span class="fu">factor</span>(feijao))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dados, <span class="fu">aes</span>(<span class="at">col=</span>feijao, <span class="at">alpha =</span> .<span class="dv">5</span>), <span class="at">progress =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Separando dados de treino e teste. Definindo receita, workflow e realizando o treinamento do modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>dados_teste   <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>data.treino <span class="ot">&lt;-</span> data[treino,]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>data.teste <span class="ot">&lt;-</span> data[<span class="sc">-</span>treino,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> feijao <span class="sc">~</span> ., </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>feijao_wf <span class="ot">&lt;-</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lda_model)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>feijao_fit <span class="ot">&lt;-</span> feijao_wf <span class="sc">|&gt;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> feijao_fit <span class="sc">|&gt;</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>fp</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Análise linear discriminante.</p>
+<p>Visualizando a fronteira de discriminação entre as classes no espaço dos preditores. Deve-se extrair os coeficientes do modelo e plotar a função discriminante, segundo a <a href="#eq-discfuncc" class="quarto-xref">Equação&nbsp;<span>15.14</span></a>. Sugere-se plotar junto aos dados de teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit.lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> ., data.treino)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fit.lda1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> fp<span class="sc">$</span>fit<span class="sc">$</span>scaling[<span class="dv">1</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> fp<span class="sc">$</span>fit<span class="sc">$</span>scaling[<span class="dv">2</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fit_engine <span class="ot">&lt;-</span> feijao_fit <span class="sc">|&gt;</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ponto de corte c = w^T * (mu1+mu2)/2</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>mu_bar <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(fit_engine<span class="sc">$</span>means)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>c_cut  <span class="ot">&lt;-</span> w1 <span class="sc">*</span> mu_bar[<span class="st">"espessura"</span>] <span class="sc">+</span> w2 <span class="sc">*</span> mu_bar[<span class="st">"largura"</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_teste, <span class="fu">aes</span>(<span class="at">x =</span> espessura, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> largura, </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                         <span class="at">color =</span> feijao,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pch =</span> feijao)) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">slope     =</span> <span class="sc">-</span>w1 <span class="sc">/</span> w2,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span>  c_cut <span class="sc">/</span> w2,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype  =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">""</span>,<span class="at">pch=</span><span class="st">""</span>,</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Espessura (mm)"</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Largura (mm)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Matriz de confusão para dados de teste.</p>
+<p>Previsão para os dados de teste e matriz de confusão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lda.pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda1, <span class="at">newdata=</span>data.teste)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste<span class="sc">$</span>Species, <span class="at">pred=</span>lda.pred1<span class="sc">$</span>class)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred_completo <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste), <span class="co"># previsao discreta              </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred_completo, <span class="at">truth =</span> feijao, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Métricas de classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> feijao,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         .pred_branco)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Curva ROC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo, <span class="at">truth =</span> feijao, .pred_branco)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="análise-discriminante-quadrática-1" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="análise-discriminante-quadrática-1"><span class="header-section-number">14.5.2</span> Análise discriminante quadrática</h3>
-<p>Leitura de dados.</p>
+<section id="análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes-1" class="level3" data-number="15.6.3">
+<h3 data-number="15.6.3" class="anchored" data-anchor-id="análise-linear-discriminante-para-k-variáveis-independentes-e-três-ou-mais-classes-1"><span class="header-section-number">15.6.3</span> Análise linear discriminante para <span class="math inline">\(k\)</span> variáveis independentes e três ou mais classes</h3>
+<p>Seja a discriminação linear de feijões branco, carioca e vermelho considerando a espessura e a largura.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"folhas.csv"</span>, <span class="at">header=</span>T)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data2) <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> feijoes <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feijao <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"branco"</span>, <span class="st">"carioca"</span>, <span class="st">"vermelho"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(feijao,espessura,largura) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">feijao =</span> <span class="fu">factor</span>(feijao))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dados, <span class="fu">aes</span>(<span class="at">col=</span>feijao, <span class="at">alpha =</span> .<span class="dv">5</span>), <span class="at">progress =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Visualizando correlações e distribuição dentro das classes.</p>
+<p>Separando dados de treino e teste. Definindo receita, workflow e realizando o treinamento do modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(data2, <span class="fu">aes</span>(<span class="at">col=</span>especie, <span class="at">alpha=</span>.<span class="dv">5</span>), <span class="at">progress=</span>F) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dados_teste   <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> feijao <span class="sc">~</span> ., </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>feijao_wf <span class="ot">&lt;-</span> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lda_model)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>feijao_fit <span class="ot">&lt;-</span> feijao_wf <span class="sc">|&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>feijao_fit <span class="sc">|&gt;</span> </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Separando dados de treino e teste.</p>
+<p>Plotando fronteiras no espaço dos preditores. Para três ou mais classes deve-se avaliar qual a mais provável para cada ponto no espaço dos preditores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tr2 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.75</span><span class="sc">*</span><span class="fu">nrow</span>(data2))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>treino2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(data2), tr2, <span class="at">replace =</span> F)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>data.treino2 <span class="ot">&lt;-</span> data2[treino2,]</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>data.teste2 <span class="ot">&lt;-</span> data2[<span class="sc">-</span>treino2,]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Modelagem via LDA.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit.lda2 <span class="ot">&lt;-</span> <span class="fu">lda</span>(especie <span class="sc">~</span> ., data.treino2)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit.lda2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lda.pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda2, <span class="at">newdata=</span>data.teste2)</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_engine <span class="ot">&lt;-</span> feijao_fit <span class="sc">|&gt;</span> <span class="fu">extract_fit_engine</span>()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>cm2 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste2<span class="sc">$</span>especie, <span class="at">pred=</span>lda.pred2<span class="sc">$</span>class)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>cm2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid cobrindo o espaço dos preditores</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">espessura =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados_teste<span class="sc">$</span>espessura) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">max</span>(dados_teste<span class="sc">$</span>espessura) <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">length.out =</span> <span class="dv">200</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">largura   =</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados_teste<span class="sc">$</span>largura)   <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">max</span>(dados_teste<span class="sc">$</span>largura)   <span class="sc">+</span> <span class="fl">0.5</span>, <span class="at">length.out =</span> <span class="dv">200</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Predições no grid</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>grid<span class="sc">$</span>feijao <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_engine, <span class="at">newdata =</span> grid)<span class="sc">$</span>class</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> grid,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura, <span class="at">fill =</span> feijao),</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> feijao, <span class="at">pch =</span> feijao),</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">""</span>, <span class="at">color =</span> <span class="st">""</span>, <span class="at">pch =</span> <span class="st">""</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Espessura (mm)"</span>, <span class="at">y =</span> <span class="st">"Largura (mm)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Previsão para os dados de teste e matriz de confusão.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm2))<span class="sc">/</span><span class="fu">sum</span>(cm2)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pred_completo <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste), <span class="co"># previsao discreta              </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit, dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred_completo, <span class="at">truth =</span> feijao, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Modelagem via QDA.</p>
+<p>Métricas de classificação.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit.qda2 <span class="ot">&lt;-</span> <span class="fu">qda</span>(especie <span class="sc">~</span> ., data.treino2)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fit.qda2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> feijao,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>         .pred_branco, .pred_carioca, .pred_vermelho)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Desempenho de teste.</p>
+<p>Curvas ROC.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>qda.pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.qda2, <span class="at">newdata=</span>data.teste2)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cm3 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">y=</span>data.teste2<span class="sc">$</span>especie, <span class="at">pred=</span>qda.pred2<span class="sc">$</span>class)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>cm3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo, <span class="at">truth =</span> feijao, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                      .pred_branco, .pred_carioca, .pred_vermelho)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(cm3))<span class="sc">/</span><span class="fu">sum</span>(cm3)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-
 </section>
+<section id="análise-discriminante-quadrática-1" class="level3" data-number="15.6.4">
+<h3 data-number="15.6.4" class="anchored" data-anchor-id="análise-discriminante-quadrática-1"><span class="header-section-number">15.6.4</span> Análise discriminante quadrática</h3>
+<p>Seja a discriminação quadrática de feijões branco, carioca e vermelho considerando a espessura e a largura. O modelo neste caso é definido com a função <code>qda_model</code> usando a biblioteca <code>MASS</code>. os dados são os mesmos da implementação anterior. Logo, segue a definição do modelo, receita, workflow, bem como o treinamento do modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>qda_model <span class="ot">&lt;-</span> <span class="fu">discrim_quad</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">regularization_method =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"MASS"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>feijao_wf_qda <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(qda_model)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>feijao_fit_qda <span class="ot">&lt;-</span> feijao_wf_qda <span class="sc">|&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>feijao_fit_qda <span class="sc">|&gt;</span> </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit_engine_qda <span class="ot">&lt;-</span> feijao_fit_qda <span class="sc">|&gt;</span> <span class="fu">extract_fit_engine</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>grid<span class="sc">$</span>feijao_qda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit_engine_qda, <span class="at">newdata =</span> grid)<span class="sc">$</span>class</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> grid,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura, <span class="at">fill =</span> feijao_qda),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> feijao, <span class="at">pch =</span> feijao),</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">""</span>, <span class="at">color =</span> <span class="st">""</span>, <span class="at">pch =</span> <span class="st">""</span>,</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Espessura (mm)"</span>, <span class="at">y =</span> <span class="st">"Largura (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão para os dados de teste e matriz de confusão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pred_completo <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit_qda, dados_teste), <span class="co"># previsao discreta              </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(feijao_fit_qda, dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred_completo, <span class="at">truth =</span> feijao, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Métricas de classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> feijao,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>         .pred_branco, .pred_carioca, .pred_vermelho)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Curvas ROC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo, <span class="at">truth =</span> feijao, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                      .pred_branco, .pred_carioca, .pred_vermelho)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="análise-discriminante-regularizada" class="level3" data-number="15.6.5">
+<h3 data-number="15.6.5" class="anchored" data-anchor-id="análise-discriminante-regularizada"><span class="header-section-number">15.6.5</span> Análise discriminante regularizada</h3>
+<p>Seja, por fim, a discriminação regularizada de feijões branco, carioca e vermelho considerando a espessura e a largura. Apesar dos modelos <code>discrim_linear</code> e <code>discrim_quad</code> também apresentarem a possibilidade de regularização, sugere-se o modelo <code>discrim_regularized</code> da biblioteca <code>klaR</code> com mesmo modelo exposto na <a href="#sec-rda" class="quarto-xref"><span>Seção 15.5</span></a>. Tal modelo permite a discriminação com hiperparâmetros <span class="math inline">\(\alpha\)</span>, o qual define um modelo entre o puramente linear e o puramente quadrático, e <span class="math inline">\(\gamma\)</span>, o qual define a prporção de encolhimento da matriz de covariância <span class="math inline">\(\Sigma\)</span>. Para realizar a otimização dos hiperparâmetros, sugere-se validação cruzada com <span class="math inline">\(v\)</span>-dobras e <em>grid search</em>. Segue abaixo a definição do modelo, <em>grid</em> aleatório, particionamento dos dados e workflow.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rda_model <span class="ot">&lt;-</span> <span class="fu">discrim_regularized</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">frac_common_cov =</span> <span class="fu">tune</span>(),  <span class="co"># alpha</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">frac_identity   =</span> <span class="fu">tune</span>()   <span class="co"># gamma</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"klaR"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>rda_grid <span class="ot">&lt;-</span> <span class="fu">grid_space_filling</span>(<span class="fu">frac_common_cov</span>(),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">frac_identity</span>(),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">25</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>rda_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(rda_model)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Validação cruzada com <em>grid search</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rda_res <span class="ot">&lt;-</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  rda_wf<span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> rda_grid</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizando os resultados da validação cruzada e <em>grid search</em> para a área abaixo da curva ROC em função dos hiperparâmetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rda_res <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"roc_auc"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(frac_common_cov,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>             frac_identity, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> mean)) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_distiller</span>(<span class="at">palette =</span> <span class="st">"Spectral"</span>) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="fu">expression</span>(alpha),</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="fu">expression</span>(gamma),</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span>  <span class="st">"AUC"</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extraindo e finalizando melhor modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>best_rda <span class="ot">&lt;-</span> <span class="fu">select_best</span>(rda_res, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">metric =</span> <span class="st">"roc_auc"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>best_rda</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>rda_final <span class="ot">&lt;-</span> rda_wf <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(best_rda) <span class="sc">|&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>rda_final</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Fronteira de clasificação com dados de teste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>grid<span class="sc">$</span>feijao_rda <span class="ot">&lt;-</span> <span class="fu">predict</span>(rda_final, <span class="at">new_data =</span> grid)<span class="sc">$</span>.pred_class</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">data =</span> grid,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura, <span class="at">fill =</span> feijao_rda),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> espessura, <span class="at">y =</span> largura,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> feijao, <span class="at">pch =</span> feijao),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">""</span>, <span class="at">color =</span> <span class="st">""</span>, <span class="at">pch =</span> <span class="st">""</span>,</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Espessura (mm)"</span>, <span class="at">y =</span> <span class="st">"Largura (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Previsão para os dados de teste e matriz de confusão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pred_completo <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(rda_final, dados_teste), <span class="co"># previsao discreta              </span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(rda_final, dados_teste, <span class="at">type =</span> <span class="st">"prob"</span>),     </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  dados_teste                                       </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>cm1 <span class="ot">&lt;-</span> <span class="fu">conf_mat</span>(pred_completo, <span class="at">truth =</span> feijao, <span class="at">estimate =</span> .pred_class)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>cm1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Métricas de classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">metric_set</span>(accuracy, sensitivity, specificity, roc_auc)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">metricas</span>(pred_completo,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">truth    =</span> feijao,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">estimate =</span> .pred_class,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>         .pred_branco, .pred_carioca, .pred_vermelho)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Curvas ROC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>roc_data <span class="ot">&lt;-</span> <span class="fu">roc_curve</span>(pred_completo, <span class="at">truth =</span> feijao, </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                      .pred_branco, .pred_carioca, .pred_vermelho)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(roc_data)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="referências" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="referências"><span class="header-section-number">15.7</span> Referências</h2>
+<p>Friedman, J. H. (1989). Regularized discriminant analysis. Journal of the American statistical association, 84(405), 165-175.</p>
+<p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
+<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
+<p>Kuhn, M., &amp; Silge, J. (2022). Tidy modeling with R: A framework for modeling in the tidyverse. ” O’Reilly Media, Inc.”.</p>
+<p>Ramey, J. A., Stein, C. K., Young, P. D., &amp; Young, D. M. (2016). High-dimensional regularized discriminant analysis. arXiv preprint arXiv:1602.01182.</p>
+</section>
+<section id="exercícios" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">15.8</span> Exercícios</h2>
+<ol type="1">
+<li><p>O conjunto de dados <code>feijoes</code> apresenta outras espécies e preditores. obtenha um modelo de análise discriminante regularizada para classificar as espécies. Considere todos os preditores e faça a normalização destes na receita. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
+<li><p>Tomando o conjunto de dados <code>folhasfrutas</code>, obtenha um modelo de análise linear discriminante para classificar as espécies. Considere todos os preditores e faça a normalização destes na receita. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
+<li><p>Tomando o conjunto de dados <code>folhasfrutas</code>, obtenha um modelo de análise quadrática discriminante para classificar as espécies. Considere todos os preditores e faça a normalização destes na receita. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
+<li><p>Tomando o conjunto de dados <code>folhasfrutas</code>, obtenha um modelo de análise discriminante regularizada para classificar as espécies. Considere todos os preditores e faça a normalização destes na receita. Realize validação cruzada com <code>grid search</code> para otimizar os hiperparâmetros. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -2239,13 +1567,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_logreg.html" class="pagination-link" aria-label="Classificação via regressão logística">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span>
+      <a href="./AS_treec.html" class="pagination-link" aria-label="Classificação via árvores de decisão e floresta aleatória">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./AS_svm.html" class="pagination-link" aria-label="Máquinas de vetores de suporte">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

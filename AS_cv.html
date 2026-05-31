@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -372,7 +372,7 @@ Importante
 <p><span class="math display">\[
     CV(\hat{h}, \alpha) = \frac{1}{m} \sum_{i=1}^m L(y_i, \hat{f}^{-v(i)}(\mathbf{x}_i,\alpha))
 \]</span></p>
-<p>A <a href="#fig-kfold" class="quarto-xref">Figura&nbsp;<span>6.1</span></a> ilustra a validação cruzada por <span class="math inline">\(v\)</span>-dobras para <span class="math inline">\(V=5\)</span> dobras.</p>
+<p>A <a href="#fig-kfold" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-kfold</span></a> ilustra a validação cruzada por <span class="math inline">\(v\)</span>-dobras para <span class="math inline">\(V=5\)</span> dobras.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-kfold" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -396,7 +396,7 @@ Figura&nbsp;6.1: Validação cruzada via k-dobras
 <section id="grid-search" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">6.5</span> <em>Grid search</em></h2>
 <p><em>Grid search</em> consiste em uma busca dos níveis adequados dos hiperparâmetros considerando uma malha (<em>grid</em>) de combinações possíveis dos níveis de interesse dos hiperparâmetros em questão. Dependendo do número de hiperparâmetros e níveis considerados, a busca pode tornar-se mais difícil e custosa computacionalmente.</p>
-<p>Seja a estimativa de um modelo de árvore de decisão considerando como hiperparâmetros <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(|T|\)</span>. Um possível grid regular com 5 níveis para cada hiperparâmetro é plotado na <a href="#fig-gridtree" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<p>Seja a estimativa de um modelo de árvore de decisão considerando como hiperparâmetros <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(|T|\)</span>. Um possível grid regular com 5 níveis para cada hiperparâmetro é plotado na <a href="#fig-gridtree" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-gridtree</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gridtree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -411,7 +411,7 @@ Figura&nbsp;6.2: Exemplo de <em>grid</em> regular para Árvore de decisão
 </div>
 </div>
 </div>
-<p>Pode-se constatar que o grid regular consiste em um planejamento fatorial, ou seja, todas as combinações dos níveis dos hiperparâmetros são consideradas. Há também <em>grids</em> irregulares, especialmente para hiperparâmetros em escala real, sendo empregados planejamentos de preenchimento de espaço viavel, que visam preencher o espaço dos hiperparâmetros aleatoriamente, de forma a viabilizar uma boa exploração deste. A <a href="#fig-gridtree2" class="quarto-xref">Figura&nbsp;<span>6.3</span></a> ilustra um exemplo de grid aleatório para árvore de decisão.</p>
+<p>Pode-se constatar que o grid regular consiste em um planejamento fatorial, ou seja, todas as combinações dos níveis dos hiperparâmetros são consideradas. Há também <em>grids</em> irregulares, especialmente para hiperparâmetros em escala real, sendo empregados planejamentos de preenchimento de espaço viavel, que visam preencher o espaço dos hiperparâmetros aleatoriamente, de forma a viabilizar uma boa exploração deste. A <a href="#fig-gridtree2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-gridtree2</span></a> ilustra um exemplo de grid aleatório para árvore de decisão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-gridtree2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -456,7 +456,7 @@ Dica
 <section id="validação-cruzada-por-k-dobras-com-grid-search-para-seleção-da-penalização-de-encolhimento-em-regressão-rígida" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="validação-cruzada-por-k-dobras-com-grid-search-para-seleção-da-penalização-de-encolhimento-em-regressão-rígida"><span class="header-section-number">6.6</span> Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção da penalização de encolhimento em regressão rígida</h2>
 <p>Sejam os dados de preços de carros usados modelo Saveiro em função da quilometragem e ano de fabricação.</p>
-<p>Espera-se observar correlação negativa entre quilometragem e preço, correlação positiva entre ano e preço, além de correlação negativa entre quilometragem e ano, conforme <a href="#fig-pairssav" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>.</p>
+<p>Espera-se observar correlação negativa entre quilometragem e preço, correlação positiva entre ano e preço, além de correlação negativa entre quilometragem e ano, conforme <a href="#fig-pairssav" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-pairssav</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pairssav" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -475,7 +475,7 @@ Figura&nbsp;6.4: Gráfico de correlações aos pares para observações de preç
 <p><span class="math display">\[
     CV_l(\hat{h}, \lambda_l) = \frac{1}{m} \sum_{i=1}^m L(y_i, \hat{f}^{-v(i)}(\mathbf{x}_i,\lambda_l))
 \]</span> para todo <span class="math inline">\(l=1,...,L\)</span>.</p>
-<p>Tomando o conjunto de dados com 24 observações, 21 são sorteadas para treino e 3 para teste. Inicialmente, faz-se o sorteio das observações de cada partição ou dobra. Tomando <span class="math inline">\(V=7\)</span>, para <span class="math inline">\(n=21\)</span>, tem-se exatamente <span class="math inline">\(n_v=21/7=3\)</span> observações por dobra. A <a href="#tbl-datafolds" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a> expõe os dados de treino considerando o particionamento realizado de forma aleatória, identificando cada dobra com uma cor distinta e com a coluna <em>fold</em>.</p>
+<p>Tomando o conjunto de dados com 24 observações, 21 são sorteadas para treino e 3 para teste. Inicialmente, faz-se o sorteio das observações de cada partição ou dobra. Tomando <span class="math inline">\(V=7\)</span>, para <span class="math inline">\(n=21\)</span>, tem-se exatamente <span class="math inline">\(n_v=21/7=3\)</span> observações por dobra. A <a href="#tbl-datafolds" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-datafolds</span></a> expõe os dados de treino considerando o particionamento realizado de forma aleatória, identificando cada dobra com uma cor distinta e com a coluna <em>fold</em>.</p>
 <div class="cell">
 <div id="tbl-datafolds" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1079,7 +1079,7 @@ Tabela&nbsp;6.1: Conjunto de dados de Saveiros usados particionado via <span cla
 </figure>
 </div>
 </div>
-<p>Ordenando segundo a coluna das dobras ou <em>folds</em>, tem-se a <a href="#tbl-datafolds2" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>.</p>
+<p>Ordenando segundo a coluna das dobras ou <em>folds</em>, tem-se a <a href="#tbl-datafolds2" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-datafolds2</span></a>.</p>
 <div class="cell">
 <div id="tbl-datafolds2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1683,7 +1683,7 @@ Tabela&nbsp;6.2: Conjunto de dados de preços de Saveiros usados ordenado segund
 </figure>
 </div>
 </div>
-<p>Testando-se um <em>grid</em> de 100 níveis para <span class="math inline">\(\lambda\)</span> variando de <span class="math inline">\(10^{10}\)</span> até <span class="math inline">\(10^{-2}\)</span>, pode-se avaliar o erro médio das 7 dobras para cada valor testado de <span class="math inline">\(\lambda\)</span>. Sugere-se ralizar um itervalo de confiança para a média do erro de teste para todos as dobras ou partições, conforme plotado na <a href="#fig-rmsedobras2" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>. Um <span class="math inline">\(\lambda\)</span> igual a 81113 garante menor erro médio nas partições de teste.</p>
+<p>Testando-se um <em>grid</em> de 100 níveis para <span class="math inline">\(\lambda\)</span> variando de <span class="math inline">\(10^{10}\)</span> até <span class="math inline">\(10^{-2}\)</span>, pode-se avaliar o erro médio das 7 dobras para cada valor testado de <span class="math inline">\(\lambda\)</span>. Sugere-se ralizar um itervalo de confiança para a média do erro de teste para todos as dobras ou partições, conforme plotado na <a href="#fig-rmsedobras2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-rmsedobras2</span></a>. Um <span class="math inline">\(\lambda\)</span> igual a 81113 garante menor erro médio nas partições de teste.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rmsedobras2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1714,7 +1714,7 @@ Importante
 </section>
 <section id="validação-cruzada-por-k-dobras-com-grid-search-para-seleção-da-profundidade-da-árvore-e-complexidade-de-custo-na-regressão-por-árvore-de-decisão" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="validação-cruzada-por-k-dobras-com-grid-search-para-seleção-da-profundidade-da-árvore-e-complexidade-de-custo-na-regressão-por-árvore-de-decisão"><span class="header-section-number">6.7</span> Validação cruzada por <span class="math inline">\(k\)</span>-dobras com <em>grid search</em> para seleção da profundidade da árvore e complexidade de custo na regressão por árvore de decisão</h2>
-<p>Seja agora um modelo de regressão por árvore de decisão para prever o preço de revenda de carros usados considerando marca, modelo, ano, quilometragem, tipo de câmbio, motor e válvulas. A <a href="#fig-treecarross" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> apresenta o erro médio da validação cruzada em função da profundidade da árvore e da complexidade de custo. Observa-se que árvores com 6 ou mais nós terminais e <span class="math inline">\(\alpha\)</span> de baixo a intermediário garantem um RMSE mais baixo, havendo neste caso várias combinações dos dois hiperparâmetros que retornam erro similar de teste.</p>
+<p>Seja agora um modelo de regressão por árvore de decisão para prever o preço de revenda de carros usados considerando marca, modelo, ano, quilometragem, tipo de câmbio, motor e válvulas. A <a href="#fig-treecarross" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-treecarross</span></a> apresenta o erro médio da validação cruzada em função da profundidade da árvore e da complexidade de custo. Observa-se que árvores com 6 ou mais nós terminais e <span class="math inline">\(\alpha\)</span> de baixo a intermediário garantem um RMSE mais baixo, havendo neste caso várias combinações dos dois hiperparâmetros que retornam erro similar de teste.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treecarross" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1940,8 +1940,8 @@ Dica
 <h2 data-number="6.9" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">6.9</span> Exercícios</h2>
 <ol type="1">
 <li><p>Seja um conjunto com 1000 observações. Tomando 200 para teste e 800 para treino, considerando um processo de validação cruzada com 5 dobras, quantas observações serão sorteadas em cada dobra?</p></li>
-<li><p>Seja o exemplo da implementação da <a href="#sec-ex2" class="quarto-xref"><span>Seção 6.8.2</span></a>. Extraia o melhor modelo e diga quais níveis dos hiperparâmetros garantem uma árvore com melhor desempenho para prever o preço de carros usados. Avalie o melhor modelo nos dados de teste e obtenha as métricas de ajuste.</p></li>
-<li><p>Ainda considerando o exemplo da implementação da <a href="#sec-ex2" class="quarto-xref"><span>Seção 6.8.2</span></a>, repita-o porém, considerando um grid regular, especificado conforme segue. Compare os resultados.</p></li>
+<li><p>Seja o exemplo da implementação da <a href="#sec-ex2" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ex2</span></a>. Extraia o melhor modelo e diga quais níveis dos hiperparâmetros garantem uma árvore com melhor desempenho para prever o preço de carros usados. Avalie o melhor modelo nos dados de teste e obtenha as métricas de ajuste.</p></li>
+<li><p>Ainda considerando o exemplo da implementação da <a href="#sec-ex2" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ex2</span></a>, repita-o porém, considerando um grid regular, especificado conforme segue. Compare os resultados.</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tree_grid_reg <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
@@ -1949,7 +1949,7 @@ Dica
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
-<li>Seja o exemplo da <a href="AS_tree.html#sec-rfimpl" class="quarto-xref"><span>Seção 5.4.3</span></a>, onde foi realizada uma implementação de regressão por floresta aleatória para prever o preço de apartamentos. Refaça este exemplo considerando um grid aleatório para os três hiperparâmetros com <code>size = 100</code>. Compare os resultados de teste com os obtidos via grid regular.</li>
+<li>Seja o exemplo da <a href="#sec-rfimpl" class="quarto-xref"><span class="quarto-unresolved-ref">sec-rfimpl</span></a>, onde foi realizada uma implementação de regressão por floresta aleatória para prever o preço de apartamentos. Refaça este exemplo considerando um grid aleatório para os três hiperparâmetros com <code>size = 100</code>. Compare os resultados de teste com os obtidos via grid regular.</li>
 </ol>
 
 
