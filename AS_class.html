@@ -222,20 +222,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -295,7 +295,7 @@ window.Quarto = {
 <p><span id="eq-densconj"><span class="math display">\[
 p(\mathcal{T}|\theta) = p(y_1|\mathbf{x}_1,\theta)p(y_2|\mathbf{x}_2,\theta)... p(y_N|\mathbf{x}_N,\theta)
 \tag{12.1}\]</span></span></p>
-<p>A função de verossimilhança, <span class="math inline">\(L(\theta)\)</span>, é definida conforme <a href="AS_lda.html#eq-veross" class="quarto-xref">Equação&nbsp;<span>14.2</span></a>.</p>
+<p>A função de verossimilhança, <span class="math inline">\(L(\theta)\)</span>, é definida conforme <a href="AS_lda.html#eq-veross" class="quarto-xref">Equação&nbsp;<span>15.2</span></a>.</p>
 <p><span id="eq-veross"><span class="math display">\[
 L(\theta) = p(\mathcal{T}|\theta) =\prod_{i=1}^Np(y_i|\mathbf{x}_i,\theta)
 \tag{12.2}\]</span></span></p>
@@ -328,7 +328,7 @@ l(\theta) = \text{log } \prod_{i=1}^Np(y_i|\mathbf{x}_i,\theta)=  \sum_{i=1}^N \
 </section>
 <section id="máximo-à-posteriori" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="máximo-à-posteriori"><span class="header-section-number">12.3</span> Máximo à posteriori</h2>
-<p>Considerando um vetor de variáveis independentes, <span class="math inline">\(\mathbf{x}\)</span>, um supervisor, <span class="math inline">\(y\)</span>, e um parâmetro ou hiperparâmetro, <span class="math inline">\(\theta\)</span>, de uma função a ser estimada para aproximar <span class="math inline">\(y\)</span> em função de <span class="math inline">\(\mathbf{x}\)</span>, o teorema de Bayes pode ser expresso conforme a <a href="AS_lda.html#eq-bayes" class="quarto-xref">Equação&nbsp;<span>14.1</span></a>, onde <span class="math inline">\(p(\theta|y,\mathbf{x})\)</span> é a distribuição posterior ou <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> dado <span class="math inline">\(\{\mathbf{x},y\}\)</span>, <span class="math inline">\(p(y|\mathbf{x},\theta)\)</span> a função de verossimilhança de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(p(\theta)\)</span> é a distribuição à priori do parâmetro e <span class="math inline">\(p(y,\mathbf{x})\)</span> é a distribuição ou função densidade de origem dos dados.</p>
+<p>Considerando um vetor de variáveis independentes, <span class="math inline">\(\mathbf{x}\)</span>, um supervisor, <span class="math inline">\(y\)</span>, e um parâmetro ou hiperparâmetro, <span class="math inline">\(\theta\)</span>, de uma função a ser estimada para aproximar <span class="math inline">\(y\)</span> em função de <span class="math inline">\(\mathbf{x}\)</span>, o teorema de Bayes pode ser expresso conforme a <a href="AS_lda.html#eq-bayes" class="quarto-xref">Equação&nbsp;<span>15.1</span></a>, onde <span class="math inline">\(p(\theta|y,\mathbf{x})\)</span> é a distribuição posterior ou <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> dado <span class="math inline">\(\{\mathbf{x},y\}\)</span>, <span class="math inline">\(p(y|\mathbf{x},\theta)\)</span> a função de verossimilhança de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(p(\theta)\)</span> é a distribuição à priori do parâmetro e <span class="math inline">\(p(y,\mathbf{x})\)</span> é a distribuição ou função densidade de origem dos dados.</p>
 <p><span id="eq-bayes"><span class="math display">\[
 p(\theta|\mathbf y,\mathbf{X})=\frac{p(\mathbf y|\mathbf{X},\theta)p(\theta)}{p(\mathbf y,\mathbf{X})} \propto p(\mathbf y|\mathbf{X},\theta)p(\theta)
 \tag{12.6}\]</span></span></p>

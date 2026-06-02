@@ -373,12 +373,27 @@ E(R_j) = \frac{1}{n_j} \sum_{\mathbf x_i \in R_j} I(y_i \neq c)
 \tag{14.2}\]</span></span></p>
 <p>O índice de Gini é uma métrica muito comum como função de impureza nas regiões, sendo calculado conforme <a href="#eq-giniindex" class="quarto-xref">Equação&nbsp;<span>14.3</span></a>, onde <span class="math inline">\(\hat{p}_{qj}\)</span> consiste na proporção de observações da classe <span class="math inline">\(c_q\)</span> na região <span class="math inline">\(j\)</span>. Este índice é minimizado quando todas as proporções são 0 ou 1, garantindo regiões puras.</p>
 <p><span id="eq-giniindex"><span class="math display">\[
-G(R_j) = \sum_{q=1}^Q \sum_{\mathbf x_i \in R_j} \hat{p}_{qj}(1-\hat{p}_{qj})
+G(R_j) = \sum_{q=1}^Q  \hat{p}_{qj}(1-\hat{p}_{qj}),\text{ } \forall j
 \tag{14.3}\]</span></span></p>
 <p>De forma similar, a entropia também é bastante utilizada, sendo calculada conforme <a href="#eq-entropy" class="quarto-xref">Equação&nbsp;<span>14.4</span></a>. A entropia também é minima quando todas as proporções são 0 ou 1. Os dois últimos índices são mais fáceis de otimizar, por serem deriváveis, sendo mais comuns como função perda na classificação.</p>
 <p><span id="eq-entropy"><span class="math display">\[
-H(R_j) = -\sum_{q=1}^Q \sum_{\mathbf x_i \in R_j}  \hat{p}_{qj} \text{log }\hat{p}_{qj}
+H(R_j) = -\sum_{q=1}^Q \hat{p}_{qj} \text{log }\hat{p}_{qj},\text{ } \forall j
 \tag{14.4}\]</span></span></p>
+<p>A <a href="#fig-indextree" class="quarto-xref">Figura&nbsp;<span>14.3</span></a> plota os três índices. Observa-se que as três apresentam mínimo nos extremos, ou seja, quando as regiões apresentam apenas uma classe. Entretanto, apenas o índice de Gini e a entropia são funções convexas, portanto derivaveis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-indextree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-indextree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_treec_files/figure-html/fig-indextree-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-indextree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.3: Proporções de classificações incorretas, índice de gine e entropia
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s)\)</span> = <span class="math inline">\({\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca a variável para o particionamento e o valor desta na divisão para minimizar o erro de classificação. Considerando o índice de Gini, em cada partição, busca-se minimizar a <a href="#eq-cartlossg" class="quarto-xref">Equação&nbsp;<span>14.5</span></a>, onde <span class="math inline">\(|.|\)</span> consiste no número de observações, de forma que os índices de Gini em cada região são ponderados pelas proporções de observações nas regiões geradas pela partição.</p>
 <p><span id="eq-cartlossg"><span class="math display">\[
 \begin{aligned}
@@ -389,7 +404,7 @@ H(R_j) = -\sum_{q=1}^Q \sum_{\mathbf x_i \in R_j}  \hat{p}_{qj} \text{log }\hat{
 \end{aligned}
 \tag{14.5}\]</span></span></p>
 <p>O algoritmo CART repete o particionamento recursivamente até um determinado critério de parada ser alcançado, por exemplo, até um número mínimo de observações em cada partição ser atingido.</p>
-<p>Seja um conjunto de dados sintético para classificação binária exibido na <a href="#fig-classdata" class="quarto-xref">Figura&nbsp;<span>14.3</span></a>. Pode-se observar que os dados da classe 0 estão ilhados, cercados por observações da classe 1.</p>
+<p>Seja um conjunto de dados sintético para classificação binária exibido na <a href="#fig-classdata" class="quarto-xref">Figura&nbsp;<span>14.4</span></a>. Pode-se observar que os dados da classe 0 estão ilhados, cercados por observações da classe 1.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-classdata" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -398,13 +413,13 @@ H(R_j) = -\sum_{q=1}^Q \sum_{\mathbf x_i \in R_j}  \hat{p}_{qj} \text{log }\hat{
 <img src="AS_treec_files/figure-html/fig-classdata-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-classdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.3: Conjunto de dados sintético para classificação binária
+Figura&nbsp;14.4: Conjunto de dados sintético para classificação binária
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Um modelo de árvore de decisão é exibido na <a href="#fig-surfdiagm" class="quarto-xref">Figura&nbsp;<span>14.4</span></a>. De forma análoga ao já explicado em regressão, o modelo de árvore para classificação pode ser descrito como um conjunto de regras “se”/“se não”. Observa-se que, neste caso, foram geradas $|T| = $ 16 partições finais.</p>
+<p>Um modelo de árvore de decisão é exibido na <a href="#fig-surfdiagm" class="quarto-xref">Figura&nbsp;<span>14.5</span></a>. De forma análoga ao já explicado em regressão, o modelo de árvore para classificação pode ser descrito como um conjunto de regras “se”/“se não”. Observa-se que, neste caso, foram geradas $|T| = $ 16 partições finais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfdiagm" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -413,13 +428,13 @@ Figura&nbsp;14.3: Conjunto de dados sintético para classificação binária
 <img src="AS_treec_files/figure-html/fig-surfdiagm-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfdiagm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.4: Diagrama para o modelo de árvore de decisão para o conjunto de dados sintético para classificação binária
+Figura&nbsp;14.5: Diagrama para o modelo de árvore de decisão para o conjunto de dados sintético para classificação binária
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para evitar <em>overfitting</em>, pode-se usar de validação cruzada. A <a href="#fig-treecv" class="quarto-xref">Figura&nbsp;<span>14.5</span></a> plota a área abaixo da curva ROC segundo a profundidade e complexidade de custo da árvore. Pode-se observar que profundidade <span class="math inline">\(|T|\)</span> de 10 15, ou seja 10 a 15 nós terminais ou folhas, com complexidade de custo <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(5 \times 10^{-10}\)</span> a <span class="math inline">\(4 \times 10^{-5}\)</span> acarretou maior área abaixo da curva ROC, portanto, menor erro de classificação.</p>
+<p>Para evitar <em>overfitting</em>, pode-se usar de validação cruzada. A <a href="#fig-treecv" class="quarto-xref">Figura&nbsp;<span>14.6</span></a> plota a área abaixo da curva ROC segundo a profundidade e complexidade de custo da árvore. Pode-se observar que profundidade <span class="math inline">\(|T|\)</span> de 10 15, ou seja 10 a 15 nós terminais ou folhas, com complexidade de custo <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(5 \times 10^{-10}\)</span> a <span class="math inline">\(4 \times 10^{-5}\)</span> acarretou maior área abaixo da curva ROC, portanto, menor erro de classificação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treecv" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -428,13 +443,13 @@ Figura&nbsp;14.4: Diagrama para o modelo de árvore de decisão para o conjunto 
 <img src="AS_treec_files/figure-html/fig-treecv-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treecv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.5: Erro na validação cruzada para definir a dimensão da árvore
+Figura&nbsp;14.6: Erro na validação cruzada para definir a dimensão da árvore
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Tomando observações de teste pode-se plotar a fronteira de decisão da árvore de classificação no espaço dos preditores conforme <a href="#fig-surftree15" class="quarto-xref">Figura&nbsp;<span>14.6</span></a>.</p>
+<p>Tomando observações de teste pode-se plotar a fronteira de decisão da árvore de classificação no espaço dos preditores conforme <a href="#fig-surftree15" class="quarto-xref">Figura&nbsp;<span>14.7</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surftree15" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -443,7 +458,7 @@ Figura&nbsp;14.5: Erro na validação cruzada para definir a dimensão da árvor
 <img src="AS_treec_files/figure-html/fig-surftree15-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surftree15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.6: Fronteira de decisão para a árvore de decisão após poda
+Figura&nbsp;14.7: Fronteira de decisão para a árvore de decisão após poda
 </figcaption>
 </figure>
 </div>
@@ -451,7 +466,7 @@ Figura&nbsp;14.6: Fronteira de decisão para a árvore de decisão após poda
 </div>
 <section id="importância-dos-preditores" class="level3" data-number="14.1.1">
 <h3 data-number="14.1.1" class="anchored" data-anchor-id="importância-dos-preditores"><span class="header-section-number">14.1.1</span> Importância dos preditores</h3>
-<p>A <a href="#fig-imptreec" class="quarto-xref">Figura&nbsp;<span>14.7</span></a> apresenta o gráfico de importância dos preditores para a árvore de decisão em questão. Considera-se, neste caso, a redução no erro de classificação de um nó pai para um nó filho de forma acumulada para os preditores considerados. Para o exemplo <span class="math inline">\(x_1\)</span> foi um pouco mais importante que <span class="math inline">\(x_2\)</span>.</p>
+<p>A <a href="#fig-imptreec" class="quarto-xref">Figura&nbsp;<span>14.8</span></a> apresenta o gráfico de importância dos preditores para a árvore de decisão em questão. Considera-se, neste caso, a redução no erro de classificação de um nó pai para um nó filho de forma acumulada para os preditores considerados. Para o exemplo <span class="math inline">\(x_1\)</span> foi um pouco mais importante que <span class="math inline">\(x_2\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-imptreec" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -460,7 +475,7 @@ Figura&nbsp;14.6: Fronteira de decisão para a árvore de decisão após poda
 <img src="AS_treec_files/figure-html/fig-imptreec-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-imptreec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.7: Importância dos preditores no modelo de árvore de decisão
+Figura&nbsp;14.8: Importância dos preditores no modelo de árvore de decisão
 </figcaption>
 </figure>
 </div>
@@ -474,7 +489,7 @@ Figura&nbsp;14.7: Importância dos preditores no modelo de árvore de decisão
 <p><span id="eq-bagclassf"><span class="math display">\[
 \hat f_{bag}= \text{Moda} \{\hat f^*_1(\mathbf x), \hat f^*_2(\mathbf x), \dots, \hat f^*_B(\mathbf x)\}
 \tag{14.6}\]</span></span></p>
-<p>A <a href="#fig-bagcv" class="quarto-xref">Figura&nbsp;<span>14.8</span></a> plota a área abaixo da curva ROC segundo o <em>grid</em> usado na validação cruzada para obter um modelo via <em>bagging</em> com 100 árvores. O melhor modelo foi obtido com $= $ 1,78 <span class="math inline">\(\times 10^{-8}\)</span>, <span class="math inline">\(|T|\)</span> = 15 e <span class="math inline">\(min_n\)</span> = 13.</p>
+<p>A <a href="#fig-bagcv" class="quarto-xref">Figura&nbsp;<span>14.9</span></a> plota a área abaixo da curva ROC segundo o <em>grid</em> usado na validação cruzada para obter um modelo via <em>bagging</em> com 100 árvores. O melhor modelo foi obtido com $= $ 1,78 <span class="math inline">\(\times 10^{-8}\)</span>, <span class="math inline">\(|T|\)</span> = 15 e <span class="math inline">\(min_n\)</span> = 13.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bagcv" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -483,13 +498,13 @@ Figura&nbsp;14.7: Importância dos preditores no modelo de árvore de decisão
 <img src="AS_treec_files/figure-html/fig-bagcv-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bagcv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.8: AUC em função da complexidade de custo, min_n e profundidade da árvore no <em>bagging</em>
+Figura&nbsp;14.9: AUC em função da complexidade de custo, min_n e profundidade da árvore no <em>bagging</em>
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-surfbag" class="quarto-xref">Figura&nbsp;<span>14.9</span></a> plota a fronteira de classificação obtida via <em>bagging</em> junto aos dados de teste.</p>
+<p>A <a href="#fig-surfbag" class="quarto-xref">Figura&nbsp;<span>14.10</span></a> plota a fronteira de classificação obtida via <em>bagging</em> junto aos dados de teste.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfbag" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -498,7 +513,7 @@ Figura&nbsp;14.8: AUC em função da complexidade de custo, min_n e profundidade
 <img src="AS_treec_files/figure-html/fig-surfbag-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.9: Fronteira de decisão obtida via <em>bagging</em>
+Figura&nbsp;14.10: Fronteira de decisão obtida via <em>bagging</em>
 </figcaption>
 </figure>
 </div>
@@ -506,7 +521,7 @@ Figura&nbsp;14.9: Fronteira de decisão obtida via <em>bagging</em>
 </div>
 <section id="importância-dos-preditores-1" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="importância-dos-preditores-1"><span class="header-section-number">14.2.1</span> Importância dos preditores</h3>
-<p>A <a href="#fig-impbagec" class="quarto-xref">Figura&nbsp;<span>14.10</span></a> expõe o gráfico de importância de preditores para o <em>bagging</em>. A importância é medida de forma similar à regressão, realizando-se a permutação dos preditores e medindo-se a perda antes e após permutação. Para este exemplo, ambas as variáveis são importantes, sendo <span class="math inline">\(x_1\)</span> um pouco mais importante que <span class="math inline">\(x_2\)</span>.</p>
+<p>A <a href="#fig-impbagec" class="quarto-xref">Figura&nbsp;<span>14.11</span></a> expõe o gráfico de importância de preditores para o <em>bagging</em>. A importância é medida de forma similar à regressão, realizando-se a permutação dos preditores e medindo-se a perda antes e após permutação. Para este exemplo, ambas as variáveis são importantes, sendo <span class="math inline">\(x_1\)</span> um pouco mais importante que <span class="math inline">\(x_2\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-impbagec" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -515,7 +530,7 @@ Figura&nbsp;14.9: Fronteira de decisão obtida via <em>bagging</em>
 <img src="AS_treec_files/figure-html/fig-impbagec-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-impbagec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.10: Importância dos preditores no modelo <em>bagging</em>
+Figura&nbsp;14.11: Importância dos preditores no modelo <em>bagging</em>
 </figcaption>
 </figure>
 </div>
@@ -526,7 +541,7 @@ Figura&nbsp;14.10: Importância dos preditores no modelo <em>bagging</em>
 <section id="floresta-aleatória" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">14.3</span> Floresta aleatória</h2>
 <p>Conforme já discutido em regressão, o modelo de floresta aleatória consiste em uma evolução do modelo <em>bagging</em> com a finalidade de diminuir a variância deste, limitando o número de variáveis a serem consideradas em cada particionamento binário recursivo, <span class="math inline">\(m&lt;k\)</span>, visando decorrelacionar as árvores de decisão geradas. Geralmente, para classificação recomenda-se <span class="math inline">\(m=\sqrt{k}\)</span>. Entretanto, sugere-se definir o <span class="math inline">\(m\)</span> ótimo junto com os outros hiperparâmetros via validação cruzada.</p>
-<p>Para os dados apresentados na <a href="#fig-classdata" class="quarto-xref">Figura&nbsp;<span>14.3</span></a>, considerando um <em>grid</em> regular e cinco partições nos dados para definir <span class="math inline">\(B\)</span>, <span class="math inline">\(m\)</span> e <span class="math inline">\(min_n\)</span>, a <a href="#fig-rfcv" class="quarto-xref">Figura&nbsp;<span>14.11</span></a> expõe o resultado da validação cruzada com <em>grid search</em>. <span class="math inline">\(B = 1000\)</span>, <span class="math inline">\(m = 2\)</span> e <span class="math inline">\(min_n = 2\)</span> resultam em um melhor resultado, AUC = 0,988.</p>
+<p>Para os dados apresentados na <a href="#fig-classdata" class="quarto-xref">Figura&nbsp;<span>14.4</span></a>, considerando um <em>grid</em> regular e cinco partições nos dados para definir <span class="math inline">\(B\)</span>, <span class="math inline">\(m\)</span> e <span class="math inline">\(min_n\)</span>, a <a href="#fig-rfcv" class="quarto-xref">Figura&nbsp;<span>14.12</span></a> expõe o resultado da validação cruzada com <em>grid search</em>. <span class="math inline">\(B = 1000\)</span>, <span class="math inline">\(m = 2\)</span> e <span class="math inline">\(min_n = 2\)</span> resultam em um melhor resultado, AUC = 0,988.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rfcv" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -535,13 +550,13 @@ Figura&nbsp;14.10: Importância dos preditores no modelo <em>bagging</em>
 <img src="AS_treec_files/figure-html/fig-rfcv-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rfcv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.11: AUC em função de m, min_n e B para o modelo de floresta aleatória
+Figura&nbsp;14.12: AUC em função de m, min_n e B para o modelo de floresta aleatória
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-surfrf" class="quarto-xref">Figura&nbsp;<span>14.12</span></a> apresenta a fronteira de decisão obtida via floresta aleatória junto aos dados de teste.</p>
+<p>A <a href="#fig-surfrf" class="quarto-xref">Figura&nbsp;<span>14.13</span></a> apresenta a fronteira de decisão obtida via floresta aleatória junto aos dados de teste.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfrf" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -550,7 +565,7 @@ Figura&nbsp;14.11: AUC em função de m, min_n e B para o modelo de floresta ale
 <img src="AS_treec_files/figure-html/fig-surfrf-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfrf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;14.12: Fronteira de decisão obtida via floresta aleatória
+Figura&nbsp;14.13: Fronteira de decisão obtida via floresta aleatória
 </figcaption>
 </figure>
 </div>
@@ -569,14 +584,15 @@ Figura&nbsp;14.12: Fronteira de decisão obtida via floresta aleatória
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Carregando dados e visualizando dados.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(simdatac1)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> simdatac1</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_treino, <span class="fu">aes</span>(x1,x2,<span class="at">col =</span> y, <span class="at">pch=</span>y)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(x1,x2,<span class="at">col =</span> y, <span class="at">pch=</span>y)) <span class="sc">+</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"y"</span>, <span class="at">pch =</span> <span class="st">"y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -635,24 +651,28 @@ Figura&nbsp;14.12: Fronteira de decisão obtida via floresta aleatória
 </div>
 <p>Visualizando o modelo.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree_final <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree_final <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rpart.plot</span>(<span class="at">type =</span> <span class="dv">4</span>, <span class="at">extra =</span> <span class="dv">104</span>, <span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Visualizando a fronteira de decisão com os dados de teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xys<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree_final, xys, <span class="at">type =</span> <span class="st">"class"</span>)<span class="sc">$</span>.pred_class</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> xys, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> x2, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> x1,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> <span class="fu">as.factor</span>(y)), </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span> (<span class="st">"palevioletred"</span>, <span class="st">"lightseagreen"</span>)) <span class="sc">+</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste, </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>x2, <span class="at">col =</span> <span class="fu">as.factor</span>(y))) <span class="sc">+</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"y"</span>, <span class="at">fill =</span> <span class="st">"y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>x1), <span class="fu">max</span>(dados<span class="sc">$</span>x1), <span class="at">length =</span> <span class="dv">30</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ys <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(dados<span class="sc">$</span>x2), <span class="fu">max</span>(dados<span class="sc">$</span>x2), <span class="at">length =</span> <span class="dv">30</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>xys <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">x1=</span>xs,<span class="at">x2=</span>ys)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>xys<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree_final, xys, <span class="at">type =</span> <span class="st">"class"</span>)<span class="sc">$</span>.pred_class</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="at">data =</span> xys, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> x2, </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> x1,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> <span class="fu">as.factor</span>(y)), </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span> (<span class="st">"palevioletred"</span>, <span class="st">"lightseagreen"</span>)) <span class="sc">+</span> </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados_teste, </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>x1,<span class="at">y=</span>x2, <span class="at">col =</span> <span class="fu">as.factor</span>(y))) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">"y"</span>, <span class="at">fill =</span> <span class="st">"y"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsões com dados de teste.</p>
 <div class="cell">
@@ -689,7 +709,7 @@ Figura&nbsp;14.12: Fronteira de decisão obtida via floresta aleatória
 </section>
 <section id="bagging-1" class="level3" data-number="14.4.2">
 <h3 data-number="14.4.2" class="anchored" data-anchor-id="bagging-1"><span class="header-section-number">14.4.2</span> <em>Bagging</em></h3>
-<p>Pacote para <em>bagging</em>.</p>
+<p>Biblioteca para <em>bagging</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -702,7 +722,7 @@ Figura&nbsp;14.12: Fronteira de decisão obtida via floresta aleatória
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>, <span class="at">times =</span> <span class="dv">50</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"classification"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Difinindo um grid aleatório com tamanho 25.</p>
+<p>Definindo um grid aleatório com tamanho 25.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bag_grid <span class="ot">&lt;-</span> <span class="fu">grid_space_filling</span>(<span class="fu">cost_complexity</span>(),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">min_n</span>(),</span>
