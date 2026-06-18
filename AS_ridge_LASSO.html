@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>4&nbsp; Regressão rígida e LASSO – Aprendizado Supervisionado com implementações em R</title>
+<title>5&nbsp; Regressão rígida e LASSO – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./AS_tree.html" rel="next">
-<link href="./AS_vicio_var.html" rel="prev">
+<link href="./AS_feature_eng.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_ridge_LASSO.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_ridge_LASSO.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,26 +196,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -282,16 +282,16 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-rígida" id="toc-regressão-rígida" class="nav-link active" data-scroll-target="#regressão-rígida"><span class="header-section-number">4.1</span> Regressão rígida</a></li>
-  <li><a href="#regressão-via-lasso" id="toc-regressão-via-lasso" class="nav-link" data-scroll-target="#regressão-via-lasso"><span class="header-section-number">4.2</span> Regressão via LASSO</a></li>
-  <li><a href="#formulações-alternativas-para-regressão-rígida-e-lasso" id="toc-formulações-alternativas-para-regressão-rígida-e-lasso" class="nav-link" data-scroll-target="#formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">4.3</span> Formulações alternativas para regressão rígida e LASSO</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</a>
+  <li><a href="#regressão-rígida" id="toc-regressão-rígida" class="nav-link active" data-scroll-target="#regressão-rígida"><span class="header-section-number">5.1</span> Regressão rígida</a></li>
+  <li><a href="#regressão-via-lasso" id="toc-regressão-via-lasso" class="nav-link" data-scroll-target="#regressão-via-lasso"><span class="header-section-number">5.2</span> Regressão via LASSO</a></li>
+  <li><a href="#formulações-alternativas-para-regressão-rígida-e-lasso" id="toc-formulações-alternativas-para-regressão-rígida-e-lasso" class="nav-link" data-scroll-target="#formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">5.3</span> Formulações alternativas para regressão rígida e LASSO</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#regressão-rígida-1" id="toc-regressão-rígida-1" class="nav-link" data-scroll-target="#regressão-rígida-1"><span class="header-section-number">4.4.1</span> Regressão rígida</a></li>
-  <li><a href="#regressão-via-lasso-1" id="toc-regressão-via-lasso-1" class="nav-link" data-scroll-target="#regressão-via-lasso-1"><span class="header-section-number">4.4.2</span> Regressão via LASSO</a></li>
+  <li><a href="#regressão-rígida-1" id="toc-regressão-rígida-1" class="nav-link" data-scroll-target="#regressão-rígida-1"><span class="header-section-number">5.4.1</span> Regressão rígida</a></li>
+  <li><a href="#regressão-via-lasso-1" id="toc-regressão-via-lasso-1" class="nav-link" data-scroll-target="#regressão-via-lasso-1"><span class="header-section-number">5.4.2</span> Regressão via LASSO</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">4.5</span> Exercícios</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -300,7 +300,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></h1>
 </div>
 
 
@@ -323,8 +323,8 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-rígida" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="regressão-rígida"><span class="header-section-number">4.1</span> Regressão rígida</h2>
+<section id="regressão-rígida" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="regressão-rígida"><span class="header-section-number">5.1</span> Regressão rígida</h2>
 <p>Quando um modelo de regressão linear múltipla apresenta muitos preditores correlacionadas, seus coeficientes podem ser mal estimados, acarretando em alta variância das estimativas. Tais modelos costumam ter seus coeficientes inflados devido à correlação entre os preditores. A regressão rígida tem por finalizadade encolher ou diminuir coeficientes de variáveis correlacionadas, com a finalidade de minimizar a variância do modelo. A regressão rígida, portanto, lida com o problema de <strong>multicolineariedade</strong>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -339,7 +339,7 @@ Definição
 <p>A <strong>Multicolineariedade</strong> é um problema passível de ocorrência tanto em regressão quanto em classificação quando a correlação entre preditores dificulta a distinção de seus efeitos individuais na resposta de interesse.</p>
 </div>
 </div>
-<p>A <a href="#fig-multicol" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> expõe gráficos de dispersão aos pares, além dos coeficientes de correlação de Pearson, também aos pares, e densidades amostrais individuais para as variáveis do conjunto de dados de dimensões em folhas de uma jaboticabeira. Observa-se, entre diversos pares de variáveis, correlação positiva alta, <span class="math inline">\(r \rightarrow 1\)</span>. É claro que, ao aumentar a área de uma folha em relação às demais, o perímetro e outras dimensões possivelmente aumentarão.</p>
+<p>A <a href="#fig-multicol" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> expõe gráficos de dispersão aos pares, além dos coeficientes de correlação de Pearson, também aos pares, e densidades amostrais individuais para as variáveis do conjunto de dados de dimensões em folhas de uma jaboticabeira. Observa-se, entre diversos pares de variáveis, correlação positiva alta, <span class="math inline">\(r \rightarrow 1\)</span>. É claro que, ao aumentar a área de uma folha em relação às demais, o perímetro e outras dimensões possivelmente aumentarão.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-multicol" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -348,7 +348,7 @@ Definição
 <img src="AS_ridge_LASSO_files/figure-html/fig-multicol-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multicol-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.1: Diagramas de dispersão e correlações aos pares e densidades individuais para os dados de dimensões em folhas de árvores frutíferas
+Figura&nbsp;5.1: Diagramas de dispersão e correlações aos pares e densidades individuais para os dados de dimensões em folhas de árvores frutíferas
 </figcaption>
 </figure>
 </div>
@@ -376,31 +376,31 @@ Importante
 <p>Quando há multicolineariedade, minimizar puramente a função perda quadrática resulta em um modelo com maior variância, portanto, com possibilidade de sobreajuste (<em>overfitting</em>). Logo, a regressão rígida visa obter um modelo menos flexível, diminuindo a variância de previsão, porém aumentando o vício. Busca-se, por conseguinte, um bom custo-benefício entre vício e variância quando há preditores correlacionados. Deve-se selecionar, via validação cruzada, um valor de <span class="math inline">\(\lambda\)</span> que estabeleça uma melhor relação entre tais medidas de erro.</p>
 </div>
 </div>
-<p>A função perda quadrática para regressão rígida é exposta na <a href="#eq-lossridge" class="quarto-xref">Equação&nbsp;<span>4.1</span></a>.</p>
+<p>A função perda quadrática para regressão rígida é exposta na <a href="#eq-lossridge" class="quarto-xref">Equação&nbsp;<span>5.1</span></a>.</p>
 <p><span id="eq-lossridge"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) = \mathbf{y}^T\mathbf{y} - 2\mathbf{\beta}^T\mathbf{X}^T\mathbf{y} + \mathbf{\beta}^T\mathbf{X}^T\mathbf{X}\mathbf{\beta} + \lambda\beta^T\beta
 \end{aligned}
-\tag{4.1}\]</span></span></p>
-<p>Em notação algébrica a função perda pode ser escrita segundo a <a href="#eq-lossridge2" class="quarto-xref">Equação&nbsp;<span>4.2</span></a>.</p>
+\tag{5.1}\]</span></span></p>
+<p>Em notação algébrica a função perda pode ser escrita segundo a <a href="#eq-lossridge2" class="quarto-xref">Equação&nbsp;<span>5.2</span></a>.</p>
 <p><span id="eq-lossridge2"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) =\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k\beta_j^2
 \end{aligned}
-\tag{4.2}\]</span></span></p>
-<p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>4.3</span></a>.</p>
+\tag{5.2}\]</span></span></p>
+<p>Se <span class="math inline">\(\lambda=0\)</span>, tem-se a estimativa padrão de mínimos quadrados que, no caso de multicolineariedade, implicaria em um modelo com alta variância. Se <span class="math inline">\(\lambda \rightarrow \infty\)</span>, os coeficientes tenderão a 0, <span class="math inline">\(\beta_j \rightarrow 0\)</span>, <span class="math inline">\(\forall j\)</span>, o que implicaria, por outro lado, em um modelo com alto vício. Tomando a notação matricial e resolvendo para <span class="math inline">\(\beta\)</span>, os coeficientes de mínimos quadrados para regressão rígida são obtidos pela <a href="#eq-olsridge" class="quarto-xref">Equação&nbsp;<span>5.3</span></a>.</p>
 <p><span id="eq-olsridge"><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial \mathbf{\beta}} = -2\mathbf{X}^T\mathbf{y} + 2\mathbf{X}^T\mathbf{X}\mathbf{\beta} +2\lambda\beta= 0 \\
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X}+\lambda\mathbf{I})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
-\tag{4.3}\]</span></span></p>
-<p>Em um modelo de regressão rígida considerando a área como resposta e as demais variáveis como preditores, a <a href="#tbl-coefsols" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> apresenta os coeficientes obtidos sem uso de regularização rígida. Observa-se que poucos coeficientes foram estatisticamente significativos, p.value &gt; <span class="math inline">\(\alpha\)</span> = 0,05.</p>
+\tag{5.3}\]</span></span></p>
+<p>Em um modelo de regressão rígida considerando a área como resposta e as demais variáveis como preditores, a <a href="#tbl-coefsols" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> apresenta os coeficientes obtidos sem uso de regularização rígida. Observa-se que poucos coeficientes foram estatisticamente significativos, p.value &gt; <span class="math inline">\(\alpha\)</span> = 0,05.</p>
 <div class="cell">
 <div id="tbl-coefsols" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a área da folha em função das demais variáveis dimensionais
+Tabela&nbsp;5.1: Coeficientes de mínimos quadrados ordinários para prever a área da folha em função das demais variáveis dimensionais
 </figcaption>
 <div aria-describedby="tbl-coefsols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -923,7 +923,7 @@ Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a á
 </figure>
 </div>
 </div>
-<p>O gráfico da <a href="#fig-coefrig" class="quarto-xref">Figura&nbsp;<span>4.2</span></a> expõe as estimativas dos coeficientes em relação à oenalização de encolhimento, <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que forneça uma boa relação entre soma dos quadrados dos erros e encolhimento dos coeficientes.</p>
+<p>O gráfico da <a href="#fig-coefrig" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe as estimativas dos coeficientes em relação à oenalização de encolhimento, <span class="math inline">\(\lambda\)</span>. Observa-se que o aumento desta constante implica no encolhimento dos coeficientes. Deve-se tentar encontrar o valor de <span class="math inline">\(\lambda\)</span> que forneça uma boa relação entre soma dos quadrados dos erros e encolhimento dos coeficientes.</p>
 <div class="cell" data-tbl-cap="Coeficientes de regressão rígida versus penalização de encolhimento">
 <div class="cell-output-display">
 <div id="fig-coefrig" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -932,18 +932,18 @@ Tabela&nbsp;4.1: Coeficientes de mínimos quadrados ordinários para prever a á
 <img src="AS_ridge_LASSO_files/figure-html/fig-coefrig-1.png" id="fig-coefrig" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-coefrig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.2
+Figura&nbsp;5.2
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#tbl-coefridge" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a> expõe os coeficientes obtidos via regressão rígida para a área da folha. A partir de validação cruzada e <em>grid search</em> pode-se selecionar o valor ótimo de <span class="math inline">\(\lambda\)</span> dado um conjunto de valores candidatos. Para este caso, <span class="math inline">\(\lambda^* = 1 \times 10^{-9}\)</span>.</p>
+<p>A <a href="#tbl-coefridge" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> expõe os coeficientes obtidos via regressão rígida para a área da folha. A partir de validação cruzada e <em>grid search</em> pode-se selecionar o valor ótimo de <span class="math inline">\(\lambda\)</span> dado um conjunto de valores candidatos. Para este caso, <span class="math inline">\(\lambda^* = 1 \times 10^{-9}\)</span>.</p>
 <div class="cell">
 <div id="tbl-coefridge" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coefridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.2: Coeficientes de regressão rígida para prever a área da folha em função das demais variáveis dimensionais
+Tabela&nbsp;5.2: Coeficientes de regressão rígida para prever a área da folha em função das demais variáveis dimensionais
 </figcaption>
 <div aria-describedby="tbl-coefridge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1456,17 +1456,17 @@ Importante
 </div>
 </div>
 </section>
-<section id="regressão-via-lasso" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="regressão-via-lasso"><span class="header-section-number">4.2</span> Regressão via LASSO</h2>
+<section id="regressão-via-lasso" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="regressão-via-lasso"><span class="header-section-number">5.2</span> Regressão via LASSO</h2>
 <p>Um problema da regressão rígida é que este método não faz seleção de coeficientes ou termos a serem mantidos no modelo. Ou seja, a regressão rígida não reduz o modelo a partir da exclusão de variáveis correlacionadas, apenas encolhe os coeficientes relaiconados, o que implica na manutenção de preditores redundantes no modelo, mesmo que seus coeficientes sejam drasticamente reduzidos.</p>
 <p>Uma alternativa à regressão rígida que promove não somente o encolhimento, mas também a seleção de preditores é a regressão pelo operador de seleção e contração mínima absoluta ou <em>Least Absolute Shrinkage and Selection Operator - LASSO</em>. A regressão LASSO muda a penalização da função perda considerando a norma <span class="math inline">\(L_1\)</span>, <span class="math inline">\(\sum_{j=1}^k|\beta_j|\)</span>, em detrimento da norma <span class="math inline">\(L_2\)</span>, <span class="math inline">\(\sum_{j=1}^k\beta_j^2\)</span>, usada no caso rígido.</p>
 <p><span id="eq-lossLASSO"><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta,\lambda}) = \sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2 + \lambda\sum_{j=1}^k|\beta_j|
 \end{aligned}
-\tag{4.4}\]</span></span></p>
-<p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como na regressão rígida. Logo, a <a href="#eq-lossLASSO" class="quarto-xref">Equação&nbsp;<span>4.4</span></a> deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
-<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span>4.3</span></a> plota as estimativas dos coeficientes para o exemplo anterior em função do parâmetro de encolhimento e de seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que, à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes são anulados e, portanto, os preditores relacionados são excluídos do modelo. De forma análoga à regressão rígida, na regressão via LASSO deve-se obter o <span class="math inline">\(\lambda\)</span> ótimo via validação cruzada. Para o exemplo, a penalização de encolhimento ótima é <span class="math inline">\(\lambda^* = 7,9 \times 10 ^{-4}\)</span>, destacada via linha de referência tracejada cinza.</p>
+\tag{5.4}\]</span></span></p>
+<p>No caso da regressão via LASSO, não há solução fechada ou equações normais, como na regressão rígida. Logo, a <a href="#eq-lossLASSO" class="quarto-xref">Equação&nbsp;<span>5.4</span></a> deve ser minimizada via programação quadrática para estimar os coeficientes.</p>
+<p>A <a href="#fig-coeflasso" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> plota as estimativas dos coeficientes para o exemplo anterior em função do parâmetro de encolhimento e de seleção de variáveis, <span class="math inline">\(\lambda\)</span>, na regressão via LASSO. É possível observar que, à medida que <span class="math inline">\(\lambda\)</span> aumenta, alguns coeficientes são anulados e, portanto, os preditores relacionados são excluídos do modelo. De forma análoga à regressão rígida, na regressão via LASSO deve-se obter o <span class="math inline">\(\lambda\)</span> ótimo via validação cruzada. Para o exemplo, a penalização de encolhimento ótima é <span class="math inline">\(\lambda^* = 7,9 \times 10 ^{-4}\)</span>, destacada via linha de referência tracejada cinza.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-coeflasso" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1475,18 +1475,18 @@ L(\mathbf{\beta,\lambda}) = \sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^
 <img src="AS_ridge_LASSO_files/figure-html/fig-coeflasso-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.3: Coeficientes <em>versus</em> penalização de encolhimento na regressão via LASSO
+Figura&nbsp;5.3: Coeficientes <em>versus</em> penalização de encolhimento na regressão via LASSO
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Finalmente, a <a href="#tbl-coeflasso" class="quarto-xref">Tabela&nbsp;<span>4.3</span></a> apresenta os coeficientes obtidos por regressão via LASSO. Observa-se neste caso que apenas uma variável, <code>majoraxis</code>, foi excluída do modelo, dado que seu coeficiente foi anulado.</p>
+<p>Finalmente, a <a href="#tbl-coeflasso" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> apresenta os coeficientes obtidos por regressão via LASSO. Observa-se neste caso que apenas uma variável, <code>majoraxis</code>, foi excluída do modelo, dado que seu coeficiente foi anulado.</p>
 <div class="cell">
 <div id="tbl-coeflasso" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.3: Coeficientes de regressão via LASSO para prever a área da folha em função das demais variáveis dimensionais
+Tabela&nbsp;5.3: Coeficientes de regressão via LASSO para prever a área da folha em função das demais variáveis dimensionais
 </figcaption>
 <div aria-describedby="tbl-coeflasso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1986,23 +1986,23 @@ Tabela&nbsp;4.3: Coeficientes de regressão via LASSO para prever a área da fol
 </div>
 </div>
 </section>
-<section id="formulações-alternativas-para-regressão-rígida-e-lasso" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">4.3</span> Formulações alternativas para regressão rígida e LASSO</h2>
-<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa na formulação <a href="#eq-ridgeformalt" class="quarto-xref"><span>4.5</span></a>, onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
+<section id="formulações-alternativas-para-regressão-rígida-e-lasso" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="formulações-alternativas-para-regressão-rígida-e-lasso"><span class="header-section-number">5.3</span> Formulações alternativas para regressão rígida e LASSO</h2>
+<p>Uma formulação alternativa para o problema de regressão rígida pode ser expressa na formulação <a href="#eq-ridgeformalt" class="quarto-xref"><span>5.5</span></a>, onde <span class="math inline">\(s\)</span> seria um parâmetro associado a <span class="math inline">\(\lambda\)</span> que limita o crescimento dos coeficientes.</p>
 <p><span id="eq-ridgeformalt"><span class="math display">\[
 \begin{aligned}
 Min \Biggl\{\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k\beta_j^2 \leq s
 \end{aligned}
-\tag{4.5}\]</span></span></p>
-<p>Para o caso da regressão via LASSO a formulação fica conforme a formulação <a href="#eq-lassoformalt" class="quarto-xref"><span>4.6</span></a>.</p>
+\tag{5.5}\]</span></span></p>
+<p>Para o caso da regressão via LASSO a formulação fica conforme a formulação <a href="#eq-lassoformalt" class="quarto-xref"><span>5.6</span></a>.</p>
 <p><span id="eq-lassoformalt"><span class="math display">\[
 \begin{aligned}
 Min \Biggl\{\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij})^2\Biggl\} \\
 st.:\sum_{j=1}^k|\beta_j| \leq s
 \end{aligned}
-\tag{4.6}\]</span></span></p>
-<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>4.4</span></a> ilustra a função perda quadrática sendo minimizada respeitando à restrição rígida ou LASSO, segundo às formulações expostas. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta, enquanto no caso LASSO observa-se não somente o encolhimento, mas a manutenção de apenas o segundo preditor no modelo, uma vez que <span class="math inline">\(\beta_1\)</span> foi anulado.</p>
+\tag{5.6}\]</span></span></p>
+<p>A <a href="#fig-errorrigid" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> ilustra a função perda quadrática sendo minimizada respeitando à restrição rígida ou LASSO, segundo às formulações expostas. Pode-se observar que o valor dos coeficientes de mínimos quadrados são encolhidos quando a restrição de regressão rígida é imposta, enquanto no caso LASSO observa-se não somente o encolhimento, mas a manutenção de apenas o segundo preditor no modelo, uma vez que <span class="math inline">\(\beta_1\)</span> foi anulado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-errorrigid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2011,18 +2011,18 @@ st.:\sum_{j=1}^k|\beta_j| \leq s
 <img src="AS_ridge_LASSO_files/figure-html/fig-errorrigid-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-errorrigid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.4: Minimização da perda quadrática restrita ao caso rígido e LASSO
+Figura&nbsp;5.4: Minimização da perda quadrática restrita ao caso rígido e LASSO
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="implementações-em-r" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">4.4</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="regressão-rígida-1" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="regressão-rígida-1"><span class="header-section-number">4.4.1</span> Regressão rígida</h3>
+<section id="regressão-rígida-1" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="regressão-rígida-1"><span class="header-section-number">5.4.1</span> Regressão rígida</h3>
 <p>Carregando as bibliotecas (pacotes) para análise. O pacote <code>yardstick</code> é usado para cálculo de métricas de ajuste dos modelos. Já o pacote <code>tune</code> serve para realizar <em>grid search</em> com validação cruzada para otimizar os hiperparâmetros. O conjunto de dados <code>folhasfrutas</code> é filtrado para a espécie <code>jabuticaba</code> apenas, exclui-se a linha 46, dada a presença de um valor discrepante e, por fim, exclui-se a variável <code>eccentricity</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
@@ -2099,7 +2099,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O método de validação cruzada por k-dobras e outros são explicados na <a href="AS_cv.html#sec-kfold" class="quarto-xref"><span>Seção 6.3</span></a>.</p>
+<p>O método de validação cruzada por k-dobras e outros são explicados na <a href="AS_cv.html#sec-kfold" class="quarto-xref"><span>Seção 7.3</span></a>.</p>
 </div>
 </div>
 <div class="cell">
@@ -2151,8 +2151,8 @@ Nota
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-via-lasso-1" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="regressão-via-lasso-1"><span class="header-section-number">4.4.2</span> Regressão via LASSO</h3>
+<section id="regressão-via-lasso-1" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="regressão-via-lasso-1"><span class="header-section-number">5.4.2</span> Regressão via LASSO</h3>
 <p>Para a regularização via LASSO deve-se considerar no modelo <code>mixture = 1</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lasso_model <span class="ot">&lt;-</span> </span>
@@ -2205,8 +2205,8 @@ Nota
 <p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
 </section>
-<section id="exercícios" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">4.5</span> Exercícios</h2>
+<section id="exercícios" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.5</span> Exercícios</h2>
 <ol type="1">
 <li><p>Porque a regularização via LASSO é às vezes mais interessante que a regressão rígida?</p></li>
 <li><p>Retome o problema de previsão de preços de carros do modelo honda Fit, do conjunto de dados <code>carrosusados2025webmotors</code>, considerando como preditores a quilometragem e o ano. Obtenha modelos de regressão rígida e LASSO, de forma a tratar a multicolineariedade entre estes preditores. Faça também um modelo de regressão linear múltipla para fins de comparação. Qual modelo apresenta melhores resultados para os dados de teste? Qual o <span class="math inline">\(lambda\)</span> ótimo para cada método? Este modelo supera o modelo de regressão linear múltipla obtido via mínimos quadrados?</p></li>
@@ -2653,13 +2653,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_vicio_var.html" class="pagination-link" aria-label="Conflito entre vício e variância no aprendizado supervisionado">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conflito entre vício e variância no aprendizado supervisionado</span></span>
+      <a href="./AS_feature_eng.html" class="pagination-link" aria-label="Análise exploratória de dados e engenharia de atributos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./AS_tree.html" class="pagination-link" aria-label="Regressão por árvores de decisão e floresta aleatória">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
