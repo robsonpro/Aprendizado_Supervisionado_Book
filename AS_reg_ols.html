@@ -196,26 +196,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -3197,20 +3197,7 @@ Tabela&nbsp;2.5: Dados de preços de carros usados
 </div>
 </div>
 <p>Os modelos de regressão múltipla estimados via mínimos quadrados, assim como outros diversos métodos, só aceitam preditores quantitativos. Para trabalhar com a variável modelo e qualquer outra variável nominal em regressão múltipla, pode-se utilizar de codificação binária ou dicotômica. No caso de três categorias, como no exemplo acima, duas variáveis binárias são suficientes. Cria-se uma coluna denominada <code>Fit</code>, com 1, se <code>Carro == Fit</code> e 0, caso contrário e, de forma análoga, uma coluna para o modelo <code>Onix</code>. Caso uma determinada observação receba 0 em ambas colunas, o modelo do carro seria naturalmente <code>Onix</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definição
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Engenharia de atributos</strong> ou <em>feature engineering</em> consiste no processo de transformar dados brutos em preditores passíveis de consideração em modelos de aprendizado de máquina.</p>
-</div>
-</div>
-<p>Seja <span class="math inline">\(x_1\)</span> o ano, <span class="math inline">\(x_2\)</span> a quiometragem, então:</p>
+<p>Seja <span class="math inline">\(x_1\)</span> o ano e <span class="math inline">\(x_2\)</span> a quiometragem, então:</p>
 <p><span class="math display">\[
 x_3 = \bigg\{
 \begin{matrix}
@@ -3748,19 +3735,6 @@ Tabela&nbsp;2.6: Dados de carros com colunas das variáveis dicotômicas
 </div>
 </div>
 </figure>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Uma codificação binária muito comum para variáveis categóricas em aprendizado supervisionado é o <em>one-hot encoding</em>. Tal codificação genaria uma coluna para cada categoria. Entretanto, não recomenda-se o uso de tal codificação, uma vez que criaria uma coluna desnecessária, além de acarretar em correlação entre os coeficientes, visto que, <span class="math inline">\(q-1\)</span> colunas de variáveis binárias são suficientes para representar todas as <span class="math inline">\(q\)</span> categorias.</p>
 </div>
 </div>
 <p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a>.</p>
