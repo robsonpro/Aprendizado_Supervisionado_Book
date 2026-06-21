@@ -196,26 +196,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -295,7 +295,7 @@ window.Quarto = {
   <li><a href="#regressão-logística-lasso" id="toc-regressão-logística-lasso" class="nav-link" data-scroll-target="#regressão-logística-lasso"><span class="header-section-number">13.7.3</span> Regressão logística LASSO</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">13.8</span> Exercícios</a></li>
+  <li><a href="#sec-exreglog" id="toc-sec-exreglog" class="nav-link" data-scroll-target="#sec-exreglog"><span class="header-section-number">13.8</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -10205,8 +10205,8 @@ Figura&nbsp;13.13: Curva ROC para os dados de teste do modelo de regressão log�
 <p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Springer.</p>
 </section>
-<section id="exercícios" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">13.8</span> Exercícios</h2>
+<section id="sec-exreglog" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="sec-exreglog"><span class="header-section-number">13.8</span> Exercícios</h2>
 <ol type="1">
 <li><p>Na <a href="AS_Intro.html#sec-exclass" class="quarto-xref"><span>Seção 1.5.2</span></a> foi realizada a implementação de um modelo de classificação binárias de feijões pretos e vermelhos em função do comprimento. Refaça este exemplo, porém usando <code>receita</code> e <code>workflow</code>. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
 <li><p>O conjunto de dados <code>feijoes</code> contém outros possíveis preditores. Obtenha um modelo de regressão logística binária múltipla para classificar feijões pretos e vermelhos. Obtenha a matriz de confusão, curva ROC e métricas de classificação para os dados de teste.</p></li>
