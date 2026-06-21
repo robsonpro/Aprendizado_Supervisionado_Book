@@ -1248,5 +1248,15 @@
     "crumbs": [
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Classificação via árvores de decisão e floresta aleatória</span>"
     ]
+  },
+  {
+    "objectID": "AS_feature_eng.html#exercícios",
+    "href": "AS_feature_eng.html#exercícios",
+    "title": "4  Análise exploratória de dados e engenharia de atributos",
+    "section": "4.4 Exercícios",
+    "text": "4.4 Exercícios\n\nO conjunto de dados apartamentos2024mg apresenta variáveis numéricas e categóricas. Obtenha as estatísticas descritivas para as numéricas e as tabelas de frequências para as contínuas.\nAinda considerando o conjunto de dados apartamentos2024mg, obtenha um gráfico de frequência considerando as variáveis Cidade e Varanda.\nPara o mesmo conjunto de dados, obtenha um box-plot do preço dos apartamentos em função das cidades. Considerando outras variáveis do conjunto de dados, explore outros argumentos presentes na estética (aes) do ggplot.\nObtenha uma receita adequada para processar as variáveis do conjunto de dados apartamentos2024mg. Explique a necessidade de cada pré-processamento (step_...) adicionado.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Análise exploratória de dados e engenharia de atributos</span>"
+    ]
   }
 ]
