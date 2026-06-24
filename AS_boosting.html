@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./AS_GAM.html" rel="next">
-<link href="./AS_pcr.html" rel="prev">
+<link href="./AS_cv.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -196,8 +196,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -208,14 +208,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+  <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+  <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -286,12 +286,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#implementação-simplista-passo-a-passo-do-gbm-para-regressão" id="toc-implementação-simplista-passo-a-passo-do-gbm-para-regressão" class="nav-link" data-scroll-target="#implementação-simplista-passo-a-passo-do-gbm-para-regressão"><span class="header-section-number">8.1.1</span> Implementação simplista passo a passo do GBM para regressão</a></li>
   </ul></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">8.2</span> Implementações em R</a>
+  <li><a href="#light-gbm" id="toc-light-gbm" class="nav-link" data-scroll-target="#light-gbm"><span class="header-section-number">8.2</span> <em>Light GBM</em></a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">8.3</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#gbm-para-regressão-passo-a-passo" id="toc-gbm-para-regressão-passo-a-passo" class="nav-link" data-scroll-target="#gbm-para-regressão-passo-a-passo"><span class="header-section-number">8.2.1</span> GBM para regressão passo a passo</a></li>
-  <li><a href="#previsão-do-rendimento-em-função-da-escolaridade-experiência-e-outras-variáveis-sócio-geográficas" id="toc-previsão-do-rendimento-em-função-da-escolaridade-experiência-e-outras-variáveis-sócio-geográficas" class="nav-link" data-scroll-target="#previsão-do-rendimento-em-função-da-escolaridade-experiência-e-outras-variáveis-sócio-geográficas"><span class="header-section-number">8.2.2</span> Previsão do rendimento em função da escolaridade, experiência e outras variáveis sócio-geográficas</a></li>
+  <li><a href="#light-gbm-1" id="toc-light-gbm-1" class="nav-link" data-scroll-target="#light-gbm-1"><span class="header-section-number">8.3.1</span> <em>Light</em> GBM</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">8.4</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -325,37 +326,47 @@ window.Quarto = {
 
 <section id="máquinas-de-reforço-de-gradiente" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="máquinas-de-reforço-de-gradiente"><span class="header-section-number">8.1</span> Máquinas de reforço de gradiente</h2>
-<p>As máquinas de reforço de gradiente (<em>gradient boosting machines</em> - GBM) foram propostas por Gerome Friedman e consistem em um método de aprendizado por reforço que visa aproximar o gradiente da função perda, ou de forma mais simples, visa aproximar o erro de previsão e diminuir este a cada iteração do método. O conceito de aprendizado por reforço está relacionado ao fato de o método de certa forma aprender através do erro, uma vez que vai melhorando a previsão a cada tentativa ou iteração a partir dos valores residuais ou de erro observados. O gradiente ou erro é gradativamente reduzido aproximando-o de forma iterativa considerando uma taxa de aprendizagem. O método foi proposto inicialmente considerando árvores de decisão ou regressão, mas poderia ser utilizado também no caso de regressão por mínimos quadrados.</p>
+<p>As máquinas de reforço de gradiente (<em>gradient boosting machines</em> - GBM) foram propostas por Gerome Friedman e consistem em um método de aprendizado por reforço que visa aproximar o gradiente da função perda, ou de forma mais simples, visa aproximar o erro de previsão e diminuir este a cada iteração do método. O conceito de aprendizado por reforço está relacionado ao fato de o método, de certa forma, aprender através do erro, uma vez que vai melhorando a previsão a cada tentativa ou iteração, a partir dos valores residuais atualizados. O gradiente ou erro é gradativamente reduzido de forma iterativa considerando uma taxa de aprendizagem. O método foi proposto inicialmente considerando árvores de decisão/regressão, mas pode ser implementado utilizado regressão por mínimos quadrados.</p>
 <p>Um algoritmo GBM simplista do método GBM para regressão é apresentado à seguir:</p>
 <ol type="1">
 <li>Defina <span class="math inline">\(\hat{f}(\mathbf{x})=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span> para todos dados de treino.</li>
-<li>Para <span class="math inline">\(m=1,...,M\)</span>:</li>
+<li>Para <span class="math inline">\(m=1,...,M\)</span>, faça:</li>
 </ol>
 <!-- -->
 <ol type="i">
-<li>Estime uma árvore, <span class="math inline">\(\hat{f}_m\)</span>, para os dados de treino <span class="math inline">\((\mathbf{x}_i,\varepsilon_i)\)</span>, <span class="math inline">\(i=1,...,N\)</span>;</li>
+<li>Estime uma árvore, <span class="math inline">\(\hat{f}_m\)</span>, para os resíduos dos dados de treino <span class="math inline">\((\mathbf{x}_i,\varepsilon_i)\)</span>, <span class="math inline">\(i=1,...,n\)</span>;</li>
 <li>Atualize <span class="math inline">\(\hat{f}(\mathbf{x})\)</span> adicionando a árvore de regressão obtida multiplicada por uma taxa de aprendizagem <span class="math inline">\(\lambda\)</span>, isto é, <span class="math inline">\(\hat{f}(\mathbf{x}) \leftarrow \hat{f}(\mathbf{x}) + \lambda\hat{f}_m(\mathbf{x})\)</span>;</li>
-<li>Atualize os resíduos, isto é <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_m(\mathbf{x}_i)\)</span>, <span class="math inline">\(i=1,...,N\)</span>;</li>
+<li>Atualize os resíduos, isto é <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_m(\mathbf{x}_i)\)</span>, <span class="math inline">\(i=1,...,n\)</span>;</li>
 </ol>
 <!-- -->
 <ol start="3" type="1">
-<li>Atualize o modelo “impulsionado” ou “reforçado”: <span class="math inline">\(\hat{f}(\mathbf{x}) = \sum_{m=1}^M\lambda\hat{f}_m(\mathbf{x})\)</span></li>
+<li>Entregue o modelo final “impulsionado” ou “reforçado”: <span class="math inline">\(\hat{f}(\mathbf{x}) = \sum_{m=1}^M\lambda\hat{f}_m(\mathbf{x})\)</span></li>
 </ol>
-<p>O número de iterações ou árvores consideradas, <span class="math inline">\(M\)</span>, pode ser definido por validação cruzada. A taxa de aprendizado, <span class="math inline">\(\lambda\)</span>, geralmente é um valor real muito pequeno, por exemplo 0,01 ou 0,001 e define a taxa que o modelo por refroço aprende, isto é, melhora sua previsão. Quanto menor <span class="math inline">\(\lambda\)</span>, maior o número de árvores, <span class="math inline">\(M\)</span>, necessário para uma boa aproximação.</p>
-<p>Geralmente <span class="math inline">\(\hat{f}_m(\mathbf{x})\)</span> é um modelo de árvore com apenas uma partição e portanto dois nós terminais ou regiões, sendo portanto um aprendiz fraco (<em>weak leaner</em>). Em alguns casos pode ser interessante modelos com árvores com duas partições, o que de certa forma implica em modelos com interação.</p>
-<p>Considerando a função perda quadrática comumente usada em problemas de regressão:</p>
-<p><span class="math display">\[
-\begin{aligned}
+<p>A taxa de aprendizado, <span class="math inline">\(\lambda\)</span>, geralmente é um valor real muito pequeno, por exemplo 0,01 ou 0,001 e define a taxa que o modelo por reforço aprende, isto é, melhora sua previsão. Quanto menor <span class="math inline">\(\lambda\)</span>, maior o número de árvores, <span class="math inline">\(M\)</span>, necessário para uma boa aproximação. Tais parâmetros devem ser definidos por validação cruzada e <em>grid search</em>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O GBM, <span class="math inline">\(\hat{f}_m(\mathbf{x})\)</span> foi inicialmente implementado a partir de modelos de árvore com apenas uma partição e, portanto, dois nós terminais ou regiões, sendo, portanto, um aprendiz fraco (<em>weak leaner</em>). Modelos com árvores com duas partições ou mais implicam em modelos com interação. Sugere-se definir o número ideal de partições finais via validação cruzada.</p>
+</div>
+</div>
+<p>A função perda quadrática, comumente usada em problemas de regressão, é usada no algoritmo de aprendizado por reforço, conforme <a href="#eq-losgbm" class="quarto-xref">Equação&nbsp;<span>8.1</span></a>.</p>
+<p><span id="eq-losgbm"><span class="math display">\[
 L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2
-\end{aligned}
-\]</span></p>
-<p>A divisão por 2 viabiliza facilitar os cálculos no algoritmo de <em>boosting</em>. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.1</span></a>.</p>
+\tag{8.1}\]</span></span></p>
+<p>A divisão por 2 visa facilitar os cálculos no algoritmo de aprendizado por reforço. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.2</span></a>.</p>
 <p><span id="eq-gradloss"><span class="math display">\[
 \begin{aligned}
 \frac{\partial L}{\partial f} = y - \hat{f}(\mathbf{x}) = \varepsilon
 \end{aligned}
-\tag{8.1}\]</span></span></p>
-<p>Portanto, em cada iteração, o algoritmo GBM, ao aproximar uma árvore considerando <span class="math inline">\(N\)</span> observações das variáveis regressoras, <span class="math inline">\(\mathbf{x}_i\)</span>, em relação à <span class="math inline">\(N\)</span> valores residuais, <span class="math inline">\(\varepsilon_i\)</span>, <span class="math inline">\(i=1,...,N\)</span>, aproxima o gradiente da função perda que, no caso da função perda quadrática, é o valor residual ou erro, <span class="math inline">\(\varepsilon\)</span>.</p>
+\tag{8.2}\]</span></span></p>
+<p>Portanto, em cada iteração, o algoritmo, ao aproximar uma árvore considerando <span class="math inline">\(n\)</span> observações das variáveis regressoras, <span class="math inline">\(\mathbf{x}_i\)</span>, em relação à <span class="math inline">\(n\)</span> valores residuais, <span class="math inline">\(\varepsilon_i\)</span>, aproxima o gradiente da função perda.</p>
 <section id="implementação-simplista-passo-a-passo-do-gbm-para-regressão" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="implementação-simplista-passo-a-passo-do-gbm-para-regressão"><span class="header-section-number">8.1.1</span> Implementação simplista passo a passo do GBM para regressão</h3>
 <p>Para entender melhor o algoritmo GBM, considere o conjunto arbitrário de dados de treino da <a href="#tbl-regdata" class="quarto-xref">Tabela&nbsp;<span>8.1</span></a>, com duas variáveis independentes, <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>, e uma dependente contínua, <span class="math inline">\(y\)</span>.</p>
@@ -885,7 +896,7 @@ Tabela&nbsp;8.1: Conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>Consideremos para fins didáticos uma taxa de aprendizagem alta, <span class="math inline">\(\lambda\)</span> = 0,5, e um número pequeno de iterações, <span class="math inline">\(M = 4\)</span> árvores. O algoritmo inicia fazendo <span class="math inline">\(\hat{f}(x_1,x_2)=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span>, isto é (a penúltima coluna seriam os valores previstos do modelo inicial, <span class="math inline">\(\hat{f} = f\)</span>, e a última coluna seria o erro, <span class="math inline">\(\varepsilon = e\)</span>), conforme <a href="#tbl-iter0" class="quarto-xref">Tabela&nbsp;<span>8.2</span></a>.</p>
+<p>Considere, para fins didáticos, uma taxa de aprendizagem alta, <span class="math inline">\(\lambda\)</span> = 0,5, e um número pequeno de iterações, <span class="math inline">\(M = 4\)</span> árvores. O algoritmo inicia fazendo <span class="math inline">\(\hat{f}(x_1,x_2)=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span>, conforme <a href="#tbl-iter0" class="quarto-xref">Tabela&nbsp;<span>8.2</span></a>.</p>
 <div class="cell">
 <div id="tbl-iter0" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1350,7 +1361,7 @@ Tabela&nbsp;8.2: Previsão e resíduos iniciais do GBM
 <th id="x1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x1</th>
 <th id="x2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x2</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
+<th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
 </tr>
 </thead>
@@ -1359,70 +1370,70 @@ Tabela&nbsp;8.2: Previsão e resíduos iniciais do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.34</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.76</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.34</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">1.68</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">3.01</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">1.84</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.61</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.38</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">2.10</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f">0</td>
+<td class="gt_row gt_right" headers="f_hat">0</td>
 <td class="gt_row gt_right" headers="e">1.75</td>
 </tr>
 </tbody>
@@ -1434,7 +1445,7 @@ Tabela&nbsp;8.2: Previsão e resíduos iniciais do GBM
 </figure>
 </div>
 </div>
-<p>Fazendo <span class="math inline">\(m=1\)</span>, estima-se a primeira árvore, <span class="math inline">\(\hat{f} = T\)</span>, para os resíduos em função das variáveis independentes, <span class="math inline">\((x_1,x_2,\varepsilon)_i\)</span>, <span class="math inline">\(i=1,...,N\)</span>, conforme segue.</p>
+<p>Fazendo <span class="math inline">\(m=1\)</span>, estima-se a primeira árvore, <span class="math inline">\(\hat{f} = T\)</span>, para os resíduos em função das variáveis independentes, <span class="math inline">\((x_1,x_2,\varepsilon)_i\)</span>, <span class="math inline">\(i=1,...,N\)</span>, conforme segue. Na primeira iteração, uma vez que <span class="math inline">\(\hat f(\mathbf x)_i = 0\)</span>, tem-se <span class="math inline">\(\varepsilon_i= y_i\)</span>, <span class="math inline">\(\forall i\)</span>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -1910,7 +1921,7 @@ Tabela&nbsp;8.3: Previsão e resíduos da primeira iteração do GBM
 <th id="x1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x1</th>
 <th id="x2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x2</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
+<th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
 </tr>
 </thead>
@@ -1919,70 +1930,70 @@ Tabela&nbsp;8.3: Previsão e resíduos da primeira iteração do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">0.999</td>
+<td class="gt_row gt_right" headers="f_hat">0.999</td>
 <td class="gt_row gt_right" headers="e">1.341</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f">1.282</td>
+<td class="gt_row gt_right" headers="f_hat">1.282</td>
 <td class="gt_row gt_right" headers="e">1.478</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">1.282</td>
+<td class="gt_row gt_right" headers="f_hat">1.282</td>
 <td class="gt_row gt_right" headers="e">1.058</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f">0.999</td>
+<td class="gt_row gt_right" headers="f_hat">0.999</td>
 <td class="gt_row gt_right" headers="e">0.681</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f">1.282</td>
+<td class="gt_row gt_right" headers="f_hat">1.282</td>
 <td class="gt_row gt_right" headers="e">1.728</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f">0.999</td>
+<td class="gt_row gt_right" headers="f_hat">0.999</td>
 <td class="gt_row gt_right" headers="e">0.841</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f">1.282</td>
+<td class="gt_row gt_right" headers="f_hat">1.282</td>
 <td class="gt_row gt_right" headers="e">1.328</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f">0.999</td>
+<td class="gt_row gt_right" headers="f_hat">0.999</td>
 <td class="gt_row gt_right" headers="e">1.381</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f">1.282</td>
+<td class="gt_row gt_right" headers="f_hat">1.282</td>
 <td class="gt_row gt_right" headers="e">0.818</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f">0.999</td>
+<td class="gt_row gt_right" headers="f_hat">0.999</td>
 <td class="gt_row gt_right" headers="e">0.751</td>
 </tr>
 </tbody>
@@ -2469,7 +2480,7 @@ Tabela&nbsp;8.4: Previsão e resíduos da segunda iteração do GBM
 <th id="x1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x1</th>
 <th id="x2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x2</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
+<th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
 </tr>
 </thead>
@@ -2478,70 +2489,70 @@ Tabela&nbsp;8.4: Previsão e resíduos da segunda iteração do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">1.6706</td>
+<td class="gt_row gt_right" headers="f_hat">1.6706</td>
 <td class="gt_row gt_right" headers="e">0.6694</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f">1.9536</td>
+<td class="gt_row gt_right" headers="f_hat">1.9536</td>
 <td class="gt_row gt_right" headers="e">0.8064</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">1.7509</td>
+<td class="gt_row gt_right" headers="f_hat">1.7509</td>
 <td class="gt_row gt_right" headers="e">0.5891</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f">1.4679</td>
+<td class="gt_row gt_right" headers="f_hat">1.4679</td>
 <td class="gt_row gt_right" headers="e">0.2121</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f">1.9536</td>
+<td class="gt_row gt_right" headers="f_hat">1.9536</td>
 <td class="gt_row gt_right" headers="e">1.0564</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f">1.6706</td>
+<td class="gt_row gt_right" headers="f_hat">1.6706</td>
 <td class="gt_row gt_right" headers="e">0.1694</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f">1.9536</td>
+<td class="gt_row gt_right" headers="f_hat">1.9536</td>
 <td class="gt_row gt_right" headers="e">0.6564</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f">1.4679</td>
+<td class="gt_row gt_right" headers="f_hat">1.4679</td>
 <td class="gt_row gt_right" headers="e">0.9121</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f">1.7509</td>
+<td class="gt_row gt_right" headers="f_hat">1.7509</td>
 <td class="gt_row gt_right" headers="e">0.3491</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f">1.4679</td>
+<td class="gt_row gt_right" headers="f_hat">1.4679</td>
 <td class="gt_row gt_right" headers="e">0.2821</td>
 </tr>
 </tbody>
@@ -3028,7 +3039,7 @@ Tabela&nbsp;8.5: Previsão e resíduos da terceira iteração do GBM
 <th id="x1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x1</th>
 <th id="x2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x2</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
+<th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
 </tr>
 </thead>
@@ -3037,70 +3048,70 @@ Tabela&nbsp;8.5: Previsão e resíduos da terceira iteração do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">1.89511</td>
+<td class="gt_row gt_right" headers="f_hat">1.89511</td>
 <td class="gt_row gt_right" headers="e">0.44489</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.46066</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">2.09664</td>
+<td class="gt_row gt_right" headers="f_hat">2.09664</td>
 <td class="gt_row gt_right" headers="e">0.24336</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">-0.01241</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.71066</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f">1.89511</td>
+<td class="gt_row gt_right" headers="f_hat">1.89511</td>
 <td class="gt_row gt_right" headers="e">-0.05511</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.31066</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">0.68759</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f">2.09664</td>
+<td class="gt_row gt_right" headers="f_hat">2.09664</td>
 <td class="gt_row gt_right" headers="e">0.00336</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">0.05759</td>
 </tr>
 </tbody>
@@ -3587,8 +3598,9 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 <th id="x1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x1</th>
 <th id="x2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">x2</th>
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
+<th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
+<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -3596,71 +3608,81 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">2.082286</td>
+<td class="gt_row gt_right" headers="f_hat">1.89511</td>
 <td class="gt_row gt_right" headers="e">0.257714</td>
+<td class="gt_row gt_right" headers="f">2.082286</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.273484</td>
+<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f">2.194589</td>
+<td class="gt_row gt_right" headers="f_hat">2.09664</td>
 <td class="gt_row gt_right" headers="e">0.145411</td>
+<td class="gt_row gt_right" headers="f">2.194589</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">-0.110359</td>
+<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.523484</td>
+<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f">2.082286</td>
+<td class="gt_row gt_right" headers="f_hat">1.89511</td>
 <td class="gt_row gt_right" headers="e">-0.242286</td>
+<td class="gt_row gt_right" headers="f">2.082286</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
+<td class="gt_row gt_right" headers="f_hat">2.29934</td>
 <td class="gt_row gt_right" headers="e">0.123484</td>
+<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">0.589641</td>
+<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f">2.194589</td>
+<td class="gt_row gt_right" headers="f_hat">2.09664</td>
 <td class="gt_row gt_right" headers="e">-0.094589</td>
+<td class="gt_row gt_right" headers="f">2.194589</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
+<td class="gt_row gt_right" headers="f_hat">1.69241</td>
 <td class="gt_row gt_right" headers="e">-0.040359</td>
+<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 </tbody>
 </table>
@@ -3671,539 +3693,246 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 </figure>
 </div>
 </div>
-<p>Obviamente, o processo poderia seguir para melhorar as previsões. Conforme já elucidado, pode-se definir o número de iterações por validação cruzada. Quanto maior o número de árvores estipulado, recomenda-se que menor seja a taxa de aprendizagem.</p>
-<p>Seja um conjunto de dados para prever o rendimento de indivíduos considerando anos de experiência, ocupação, se ele trabalha ou não na indústria, escolaridade, além de fatores sócio-geográficos. Considerando um modelo obtido via GBM com 8000 árvores e <span class="math inline">\(\lambda = 0,1\)</span>, pode-se plotar um gráfico de superfície considerando como variáveis independentes a escolaridade e anos de experiência conforme <a href="#fig-surfrend" class="quarto-xref">Figura&nbsp;<span>8.1</span></a>.</p>
+<p>Observando as previsões e resíduos, observa-se que os resultados foram gradativamente melhorados de forma iterativa.</p>
+</section>
+</section>
+<section id="light-gbm" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="light-gbm"><span class="header-section-number">8.2</span> <em>Light GBM</em></h2>
+<p>O <em>light</em> GBM apresenta melhorias em relação ao GBM original. No processo de particionamento binário recursivo, para gerar uma nova partição, não são examinados todos os preditores. Cada nova partição é realizada a partir de nós que anteriormente garantiram maior ganho. Ademais, são desconsideradas observações com baixo gradiente (erro). O <em>light</em> GBM também agrupa preditores com poucos valores não nulos, tais como variáveis obtidas após codificação binária de preditores categóricos. Por fim, para os preditores contínuos, o <em>light</em> GBM não considera a busca da melhor partição em todos os níveis, mas dentro de divisões de classes como as de um histograma. Tais mudanças contribuem para diminuir consideravelmente o custo computacional.</p>
+<p>Seja a previsão do preço de revenda de celulares usados. A <a href="#fig-permlgbm" class="quarto-xref">Figura&nbsp;<span>8.1</span></a> apresenta o gráfico de importância dos preditores para este caso considerando um modelo obtido via <em>light</em> GBM. A importância foi medida por permutação. Observa-se que o armazenamento, ano de lançamento e marca são os três preditores mais importantes.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-surfrend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-permlgbm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-surfrend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_boosting_files/figure-html/fig-surfrend-1.png" class="img-fluid figure-img" width="768">
+<div aria-describedby="fig-permlgbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_boosting_files/figure-html/fig-permlgbm-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfrend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;8.1: Gráfico de superfície de um modelo GBM para prever rendimento em função da experiência e escolaridade
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-permlgbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.1: Importância dos preditores por permutação para prever o preço de revenda celulares usados
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-effectslgbm" class="quarto-xref">Figura&nbsp;<span>8.2</span></a> expõe gráficos de efeitos parciais de parte dos preditores para prever o preço de revenda. Pode-se observar o efeito do armazenamento, ano, marca e estado no preço predito.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-effectslgbm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-effectslgbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_boosting_files/figure-html/fig-effectslgbm-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-effectslgbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda de celulares usados
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="implementações-em-r" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">8.2</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">8.3</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="gbm-para-regressão-passo-a-passo" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="gbm-para-regressão-passo-a-passo"><span class="header-section-number">8.2.1</span> GBM para regressão passo a passo</h3>
-<p>Carregando pacotes.</p>
+<section id="light-gbm-1" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="light-gbm-1"><span class="header-section-number">8.3.1</span> <em>Light</em> GBM</h3>
+<p>Carregando bibliotecas e dados. A biblioteca <code>bonsai</code> é útil para implementação do método <em>light</em> GBM.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gbm)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kernlab)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bonsai)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(celularesusados)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> celularesusados</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Entendendo as máquinas de reforço de gradiente com um exemplo arbitrário com 10 observações de treino, duas variáveis independentes, <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>, e uma dependente contínua, <span class="math inline">\(y\)</span>.</p>
+<p>Separando dados de treino e teste. A transformação logarítmica na resposta é realizada fora da receita, uma vez que, ao se realizar previsões, o workflow só inverte os pré-processamentos dos preditores. A opção <code>strata = estado</code> realiza uma amostragem estratificada segundo o estado de conservação dos celulares observados.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">8</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.3</span><span class="sc">*</span>x1<span class="sc">+</span><span class="fu">sqrt</span>(x2)<span class="sc">+</span><span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">1</span>,<span class="fl">0.2</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">data.frame</span>(x1,x2,y),<span class="dv">2</span>)</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">strata =</span> estado)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dados_split</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">preco =</span> <span class="fu">log</span>(preco))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>dados_teste  <span class="ot">&lt;-</span> dados_teste  <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">preco =</span> <span class="fu">log</span>(preco))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Seja a taxa de aprendizagem <span class="math inline">\(\lambda\)</span> = 0.5 e <span class="math inline">\(M = 4\)</span> árvores ou iterações. A previsão inicial é nula e os resíduos recebem os valores observados da resposta:</p>
+<p>Definindo a receita. Como o GBM é baseado em árvores, não é necessário a normalização dos preditores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>f <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>e <span class="ot">&lt;-</span> dat<span class="sc">$</span>y</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> preco <span class="sc">~</span> ., </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_novel</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_nzv</span>()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># receita |&gt; </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   prep() |&gt; </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Estimanado a primeira árvore para os resíduos.</p>
+<p>Definindo o modelo via <code>boost_tree</code>. O <em>light</em> GBM apresenta muitos hiperparâmetros, sendo os principais o número de iterações (<code>trees</code>) e a taxa de aprendizagem (<code>learn_rate</code>). O <code>mtry</code> consiste no número de preditores aleatoriamente selecionados entre os disponíveis em cada particionamento binário recursivo, como no método floresta aleatória, <span class="math inline">\(m&lt;k\)</span>. O hiperparâmetro <code>tree_depth</code> consiste na profundidade da árvore, ou no número de partições, sendo um critério de parada para cada árvore.Já o <code>min_n</code> define o número mínimo de observações por partição. Outro critério de parada consiste na redução na função perda, <code>loss_reduction</code>, para prosseguir com as partições. Posteriormente definiu-se um grid irregular via <code>grid_space_filling()</code>, além das partições nos dados e o workflow.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree1 <span class="ot">&lt;-</span> <span class="fu">tree</span>(e <span class="sc">~</span> x1<span class="sc">+</span>x2, dat)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tree1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lgbm_model <span class="ot">&lt;-</span> <span class="fu">boost_tree</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="fu">tune</span>(), <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">learn_rate =</span> <span class="fu">tune</span>(), <span class="at">min_n =</span> <span class="fu">tune</span>(), <span class="at">loss_reduction =</span> <span class="fu">tune</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lightgbm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>lgbm_grid <span class="ot">&lt;-</span> <span class="fu">grid_space_filling</span>(<span class="fu">finalize</span>(<span class="fu">mtry</span>(), dados_treino),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">trees</span>(),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">tree_depth</span>(),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">learn_rate</span>(),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">min_n</span>(),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">loss_reduction</span>(),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> <span class="dv">50</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">345</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>lgbm_wf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lgbm_model) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Atualizando os valores previstos e os resíduos.</p>
+<p>Em seguida, é realizado o treinamento do modelo com <em>grid search</em> e validação cruzada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree1, dat)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>f <span class="ot">&lt;-</span> dat<span class="sc">$</span>f <span class="sc">+</span> lambda<span class="sc">*</span>pred1</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>e <span class="ot">&lt;-</span> dat<span class="sc">$</span>e <span class="sc">-</span>lambda<span class="sc">*</span>pred1</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  lgbm_wf <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> lgbm_grid</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Na segunda iteração, repete-se o processo, obtendo-se uma nova árvore para os resíduos e atualizando as previsões e os resíduos. Pode-se constatar que a cada iteração vamos melhorando os valores previstos e, portanto, diminuindo os valores residuais.</p>
+<p>Desempenho dos modelos na validação cruzada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tree2 <span class="ot">&lt;-</span> <span class="fu">tree</span>(e <span class="sc">~</span> x1<span class="sc">+</span>x2, dat)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tree2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Obtenção dos níveis ótimos dos hiperparâmetros e finalização do modelo e workflow.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>best_paramslgbm <span class="ot">&lt;-</span> lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixar o modelo com os melhores parâmetros</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>best_lgbm <span class="ot">&lt;-</span> <span class="fu">boost_tree</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> best_paramslgbm<span class="sc">$</span>mtry,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> best_paramslgbm<span class="sc">$</span>trees,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree_depth =</span> best_paramslgbm<span class="sc">$</span>tree_depth,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">learn_rate =</span> best_paramslgbm<span class="sc">$</span>learn_rate,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> best_paramslgbm<span class="sc">$</span>min_n,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">loss_reduction =</span> best_paramslgbm<span class="sc">$</span>loss_reduction</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lightgbm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>best_wf_lgbm <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(best_lgbm) <span class="sc">|&gt;</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Importância das variáveis por permutação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># function fct_reorder</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>explainer_lgbm <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> best_wf_lgbm,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>preco),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>preco,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"Bagging"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ggplot_imp <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  metric_name <span class="ot">&lt;-</span> <span class="fu">attr</span>(obj[[<span class="dv">1</span>]], <span class="st">"loss_name"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  metric_lab <span class="ot">&lt;-</span> <span class="fu">paste</span>(metric_name, </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"depois da permutação"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  full_vip <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(obj) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_baseline_"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  perm_vals <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span> </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">dropout_loss =</span> <span class="fu">mean</span>(dropout_loss))</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">fct_reorder</span>(variable, dropout_loss)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(dropout_loss, variable)) </span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(obj) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(label)) <span class="sc">+</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss, <span class="at">color =</span> label),</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> label, <span class="at">fill =</span> label), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss),</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#91CBD765"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> metric_lab, </span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="cn">NULL</span>,  <span class="at">fill =</span> <span class="cn">NULL</span>,  <span class="at">color =</span> <span class="cn">NULL</span>)</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>vip_lgbm <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_lgbm, <span class="at">loss_function =</span> loss_root_mean_square)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_lgbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree2, dat)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>f <span class="ot">&lt;-</span> dat<span class="sc">$</span>f <span class="sc">+</span> lambda<span class="sc">*</span>pred2</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>e <span class="ot">&lt;-</span> dat<span class="sc">$</span>e <span class="sc">-</span>lambda<span class="sc">*</span>pred2</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(vip)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vip(best_wf_lgbm) </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Na terceira iteração, tem-se:</p>
+<p>Previsão e métricas de desempenho para os dados de teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tree3 <span class="ot">&lt;-</span> <span class="fu">tree</span>(e <span class="sc">~</span> x1<span class="sc">+</span>x2, dat)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tree3</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree3, dat)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>f <span class="ot">&lt;-</span> dat<span class="sc">$</span>f <span class="sc">+</span> lambda<span class="sc">*</span>pred3</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>e <span class="ot">&lt;-</span> dat<span class="sc">$</span>e <span class="sc">-</span>lambda<span class="sc">*</span>pred3</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Finalmente, na quara e última iteração, obtém-se o modelo “reforçado” final que consiste na soma ponderada pela taxa de aprendizagem de todos os modelos.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tree4 <span class="ot">&lt;-</span> <span class="fu">tree</span>(e <span class="sc">~</span> x1<span class="sc">+</span>x2, dat)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tree4</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pred4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(tree4, dat)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>f <span class="ot">&lt;-</span> dat<span class="sc">$</span>f <span class="sc">+</span> lambda<span class="sc">*</span>pred4</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>e <span class="ot">&lt;-</span> dat<span class="sc">$</span>e <span class="sc">-</span>lambda<span class="sc">*</span>pred4</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="previsão-do-rendimento-em-função-da-escolaridade-experiência-e-outras-variáveis-sócio-geográficas" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="previsão-do-rendimento-em-função-da-escolaridade-experiência-e-outras-variáveis-sócio-geográficas"><span class="header-section-number">8.2.2</span> Previsão do rendimento em função da escolaridade, experiência e outras variáveis sócio-geográficas</h3>
-<p>Seja um conjunto de dados para prever o rendimento de indivíduos considerando anos de experiência, ocupação, se ele trabalha ou não na indústria, escolaridade, além de fatores sócio-geográficos.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PSID7682)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?PSID7682</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> PSID7682</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>)]</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelsummary)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">datasummary_skim</span>(dados)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<!-- preamble start -->
-
-    <script>
-
-      function styleCell_bktv2kf4kjcqx41emqvt(i, j, css_id) {
-          var table = document.getElementById("tinytable_bktv2kf4kjcqx41emqvt");
-          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
-          if (cell) {
-              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
-              cell.classList.add(css_id);
-          } else {
-              console.warn(`Cell at (${i}, ${j}) not found.`);
-          }
-      }
-      function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_bktv2kf4kjcqx41emqvt');
-        var newRow = table.insertRow(i);
-        var newCell = newRow.insertCell(0);
-        newCell.setAttribute("colspan", colspan);
-        // newCell.innerText = content;
-        // this may be unsafe, but innerText does not interpret <br>
-        newCell.innerHTML = content;
-      }
-      function spanCell_bktv2kf4kjcqx41emqvt(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_bktv2kf4kjcqx41emqvt");
-        const targetRow = table.rows[i];
-        const targetCell = targetRow.cells[j];
-        for (let r = 0; r < rowspan; r++) {
-          // Only start deleting cells to the right for the first row (r == 0)
-          if (r === 0) {
-            // Delete cells to the right of the target cell in the first row
-            for (let c = colspan - 1; c > 0; c--) {
-              if (table.rows[i + r].cells[j + c]) {
-                table.rows[i + r].deleteCell(j + c);
-              }
-            }
-          }
-          // For rows below the first, delete starting from the target column
-          if (r > 0) {
-            for (let c = colspan - 1; c >= 0; c--) {
-              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
-                table.rows[i + r].deleteCell(j);
-              }
-            }
-          }
-        }
-        // Set rowspan and colspan of the target cell
-        targetCell.rowSpan = rowspan;
-        targetCell.colSpan = colspan;
-      }
-      // tinytable span after
-      window.addEventListener('load', function () {
-          var cellsToStyle = [
-            // tinytable style arrays after
-          { positions: [ { i: 21, j: 0 }, { i: 21, j: 3 }, { i: 21, j: 2 }, { i: 21, j: 1 }, { i: 21, j: 4 }, { i: 21, j: 7 }, { i: 21, j: 6 }, { i: 21, j: 5 }, { i: 21, j: 8 },  ], css_id: 'tinytable_css_2dva4j2wtt7hwoidq2ng',}, 
-          { positions: [ { i: 5, j: 0 }, { i: 5, j: 3 }, { i: 5, j: 2 }, { i: 5, j: 1 }, { i: 5, j: 4 }, { i: 5, j: 7 }, { i: 5, j: 6 }, { i: 5, j: 5 }, { i: 5, j: 8 },  ], css_id: 'tinytable_css_z86hy6qow3vv20exovzs',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 3 }, { i: 0, j: 2 }, { i: 0, j: 1 }, { i: 0, j: 4 }, { i: 0, j: 7 }, { i: 0, j: 6 }, { i: 0, j: 5 }, { i: 0, j: 8 },  ], css_id: 'tinytable_css_mq1xlmcbkpxm2g5f1r9d',}, 
-          ];
-
-          // Loop over the arrays to style the cells
-          cellsToStyle.forEach(function (group) {
-              group.positions.forEach(function (cell) {
-                  styleCell_bktv2kf4kjcqx41emqvt(cell.i, cell.j, group.css_id);
-              });
-          });
-      });
-    </script>
-
-    <style>
-      /* tinytable css entries after */
-      .table td.tinytable_css_2dva4j2wtt7hwoidq2ng, .table th.tinytable_css_2dva4j2wtt7hwoidq2ng { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_z86hy6qow3vv20exovzs, .table th.tinytable_css_z86hy6qow3vv20exovzs { border-top: solid black 0.1em; }
-      .table td.tinytable_css_mq1xlmcbkpxm2g5f1r9d, .table th.tinytable_css_mq1xlmcbkpxm2g5f1r9d { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-    </style>
-    <div class="container">
-      <table class="table table-borderless" id="tinytable_bktv2kf4kjcqx41emqvt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <thead>
-        
-              <tr>
-                <th scope="col"> </th>
-                <th scope="col">Unique</th>
-                <th scope="col">Missing Pct.</th>
-                <th scope="col">Mean</th>
-                <th scope="col">SD</th>
-                <th scope="col">Min</th>
-                <th scope="col">Median</th>
-                <th scope="col">Max</th>
-                <th scope="col">Histogram</th>
-              </tr>
-        </thead>
-        
-        <tbody>
-                <tr>
-                  <td>experience</td>
-                  <td>51</td>
-                  <td>0</td>
-                  <td>19.9</td>
-                  <td>11.0</td>
-                  <td>1.0</td>
-                  <td>18.0</td>
-                  <td>51.0</td>
-                  <td><img src="./tinytable_assets/id9i81fny986812kwtyhv8.png" style="height: 1em;"></td>
-                </tr>
-                <tr>
-                  <td>weeks</td>
-                  <td>41</td>
-                  <td>0</td>
-                  <td>46.8</td>
-                  <td>5.1</td>
-                  <td>5.0</td>
-                  <td>48.0</td>
-                  <td>52.0</td>
-                  <td><img src="./tinytable_assets/idm5vsys04bsrv39fvmgu4.png" style="height: 1em;"></td>
-                </tr>
-                <tr>
-                  <td>education</td>
-                  <td>14</td>
-                  <td>0</td>
-                  <td>12.8</td>
-                  <td>2.8</td>
-                  <td>4.0</td>
-                  <td>12.0</td>
-                  <td>17.0</td>
-                  <td><img src="./tinytable_assets/id47araqtc5v6wtoe1wpnk.png" style="height: 1em;"></td>
-                </tr>
-                <tr>
-                  <td>wage</td>
-                  <td>1017</td>
-                  <td>0</td>
-                  <td>882.9</td>
-                  <td>442.8</td>
-                  <td>100.0</td>
-                  <td>800.0</td>
-                  <td>5100.0</td>
-                  <td><img src="./tinytable_assets/idxiyzyjjexd6gelkwkeo3.png" style="height: 1em;"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>N</td>
-                  <td>%</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>occupation</td>
-                  <td>white</td>
-                  <td>2036</td>
-                  <td>48.9</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>blue</td>
-                  <td>2129</td>
-                  <td>51.1</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>industry</td>
-                  <td>no</td>
-                  <td>2518</td>
-                  <td>60.5</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>yes</td>
-                  <td>1647</td>
-                  <td>39.5</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>south</td>
-                  <td>no</td>
-                  <td>2956</td>
-                  <td>71.0</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>yes</td>
-                  <td>1209</td>
-                  <td>29.0</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>smsa</td>
-                  <td>no</td>
-                  <td>1442</td>
-                  <td>34.6</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>yes</td>
-                  <td>2723</td>
-                  <td>65.4</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>married</td>
-                  <td>no</td>
-                  <td>773</td>
-                  <td>18.6</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>yes</td>
-                  <td>3392</td>
-                  <td>81.4</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>gender</td>
-                  <td>male</td>
-                  <td>3696</td>
-                  <td>88.7</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>female</td>
-                  <td>469</td>
-                  <td>11.3</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>union</td>
-                  <td>no</td>
-                  <td>2649</td>
-                  <td>63.6</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>yes</td>
-                  <td>1516</td>
-                  <td>36.4</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>ethnicity</td>
-                  <td>other</td>
-                  <td>3864</td>
-                  <td>92.8</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td>afam</td>
-                  <td>301</td>
-                  <td>7.2</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
-</div>
-</div>
-<p>Separando metade das observações para treino do modelo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">78</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.5</span><span class="sc">*</span><span class="fu">nrow</span>(dados))</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>treino <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(dados), tr, <span class="at">replace =</span> F)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Obtendo um modelo via GBM com 10000 árvores e <span class="math inline">\(\lambda = 0,1\)</span>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>boost1 <span class="ot">&lt;-</span> <span class="fu">gbm</span>(<span class="fu">log</span>(wage)<span class="sc">~</span>., <span class="at">data =</span> dados, <span class="at">distribution =</span> <span class="st">"gaussian"</span>, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">n.trees =</span> <span class="dv">10000</span>, <span class="at">bag.fraction =</span> <span class="fl">0.7</span>, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">interaction.depth =</span>  <span class="dv">2</span>, <span class="at">shrinkage =</span> <span class="fl">0.1</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(boost1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="AS_boosting_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pred_lgbm <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(best_wf_lgbm, dados_teste),</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_lgbm <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> preco, <span class="at">estimate =</span> .pred)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                  var   rel.inf
-experience experience 29.285767
-education   education 23.061164
-weeks           weeks 16.194209
-gender         gender  6.516940
-smsa             smsa  4.849954
-occupation occupation  4.713714
-union           union  4.660501
-south           south  3.456731
-industry     industry  3.010622
-married       married  2.534908
-ethnicity   ethnicity  1.715492</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  RSE <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  SST <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> <span class="fu">mean</span>(obs))<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  R2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> RSE<span class="sc">/</span>SST </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  MAE <span class="ot">&lt;-</span>  <span class="fu">mean</span>(<span class="fu">abs</span>(obs <span class="sc">-</span> pred))</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  RMSE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">RMSE =</span> RMSE,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">MAE =</span> MAE,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">R2 =</span> R2))</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Desempenho de treino.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(boost1, dados[treino,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using 10000 trees...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(<span class="fu">log</span>(dados<span class="sc">$</span>wage[treino]),pred)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       RMSE       MAE        R2
-1 0.2803965 0.2171146 0.6402183</code></pre>
-</div>
-</div>
-<p>Testando o modelo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(boost1, dados[<span class="sc">-</span>treino,])</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using 10000 trees...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metrics</span>(<span class="fu">log</span>(dados<span class="sc">$</span>wage[<span class="sc">-</span>treino]),pred1)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       RMSE       MAE        R2
-1 0.2752103 0.2104087 0.6347375</code></pre>
+<pre><code># A tibble: 3 × 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       0.355
+2 rsq     standard       0.570
+3 mae     standard       0.280</code></pre>
 </div>
 </div>
 </section>
 </section>
 <section id="referências" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
-<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
+<p>Friedman, J. H. (2001). Greedy function approximation: a gradient boosting machine. Annals of statistics, 1189-1232.</p>
 <p>Gareth, J., Daniela, W., Trevor, H., &amp; Robert, T. (2013). An introduction to statistical learning: with applications in R. Spinger.</p>
+<p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
+<p>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., … &amp; Liu, T. Y. (2017). Lightgbm: A highly efficient gradient boosting decision tree. Advances in neural information processing systems, 30.</p>
+</section>
+<section id="exercícios" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">8.4</span> Exercícios</h2>
+<ol type="1">
+<li><p>Seja o conjunto de dados <code>celularesnovos2025</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis. Faça validação cruzada, <em>grid search</em> e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
+<li><p>Finalize o modelo, realize previsões e obtenha as métricas de desempenho para os dados de teste.</p></li>
+<li><p>Realize o estudo de importância dos preditores via permutação.</p></li>
+</ol>
 
 
 </section>
@@ -4628,8 +4357,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_pcr.html" class="pagination-link" aria-label="Regressão por Componentes Principais">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span>
+      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

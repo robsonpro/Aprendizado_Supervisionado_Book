@@ -300,6 +300,10 @@ window.Quarto = {
   <li><a href="#engenharia-de-atributos-1" id="toc-engenharia-de-atributos-1" class="nav-link" data-scroll-target="#engenharia-de-atributos-1"><span class="header-section-number">4.3.2</span> Engenharia de atributos</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
+  <li><a href="#apêndice" id="toc-apêndice" class="nav-link" data-scroll-target="#apêndice">Apêndice</a>
+  <ul class="collapse">
+  <li><a href="#sec-svd" id="toc-sec-svd" class="nav-link" data-scroll-target="#sec-svd">Decomposição em valores singulares</a></li>
+  </ul></li>
   <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">4.4</span> Exercícios</a></li>
   </ul>
 </nav>
@@ -344,23 +348,23 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
 </figcaption>
 <div aria-describedby="tbl-skimfeijao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="elepccogig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#elepccogig table {
+<div id="plotfxeqth" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#plotfxeqth table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#elepccogig thead, #elepccogig tbody, #elepccogig tfoot, #elepccogig tr, #elepccogig td, #elepccogig th {
+#plotfxeqth thead, #plotfxeqth tbody, #plotfxeqth tfoot, #plotfxeqth tr, #plotfxeqth td, #plotfxeqth th {
   border-style: none;
 }
 
-#elepccogig p {
+#plotfxeqth p {
   margin: 0;
   padding: 0;
 }
 
-#elepccogig .gt_table {
+#plotfxeqth .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -386,12 +390,12 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-left-color: #D3D3D3;
 }
 
-#elepccogig .gt_caption {
+#plotfxeqth .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#elepccogig .gt_title {
+#plotfxeqth .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -403,7 +407,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-bottom-width: 0;
 }
 
-#elepccogig .gt_subtitle {
+#plotfxeqth .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -415,7 +419,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-top-width: 0;
 }
 
-#elepccogig .gt_heading {
+#plotfxeqth .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -427,13 +431,13 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-right-color: #D3D3D3;
 }
 
-#elepccogig .gt_bottom_border {
+#plotfxeqth .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#elepccogig .gt_col_headings {
+#plotfxeqth .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -448,7 +452,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-right-color: #D3D3D3;
 }
 
-#elepccogig .gt_col_heading {
+#plotfxeqth .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -468,7 +472,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   overflow-x: hidden;
 }
 
-#elepccogig .gt_column_spanner_outer {
+#plotfxeqth .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -480,15 +484,15 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 4px;
 }
 
-#elepccogig .gt_column_spanner_outer:first-child {
+#plotfxeqth .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#elepccogig .gt_column_spanner_outer:last-child {
+#plotfxeqth .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#elepccogig .gt_column_spanner {
+#plotfxeqth .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -500,11 +504,11 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   width: 100%;
 }
 
-#elepccogig .gt_spanner_row {
+#plotfxeqth .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#elepccogig .gt_group_heading {
+#plotfxeqth .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -530,7 +534,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   text-align: left;
 }
 
-#elepccogig .gt_empty_group_heading {
+#plotfxeqth .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -545,15 +549,15 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   vertical-align: middle;
 }
 
-#elepccogig .gt_from_md > :first-child {
+#plotfxeqth .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#elepccogig .gt_from_md > :last-child {
+#plotfxeqth .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#elepccogig .gt_row {
+#plotfxeqth .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -572,7 +576,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   overflow-x: hidden;
 }
 
-#elepccogig .gt_stub {
+#plotfxeqth .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,7 +589,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 5px;
 }
 
-#elepccogig .gt_stub_row_group {
+#plotfxeqth .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -599,15 +603,15 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   vertical-align: top;
 }
 
-#elepccogig .gt_row_group_first td {
+#plotfxeqth .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#elepccogig .gt_row_group_first th {
+#plotfxeqth .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#elepccogig .gt_summary_row {
+#plotfxeqth .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -617,16 +621,16 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 5px;
 }
 
-#elepccogig .gt_first_summary_row {
+#plotfxeqth .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#elepccogig .gt_first_summary_row.thick {
+#plotfxeqth .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#elepccogig .gt_last_summary_row {
+#plotfxeqth .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -636,7 +640,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-bottom-color: #D3D3D3;
 }
 
-#elepccogig .gt_grand_summary_row {
+#plotfxeqth .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -646,7 +650,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 5px;
 }
 
-#elepccogig .gt_first_grand_summary_row {
+#plotfxeqth .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -656,7 +660,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-top-color: #D3D3D3;
 }
 
-#elepccogig .gt_last_grand_summary_row_top {
+#plotfxeqth .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -666,11 +670,11 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-bottom-color: #D3D3D3;
 }
 
-#elepccogig .gt_striped {
+#plotfxeqth .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#elepccogig .gt_table_body {
+#plotfxeqth .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -679,7 +683,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-bottom-color: #D3D3D3;
 }
 
-#elepccogig .gt_footnotes {
+#plotfxeqth .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -693,7 +697,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-right-color: #D3D3D3;
 }
 
-#elepccogig .gt_footnote {
+#plotfxeqth .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -702,7 +706,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 5px;
 }
 
-#elepccogig .gt_sourcenotes {
+#plotfxeqth .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -716,7 +720,7 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   border-right-color: #D3D3D3;
 }
 
-#elepccogig .gt_sourcenote {
+#plotfxeqth .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -724,72 +728,72 @@ Tabela&nbsp;4.1: Estatísticas descritivas das variáveis numéricas do conjunto
   padding-right: 5px;
 }
 
-#elepccogig .gt_left {
+#plotfxeqth .gt_left {
   text-align: left;
 }
 
-#elepccogig .gt_center {
+#plotfxeqth .gt_center {
   text-align: center;
 }
 
-#elepccogig .gt_right {
+#plotfxeqth .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#elepccogig .gt_font_normal {
+#plotfxeqth .gt_font_normal {
   font-weight: normal;
 }
 
-#elepccogig .gt_font_bold {
+#plotfxeqth .gt_font_bold {
   font-weight: bold;
 }
 
-#elepccogig .gt_font_italic {
+#plotfxeqth .gt_font_italic {
   font-style: italic;
 }
 
-#elepccogig .gt_super {
+#plotfxeqth .gt_super {
   font-size: 65%;
 }
 
-#elepccogig .gt_footnote_marks {
+#plotfxeqth .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#elepccogig .gt_asterisk {
+#plotfxeqth .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#elepccogig .gt_indent_1 {
+#plotfxeqth .gt_indent_1 {
   text-indent: 5px;
 }
 
-#elepccogig .gt_indent_2 {
+#plotfxeqth .gt_indent_2 {
   text-indent: 10px;
 }
 
-#elepccogig .gt_indent_3 {
+#plotfxeqth .gt_indent_3 {
   text-indent: 15px;
 }
 
-#elepccogig .gt_indent_4 {
+#plotfxeqth .gt_indent_4 {
   text-indent: 20px;
 }
 
-#elepccogig .gt_indent_5 {
+#plotfxeqth .gt_indent_5 {
   text-indent: 25px;
 }
 
-#elepccogig .katex-display {
+#plotfxeqth .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#elepccogig div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#plotfxeqth div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -866,23 +870,23 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
 </figcaption>
 <div aria-describedby="tbl-skimcel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="pifkhiyzmd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pifkhiyzmd table {
+<div id="yqmocvmgfu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yqmocvmgfu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pifkhiyzmd thead, #pifkhiyzmd tbody, #pifkhiyzmd tfoot, #pifkhiyzmd tr, #pifkhiyzmd td, #pifkhiyzmd th {
+#yqmocvmgfu thead, #yqmocvmgfu tbody, #yqmocvmgfu tfoot, #yqmocvmgfu tr, #yqmocvmgfu td, #yqmocvmgfu th {
   border-style: none;
 }
 
-#pifkhiyzmd p {
+#yqmocvmgfu p {
   margin: 0;
   padding: 0;
 }
 
-#pifkhiyzmd .gt_table {
+#yqmocvmgfu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -908,12 +912,12 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-left-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_caption {
+#yqmocvmgfu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pifkhiyzmd .gt_title {
+#yqmocvmgfu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -925,7 +929,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-bottom-width: 0;
 }
 
-#pifkhiyzmd .gt_subtitle {
+#yqmocvmgfu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -937,7 +941,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-top-width: 0;
 }
 
-#pifkhiyzmd .gt_heading {
+#yqmocvmgfu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -949,13 +953,13 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-right-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_bottom_border {
+#yqmocvmgfu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_col_headings {
+#yqmocvmgfu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -970,7 +974,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-right-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_col_heading {
+#yqmocvmgfu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -990,7 +994,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   overflow-x: hidden;
 }
 
-#pifkhiyzmd .gt_column_spanner_outer {
+#yqmocvmgfu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1002,15 +1006,15 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 4px;
 }
 
-#pifkhiyzmd .gt_column_spanner_outer:first-child {
+#yqmocvmgfu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pifkhiyzmd .gt_column_spanner_outer:last-child {
+#yqmocvmgfu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pifkhiyzmd .gt_column_spanner {
+#yqmocvmgfu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1022,11 +1026,11 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   width: 100%;
 }
 
-#pifkhiyzmd .gt_spanner_row {
+#yqmocvmgfu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pifkhiyzmd .gt_group_heading {
+#yqmocvmgfu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1052,7 +1056,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   text-align: left;
 }
 
-#pifkhiyzmd .gt_empty_group_heading {
+#yqmocvmgfu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1067,15 +1071,15 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   vertical-align: middle;
 }
 
-#pifkhiyzmd .gt_from_md > :first-child {
+#yqmocvmgfu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pifkhiyzmd .gt_from_md > :last-child {
+#yqmocvmgfu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pifkhiyzmd .gt_row {
+#yqmocvmgfu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1094,7 +1098,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   overflow-x: hidden;
 }
 
-#pifkhiyzmd .gt_stub {
+#yqmocvmgfu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1107,7 +1111,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 5px;
 }
 
-#pifkhiyzmd .gt_stub_row_group {
+#yqmocvmgfu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1121,15 +1125,15 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   vertical-align: top;
 }
 
-#pifkhiyzmd .gt_row_group_first td {
+#yqmocvmgfu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pifkhiyzmd .gt_row_group_first th {
+#yqmocvmgfu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pifkhiyzmd .gt_summary_row {
+#yqmocvmgfu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1139,16 +1143,16 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 5px;
 }
 
-#pifkhiyzmd .gt_first_summary_row {
+#yqmocvmgfu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_first_summary_row.thick {
+#yqmocvmgfu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pifkhiyzmd .gt_last_summary_row {
+#yqmocvmgfu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1158,7 +1162,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-bottom-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_grand_summary_row {
+#yqmocvmgfu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1168,7 +1172,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 5px;
 }
 
-#pifkhiyzmd .gt_first_grand_summary_row {
+#yqmocvmgfu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1178,7 +1182,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-top-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_last_grand_summary_row_top {
+#yqmocvmgfu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1188,11 +1192,11 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-bottom-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_striped {
+#yqmocvmgfu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pifkhiyzmd .gt_table_body {
+#yqmocvmgfu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1201,7 +1205,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-bottom-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_footnotes {
+#yqmocvmgfu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1215,7 +1219,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-right-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_footnote {
+#yqmocvmgfu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1224,7 +1228,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 5px;
 }
 
-#pifkhiyzmd .gt_sourcenotes {
+#yqmocvmgfu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1238,7 +1242,7 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   border-right-color: #D3D3D3;
 }
 
-#pifkhiyzmd .gt_sourcenote {
+#yqmocvmgfu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1246,72 +1250,72 @@ Tabela&nbsp;4.2: Distribuição das categorias das variáveis categóricas do co
   padding-right: 5px;
 }
 
-#pifkhiyzmd .gt_left {
+#yqmocvmgfu .gt_left {
   text-align: left;
 }
 
-#pifkhiyzmd .gt_center {
+#yqmocvmgfu .gt_center {
   text-align: center;
 }
 
-#pifkhiyzmd .gt_right {
+#yqmocvmgfu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pifkhiyzmd .gt_font_normal {
+#yqmocvmgfu .gt_font_normal {
   font-weight: normal;
 }
 
-#pifkhiyzmd .gt_font_bold {
+#yqmocvmgfu .gt_font_bold {
   font-weight: bold;
 }
 
-#pifkhiyzmd .gt_font_italic {
+#yqmocvmgfu .gt_font_italic {
   font-style: italic;
 }
 
-#pifkhiyzmd .gt_super {
+#yqmocvmgfu .gt_super {
   font-size: 65%;
 }
 
-#pifkhiyzmd .gt_footnote_marks {
+#yqmocvmgfu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pifkhiyzmd .gt_asterisk {
+#yqmocvmgfu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pifkhiyzmd .gt_indent_1 {
+#yqmocvmgfu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pifkhiyzmd .gt_indent_2 {
+#yqmocvmgfu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pifkhiyzmd .gt_indent_3 {
+#yqmocvmgfu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pifkhiyzmd .gt_indent_4 {
+#yqmocvmgfu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pifkhiyzmd .gt_indent_5 {
+#yqmocvmgfu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pifkhiyzmd .katex-display {
+#yqmocvmgfu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pifkhiyzmd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yqmocvmgfu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1520,23 +1524,23 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
 </figcaption>
 <div aria-describedby="tbl-corrclfeijoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="bthubghxbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bthubghxbu table {
+<div id="gsqopyavdo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gsqopyavdo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bthubghxbu thead, #bthubghxbu tbody, #bthubghxbu tfoot, #bthubghxbu tr, #bthubghxbu td, #bthubghxbu th {
+#gsqopyavdo thead, #gsqopyavdo tbody, #gsqopyavdo tfoot, #gsqopyavdo tr, #gsqopyavdo td, #gsqopyavdo th {
   border-style: none;
 }
 
-#bthubghxbu p {
+#gsqopyavdo p {
   margin: 0;
   padding: 0;
 }
 
-#bthubghxbu .gt_table {
+#gsqopyavdo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1562,12 +1566,12 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-left-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_caption {
+#gsqopyavdo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bthubghxbu .gt_title {
+#gsqopyavdo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1579,7 +1583,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-bottom-width: 0;
 }
 
-#bthubghxbu .gt_subtitle {
+#gsqopyavdo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1591,7 +1595,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-top-width: 0;
 }
 
-#bthubghxbu .gt_heading {
+#gsqopyavdo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1603,13 +1607,13 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-right-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_bottom_border {
+#gsqopyavdo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_col_headings {
+#gsqopyavdo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1624,7 +1628,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-right-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_col_heading {
+#gsqopyavdo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1644,7 +1648,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   overflow-x: hidden;
 }
 
-#bthubghxbu .gt_column_spanner_outer {
+#gsqopyavdo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1656,15 +1660,15 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 4px;
 }
 
-#bthubghxbu .gt_column_spanner_outer:first-child {
+#gsqopyavdo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bthubghxbu .gt_column_spanner_outer:last-child {
+#gsqopyavdo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bthubghxbu .gt_column_spanner {
+#gsqopyavdo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1676,11 +1680,11 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   width: 100%;
 }
 
-#bthubghxbu .gt_spanner_row {
+#gsqopyavdo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bthubghxbu .gt_group_heading {
+#gsqopyavdo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1706,7 +1710,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   text-align: left;
 }
 
-#bthubghxbu .gt_empty_group_heading {
+#gsqopyavdo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1721,15 +1725,15 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   vertical-align: middle;
 }
 
-#bthubghxbu .gt_from_md > :first-child {
+#gsqopyavdo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bthubghxbu .gt_from_md > :last-child {
+#gsqopyavdo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bthubghxbu .gt_row {
+#gsqopyavdo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1748,7 +1752,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   overflow-x: hidden;
 }
 
-#bthubghxbu .gt_stub {
+#gsqopyavdo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1761,7 +1765,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 5px;
 }
 
-#bthubghxbu .gt_stub_row_group {
+#gsqopyavdo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1775,15 +1779,15 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   vertical-align: top;
 }
 
-#bthubghxbu .gt_row_group_first td {
+#gsqopyavdo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bthubghxbu .gt_row_group_first th {
+#gsqopyavdo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bthubghxbu .gt_summary_row {
+#gsqopyavdo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1793,16 +1797,16 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 5px;
 }
 
-#bthubghxbu .gt_first_summary_row {
+#gsqopyavdo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_first_summary_row.thick {
+#gsqopyavdo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bthubghxbu .gt_last_summary_row {
+#gsqopyavdo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1812,7 +1816,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-bottom-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_grand_summary_row {
+#gsqopyavdo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1822,7 +1826,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 5px;
 }
 
-#bthubghxbu .gt_first_grand_summary_row {
+#gsqopyavdo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1832,7 +1836,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-top-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_last_grand_summary_row_top {
+#gsqopyavdo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1842,11 +1846,11 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-bottom-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_striped {
+#gsqopyavdo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bthubghxbu .gt_table_body {
+#gsqopyavdo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1855,7 +1859,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-bottom-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_footnotes {
+#gsqopyavdo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1869,7 +1873,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-right-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_footnote {
+#gsqopyavdo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1878,7 +1882,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 5px;
 }
 
-#bthubghxbu .gt_sourcenotes {
+#gsqopyavdo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1892,7 +1896,7 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   border-right-color: #D3D3D3;
 }
 
-#bthubghxbu .gt_sourcenote {
+#gsqopyavdo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1900,72 +1904,72 @@ Tabela&nbsp;4.3: Coeficiente de correlação amostral de Pearson entre comprimen
   padding-right: 5px;
 }
 
-#bthubghxbu .gt_left {
+#gsqopyavdo .gt_left {
   text-align: left;
 }
 
-#bthubghxbu .gt_center {
+#gsqopyavdo .gt_center {
   text-align: center;
 }
 
-#bthubghxbu .gt_right {
+#gsqopyavdo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bthubghxbu .gt_font_normal {
+#gsqopyavdo .gt_font_normal {
   font-weight: normal;
 }
 
-#bthubghxbu .gt_font_bold {
+#gsqopyavdo .gt_font_bold {
   font-weight: bold;
 }
 
-#bthubghxbu .gt_font_italic {
+#gsqopyavdo .gt_font_italic {
   font-style: italic;
 }
 
-#bthubghxbu .gt_super {
+#gsqopyavdo .gt_super {
   font-size: 65%;
 }
 
-#bthubghxbu .gt_footnote_marks {
+#gsqopyavdo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bthubghxbu .gt_asterisk {
+#gsqopyavdo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bthubghxbu .gt_indent_1 {
+#gsqopyavdo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bthubghxbu .gt_indent_2 {
+#gsqopyavdo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bthubghxbu .gt_indent_3 {
+#gsqopyavdo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bthubghxbu .gt_indent_4 {
+#gsqopyavdo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bthubghxbu .gt_indent_5 {
+#gsqopyavdo .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bthubghxbu .katex-display {
+#gsqopyavdo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bthubghxbu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gsqopyavdo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2120,23 +2124,23 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
 </figcaption>
 <div aria-describedby="tbl-fapssjdr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="tnoqxwfkwd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tnoqxwfkwd table {
+<div id="mqmvwzvwtg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqmvwzvwtg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tnoqxwfkwd thead, #tnoqxwfkwd tbody, #tnoqxwfkwd tfoot, #tnoqxwfkwd tr, #tnoqxwfkwd td, #tnoqxwfkwd th {
+#mqmvwzvwtg thead, #mqmvwzvwtg tbody, #mqmvwzvwtg tfoot, #mqmvwzvwtg tr, #mqmvwzvwtg td, #mqmvwzvwtg th {
   border-style: none;
 }
 
-#tnoqxwfkwd p {
+#mqmvwzvwtg p {
   margin: 0;
   padding: 0;
 }
 
-#tnoqxwfkwd .gt_table {
+#mqmvwzvwtg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2162,12 +2166,12 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-left-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_caption {
+#mqmvwzvwtg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tnoqxwfkwd .gt_title {
+#mqmvwzvwtg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2179,7 +2183,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-width: 0;
 }
 
-#tnoqxwfkwd .gt_subtitle {
+#mqmvwzvwtg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2191,7 +2195,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-top-width: 0;
 }
 
-#tnoqxwfkwd .gt_heading {
+#mqmvwzvwtg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2203,13 +2207,13 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_bottom_border {
+#mqmvwzvwtg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_col_headings {
+#mqmvwzvwtg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2224,7 +2228,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_col_heading {
+#mqmvwzvwtg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2244,7 +2248,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   overflow-x: hidden;
 }
 
-#tnoqxwfkwd .gt_column_spanner_outer {
+#mqmvwzvwtg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2256,15 +2260,15 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 4px;
 }
 
-#tnoqxwfkwd .gt_column_spanner_outer:first-child {
+#mqmvwzvwtg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tnoqxwfkwd .gt_column_spanner_outer:last-child {
+#mqmvwzvwtg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tnoqxwfkwd .gt_column_spanner {
+#mqmvwzvwtg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2276,11 +2280,11 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   width: 100%;
 }
 
-#tnoqxwfkwd .gt_spanner_row {
+#mqmvwzvwtg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tnoqxwfkwd .gt_group_heading {
+#mqmvwzvwtg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2306,7 +2310,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   text-align: left;
 }
 
-#tnoqxwfkwd .gt_empty_group_heading {
+#mqmvwzvwtg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2321,15 +2325,15 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   vertical-align: middle;
 }
 
-#tnoqxwfkwd .gt_from_md > :first-child {
+#mqmvwzvwtg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tnoqxwfkwd .gt_from_md > :last-child {
+#mqmvwzvwtg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tnoqxwfkwd .gt_row {
+#mqmvwzvwtg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2348,7 +2352,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   overflow-x: hidden;
 }
 
-#tnoqxwfkwd .gt_stub {
+#mqmvwzvwtg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2361,7 +2365,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#tnoqxwfkwd .gt_stub_row_group {
+#mqmvwzvwtg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2375,15 +2379,15 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   vertical-align: top;
 }
 
-#tnoqxwfkwd .gt_row_group_first td {
+#mqmvwzvwtg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tnoqxwfkwd .gt_row_group_first th {
+#mqmvwzvwtg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tnoqxwfkwd .gt_summary_row {
+#mqmvwzvwtg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2393,16 +2397,16 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#tnoqxwfkwd .gt_first_summary_row {
+#mqmvwzvwtg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_first_summary_row.thick {
+#mqmvwzvwtg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tnoqxwfkwd .gt_last_summary_row {
+#mqmvwzvwtg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2412,7 +2416,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_grand_summary_row {
+#mqmvwzvwtg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2422,7 +2426,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#tnoqxwfkwd .gt_first_grand_summary_row {
+#mqmvwzvwtg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2432,7 +2436,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-top-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_last_grand_summary_row_top {
+#mqmvwzvwtg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2442,11 +2446,11 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_striped {
+#mqmvwzvwtg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tnoqxwfkwd .gt_table_body {
+#mqmvwzvwtg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2455,7 +2459,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_footnotes {
+#mqmvwzvwtg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2469,7 +2473,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_footnote {
+#mqmvwzvwtg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2478,7 +2482,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#tnoqxwfkwd .gt_sourcenotes {
+#mqmvwzvwtg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2492,7 +2496,7 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#tnoqxwfkwd .gt_sourcenote {
+#mqmvwzvwtg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2500,72 +2504,72 @@ Tabela&nbsp;4.4: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#tnoqxwfkwd .gt_left {
+#mqmvwzvwtg .gt_left {
   text-align: left;
 }
 
-#tnoqxwfkwd .gt_center {
+#mqmvwzvwtg .gt_center {
   text-align: center;
 }
 
-#tnoqxwfkwd .gt_right {
+#mqmvwzvwtg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tnoqxwfkwd .gt_font_normal {
+#mqmvwzvwtg .gt_font_normal {
   font-weight: normal;
 }
 
-#tnoqxwfkwd .gt_font_bold {
+#mqmvwzvwtg .gt_font_bold {
   font-weight: bold;
 }
 
-#tnoqxwfkwd .gt_font_italic {
+#mqmvwzvwtg .gt_font_italic {
   font-style: italic;
 }
 
-#tnoqxwfkwd .gt_super {
+#mqmvwzvwtg .gt_super {
   font-size: 65%;
 }
 
-#tnoqxwfkwd .gt_footnote_marks {
+#mqmvwzvwtg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tnoqxwfkwd .gt_asterisk {
+#mqmvwzvwtg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tnoqxwfkwd .gt_indent_1 {
+#mqmvwzvwtg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tnoqxwfkwd .gt_indent_2 {
+#mqmvwzvwtg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tnoqxwfkwd .gt_indent_3 {
+#mqmvwzvwtg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tnoqxwfkwd .gt_indent_4 {
+#mqmvwzvwtg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tnoqxwfkwd .gt_indent_5 {
+#mqmvwzvwtg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tnoqxwfkwd .katex-display {
+#mqmvwzvwtg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tnoqxwfkwd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mqmvwzvwtg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2676,23 +2680,23 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
 </figcaption>
 <div aria-describedby="tbl-fapssjdr_-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="qqchafuysu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qqchafuysu table {
+<div id="ykfxpgwsrd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ykfxpgwsrd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qqchafuysu thead, #qqchafuysu tbody, #qqchafuysu tfoot, #qqchafuysu tr, #qqchafuysu td, #qqchafuysu th {
+#ykfxpgwsrd thead, #ykfxpgwsrd tbody, #ykfxpgwsrd tfoot, #ykfxpgwsrd tr, #ykfxpgwsrd td, #ykfxpgwsrd th {
   border-style: none;
 }
 
-#qqchafuysu p {
+#ykfxpgwsrd p {
   margin: 0;
   padding: 0;
 }
 
-#qqchafuysu .gt_table {
+#ykfxpgwsrd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2718,12 +2722,12 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-left-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_caption {
+#ykfxpgwsrd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qqchafuysu .gt_title {
+#ykfxpgwsrd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2735,7 +2739,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-width: 0;
 }
 
-#qqchafuysu .gt_subtitle {
+#ykfxpgwsrd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2747,7 +2751,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-top-width: 0;
 }
 
-#qqchafuysu .gt_heading {
+#ykfxpgwsrd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2759,13 +2763,13 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_bottom_border {
+#ykfxpgwsrd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_col_headings {
+#ykfxpgwsrd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2780,7 +2784,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_col_heading {
+#ykfxpgwsrd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2800,7 +2804,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   overflow-x: hidden;
 }
 
-#qqchafuysu .gt_column_spanner_outer {
+#ykfxpgwsrd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2812,15 +2816,15 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 4px;
 }
 
-#qqchafuysu .gt_column_spanner_outer:first-child {
+#ykfxpgwsrd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qqchafuysu .gt_column_spanner_outer:last-child {
+#ykfxpgwsrd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qqchafuysu .gt_column_spanner {
+#ykfxpgwsrd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2832,11 +2836,11 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   width: 100%;
 }
 
-#qqchafuysu .gt_spanner_row {
+#ykfxpgwsrd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qqchafuysu .gt_group_heading {
+#ykfxpgwsrd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2862,7 +2866,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   text-align: left;
 }
 
-#qqchafuysu .gt_empty_group_heading {
+#ykfxpgwsrd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2877,15 +2881,15 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   vertical-align: middle;
 }
 
-#qqchafuysu .gt_from_md > :first-child {
+#ykfxpgwsrd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qqchafuysu .gt_from_md > :last-child {
+#ykfxpgwsrd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qqchafuysu .gt_row {
+#ykfxpgwsrd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2904,7 +2908,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   overflow-x: hidden;
 }
 
-#qqchafuysu .gt_stub {
+#ykfxpgwsrd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2917,7 +2921,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#qqchafuysu .gt_stub_row_group {
+#ykfxpgwsrd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2931,15 +2935,15 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   vertical-align: top;
 }
 
-#qqchafuysu .gt_row_group_first td {
+#ykfxpgwsrd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qqchafuysu .gt_row_group_first th {
+#ykfxpgwsrd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qqchafuysu .gt_summary_row {
+#ykfxpgwsrd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2949,16 +2953,16 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#qqchafuysu .gt_first_summary_row {
+#ykfxpgwsrd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_first_summary_row.thick {
+#ykfxpgwsrd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qqchafuysu .gt_last_summary_row {
+#ykfxpgwsrd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2968,7 +2972,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_grand_summary_row {
+#ykfxpgwsrd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2978,7 +2982,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#qqchafuysu .gt_first_grand_summary_row {
+#ykfxpgwsrd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2988,7 +2992,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-top-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_last_grand_summary_row_top {
+#ykfxpgwsrd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2998,11 +3002,11 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_striped {
+#ykfxpgwsrd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qqchafuysu .gt_table_body {
+#ykfxpgwsrd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3011,7 +3015,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-bottom-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_footnotes {
+#ykfxpgwsrd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3025,7 +3029,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_footnote {
+#ykfxpgwsrd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3034,7 +3038,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#qqchafuysu .gt_sourcenotes {
+#ykfxpgwsrd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3048,7 +3052,7 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   border-right-color: #D3D3D3;
 }
 
-#qqchafuysu .gt_sourcenote {
+#ykfxpgwsrd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3056,72 +3060,72 @@ Tabela&nbsp;4.5: Primeiras observações do conjunto de dados de aluguel2025sjdr
   padding-right: 5px;
 }
 
-#qqchafuysu .gt_left {
+#ykfxpgwsrd .gt_left {
   text-align: left;
 }
 
-#qqchafuysu .gt_center {
+#ykfxpgwsrd .gt_center {
   text-align: center;
 }
 
-#qqchafuysu .gt_right {
+#ykfxpgwsrd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qqchafuysu .gt_font_normal {
+#ykfxpgwsrd .gt_font_normal {
   font-weight: normal;
 }
 
-#qqchafuysu .gt_font_bold {
+#ykfxpgwsrd .gt_font_bold {
   font-weight: bold;
 }
 
-#qqchafuysu .gt_font_italic {
+#ykfxpgwsrd .gt_font_italic {
   font-style: italic;
 }
 
-#qqchafuysu .gt_super {
+#ykfxpgwsrd .gt_super {
   font-size: 65%;
 }
 
-#qqchafuysu .gt_footnote_marks {
+#ykfxpgwsrd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qqchafuysu .gt_asterisk {
+#ykfxpgwsrd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qqchafuysu .gt_indent_1 {
+#ykfxpgwsrd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qqchafuysu .gt_indent_2 {
+#ykfxpgwsrd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qqchafuysu .gt_indent_3 {
+#ykfxpgwsrd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qqchafuysu .gt_indent_4 {
+#ykfxpgwsrd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qqchafuysu .gt_indent_5 {
+#ykfxpgwsrd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qqchafuysu .katex-display {
+#ykfxpgwsrd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qqchafuysu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ykfxpgwsrd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3260,23 +3264,23 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
 </figcaption>
 <div aria-describedby="tbl-fapssjdrdummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fwygwrkfhe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fwygwrkfhe table {
+<div id="ekkldghmej" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ekkldghmej table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fwygwrkfhe thead, #fwygwrkfhe tbody, #fwygwrkfhe tfoot, #fwygwrkfhe tr, #fwygwrkfhe td, #fwygwrkfhe th {
+#ekkldghmej thead, #ekkldghmej tbody, #ekkldghmej tfoot, #ekkldghmej tr, #ekkldghmej td, #ekkldghmej th {
   border-style: none;
 }
 
-#fwygwrkfhe p {
+#ekkldghmej p {
   margin: 0;
   padding: 0;
 }
 
-#fwygwrkfhe .gt_table {
+#ekkldghmej .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3302,12 +3306,12 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-left-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_caption {
+#ekkldghmej .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fwygwrkfhe .gt_title {
+#ekkldghmej .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3319,7 +3323,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-bottom-width: 0;
 }
 
-#fwygwrkfhe .gt_subtitle {
+#ekkldghmej .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3331,7 +3335,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-top-width: 0;
 }
 
-#fwygwrkfhe .gt_heading {
+#ekkldghmej .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3343,13 +3347,13 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-right-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_bottom_border {
+#ekkldghmej .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_col_headings {
+#ekkldghmej .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3364,7 +3368,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-right-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_col_heading {
+#ekkldghmej .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3384,7 +3388,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   overflow-x: hidden;
 }
 
-#fwygwrkfhe .gt_column_spanner_outer {
+#ekkldghmej .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3396,15 +3400,15 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 4px;
 }
 
-#fwygwrkfhe .gt_column_spanner_outer:first-child {
+#ekkldghmej .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fwygwrkfhe .gt_column_spanner_outer:last-child {
+#ekkldghmej .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fwygwrkfhe .gt_column_spanner {
+#ekkldghmej .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3416,11 +3420,11 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   width: 100%;
 }
 
-#fwygwrkfhe .gt_spanner_row {
+#ekkldghmej .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fwygwrkfhe .gt_group_heading {
+#ekkldghmej .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3446,7 +3450,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   text-align: left;
 }
 
-#fwygwrkfhe .gt_empty_group_heading {
+#ekkldghmej .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3461,15 +3465,15 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   vertical-align: middle;
 }
 
-#fwygwrkfhe .gt_from_md > :first-child {
+#ekkldghmej .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fwygwrkfhe .gt_from_md > :last-child {
+#ekkldghmej .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fwygwrkfhe .gt_row {
+#ekkldghmej .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3488,7 +3492,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   overflow-x: hidden;
 }
 
-#fwygwrkfhe .gt_stub {
+#ekkldghmej .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3501,7 +3505,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 5px;
 }
 
-#fwygwrkfhe .gt_stub_row_group {
+#ekkldghmej .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3515,15 +3519,15 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   vertical-align: top;
 }
 
-#fwygwrkfhe .gt_row_group_first td {
+#ekkldghmej .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fwygwrkfhe .gt_row_group_first th {
+#ekkldghmej .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fwygwrkfhe .gt_summary_row {
+#ekkldghmej .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3533,16 +3537,16 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 5px;
 }
 
-#fwygwrkfhe .gt_first_summary_row {
+#ekkldghmej .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_first_summary_row.thick {
+#ekkldghmej .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fwygwrkfhe .gt_last_summary_row {
+#ekkldghmej .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3552,7 +3556,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-bottom-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_grand_summary_row {
+#ekkldghmej .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3562,7 +3566,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 5px;
 }
 
-#fwygwrkfhe .gt_first_grand_summary_row {
+#ekkldghmej .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3572,7 +3576,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-top-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_last_grand_summary_row_top {
+#ekkldghmej .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3582,11 +3586,11 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-bottom-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_striped {
+#ekkldghmej .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fwygwrkfhe .gt_table_body {
+#ekkldghmej .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3595,7 +3599,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-bottom-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_footnotes {
+#ekkldghmej .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3609,7 +3613,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-right-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_footnote {
+#ekkldghmej .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3618,7 +3622,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 5px;
 }
 
-#fwygwrkfhe .gt_sourcenotes {
+#ekkldghmej .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3632,7 +3636,7 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   border-right-color: #D3D3D3;
 }
 
-#fwygwrkfhe .gt_sourcenote {
+#ekkldghmej .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3640,72 +3644,72 @@ Tabela&nbsp;4.6: Codificação binária da variável bairro no conjunto de dados
   padding-right: 5px;
 }
 
-#fwygwrkfhe .gt_left {
+#ekkldghmej .gt_left {
   text-align: left;
 }
 
-#fwygwrkfhe .gt_center {
+#ekkldghmej .gt_center {
   text-align: center;
 }
 
-#fwygwrkfhe .gt_right {
+#ekkldghmej .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fwygwrkfhe .gt_font_normal {
+#ekkldghmej .gt_font_normal {
   font-weight: normal;
 }
 
-#fwygwrkfhe .gt_font_bold {
+#ekkldghmej .gt_font_bold {
   font-weight: bold;
 }
 
-#fwygwrkfhe .gt_font_italic {
+#ekkldghmej .gt_font_italic {
   font-style: italic;
 }
 
-#fwygwrkfhe .gt_super {
+#ekkldghmej .gt_super {
   font-size: 65%;
 }
 
-#fwygwrkfhe .gt_footnote_marks {
+#ekkldghmej .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fwygwrkfhe .gt_asterisk {
+#ekkldghmej .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fwygwrkfhe .gt_indent_1 {
+#ekkldghmej .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fwygwrkfhe .gt_indent_2 {
+#ekkldghmej .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fwygwrkfhe .gt_indent_3 {
+#ekkldghmej .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fwygwrkfhe .gt_indent_4 {
+#ekkldghmej .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fwygwrkfhe .gt_indent_5 {
+#ekkldghmej .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fwygwrkfhe .katex-display {
+#ekkldghmej .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fwygwrkfhe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ekkldghmej div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3812,23 +3816,23 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
 </figcaption>
 <div aria-describedby="tbl-fapssjag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="uwfoilkfri" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uwfoilkfri table {
+<div id="fowtrleocu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fowtrleocu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uwfoilkfri thead, #uwfoilkfri tbody, #uwfoilkfri tfoot, #uwfoilkfri tr, #uwfoilkfri td, #uwfoilkfri th {
+#fowtrleocu thead, #fowtrleocu tbody, #fowtrleocu tfoot, #fowtrleocu tr, #fowtrleocu td, #fowtrleocu th {
   border-style: none;
 }
 
-#uwfoilkfri p {
+#fowtrleocu p {
   margin: 0;
   padding: 0;
 }
 
-#uwfoilkfri .gt_table {
+#fowtrleocu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3854,12 +3858,12 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-left-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_caption {
+#fowtrleocu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uwfoilkfri .gt_title {
+#fowtrleocu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3871,7 +3875,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-bottom-width: 0;
 }
 
-#uwfoilkfri .gt_subtitle {
+#fowtrleocu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3883,7 +3887,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-top-width: 0;
 }
 
-#uwfoilkfri .gt_heading {
+#fowtrleocu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3895,13 +3899,13 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-right-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_bottom_border {
+#fowtrleocu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_col_headings {
+#fowtrleocu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3916,7 +3920,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-right-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_col_heading {
+#fowtrleocu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3936,7 +3940,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   overflow-x: hidden;
 }
 
-#uwfoilkfri .gt_column_spanner_outer {
+#fowtrleocu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3948,15 +3952,15 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 4px;
 }
 
-#uwfoilkfri .gt_column_spanner_outer:first-child {
+#fowtrleocu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uwfoilkfri .gt_column_spanner_outer:last-child {
+#fowtrleocu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uwfoilkfri .gt_column_spanner {
+#fowtrleocu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3968,11 +3972,11 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   width: 100%;
 }
 
-#uwfoilkfri .gt_spanner_row {
+#fowtrleocu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uwfoilkfri .gt_group_heading {
+#fowtrleocu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3998,7 +4002,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   text-align: left;
 }
 
-#uwfoilkfri .gt_empty_group_heading {
+#fowtrleocu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4013,15 +4017,15 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   vertical-align: middle;
 }
 
-#uwfoilkfri .gt_from_md > :first-child {
+#fowtrleocu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uwfoilkfri .gt_from_md > :last-child {
+#fowtrleocu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uwfoilkfri .gt_row {
+#fowtrleocu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4040,7 +4044,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   overflow-x: hidden;
 }
 
-#uwfoilkfri .gt_stub {
+#fowtrleocu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4053,7 +4057,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 5px;
 }
 
-#uwfoilkfri .gt_stub_row_group {
+#fowtrleocu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4067,15 +4071,15 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   vertical-align: top;
 }
 
-#uwfoilkfri .gt_row_group_first td {
+#fowtrleocu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uwfoilkfri .gt_row_group_first th {
+#fowtrleocu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uwfoilkfri .gt_summary_row {
+#fowtrleocu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4085,16 +4089,16 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 5px;
 }
 
-#uwfoilkfri .gt_first_summary_row {
+#fowtrleocu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_first_summary_row.thick {
+#fowtrleocu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uwfoilkfri .gt_last_summary_row {
+#fowtrleocu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4104,7 +4108,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-bottom-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_grand_summary_row {
+#fowtrleocu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4114,7 +4118,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 5px;
 }
 
-#uwfoilkfri .gt_first_grand_summary_row {
+#fowtrleocu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4124,7 +4128,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-top-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_last_grand_summary_row_top {
+#fowtrleocu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4134,11 +4138,11 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-bottom-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_striped {
+#fowtrleocu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uwfoilkfri .gt_table_body {
+#fowtrleocu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4147,7 +4151,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-bottom-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_footnotes {
+#fowtrleocu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4161,7 +4165,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-right-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_footnote {
+#fowtrleocu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4170,7 +4174,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 5px;
 }
 
-#uwfoilkfri .gt_sourcenotes {
+#fowtrleocu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4184,7 +4188,7 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   border-right-color: #D3D3D3;
 }
 
-#uwfoilkfri .gt_sourcenote {
+#fowtrleocu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4192,72 +4196,72 @@ Tabela&nbsp;4.7: Agregação de categorias menos frequentes da variável bairro 
   padding-right: 5px;
 }
 
-#uwfoilkfri .gt_left {
+#fowtrleocu .gt_left {
   text-align: left;
 }
 
-#uwfoilkfri .gt_center {
+#fowtrleocu .gt_center {
   text-align: center;
 }
 
-#uwfoilkfri .gt_right {
+#fowtrleocu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uwfoilkfri .gt_font_normal {
+#fowtrleocu .gt_font_normal {
   font-weight: normal;
 }
 
-#uwfoilkfri .gt_font_bold {
+#fowtrleocu .gt_font_bold {
   font-weight: bold;
 }
 
-#uwfoilkfri .gt_font_italic {
+#fowtrleocu .gt_font_italic {
   font-style: italic;
 }
 
-#uwfoilkfri .gt_super {
+#fowtrleocu .gt_super {
   font-size: 65%;
 }
 
-#uwfoilkfri .gt_footnote_marks {
+#fowtrleocu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uwfoilkfri .gt_asterisk {
+#fowtrleocu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uwfoilkfri .gt_indent_1 {
+#fowtrleocu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uwfoilkfri .gt_indent_2 {
+#fowtrleocu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uwfoilkfri .gt_indent_3 {
+#fowtrleocu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uwfoilkfri .gt_indent_4 {
+#fowtrleocu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uwfoilkfri .gt_indent_5 {
+#fowtrleocu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uwfoilkfri .katex-display {
+#fowtrleocu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uwfoilkfri div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fowtrleocu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -6495,123 +6499,130 @@ Tabela&nbsp;4.11: Escores da primeira componente principal para os preditores do
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">col =</span> feijao, <span class="at">alpha =</span> .<span class="dv">5</span>), </span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Histograma sem e com transformação logarítmica.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> folhasfrutas</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> area)) <span class="sc">+</span> </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span> <span class="st">"white"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> area)) <span class="sc">+</span> </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>p1</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>p2</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Gráfico de bolhas. Sugere-se ao discente testar outras variáveis nos argumentos <code>col</code>, <code>size</code>, e nos painéis gráficos via <code>facet_grid</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(apartamentos2024mg)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> apartamentos2024mg</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"N"</span><span class="ot">=</span><span class="st">"n"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"Não"</span><span class="ot">=</span><span class="st">"N"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"Sim"</span><span class="ot">=</span><span class="st">"S"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cidade =</span> <span class="fu">fct_recode</span>(Cidade, <span class="st">"SJDR"</span><span class="ot">=</span><span class="st">"Sao Joao del Rei"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cidade =</span> <span class="fu">fct_recode</span>(Cidade, <span class="st">"C. Lafaiete"</span><span class="ot">=</span><span class="st">"Conselheiro Lafaiete"</span>))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>Area, <span class="at">y =</span> Valor, <span class="at">col =</span> Banheiros, <span class="at">size =</span> Vaga)) <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(Cidade),<span class="at">cols=</span><span class="fu">vars</span>(Varanda),</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">Varanda =</span> label_both)) <span class="sc">+</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_distiller</span>(<span class="at">palette =</span> <span class="st">"Reds"</span>, <span class="at">direction =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(apartamentos2024mg)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> apartamentos2024mg</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"N"</span><span class="ot">=</span><span class="st">"n"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"Não"</span><span class="ot">=</span><span class="st">"N"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Varanda =</span> <span class="fu">fct_recode</span>(Varanda, <span class="st">"Sim"</span><span class="ot">=</span><span class="st">"S"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cidade =</span> <span class="fu">fct_recode</span>(Cidade, <span class="st">"SJDR"</span><span class="ot">=</span><span class="st">"Sao Joao del Rei"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cidade =</span> <span class="fu">fct_recode</span>(Cidade, <span class="st">"C. Lafaiete"</span><span class="ot">=</span><span class="st">"Conselheiro Lafaiete"</span>))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>Area, <span class="at">y =</span> Valor, <span class="at">col =</span> Banheiros, <span class="at">size =</span> Vaga)) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(Cidade),<span class="at">cols=</span><span class="fu">vars</span>(Varanda),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">Varanda =</span> label_both)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_distiller</span>(<span class="at">palette =</span> <span class="st">"Reds"</span>, <span class="at">direction =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="engenharia-de-atributos-1" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="engenharia-de-atributos-1"><span class="header-section-number">4.3.2</span> Engenharia de atributos</h3>
+<p>Histograma sem e com transformação logarítmica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> folhasfrutas</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> area)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span> <span class="st">"white"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> area)) <span class="sc">+</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>p1</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>p2</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(p1, p2, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A transformação logarítmica de variáveis contínuas pode ser realizada com <code>step_log</code> na receita. Em relação à resposta, segere-se transformar antes nos dados, uma vez que o referido step não inverte a transformação da resposta, só dos preditores. Ao se realizar a previsão, é importante inverter o logaritmo via exponenciação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">log</span>(y))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">### ...</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(model, dados_teste))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>A imputação de mediana para observações ausentes de preditores numéricos é realizada com o comando <code>step_impute_median()</code>. Caso tenha alguma observação vazia, isto é, sem ao menos “NA”, pode usar <code>step_mutate(var_name = na_if(var_name, ""))</code>. O <code>step_unknown()</code> é útil para criar um novo nível, por exemplo “desconhecido” para um preditor categórico com “NA”, enquanto o <code>step_impute_mode()</code> substitui o “NA” pela moda.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(aluguel2025sjdr)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> aluguel2025sjdr</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> preco <span class="sc">~</span> ., </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_mutate</span>(<span class="at">bairro =</span> <span class="fu">na_if</span>(bairro, <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_impute_mode(all_nominal_predictors())</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(bairro, <span class="at">new_level =</span> <span class="st">"desconhecido"</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>receita_prep <span class="ot">&lt;-</span> <span class="fu">prep</span>(receita)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>dados_bake <span class="ot">&lt;-</span> <span class="fu">bake</span>(receita_prep, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>dados_bake <span class="sc">|&gt;</span> </span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(aluguel2025sjdr)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> aluguel2025sjdr</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> preco <span class="sc">~</span> ., </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_mutate</span>(<span class="at">bairro =</span> <span class="fu">na_if</span>(bairro, <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_impute_mode(all_nominal_predictors())</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(bairro, <span class="at">new_level =</span> <span class="st">"desconhecido"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>receita_prep <span class="ot">&lt;-</span> <span class="fu">prep</span>(receita)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>dados_bake <span class="ot">&lt;-</span> <span class="fu">bake</span>(receita_prep, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>dados_bake <span class="sc">|&gt;</span> </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Após os tratamentos anteriores para preditores categóricos, sugere-se o agrupamento de categorias menos frequentes via <code>step_other()</code>, bem como a criação de variáveis binárias via <code>step_dummy()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> preco <span class="sc">~</span> ., </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Link)) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_mutate</span>(<span class="at">bairro =</span> <span class="fu">na_if</span>(bairro, <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_impute_mode(all_nominal_predictors())</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(bairro, <span class="at">new_level =</span> <span class="st">"desconhecido"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(bairro, <span class="at">threshold =</span> <span class="fl">0.05</span>, <span class="at">other =</span> <span class="st">"outro"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> preco <span class="sc">~</span> ., </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>Link)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_median</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_mutate</span>(<span class="at">bairro =</span> <span class="fu">na_if</span>(bairro, <span class="st">""</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_impute_mode(all_nominal_predictors())</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(bairro, <span class="at">new_level =</span> <span class="st">"desconhecido"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(bairro, <span class="at">threshold =</span> <span class="fl">0.05</span>, <span class="at">other =</span> <span class="st">"outro"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>())</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>O <code>step_zv()</code> remove preditores com variância nula, enquanto o <code>step_nzv()</code> remove preditores com grande desequilíbrio entre as classes. No caso do comjunto de dados <code>carrosusados2025webmotors</code>, a variável Combustível apresenta apenas o nível “Flex”, sendo dispensável para a análise.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(carrosusados2025webmotors)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> carrosusados2025webmotors</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> Preco <span class="sc">~</span> ., <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_nzv(all_predictors())</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(carrosusados2025webmotors)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> carrosusados2025webmotors</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> Preco <span class="sc">~</span> ., <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_nzv(all_predictors())</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>O <code>step_corr()</code> consiste em um filtro de variáveis correlacionadas, sendo o valor limite de correlação aceito definido pelo argumento <code>threshold</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> folhasfrutas</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> especie <span class="sc">~</span> ., </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">step_corr</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">threshold =</span> <span class="fl">0.9</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> folhasfrutas</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> especie <span class="sc">~</span> ., </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">step_corr</span>(<span class="fu">all_numeric_predictors</span>(), <span class="at">threshold =</span> <span class="fl">0.9</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A análise de componentes principais é realizada via <code>step_pca()</code>. O argumento <code>threshold</code>, neste caso define a proporção mínima de explicação da variabilidade dos dados originais requerida, por parte dos novos preditores.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> feijoes</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> feijao <span class="sc">~</span> ., </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">threshold =</span> <span class="fl">0.9</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(feijoes)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> feijoes</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> feijao <span class="sc">~</span> ., </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> dados) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(), </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">threshold =</span> <span class="fl">0.9</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>receita <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bake</span>(<span class="at">new_data =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Um pré-processamento importante para variáveis com muitos níveis é o <code>step_novel()</code>. Tal pré-processamento evitará que, ao se deparar com níveis de variáveis categóricas não presentes nos dados de treino, o modelo irá chamar este nível desconhecido de “novo”.</p>
 </section>
 </section>
 <section id="referências" class="level2 unnumbered">
@@ -6619,10 +6630,10 @@ Tabela&nbsp;4.11: Escores da primeira componente principal para os preditores do
 <p>Hvitfeldt, E. (2024). Feature Engineering A-Z. https://feaz-book.com</p>
 <p>Kuhn, M., &amp; Silge, J. (2022). Tidy modeling with R: A framework for modeling in the tidyverse. ” O’Reilly Media, Inc.”.</p>
 </section>
-<section id="apêndice" class="level2 unnumbered unlisted">
-<h2 class="unnumbered unlisted anchored" data-anchor-id="apêndice">Apêndice</h2>
-<section id="sec-svd" class="level3 unnumbered unlisted">
-<h3 class="unnumbered unlisted anchored" data-anchor-id="sec-svd">Decomposição em valores singulares</h3>
+<section id="apêndice" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="apêndice">Apêndice</h2>
+<section id="sec-svd" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sec-svd">Decomposição em valores singulares</h3>
 <p>A decomposição em valores singulares é um método de fatoração de matrizes da álgebra linear que permite a decomposição de uma matriz em três outras, conforme <a href="#eq-svd" class="quarto-xref">Equação&nbsp;<span>4.8</span></a>, onde <span class="math inline">\(\mathbf U_{n \times n}\)</span> é a matriz de vetores singulares esquerda, <span class="math inline">\(\mathbf L_{n \times k}\)</span> é a matriz de valores singulares e <span class="math inline">\(\mathbf V_{k \times k}\)</span> é a matriz de vetores singulares direita.</p>
 <p><span id="eq-svd"><span class="math display">\[
 \mathbf X = \mathbf U \mathbf L \mathbf V^T

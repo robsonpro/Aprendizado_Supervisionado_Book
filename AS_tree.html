@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>5&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
+<title>6&nbsp; Regressão por árvores de decisão e floresta aleatória – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_tree.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_tree.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -196,26 +196,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_tree.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,20 +256,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -282,26 +282,26 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#árvores-de-decisão-para-regressão" id="toc-árvores-de-decisão-para-regressão" class="nav-link active" data-scroll-target="#árvores-de-decisão-para-regressão"><span class="header-section-number">5.1</span> Árvores de decisão para regressão</a>
+  <li><a href="#árvores-de-decisão-para-regressão" id="toc-árvores-de-decisão-para-regressão" class="nav-link active" data-scroll-target="#árvores-de-decisão-para-regressão"><span class="header-section-number">6.1</span> Árvores de decisão para regressão</a>
   <ul class="collapse">
-  <li><a href="#importância-dos-preditores" id="toc-importância-dos-preditores" class="nav-link" data-scroll-target="#importância-dos-preditores"><span class="header-section-number">5.1.1</span> Importância dos preditores</a></li>
+  <li><a href="#importância-dos-preditores" id="toc-importância-dos-preditores" class="nav-link" data-scroll-target="#importância-dos-preditores"><span class="header-section-number">6.1.1</span> Importância dos preditores</a></li>
   </ul></li>
-  <li><a href="#bagged-trees-ou-bagging" id="toc-bagged-trees-ou-bagging" class="nav-link" data-scroll-target="#bagged-trees-ou-bagging"><span class="header-section-number">5.2</span> <em>Bagged trees</em> ou <em>bagging</em></a>
+  <li><a href="#bagged-trees-ou-bagging" id="toc-bagged-trees-ou-bagging" class="nav-link" data-scroll-target="#bagged-trees-ou-bagging"><span class="header-section-number">6.2</span> <em>Bagged trees</em> ou <em>bagging</em></a>
   <ul class="collapse">
-  <li><a href="#importância-dos-preditores-1" id="toc-importância-dos-preditores-1" class="nav-link" data-scroll-target="#importância-dos-preditores-1"><span class="header-section-number">5.2.1</span> Importância dos preditores</a></li>
+  <li><a href="#importância-dos-preditores-1" id="toc-importância-dos-preditores-1" class="nav-link" data-scroll-target="#importância-dos-preditores-1"><span class="header-section-number">6.2.1</span> Importância dos preditores</a></li>
   </ul></li>
-  <li><a href="#floresta-aleatória" id="toc-floresta-aleatória" class="nav-link" data-scroll-target="#floresta-aleatória"><span class="header-section-number">5.3</span> Floresta aleatória</a>
+  <li><a href="#floresta-aleatória" id="toc-floresta-aleatória" class="nav-link" data-scroll-target="#floresta-aleatória"><span class="header-section-number">6.3</span> Floresta aleatória</a>
   <ul class="collapse">
-  <li><a href="#importância-dos-preditores-2" id="toc-importância-dos-preditores-2" class="nav-link" data-scroll-target="#importância-dos-preditores-2"><span class="header-section-number">5.3.1</span> Importância dos preditores</a></li>
+  <li><a href="#importância-dos-preditores-2" id="toc-importância-dos-preditores-2" class="nav-link" data-scroll-target="#importância-dos-preditores-2"><span class="header-section-number">6.3.1</span> Importância dos preditores</a></li>
   </ul></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</a>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">6.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#árvores-para-regressão" id="toc-árvores-para-regressão" class="nav-link" data-scroll-target="#árvores-para-regressão"><span class="header-section-number">5.4.1</span> Árvores para regressão</a></li>
-  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">5.4.2</span> <em>Bagging</em></a></li>
-  <li><a href="#sec-rfimpl" id="toc-sec-rfimpl" class="nav-link" data-scroll-target="#sec-rfimpl"><span class="header-section-number">5.4.3</span> Floresta aleatória</a></li>
+  <li><a href="#árvores-para-regressão" id="toc-árvores-para-regressão" class="nav-link" data-scroll-target="#árvores-para-regressão"><span class="header-section-number">6.4.1</span> Árvores para regressão</a></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">6.4.2</span> <em>Bagging</em></a></li>
+  <li><a href="#sec-rfimpl" id="toc-sec-rfimpl" class="nav-link" data-scroll-target="#sec-rfimpl"><span class="header-section-number">6.4.3</span> Floresta aleatória</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">5.5</span> Exercícios</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">6.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -310,7 +310,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></h1>
 </div>
 
 
@@ -333,9 +333,9 @@ window.Quarto = {
 </header>
 
 
-<section id="árvores-de-decisão-para-regressão" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="árvores-de-decisão-para-regressão"><span class="header-section-number">5.1</span> Árvores de decisão para regressão</h2>
-<p>As árvores de decisão foram inicialmente propostas para problemas de classificação, porém, podem ser adaptadas de forma simples para problemas de regressão. Na regressão por árvores de decisão, ou simplesmente por árvores de regressão, divide-se o espaço preditor em várias regiões hiper-retangulares tomando como predição a média ou outra medida simples das observações de treino da região. O conjunto de regras de divisão usado para segmentar o espaço preditor pode ser resumido em um diagrama semelhante a uma árvore, conforme a <a href="#fig-tree" class="quarto-xref">Figura&nbsp;<span>5.1</span></a>. A árvore plotada apresenta quatro nós terminais ou folhas e profundidade igual a 2, isto é, a partir do nó raiz são necessários no máximo 2 partições para atingir qualquer folha.</p>
+<section id="árvores-de-decisão-para-regressão" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="árvores-de-decisão-para-regressão"><span class="header-section-number">6.1</span> Árvores de decisão para regressão</h2>
+<p>As árvores de decisão foram inicialmente propostas para problemas de classificação, porém, podem ser adaptadas de forma simples para problemas de regressão. Na regressão por árvores de decisão, ou simplesmente por árvores de regressão, divide-se o espaço preditor em várias regiões hiper-retangulares tomando como predição a média ou outra medida simples das observações de treino da região. O conjunto de regras de divisão usado para segmentar o espaço preditor pode ser resumido em um diagrama semelhante a uma árvore, conforme a <a href="#fig-tree" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>. A árvore plotada apresenta quatro nós terminais ou folhas e profundidade igual a 2, isto é, a partir do nó raiz são necessários no máximo 2 partições para atingir qualquer folha.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -344,13 +344,13 @@ window.Quarto = {
 <img src="AS_tree_files/figure-html/fig-tree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.1: Diagrama de árvore de decisão (ou regressão neste caso)
+Figura&nbsp;6.1: Diagrama de árvore de decisão (ou regressão neste caso)
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O gráfico de superfície da <a href="#fig-surftree" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> expõe o modelo obtido em função das duas variáveis preditoras, podendo-se observar que o valor previsto é constante em cada região retangular correspondente ao diagrama ilustrado anteriormente.</p>
+<p>O gráfico de superfície da <a href="#fig-surftree" class="quarto-xref">Figura&nbsp;<span>6.2</span></a> expõe o modelo obtido em função das duas variáveis preditoras, podendo-se observar que o valor previsto é constante em cada região retangular correspondente ao diagrama ilustrado anteriormente.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surftree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -359,13 +359,13 @@ Figura&nbsp;5.1: Diagrama de árvore de decisão (ou regressão neste caso)
 <img src="AS_tree_files/figure-html/fig-surftree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surftree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.2: Gráfico de superfície para um modelo de regressão baseado em árvore
+Figura&nbsp;6.2: Gráfico de superfície para um modelo de regressão baseado em árvore
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Pode-se observar o mesmo modelo de árvore de regressão via gráfico de contorno, conforme <a href="#fig-conttree" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>, ficando mais clara a divisão do espaço preditor.</p>
+<p>Pode-se observar o mesmo modelo de árvore de regressão via gráfico de contorno, conforme <a href="#fig-conttree" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>, ficando mais clara a divisão do espaço preditor.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-conttree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -374,24 +374,24 @@ Figura&nbsp;5.2: Gráfico de superfície para um modelo de regressão baseado em
 <img src="AS_tree_files/figure-html/fig-conttree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conttree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.3: Gráfico de contorno para um modelo de regressão baseado em árvore
+Figura&nbsp;6.3: Gráfico de contorno para um modelo de regressão baseado em árvore
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Sejam <span class="math inline">\(k\)</span> preditores, <span class="math inline">\(\mathbf{x} = [x_{1}, x_{2},..., x_{K}]^T\)</span>, uma resposta, <span class="math inline">\(y \in \mathbb{R}\)</span> , e <span class="math inline">\(n\)</span> observações de treino, <span class="math inline">\(\mathcal{D}=(\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>. O algoritmo (<em>Classification and Regression Trees</em> - CART) para regressão define a cada iteração a variável preditora e o seu nível para dividir o espaço dos preditores. Considerando <span class="math inline">\(J\)</span> regiões <span class="math inline">\(R_1, R_2, ..., R_J\)</span>, o valor predito será uma constante <span class="math inline">\(\gamma_j\)</span>, em cada região, <span class="math inline">\(j=1,...,J\)</span>. Portanto, o modelo de árvore de regressão pode ser definido conforme a <a href="#eq-treemodel" class="quarto-xref">Equação&nbsp;<span>5.1</span></a>, <span class="math inline">\(\{R_j,\gamma_j\}, j=1,\ldots,J\)</span>, onde <span class="math inline">\(I(\mathbf{x} \in R_j)\)</span> é uma função indicativa que recebe 1 se <span class="math inline">\(\mathbf{x}\)</span> pertence à região <span class="math inline">\(R_j\)</span> e 0 caso contrário. O melhor <span class="math inline">\(\gamma_j\)</span> para minimizar a soma dos quadrados dos erros é a média das observações na região, <span class="math inline">\(\hat{\gamma}_j = (\bar{y}_i | \mathbf{x}_i \in R_j\)</span>).</p>
+<p>Sejam <span class="math inline">\(k\)</span> preditores, <span class="math inline">\(\mathbf{x} = [x_{1}, x_{2},..., x_{K}]^T\)</span>, uma resposta, <span class="math inline">\(y \in \mathbb{R}\)</span> , e <span class="math inline">\(n\)</span> observações de treino, <span class="math inline">\(\mathcal{D}=(\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>. O algoritmo (<em>Classification and Regression Trees</em> - CART) para regressão define a cada iteração a variável preditora e o seu nível para dividir o espaço dos preditores. Considerando <span class="math inline">\(J\)</span> regiões <span class="math inline">\(R_1, R_2, ..., R_J\)</span>, o valor predito será uma constante <span class="math inline">\(\gamma_j\)</span>, em cada região, <span class="math inline">\(j=1,...,J\)</span>. Portanto, o modelo de árvore de regressão pode ser definido conforme a <a href="#eq-treemodel" class="quarto-xref">Equação&nbsp;<span>6.1</span></a>, <span class="math inline">\(\{R_j,\gamma_j\}, j=1,\ldots,J\)</span>, onde <span class="math inline">\(I(\mathbf{x} \in R_j)\)</span> é uma função indicativa que recebe 1 se <span class="math inline">\(\mathbf{x}\)</span> pertence à região <span class="math inline">\(R_j\)</span> e 0 caso contrário. O melhor <span class="math inline">\(\gamma_j\)</span> para minimizar a soma dos quadrados dos erros é a média das observações na região, <span class="math inline">\(\hat{\gamma}_j = (\bar{y}_i | \mathbf{x}_i \in R_j\)</span>).</p>
 <p><span id="eq-treemodel"><span class="math display">\[
 \begin{aligned}
 f(\mathbf{x}) = T(\mathbf{x},R_j,\gamma_j) = \sum_{j=1}^J \gamma_jI(\mathbf{x} \in R_j)
 \end{aligned}
-\tag{5.1}\]</span></span></p>
-<p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s) = {\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s) = {\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca o preditor para a divisão e o valor deste na divisão resolvendo a <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>5.2</span></a>, ou seja, minimizando a soma dos quadrados dos erros de previsão nas regiões obtidas a partir da escolha de <span class="math inline">\(x_k\)</span> e seu valor <span class="math inline">\(s\)</span>.</p>
+\tag{6.1}\]</span></span></p>
+<p>Considerando todos os dados de treinamento, as divisões são definidas tomando uma variável para divisão, <span class="math inline">\(x_k\)</span>, <span class="math inline">\(k = 1,..., K\)</span>, e um ponto de divisão <span class="math inline">\(x_k = s\)</span>, <span class="math inline">\(R_1(k,s) = {\mathbf{x}|x_k \leq s}\)</span> e <span class="math inline">\(R_2(k,s) = {\mathbf{x}|x_k&gt;s}\)</span>. Portanto, o algoritmo CART busca o preditor para a divisão e o valor deste na divisão resolvendo a <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>6.2</span></a>, ou seja, minimizando a soma dos quadrados dos erros de previsão nas regiões obtidas a partir da escolha de <span class="math inline">\(x_k\)</span> e seu valor <span class="math inline">\(s\)</span>.</p>
 <p><span id="eq-cartloss"><span class="math display">\[
 \begin{aligned}
     \min_{k,s} \Bigl[ \min_{\gamma_1} \sum_{x_i \in R_1(k,s)} (y_i - \gamma_1)^2 +  \min_{\gamma_2} \sum_{x_i \in R_2(k,s)} (y_i - \gamma_2)^2 \Bigr]
 \end{aligned}
-\tag{5.2}\]</span></span></p>
+\tag{6.2}\]</span></span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -405,12 +405,12 @@ Dica
 <p>O algoritmo CART repete o particionamento recursivamente até um determinado critério de parada ser alcançado, por exemplo, até um número mínimo de observações em cada partição ser atingido ou até uma profundidade máxima da árvore.</p>
 </div>
 </div>
-<p>Seja um conjunto de dados de preço de venda de apartamentos em algumas cidades pertencentes às regiões de Alto Paraopeba, Zona da Mata e Campos das Vertentes do estado de Minas Gerais. Os dados contém 632 observações constando a cidade, o bairro, a área, número de quartos, número de banheiros, número de salas, número de vagas na garagem, presença de varanda, área gourmet, terraço, copa e de piscina. Algumas linhas são aleatoriamente exibidas na <a href="#tbl-dadosapmg" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a>.</p>
+<p>Seja um conjunto de dados de preço de venda de apartamentos em algumas cidades pertencentes às regiões de Alto Paraopeba, Zona da Mata e Campos das Vertentes do estado de Minas Gerais. Os dados contém 632 observações constando a cidade, o bairro, a área, número de quartos, número de banheiros, número de salas, número de vagas na garagem, presença de varanda, área gourmet, terraço, copa e de piscina. Algumas linhas são aleatoriamente exibidas na <a href="#tbl-dadosapmg" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>.</p>
 <div class="cell">
 <div id="tbl-dadosapmg" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dadosapmg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.1: Gráfico de correlação para o conjunto de dados Hitters
+Tabela&nbsp;6.1: Gráfico de correlação para o conjunto de dados Hitters
 </figcaption>
 <div aria-describedby="tbl-dadosapmg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1053,12 +1053,12 @@ Tabela&nbsp;5.1: Gráfico de correlação para o conjunto de dados Hitters
 </figure>
 </div>
 </div>
-<p>A perda na <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>5.2</span></a> consiste na perda em cada partição gerada no algoritmo CART. A <a href="#eq-losstree" class="quarto-xref">Equação&nbsp;<span>5.3</span></a> expõe a função perda geral a ser minimizada, onde o termo <span class="math inline">\(\alpha |T|\)</span> consiste em um termo de regularização que controla o crescimento da árvore, sendo comumente chamado de termo de poda, sendo <span class="math inline">\(|T|\)</span> o número de nós ou partições finais do modelo e <span class="math inline">\(\alpha\)</span> o parâmetro de regularização que controla o crescimento da árvore, sendo comumente chamado de complexidade de custo.</p>
+<p>A perda na <a href="#eq-cartloss" class="quarto-xref">Equação&nbsp;<span>6.2</span></a> consiste na perda em cada partição gerada no algoritmo CART. A <a href="#eq-losstree" class="quarto-xref">Equação&nbsp;<span>6.3</span></a> expõe a função perda geral a ser minimizada, onde o termo <span class="math inline">\(\alpha |T|\)</span> consiste em um termo de regularização que controla o crescimento da árvore, sendo comumente chamado de termo de poda, sendo <span class="math inline">\(|T|\)</span> o número de nós ou partições finais do modelo e <span class="math inline">\(\alpha\)</span> o parâmetro de regularização que controla o crescimento da árvore, sendo comumente chamado de complexidade de custo.</p>
 <p><span id="eq-losstree"><span class="math display">\[
 \begin{aligned}
     \min_{T} \sum_{m=1}^{|T|} \sum_{x_i \in R_j} (y_i - \gamma_{j})^2 + \alpha |T|
 \end{aligned}
-\tag{5.3}\]</span></span></p>
+\tag{6.3}\]</span></span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1072,7 +1072,7 @@ Dica
 <p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, o número máximo de nós terminais ou folhas, <span class="math inline">\(|T|\)</span>, e o número mínimo de observações por partição (<code>min_n</code>).</p>
 </div>
 </div>
-<p>Pode-se realizar uma validação cruzada para otimizar os hiperparâmetros do modelo de árvore de regressão, isto é, definir a profundidade da árvore e a complexidade de custo, <span class="math inline">\(\alpha\)</span>, ideais para os dados em análise e evitar o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> plota o erro em relação a profundidade e a complexidade da árvore. Neste caso, foi considerado <code>min_n = 20</code>. Observa-se que um modelo com profundidade igual a 4 e um valor de complexidade de custo de baixo a intermediário minimiza o erro de teste, isto é, minimiza RMSE ou maximiza <span class="math inline">\(R^2\)</span>.</p>
+<p>Pode-se realizar uma validação cruzada para otimizar os hiperparâmetros do modelo de árvore de regressão, isto é, definir a profundidade da árvore e a complexidade de custo, <span class="math inline">\(\alpha\)</span>, ideais para os dados em análise e evitar o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> plota o erro em relação a profundidade e a complexidade da árvore. Neste caso, foi considerado <code>min_n = 20</code>. Observa-se que um modelo com profundidade igual a 4 e um valor de complexidade de custo de baixo a intermediário minimiza o erro de teste, isto é, minimiza RMSE ou maximiza <span class="math inline">\(R^2\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvtree" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1081,7 +1081,7 @@ Dica
 <img src="AS_tree_files/figure-html/fig-cvtree-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvtree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.4: Resultado das métricas de ajuste do modelo de regressão por árvore na validação cruzada
+Figura&nbsp;6.4: Resultado das métricas de ajuste do modelo de regressão por árvore na validação cruzada
 </figcaption>
 </figure>
 </div>
@@ -1124,7 +1124,7 @@ node), split, n, deviance, yval
       15) Cidade_Juiz.de.Fora&gt;=0.5 19 5.851535e+12 1298047.0 *</code></pre>
 </div>
 </div>
-<p>A <a href="#fig-treemodel" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> apresenta o diagrama do modelo de árvore de regressão para prever o preço de venda de apartamentos. O modelo resume as regras expostas acima. As variáveis categóricas foram codificadas em binárias. Por exemplo, <code>Cidade_Uba &gt;= 0,5</code> implica que a cidade é Ubá se 1 e não é Ubá se 0.</p>
+<p>A <a href="#fig-treemodel" class="quarto-xref">Figura&nbsp;<span>6.5</span></a> apresenta o diagrama do modelo de árvore de regressão para prever o preço de venda de apartamentos. O modelo resume as regras expostas acima. As variáveis categóricas foram codificadas em binárias. Por exemplo, <code>Cidade_Uba &gt;= 0,5</code> implica que a cidade é Ubá se 1 e não é Ubá se 0.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treemodel" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1133,19 +1133,19 @@ node), split, n, deviance, yval
 <img src="AS_tree_files/figure-html/fig-treemodel-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treemodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.5: Modelo de árvore de regressão para prever o preço de venda de apartamentos
+Figura&nbsp;6.5: Modelo de árvore de regressão para prever o preço de venda de apartamentos
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="importância-dos-preditores" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="importância-dos-preditores"><span class="header-section-number">5.1.1</span> Importância dos preditores</h3>
-<p>Os modelos de árvore de decisão e regressão são simples de interpretar, pois apresentam uma relação direta entre o espaço de decisão particionado e as previsões. As variáveis mais importantes neste tipo de modelo podem ser ranqueadas considerando a redução no erro quadrático de um nó pai para os filhos, segundo a <a href="#eq-deviancevip" class="quarto-xref">Equação&nbsp;<span>5.4</span></a>, onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros.</p>
+<section id="importância-dos-preditores" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="importância-dos-preditores"><span class="header-section-number">6.1.1</span> Importância dos preditores</h3>
+<p>Os modelos de árvore de decisão e regressão são simples de interpretar, pois apresentam uma relação direta entre o espaço de decisão particionado e as previsões. As variáveis mais importantes neste tipo de modelo podem ser ranqueadas considerando a redução no erro quadrático de um nó pai para os filhos, segundo a <a href="#eq-deviancevip" class="quarto-xref">Equação&nbsp;<span>6.4</span></a>, onde <span class="math inline">\(SS_E\)</span> consiste na soma dos quadrados dos erros.</p>
 <p><span id="eq-deviancevip"><span class="math display">\[
 \text{Importância}(x_j) = \sum_{\text{splits com } x_j} \left(SS_{E_{\text{pai}}} - SS_{E_{\text{filho esq.}}} - SS_{E_{\text{filho dir.}}}\right)
-\tag{5.4}\]</span></span></p>
-<p>A <a href="#fig-vipap" class="quarto-xref">Figura&nbsp;<span>5.6</span></a> apresenta um gráfico de importância de variável, comumente chamado de <em>Variance Importance Plot</em> (VIP). Observa-se que a área do apartamento é o preditor mais importante no preço, seguido do número de vagas na garagem, número de banheiros, suites, etc. Sugere-se o estudo de outros modelos de árvore de decisão com número reduzido de variáveis, de forma a avaliar se é possível obter um modelo mais simples com menor erro.</p>
+\tag{6.4}\]</span></span></p>
+<p>A <a href="#fig-vipap" class="quarto-xref">Figura&nbsp;<span>6.6</span></a> apresenta um gráfico de importância de variável, comumente chamado de <em>Variance Importance Plot</em> (VIP). Observa-se que a área do apartamento é o preditor mais importante no preço, seguido do número de vagas na garagem, número de banheiros, suites, etc. Sugere-se o estudo de outros modelos de árvore de decisão com número reduzido de variáveis, de forma a avaliar se é possível obter um modelo mais simples com menor erro.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-vipap" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1154,7 +1154,7 @@ Figura&nbsp;5.5: Modelo de árvore de regressão para prever o preço de venda d
 <img src="AS_tree_files/figure-html/fig-vipap-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vipap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.6: Gráfico de importância de variável/preditor para prever o preço do aluguel
+Figura&nbsp;6.6: Gráfico de importância de variável/preditor para prever o preço do aluguel
 </figcaption>
 </figure>
 </div>
@@ -1162,8 +1162,8 @@ Figura&nbsp;5.6: Gráfico de importância de variável/preditor para prever o pr
 </div>
 </section>
 </section>
-<section id="bagged-trees-ou-bagging" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="bagged-trees-ou-bagging"><span class="header-section-number">5.2</span> <em>Bagged trees</em> ou <em>bagging</em></h2>
+<section id="bagged-trees-ou-bagging" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="bagged-trees-ou-bagging"><span class="header-section-number">6.2</span> <em>Bagged trees</em> ou <em>bagging</em></h2>
 <p><em>Bagged trees ou bagging</em> ou, em português, poderia ser traduzido de forma livre como “árvores ensacadas” e consiste em um método baseado em árvores de decisão que pode ser aplicado tanto em regressão quanto em classificação. O método agrega várias árvores de decisão as quais são estimadas a partir de reamostragem por reposição dos dados de treino. Ou seja, antes de estimar cada árvore, realiza-se um sorteio com reposição dos dados de treino, procedimento este chamado de <em>bootstrap</em> e, posteriormente, estima-se a árvore para cada amostra obtida por sorteio com reposição. O modelo final é a média de todas as árvores obtidas após <em>bootstrap</em> dos dados. Geralmente, um número alto de reamostragens é realizado e, portanto, um número alto de árvores é obtido, resultando em um modelo com maior flexibilidade, porém mais difícil de interpretar. O nome <em>BAgging</em> também vem de <em>bootstrap aggregated</em> ou agregação por bootstrap.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1178,12 +1178,12 @@ Definição
 <p><em>Bootstrap</em> é uma técnica estatística de reamostragem por reposição, usada para inferência, simulação e estimativas. Por exemplo, seja um conjunto de dados de treino <span class="math inline">\(\mathcal{D} = (\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>, com <span class="math inline">\(n=7\)</span> observações. Uma amostra <em>bootstrap</em> pode resultar no seguinte conjunto de dados <span class="math inline">\(\mathcal{D^*} = (\mathbf{x}_5,y_5), (\mathbf{x}_7,y_7), (\mathbf{x}_5,y_5),\)</span> <span class="math inline">\((\mathbf{x}_4,y_4), (\mathbf{x}_7,y_7), (\mathbf{x}_3,y_3), (\mathbf{x}_1,y_1)\)</span>. Pode-se demonstrar que, para um <span class="math inline">\(n\)</span> suficientemente grande, no <em>bootstrap</em>, a probabilidade de uma observação ser sorteada ao menos uma vez é igual a <span class="math inline">\(1-e^{-1} = 0,632\)</span>.</p>
 </div>
 </div>
-<p>Considere um conjunto de dados de treino com <span class="math inline">\(n = 10\)</span> observações, com três preditores e uma variável independente, exibido integralmente na <a href="#tbl-datareg" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a>. Cada linha é exibida com uma cor distinta para facilitar a distinção entre estas e entendimento do método <em>bootstrap</em>.</p>
+<p>Considere um conjunto de dados de treino com <span class="math inline">\(n = 10\)</span> observações, com três preditores e uma variável independente, exibido integralmente na <a href="#tbl-datareg" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>. Cada linha é exibida com uma cor distinta para facilitar a distinção entre estas e entendimento do método <em>bootstrap</em>.</p>
 <div class="cell">
 <div id="tbl-datareg" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-datareg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.2: Conjunto de dados arbitrário para regressão
+Tabela&nbsp;6.2: Conjunto de dados arbitrário para regressão
 </figcaption>
 <div aria-describedby="tbl-datareg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1727,12 +1727,12 @@ Tabela&nbsp;5.2: Conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>Um <em>bootstrap</em> deste conjunto de dados pode resultar na reamostragem exibida na <a href="#tbl-databoot" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a>. Pode-se observar que, neste caso, as observações 2, 4, 5, 6, 9 e 10 foram sorteadas, sendo as observações 4, 5, 6 e 9 sorteadas duas vezes, enquanto as observações 1, 3, 7 e 8 não foram sorteadas.</p>
+<p>Um <em>bootstrap</em> deste conjunto de dados pode resultar na reamostragem exibida na <a href="#tbl-databoot" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>. Pode-se observar que, neste caso, as observações 2, 4, 5, 6, 9 e 10 foram sorteadas, sendo as observações 4, 5, 6 e 9 sorteadas duas vezes, enquanto as observações 1, 3, 7 e 8 não foram sorteadas.</p>
 <div class="cell">
 <div id="tbl-databoot" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-databoot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.3: Bootstrap do conjunto de dados arbitrário para regressão
+Tabela&nbsp;6.3: Bootstrap do conjunto de dados arbitrário para regressão
 </figcaption>
 <div aria-describedby="tbl-databoot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2276,7 +2276,7 @@ Tabela&nbsp;5.3: Bootstrap do conjunto de dados arbitrário para regressão
 </figure>
 </div>
 </div>
-<p>A <a href="#fig-treeboot" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> exibe o diagrama de uma árvore de decisão para a amostra obtida via <em>bootstrap</em>. O <em>bagging</em> repete este processso diversas vezes, reamostrando os dados por <em>bootstrap</em> e estimando para cada “nova” amostra uma nova árvore. Ao final é tomada como predição a média de todas as árvores.</p>
+<p>A <a href="#fig-treeboot" class="quarto-xref">Figura&nbsp;<span>6.7</span></a> exibe o diagrama de uma árvore de decisão para a amostra obtida via <em>bootstrap</em>. O <em>bagging</em> repete este processso diversas vezes, reamostrando os dados por <em>bootstrap</em> e estimando para cada “nova” amostra uma nova árvore. Ao final é tomada como predição a média de todas as árvores.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treeboot" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2285,13 +2285,13 @@ Tabela&nbsp;5.3: Bootstrap do conjunto de dados arbitrário para regressão
 <img src="AS_tree_files/figure-html/fig-treeboot-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treeboot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.7: Modelo de regressão por árvore após poda
+Figura&nbsp;6.7: Modelo de regressão por árvore após poda
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Para o mesmo conjunto de dados, sejam <span class="math inline">\(B=6\)</span> árvores obtidas após reamostagens via <em>bootstrap</em> apresentadas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>5.8</span></a>. As árvores diferem entre si, pois cada reamostragem produz um conjunto de treino distinto — com repetições e ausências de observações originais — sendo a probabilidade de dois <em>bootstraps</em> coincidirem decrescente com <span class="math inline">\(n\)</span>.</p>
+<p>Para o mesmo conjunto de dados, sejam <span class="math inline">\(B=6\)</span> árvores obtidas após reamostagens via <em>bootstrap</em> apresentadas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>6.8</span></a>. As árvores diferem entre si, pois cada reamostragem produz um conjunto de treino distinto — com repetições e ausências de observações originais — sendo a probabilidade de dois <em>bootstraps</em> coincidirem decrescente com <span class="math inline">\(n\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-treesboots" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2300,16 +2300,16 @@ Figura&nbsp;5.7: Modelo de regressão por árvore após poda
 <img src="AS_tree_files/figure-html/fig-treesboots-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-treesboots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.8: Modelo de regressão por árvore após poda
+Figura&nbsp;6.8: Modelo de regressão por árvore após poda
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Seja uma observação futura arbitrária com <span class="math inline">\(x_1=-1,11\)</span>, <span class="math inline">\(x_2=1,73\)</span> e <span class="math inline">\(x_3=1,92\)</span>. Considerando as 6 árvores obtidas anteriormente, as previsãos destas para esta observação são: 7,10, 3,51, 7,16, 7,18, 6,24 e 4,14. O modelo <em>bagging</em> retorna como resultado a média das previsões das árvores, conforme <a href="#eq-baggmod" class="quarto-xref">Equação&nbsp;<span>5.5</span></a>, onde <span class="math inline">\(B\)</span> consiste no número de árvores obtidas após <em>bootstrap</em> dos dados e <span class="math inline">\(T_b\)</span> consiste na <span class="math inline">\(b\)</span>-ésima árvore, <span class="math inline">\(b=1,...,B\)</span>. Logo, <span class="math inline">\(\hat{y} = \frac{1}{6}\sum_{b=1}^6 T_b(\mathbf{x}_0)\)</span> = <span class="math inline">\((7,10+3,51+7,16+7,18+6,24+4,14)/6 = 5,89\)</span>.</p>
+<p>Seja uma observação futura arbitrária com <span class="math inline">\(x_1=-1,11\)</span>, <span class="math inline">\(x_2=1,73\)</span> e <span class="math inline">\(x_3=1,92\)</span>. Considerando as 6 árvores obtidas anteriormente, as previsãos destas para esta observação são: 7,10, 3,51, 7,16, 7,18, 6,24 e 4,14. O modelo <em>bagging</em> retorna como resultado a média das previsões das árvores, conforme <a href="#eq-baggmod" class="quarto-xref">Equação&nbsp;<span>6.5</span></a>, onde <span class="math inline">\(B\)</span> consiste no número de árvores obtidas após <em>bootstrap</em> dos dados e <span class="math inline">\(T_b\)</span> consiste na <span class="math inline">\(b\)</span>-ésima árvore, <span class="math inline">\(b=1,...,B\)</span>. Logo, <span class="math inline">\(\hat{y} = \frac{1}{6}\sum_{b=1}^6 T_b(\mathbf{x}_0)\)</span> = <span class="math inline">\((7,10+3,51+7,16+7,18+6,24+4,14)/6 = 5,89\)</span>.</p>
 <p><span id="eq-baggmod"><span class="math display">\[
 \hat{y} = \frac{1}{B}\sum_{b=1}^B T_b(\mathbf{x})
-\tag{5.5}\]</span></span></p>
+\tag{6.5}\]</span></span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2323,7 +2323,7 @@ Dica
 <p>Os hiperparâmetros do método <em>bagging</em> são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, a profundidade da árvore, o número mínimo de observações por partição (min_n) e o número de <em>bootstraps</em>/árvores estimadas.</p>
 </div>
 </div>
-<p>Seja novamente o caso de previsão do preço de apartamentos. A <a href="#fig-cvbagap" class="quarto-xref">Figura&nbsp;<span>5.9</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis destes que minimizam RMSE são <span class="math inline">\(\alpha = 5,62 \times 10^{-4}\)</span>, profundidade da árvore igual a 8 e número mínimo de observações por partição <code>min_n=11</code>. Foram considerados 50 <em>bootstraps</em> e, logo, 50 árvores.</p>
+<p>Seja novamente o caso de previsão do preço de apartamentos. A <a href="#fig-cvbagap" class="quarto-xref">Figura&nbsp;<span>6.9</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis destes que minimizam RMSE são <span class="math inline">\(\alpha = 5,62 \times 10^{-4}\)</span>, profundidade da árvore igual a 8 e número mínimo de observações por partição <code>min_n=11</code>. Foram considerados 50 <em>bootstraps</em> e, logo, 50 árvores.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvbagap" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2332,15 +2332,15 @@ Dica
 <img src="AS_tree_files/figure-html/fig-cvbagap-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.9: RMSE do modelo de regressão via <em>bagging</em> na validação cruzada
+Figura&nbsp;6.9: RMSE do modelo de regressão via <em>bagging</em> na validação cruzada
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="importância-dos-preditores-1" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="importância-dos-preditores-1"><span class="header-section-number">5.2.1</span> Importância dos preditores</h3>
-<p>A <a href="#fig-vipbagap" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> apresenta um gráfico de importância de variáveis do modelo <em>bagging</em> para prever o preço de apartamentos. Neste caso, o método de cálculo de importância das variáveis é a permutação. Observa-se que as variáveis mais importantes no preço são <code>Area</code>, <code>Vaga</code>, <code>Cidade</code>, etc. A linha vertical de referência consiste no RMSE de referência para o modelo sem permutação das variáveis. As variáveis com box-plot à direita da linha são aquelas que melhoram o ajuste do modelo.</p>
+<section id="importância-dos-preditores-1" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="importância-dos-preditores-1"><span class="header-section-number">6.2.1</span> Importância dos preditores</h3>
+<p>A <a href="#fig-vipbagap" class="quarto-xref">Figura&nbsp;<span>6.10</span></a> apresenta um gráfico de importância de variáveis do modelo <em>bagging</em> para prever o preço de apartamentos. Neste caso, o método de cálculo de importância das variáveis é a permutação. Observa-se que as variáveis mais importantes no preço são <code>Area</code>, <code>Vaga</code>, <code>Cidade</code>, etc. A linha vertical de referência consiste no RMSE de referência para o modelo sem permutação das variáveis. As variáveis com box-plot à direita da linha são aquelas que melhoram o ajuste do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-vipbagap" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2349,7 +2349,7 @@ Figura&nbsp;5.9: RMSE do modelo de regressão via <em>bagging</em> na validaçã
 <img src="AS_tree_files/figure-html/fig-vipbagap-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vipbagap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.10: VIP para o modelo <em>bagging</em> para prever o preço de apartamentos
+Figura&nbsp;6.10: VIP para o modelo <em>bagging</em> para prever o preço de apartamentos
 </figcaption>
 </figure>
 </div>
@@ -2368,7 +2368,7 @@ Definição
 <p>A <strong>permutação</strong> é um método de medição da importância dos preditores a partir da permutação ou embaralhamento dos valores destes, de forma a avaliar a perda ou ajuste em relação às previsões sem o embaralhamento.</p>
 </div>
 </div>
-<p>A <a href="#fig-surfapbag" class="quarto-xref">Figura&nbsp;<span>5.11</span></a> expõe um gráfico de efeitos, também dito gráfico de dependência parcial, do modelo de regressão obtido via <em>bagging</em> para prever o valor do apartamento em função da área e do número de vagas para carros na garagem. Os outros preditores foram fixados em <code>Quartos = 3</code>, <code>Banheiros = 2</code>, <code>Varanda = "N"</code>, <code>Suite = 1</code>, <code>Sala = 1</code>, <code>Copa = "N"</code> e <code>Piscina = "N"</code>. Observa-se aumento do preço em função da área e número de vagas. Juiz de Fora é a cidade com maiores preços. Tal gráfico pode ser realizado para outras variáveis do modelo.</p>
+<p>A <a href="#fig-surfapbag" class="quarto-xref">Figura&nbsp;<span>6.11</span></a> expõe um gráfico de efeitos, também dito gráfico de dependência parcial, do modelo de regressão obtido via <em>bagging</em> para prever o valor do apartamento em função da área e do número de vagas para carros na garagem. Os outros preditores foram fixados em <code>Quartos = 3</code>, <code>Banheiros = 2</code>, <code>Varanda = "N"</code>, <code>Suite = 1</code>, <code>Sala = 1</code>, <code>Copa = "N"</code> e <code>Piscina = "N"</code>. Observa-se aumento do preço em função da área e número de vagas. Juiz de Fora é a cidade com maiores preços. Tal gráfico pode ser realizado para outras variáveis do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfapbag" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2377,7 +2377,7 @@ Definição
 <img src="AS_tree_files/figure-html/fig-surfapbag-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfapbag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.11: Gráfico de contorno para um modelo de regressão via bagging para o prever o preço de venda de apartamentos em função da área e do número de vagas
+Figura&nbsp;6.11: Gráfico de contorno para um modelo de regressão via bagging para o prever o preço de venda de apartamentos em função da área e do número de vagas
 </figcaption>
 </figure>
 </div>
@@ -2385,8 +2385,8 @@ Figura&nbsp;5.11: Gráfico de contorno para um modelo de regressão via bagging 
 </div>
 </section>
 </section>
-<section id="floresta-aleatória" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">5.3</span> Floresta aleatória</h2>
+<section id="floresta-aleatória" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="floresta-aleatória"><span class="header-section-number">6.3</span> Floresta aleatória</h2>
 <p>O modelo de floresta aleatória consiste em uma evolução do modelo <em>bagging</em> com a finalidade de diminuir a variância deste. Basicamente, em casos onde há multicolineariedade, isto é, correlação entre os múltiplos preditores, o <em>bagging</em> pode acarretar na seleção de apenas alguns dos preditores disponíveis durante o particionamento binário recursivo, os quais apresentam efeito maior e dominariam este processo. Neste caso, as árvores geradas considerando a reamostragem das observações de treino apresentariam alta correlação entre si, acarretando em alta variabilidade das previsões finais. No modelo de floresta aleatória, antes de cada partição, são selecionadas aleatoriamente <span class="math inline">\(m\)</span> variáveis regressoras, <span class="math inline">\(m&lt;k\)</span>, às quais são consideradas no processo de particionamento binário. Geralmente, para regressão recomenda-se <span class="math inline">\(m=k/3\)</span>. Entretanto, este parâmetro pode ser melhor definido via validação cruzada.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2401,7 +2401,7 @@ Dica
 <p>Os hiperparâmetros do método floresta aleatória são o número de <em>bootstraps</em>/árvores, o número de preditores sorteados e considerados em cada particionamento binário recursivo, m (<code>mtry</code>) e o número mínimo de observações por partição (<code>min_n</code>).</p>
 </div>
 </div>
-<p>A <a href="#fig-cvrfap" class="quarto-xref">Figura&nbsp;<span>5.12</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis que minimizam RMSE são <span class="math inline">\(m = 4\)</span>, 1000 árvores e <code>min_n=2</code>.</p>
+<p>A <a href="#fig-cvrfap" class="quarto-xref">Figura&nbsp;<span>6.12</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis que minimizam RMSE são <span class="math inline">\(m = 4\)</span>, 1000 árvores e <code>min_n=2</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-cvrfap" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2410,15 +2410,15 @@ Dica
 <img src="AS_tree_files/figure-html/fig-cvrfap-1.png" class="img-fluid figure-img" width="576">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cvrfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.12: RMSE do modelo de regressão por floresta aleatória na validação cruzada
+Figura&nbsp;6.12: RMSE do modelo de regressão por floresta aleatória na validação cruzada
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="importância-dos-preditores-2" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="importância-dos-preditores-2"><span class="header-section-number">5.3.1</span> Importância dos preditores</h3>
-<p>A <a href="#fig-viprfap" class="quarto-xref">Figura&nbsp;<span>5.13</span></a> expõe o VIP do modelo de floresta aleatória para prever o preço de apartamentos. As primeiras variáveis mais importantes coincidem com as do modelo obtido via <em>bagging</em>. Sugere-se ao leitor comparar ambos resultados e verificar as diferenças na ordem de importância das variáveis.</p>
+<section id="importância-dos-preditores-2" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="importância-dos-preditores-2"><span class="header-section-number">6.3.1</span> Importância dos preditores</h3>
+<p>A <a href="#fig-viprfap" class="quarto-xref">Figura&nbsp;<span>6.13</span></a> expõe o VIP do modelo de floresta aleatória para prever o preço de apartamentos. As primeiras variáveis mais importantes coincidem com as do modelo obtido via <em>bagging</em>. Sugere-se ao leitor comparar ambos resultados e verificar as diferenças na ordem de importância das variáveis.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-viprfap" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2427,13 +2427,13 @@ Figura&nbsp;5.12: RMSE do modelo de regressão por floresta aleatória na valida
 <img src="AS_tree_files/figure-html/fig-viprfap-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-viprfap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.13: VIP para o modelo de floresta aleatória para prever o preço de apartamentos
+Figura&nbsp;6.13: VIP para o modelo de floresta aleatória para prever o preço de apartamentos
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-surfaprf" class="quarto-xref">Figura&nbsp;<span>5.14</span></a> apresenta um gráfico de dependência parcial do modelo de floresta aleatória considerando a área e número de vagas na garagem para as cidades consideradas.</p>
+<p>A <a href="#fig-surfaprf" class="quarto-xref">Figura&nbsp;<span>6.14</span></a> apresenta um gráfico de dependência parcial do modelo de floresta aleatória considerando a área e número de vagas na garagem para as cidades consideradas.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-surfaprf" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2442,7 +2442,7 @@ Figura&nbsp;5.13: VIP para o modelo de floresta aleatória para prever o preço 
 <img src="AS_tree_files/figure-html/fig-surfaprf-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surfaprf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.14: Gráfico de contorno para um modelo de regressão por floresta aleatória para o prever o preço de venda de apartamentos em função da área e do número de vagas
+Figura&nbsp;6.14: Gráfico de contorno para um modelo de regressão por floresta aleatória para o prever o preço de venda de apartamentos em função da área e do número de vagas
 </figcaption>
 </figure>
 </div>
@@ -2450,11 +2450,11 @@ Figura&nbsp;5.14: Gráfico de contorno para um modelo de regressão por floresta
 </div>
 </section>
 </section>
-<section id="implementações-em-r" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">5.4</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">6.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="árvores-para-regressão" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="árvores-para-regressão"><span class="header-section-number">5.4.1</span> Árvores para regressão</h3>
+<section id="árvores-para-regressão" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="árvores-para-regressão"><span class="header-section-number">6.4.1</span> Árvores para regressão</h3>
 <p>Carregando pacotes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
@@ -2605,8 +2605,8 @@ Importante
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="bagging" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="bagging"><span class="header-section-number">5.4.2</span> <em>Bagging</em></h3>
+<section id="bagging" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="bagging"><span class="header-section-number">6.4.2</span> <em>Bagging</em></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baguette) <span class="co"># para bagging</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># function fct_reorder para permutacao</span></span>
@@ -2758,8 +2758,8 @@ Importante
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sec-rfimpl" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="sec-rfimpl"><span class="header-section-number">5.4.3</span> Floresta aleatória</h3>
+<section id="sec-rfimpl" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="sec-rfimpl"><span class="header-section-number">6.4.3</span> Floresta aleatória</h3>
 <p>O método random forest é definido via <code>rand_forest</code>. Este método não tem como arumento o custo de complexidade, <span class="math inline">\(\alpha\)</span>, sendo a complexidade da árvore controlada apenas via número mínimo de observações por partição, <code>min_n</code>. O hiperparâmetro m, <code>mtry</code>, define o número máximo de preditores considerados via sorteio em cada particionamento binário, para decorrelacionar as árvores. Por fim, é possível otimizar o número de <em>bootstraps</em>/árvores.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> </span>
@@ -2873,16 +2873,16 @@ Importante
 <p>Hastie, T., Tibshirani, R., Friedman, J. H., &amp; Friedman, J. H. (2009). The elements of statistical learning: data mining, inference, and prediction (Vol. 2, pp.&nbsp;1-758). New York: springer.</p>
 <p>Kuhn, M., &amp; Silge, J. (2022). Tidy modeling with R: A framework for modeling in the tidyverse. ” O’Reilly Media, Inc.”.</p>
 </section>
-<section id="exercícios" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">5.5</span> Exercícios</h2>
+<section id="exercícios" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">6.5</span> Exercícios</h2>
 <ol type="1">
-<li>Seja o modelo de regressão por árvore da <a href="#fig-treemodel" class="quarto-xref">Figura&nbsp;<span>5.5</span></a>. Usando o diagrama do modelo, estime o preço do aluguel para as três observações futuras expostas na <a href="#tbl-futap" class="quarto-xref">Tabela&nbsp;<span>5.4</span></a>.</li>
+<li>Seja o modelo de regressão por árvore da <a href="#fig-treemodel" class="quarto-xref">Figura&nbsp;<span>6.5</span></a>. Usando o diagrama do modelo, estime o preço do aluguel para as três observações futuras expostas na <a href="#tbl-futap" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a>.</li>
 </ol>
 <div class="cell">
 <div id="tbl-futap" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-futap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;5.4: Novas observações de apartamentos
+Tabela&nbsp;6.4: Novas observações de apartamentos
 </figcaption>
 <div aria-describedby="tbl-futap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3410,7 +3410,7 @@ Tabela&nbsp;5.4: Novas observações de apartamentos
 </div>
 </div>
 <ol start="2" type="1">
-<li><p>Seja um modelo de regressão via <em>bagging</em> em função de uma variável com 6 árvores expostas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>5.8</span></a>. Qual o valor previsto para uma observação futura com <span class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2 = 1\)</span> e <span class="math inline">\(x_3 = 1\)</span>?</p></li>
+<li><p>Seja um modelo de regressão via <em>bagging</em> em função de uma variável com 6 árvores expostas na <a href="#fig-treesboots" class="quarto-xref">Figura&nbsp;<span>6.8</span></a>. Qual o valor previsto para uma observação futura com <span class="math inline">\(x_1 = 1\)</span>, <span class="math inline">\(x_2 = 1\)</span> e <span class="math inline">\(x_3 = 1\)</span>?</p></li>
 <li><p>Tomando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão por árvore. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo, finalize-o e plote o seu diagrama. Obtenha o VIP e avalie a importância dos preditores. Observe o diagrama de árvore do modelo e veja se faz sentido. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
 <li><p>Ainda considerando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão via <em>bagging</em>. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo e finalize-o. Obtenha o VIP via permutação e avalie a importância dos preditores. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
 <li><p>Mais uma vez considerando o conjunto de dados <code>carrosusados2025webmotors</code>, aproxime um modelo de regressão por floresta aleatória. Realize validação cruzada com <em>grid search</em>, selecione o melhor modelo e finalize-o. Obtenha o VIP via permutação e avalie a importância dos preditores. Finalmente, faça previsão com os dados de teste e avalie o ajuste para estes dados.</p></li>
@@ -3840,12 +3840,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./AS_ridge_LASSO.html" class="pagination-link" aria-label="Regressão rígida e LASSO">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
