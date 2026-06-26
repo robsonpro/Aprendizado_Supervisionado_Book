@@ -3708,7 +3708,7 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 <img src="AS_boosting_files/figure-html/fig-permlgbm-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-permlgbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;8.1: Importância dos preditores por permutação para prever o preço de revenda celulares usados
+Figura&nbsp;8.1: Importância dos preditores por permutação para prever o preço de revenda celulares usados usnado light GBM
 </figcaption>
 </figure>
 </div>
@@ -3763,11 +3763,12 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_unknown</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_nzv</span>()</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># receita |&gt; </span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   prep() |&gt; </span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_nzv</span>(<span class="fu">all_predictors</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>())</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># receita |&gt; </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   prep() |&gt; </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Definindo o modelo via <code>boost_tree</code>. O <em>light</em> GBM apresenta muitos hiperparâmetros, sendo os principais o número de iterações (<code>trees</code>) e a taxa de aprendizagem (<code>learn_rate</code>). O <code>mtry</code> consiste no número de preditores aleatoriamente selecionados entre os disponíveis em cada particionamento binário recursivo, como no método floresta aleatória, <span class="math inline">\(m&lt;k\)</span>. O hiperparâmetro <code>tree_depth</code> consiste na profundidade da árvore, ou no número de partições, sendo um critério de parada para cada árvore.Já o <code>min_n</code> define o número mínimo de observações por partição. Outro critério de parada consiste na redução na função perda, <code>loss_reduction</code>, para prosseguir com as partições. Posteriormente definiu-se um grid irregular via <code>grid_space_filling()</code>, além das partições nos dados e o workflow.</p>
 <div class="cell">
@@ -3818,25 +3819,12 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 </div>
 <p>Obtenção dos níveis ótimos dos hiperparâmetros e finalização do modelo e workflow.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>best_paramslgbm <span class="ot">&lt;-</span> lgbm_res <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>best_lgbm <span class="ot">&lt;-</span> lgbm_res <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixar o modelo com os melhores parâmetros</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>best_lgbm <span class="ot">&lt;-</span> <span class="fu">boost_tree</span>(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> best_paramslgbm<span class="sc">$</span>mtry,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">trees =</span> best_paramslgbm<span class="sc">$</span>trees,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tree_depth =</span> best_paramslgbm<span class="sc">$</span>tree_depth,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">learn_rate =</span> best_paramslgbm<span class="sc">$</span>learn_rate,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_n =</span> best_paramslgbm<span class="sc">$</span>min_n,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">loss_reduction =</span> best_paramslgbm<span class="sc">$</span>loss_reduction</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lightgbm"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>best_wf_lgbm <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(best_lgbm) <span class="sc">|&gt;</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>best_wf_lgbm <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lgbm_wf, best_lgbm)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fit_lgbm_final <span class="ot">&lt;-</span> <span class="fu">fit</span>(best_wf_lgbm, <span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Importância das variáveis por permutação.</p>
 <div class="cell">
@@ -3844,10 +3832,10 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>explainer_lgbm <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> best_wf_lgbm,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> fit_lgbm_final,</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>preco),</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>preco,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"Bagging"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"SVR"</span>,</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -3896,12 +3884,12 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(vip)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vip(best_wf_lgbm) </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vip(fit_lgbm_final) </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão e métricas de desempenho para os dados de teste.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pred_lgbm <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(best_wf_lgbm, dados_teste),</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fit_lgbm_final, dados_teste),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -3912,9 +3900,9 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <pre><code># A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard       0.355
-2 rsq     standard       0.570
-3 mae     standard       0.280</code></pre>
+1 rmse    standard       0.363
+2 rsq     standard       0.551
+3 mae     standard       0.285</code></pre>
 </div>
 </div>
 </section>
@@ -3929,7 +3917,7 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <section id="exercícios" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">8.4</span> Exercícios</h2>
 <ol type="1">
-<li><p>Seja o conjunto de dados <code>celularesnovos2025</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis. Faça validação cruzada, <em>grid search</em> e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
+<li><p>Seja o conjunto de dados <code>celularesnovos2025</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando o modelo <em>light</em> GBM. Faça validação cruzada, <em>grid search</em> e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
 <li><p>Finalize o modelo, realize previsões e obtenha as métricas de desempenho para os dados de teste.</p></li>
 <li><p>Realize o estudo de importância dos preditores via permutação.</p></li>
 </ol>
