@@ -215,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -226,50 +226,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_GAM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -284,19 +278,19 @@ window.Quarto = {
   <ul>
   <li><a href="#regressão-linear-simples" id="toc-regressão-linear-simples" class="nav-link active" data-scroll-target="#regressão-linear-simples"><span class="header-section-number">2.1</span> Regressão linear simples</a>
   <ul class="collapse">
-  <li><a href="#métricas-de-ajuste-para-regressão" id="toc-métricas-de-ajuste-para-regressão" class="nav-link" data-scroll-target="#métricas-de-ajuste-para-regressão"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</a></li>
+  <li><a href="#sec-ajustereg" id="toc-sec-ajustereg" class="nav-link" data-scroll-target="#sec-ajustereg"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</a></li>
   </ul></li>
   <li><a href="#sec-regmul" id="toc-sec-regmul" class="nav-link" data-scroll-target="#sec-regmul"><span class="header-section-number">2.2</span> Regressão linear múltipla</a>
   <ul class="collapse">
   <li><a href="#codificação-de-variáveis-categóricas-em-regressão-múltipla" id="toc-codificação-de-variáveis-categóricas-em-regressão-múltipla" class="nav-link" data-scroll-target="#codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</a></li>
   </ul></li>
-  <li><a href="#regressão-polinomial" id="toc-regressão-polinomial" class="nav-link" data-scroll-target="#regressão-polinomial"><span class="header-section-number">2.3</span> Regressão polinomial</a></li>
+  <li><a href="#sec-regpoly" id="toc-sec-regpoly" class="nav-link" data-scroll-target="#sec-regpoly"><span class="header-section-number">2.3</span> Regressão polinomial</a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">2.4</span> Implementações em R</a>
   <ul class="collapse">
   <li><a href="#sec-implregmul" id="toc-sec-implregmul" class="nav-link" data-scroll-target="#sec-implregmul"><span class="header-section-number">2.4.1</span> Regressão linear múltipla</a></li>
   <li><a href="#sec-implregmultint" id="toc-sec-implregmultint" class="nav-link" data-scroll-target="#sec-implregmultint"><span class="header-section-number">2.4.2</span> Regressão múltipla com termos de interação</a></li>
   <li><a href="#sec-implregmulbin" id="toc-sec-implregmulbin" class="nav-link" data-scroll-target="#sec-implregmulbin"><span class="header-section-number">2.4.3</span> Regressão múltipla com variáveis categóricas</a></li>
-  <li><a href="#regressão-polinomial-1" id="toc-regressão-polinomial-1" class="nav-link" data-scroll-target="#regressão-polinomial-1"><span class="header-section-number">2.4.4</span> Regressão polinomial</a></li>
+  <li><a href="#sec-implregpoly" id="toc-sec-implregpoly" class="nav-link" data-scroll-target="#sec-implregpoly"><span class="header-section-number">2.4.4</span> Regressão polinomial</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
   <li><a href="#sec-exregols" id="toc-sec-exregols" class="nav-link" data-scroll-target="#sec-exregols"><span class="header-section-number">2.5</span> Exercícios</a></li>
@@ -333,7 +327,7 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">2.1</span> Regressão linear simples</h2>
-<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que desperta interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Portanto, supõe-se Conforme a <a href="AS_vicio_var.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde observam-se dados do preço de carros Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
+<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que, na verdade motiva o interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Observando a <a href="AS_vicio_var.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde são plotados dados do preço de carros modelo Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -393,13 +387,13 @@ y_i = \hat{y}_i + \varepsilon_i \\
 y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\
 \end{aligned}
 \tag{2.2}\]</span></span></p>
-<p>Tomando <span class="math inline">\(n\)</span> observações retiradas da população de interesse, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão para a amostra disponível. Uma vez que o erro é normalmente distribuído, com média nula, <span class="math inline">\(\mu_\varepsilon=E(\varepsilon)=0\)</span>, e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2\)</span>.</p>
-<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> expõe algumas das observações para os dados plotados anteriormente, bem como os valores preditos e erros associados.</p>
+<p>Tomando as <span class="math inline">\(n\)</span> observações disponíveis obtidas a partir da população de interesse, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão para a amostra disponível. Uma vez que supõem-se o erro normalmente distribuído, com média nula, <span class="math inline">\(\mu_\varepsilon=E(\varepsilon)=0\)</span>, e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2\)</span>.</p>
+<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> expõe as observações plotadas anteriormente, bem como os valores preditos e erros associados.</p>
 <div class="cell">
 <div id="tbl-dados" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.1: Dados para regressão linear simples e previsões
+Tabela&nbsp;2.1: Dados de treino para regressão linear simples e previsões
 </figcaption>
 <div aria-describedby="tbl-dados-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -867,37 +861,79 @@ Tabela&nbsp;2.1: Dados para regressão linear simples e previsões
 <td class="gt_row gt_right" headers="Ano">2019</td>
 <td class="gt_row gt_right" headers="Preco">85500</td>
 <td class="gt_row gt_right" headers="y_hat">81847.32</td>
-<td class="gt_row gt_right" headers="erro">3652.679</td>
+<td class="gt_row gt_right" headers="erro">3652.6786</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="Ano">2016</td>
 <td class="gt_row gt_right" headers="Preco">73200</td>
 <td class="gt_row gt_right" headers="y_hat">69802.86</td>
-<td class="gt_row gt_right" headers="erro">3397.143</td>
+<td class="gt_row gt_right" headers="erro">3397.1429</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="Ano">2020</td>
 <td class="gt_row gt_right" headers="Preco">83900</td>
 <td class="gt_row gt_right" headers="y_hat">85862.14</td>
-<td class="gt_row gt_right" headers="erro">-1962.143</td>
+<td class="gt_row gt_right" headers="erro">-1962.1429</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="Ano">2019</td>
 <td class="gt_row gt_right" headers="Preco">84900</td>
 <td class="gt_row gt_right" headers="y_hat">81847.32</td>
-<td class="gt_row gt_right" headers="erro">3052.679</td>
+<td class="gt_row gt_right" headers="erro">3052.6786</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="Ano">2016</td>
 <td class="gt_row gt_right" headers="Preco">74900</td>
 <td class="gt_row gt_right" headers="y_hat">69802.86</td>
-<td class="gt_row gt_right" headers="erro">5097.143</td>
+<td class="gt_row gt_right" headers="erro">5097.1429</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="Ano">2013</td>
 <td class="gt_row gt_right" headers="Preco">62900</td>
 <td class="gt_row gt_right" headers="y_hat">57758.39</td>
-<td class="gt_row gt_right" headers="erro">5141.607</td>
+<td class="gt_row gt_right" headers="erro">5141.6071</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2006</td>
+<td class="gt_row gt_right" headers="Preco">35900</td>
+<td class="gt_row gt_right" headers="y_hat">29654.64</td>
+<td class="gt_row gt_right" headers="erro">6245.3571</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2011</td>
+<td class="gt_row gt_right" headers="Preco">44900</td>
+<td class="gt_row gt_right" headers="y_hat">49728.75</td>
+<td class="gt_row gt_right" headers="erro">-4828.7500</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2013</td>
+<td class="gt_row gt_right" headers="Preco">54900</td>
+<td class="gt_row gt_right" headers="y_hat">57758.39</td>
+<td class="gt_row gt_right" headers="erro">-2858.3929</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2014</td>
+<td class="gt_row gt_right" headers="Preco">52900</td>
+<td class="gt_row gt_right" headers="y_hat">61773.21</td>
+<td class="gt_row gt_right" headers="erro">-8873.2143</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2013</td>
+<td class="gt_row gt_right" headers="Preco">54900</td>
+<td class="gt_row gt_right" headers="y_hat">57758.39</td>
+<td class="gt_row gt_right" headers="erro">-2858.3929</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2015</td>
+<td class="gt_row gt_right" headers="Preco">59900</td>
+<td class="gt_row gt_right" headers="y_hat">65788.04</td>
+<td class="gt_row gt_right" headers="erro">-5888.0357</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2017</td>
+<td class="gt_row gt_right" headers="Preco">74500</td>
+<td class="gt_row gt_right" headers="y_hat">73817.68</td>
+<td class="gt_row gt_right" headers="erro">682.3214</td>
 </tr>
 </tbody>
 </table>
@@ -908,7 +944,7 @@ Tabela&nbsp;2.1: Dados para regressão linear simples e previsões
 </figure>
 </div>
 </div>
-<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
+<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste, neste caso, em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
 <p><span id="eq-obslm2"><span class="math display">\[
 \begin{aligned}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\varepsilon}
@@ -969,7 +1005,7 @@ y_{n}\\
 -8024077 &amp; 4015 \\
 \end{bmatrix}
 \]</span></p>
-<p>Tomando tal notação, a soma dos quadrados dos erros pode ser descrita como <span class="math inline">\(\sum_{i=1}^{N}\varepsilon_i^2 = \mathbf{\varepsilon}^T\mathbf{\varepsilon}\)</span>. Desenvolvendo tal expressão, tem-se:</p>
+<p>Tomando tal notação, a soma dos quadrados dos erros pode ser descrita como <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2 = \mathbf{\varepsilon}^T\mathbf{\varepsilon}\)</span>. Desenvolvendo tal expressão, tem-se:</p>
 <p><span class="math display">\[
 \begin{aligned}
 L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \mathbf{X}\mathbf{\beta})^T(\mathbf{y} - \mathbf{X}\mathbf{\beta}) \\
@@ -984,7 +1020,7 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \end{aligned}
 \tag{2.4}\]</span></span></p>
 <p>A solução exposta na <a href="#eq-eqnormols" class="quarto-xref">Equação&nbsp;<span>2.4</span></a> constitui as chamadas equações normais de mínimos quadrados.</p>
-<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>2.4</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade do modelo, homocedasticidade, bem como para identificação de observações não usuais.</p>
+<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>2.4</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade, homocedasticidade, bem como para identificação de observações não usuais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1012,8 +1048,8 @@ Nota
 <p>Neste curso de aprendizado supervisionado, serão estudados diversos métodos que não implicam qualquer distribuição acerca dos resíduos ou dados sendo, portanto, livres de distribuição e ditos não-paramétricos. Portanto, será dada mais ênfase em previsão e interpretação e menos em pressuposições.</p>
 </div>
 </div>
-<section id="métricas-de-ajuste-para-regressão" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="métricas-de-ajuste-para-regressão"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</h3>
+<section id="sec-ajustereg" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="sec-ajustereg"><span class="header-section-number">2.1.1</span> Métricas de ajuste para regressão</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1027,7 +1063,7 @@ Definição
 <p>O <strong>ajuste</strong> de um modelo consiste em sua capacidade de generalização ou, em outras palavras, seu desempenho para realizar previsões próximas dos resultados reais.</p>
 </div>
 </div>
-<p>Sejam dados separados para avaliar o ajuste do modelo, ditos dados de teste, <span class="math inline">\((x_{n+1},y_{n+1}), (x_{n+2},y_{n+2}),\dots, (x_m,y_m)\)</span>, <span class="math inline">\(m\geq n\)</span>.</p>
+<p>Sejam <span class="math inline">\(m\)</span> observações separadas para testar o ajuste ou adequação do modelo.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1038,16 +1074,16 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Os dados de treinamento, isto é, aqueles usados para estimar o modelo, são aqui denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>, enquanto os dados de teste, isto é, aqueles usados para medir a capacidade de generalização do modelo, são aqui denotados por <span class="math inline">\((x_{n+1},y_{n+1}), (x_{n+2},y_{n+2}),\dots, (x_m,y_m)\)</span>, <span class="math inline">\(m\geq n\)</span>. Considerando um conjunto de dados de teste, <span class="math inline">\(i=n+1,...,m\)</span>, contendo observações distintas das consideradas para treino, <span class="math inline">\(i=1,...,n\)</span>, isto é, <span class="math inline">\([(\mathbf x_{n+1},y_{n+1}),(\mathbf x_{n+2},y_{n+2}),...,(\mathbf x_m,y_m)] \neq [(\mathbf x_1,y_1),(\mathbf x_2,y_2),...,(\mathbf x_n,y_n)]\)</span>, sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar melhor a capacidade de generalização do modelo.</p>
+<p>Os dados de treinamento, isto é, aqueles usados para estimar o modelo, são aqui denotados por <span class="math inline">\(\mathcal D_{treino} = (x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>, enquanto os dados de teste, isto é, aqueles usados para medir a capacidade de generalização do modelo, são distintos dos treino, sendo aqui denotados por <span class="math inline">\(\mathcal D_{teste} = (x'_1,y'_1), (x'_2,y'_2), \dots, (x'_m,y'_m)\)</span>. Sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar melhor a capacidade de generalização do modelo.</p>
 </div>
 </div>
-<p>Uma forma de medir o ajuste do modelo obtido aos dados seria a partir do cálculo do coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>2.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
+<p>Uma métrica usual para regressão consiste no coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>2.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
-R^2 = 1- \frac{\sum_{i=n+1}^{m}(y_i-\hat{y}_i)^2}{\sum_{i=n+1}^{m}(y_i-\overline{y})^2},
+R^2 = 1- \frac{\sum_{i=1}^{m}(y'_i-\hat{y}'_i)^2}{\sum_{i=1}^{m}(y'_i-\overline{y}')^2},
 \end{align}
 \tag{2.5}\]</span></span></p>
-<p>Se o modelo for pior do que um modelo simples que prevê a média, <span class="math inline">\(\hat{y} = \overline{y}\)</span>, o <span class="math inline">\(R^2\)</span> pode ser negativo. Isso ocorre porque o denominador, que representa a variabilidade total da resposta, pode ser menor do que o numerador, que expressa a soma dos quadrados dos erros do modelo. Essa situação pode ocorrer na validação cruzada, quando considerados dados de teste.</p>
+<p>Se o modelo for pior do que um modelo simples que prevê a média, <span class="math inline">\(\hat{y} = \overline{y}\)</span>, o <span class="math inline">\(R^2\)</span> pode ser negativo. Isso ocorre porque o denominador, que representa a variabilidade total da resposta, pode ser menor do que o numerador, que expressa a soma dos quadrados dos erros do modelo. Essa situação pode ocorrer na validação cruzada, quando os dados de teste tem pouca similaridade com os de treino.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1058,17 +1094,544 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas no capítulo 6.</p>
+<p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas na <a href="AS_cv.html#sec-cvgs" class="quarto-xref"><span>Seção 7.1</span></a>.</p>
 </div>
 </div>
-<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> consiste na raiz da média dos quadrados dos erros de previsão de teste. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
+<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> para os dados de teste, consiste na raiz da média dos quadrados dos erros de previsão. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
-    RMSE (y,\hat{y})  = \sqrt{\frac{1}{m} \sum_{i=n+1}^{m}{(y_i - \hat{y}_i)}^2}
+    RMSE (y',\hat{y}')  = \sqrt{\frac{1}{m} \sum_{i=1}^{m}{(y'_i - \hat{y}'_i)}^2}
 \tag{2.6}\]</span></span></p>
-<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>2.7</span></a>, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
+<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>2.7</span></a> para os dados de teste, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
-    MAE (y,\hat{y})  = \frac{1}{m} \sum_{i=n+1}^{m}\left|y_i - \hat{y}_i\right|
+    MAE (y',\hat{y}')  = \frac{1}{m} \sum_{i=1}^{m}\left|y'_i - \hat{y}'_i\right|
 \tag{2.7}\]</span></span></p>
+<p>A <a href="#tbl-dadosteste" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> apresenta os dados de teste separados para avaliar o desempenho do modelo de regressão linear simples proposto. Para estas <span class="math inline">\(m=10\)</span> observações foi obtido <span class="math inline">\(R^2 = 0,99\)</span>, $RMSE = R<span class="math inline">\(2387,05\)</span> e $MAE = R<span class="math inline">\(2138,48\)</span>. Considerando a magnitude das observações da resposta com veículos na faixa de R$40000,00 a R$80000,00, pode se considerar pelos valores de RMSE e MAE, além do <span class="math inline">\(R^2\)</span> bem próximo de 1 que tem-se um bom modelo para estimar o preço de veículos Honda Fit em função do Ano de fabricação.</p>
+<div class="cell">
+<div id="tbl-dadosteste" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dadosteste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.2: Dados de teste para regressão linear simples e previsões
+</figcaption>
+<div aria-describedby="tbl-dadosteste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="dgzxeqqklj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dgzxeqqklj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dgzxeqqklj thead, #dgzxeqqklj tbody, #dgzxeqqklj tfoot, #dgzxeqqklj tr, #dgzxeqqklj td, #dgzxeqqklj th {
+  border-style: none;
+}
+
+#dgzxeqqklj p {
+  margin: 0;
+  padding: 0;
+}
+
+#dgzxeqqklj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dgzxeqqklj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dgzxeqqklj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dgzxeqqklj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dgzxeqqklj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dgzxeqqklj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dgzxeqqklj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dgzxeqqklj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dgzxeqqklj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dgzxeqqklj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dgzxeqqklj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dgzxeqqklj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dgzxeqqklj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dgzxeqqklj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dgzxeqqklj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dgzxeqqklj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dgzxeqqklj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dgzxeqqklj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dgzxeqqklj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dgzxeqqklj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dgzxeqqklj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dgzxeqqklj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dgzxeqqklj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dgzxeqqklj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dgzxeqqklj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dgzxeqqklj .gt_left {
+  text-align: left;
+}
+
+#dgzxeqqklj .gt_center {
+  text-align: center;
+}
+
+#dgzxeqqklj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dgzxeqqklj .gt_font_normal {
+  font-weight: normal;
+}
+
+#dgzxeqqklj .gt_font_bold {
+  font-weight: bold;
+}
+
+#dgzxeqqklj .gt_font_italic {
+  font-style: italic;
+}
+
+#dgzxeqqklj .gt_super {
+  font-size: 65%;
+}
+
+#dgzxeqqklj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dgzxeqqklj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dgzxeqqklj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dgzxeqqklj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dgzxeqqklj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dgzxeqqklj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dgzxeqqklj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dgzxeqqklj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dgzxeqqklj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Ano" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ano</th>
+<th id="Preco" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Preço</th>
+<th id="a.pred" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ŷ</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2018</td>
+<td class="gt_row gt_right" headers="Preco">79900</td>
+<td class="gt_row gt_right" headers=".pred">77832.50</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2010</td>
+<td class="gt_row gt_right" headers="Preco">42900</td>
+<td class="gt_row gt_right" headers=".pred">45713.93</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2015</td>
+<td class="gt_row gt_right" headers="Preco">67900</td>
+<td class="gt_row gt_right" headers=".pred">65788.04</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2016</td>
+<td class="gt_row gt_right" headers="Preco">67990</td>
+<td class="gt_row gt_right" headers=".pred">69802.86</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2008</td>
+<td class="gt_row gt_right" headers="Preco">32990</td>
+<td class="gt_row gt_right" headers=".pred">37684.29</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2018</td>
+<td class="gt_row gt_right" headers="Preco">79900</td>
+<td class="gt_row gt_right" headers=".pred">77832.50</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2017</td>
+<td class="gt_row gt_right" headers="Preco">71900</td>
+<td class="gt_row gt_right" headers=".pred">73817.68</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2019</td>
+<td class="gt_row gt_right" headers="Preco">79900</td>
+<td class="gt_row gt_right" headers=".pred">81847.32</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Ano">2019</td>
+<td class="gt_row gt_right" headers="Preco">82000</td>
+<td class="gt_row gt_right" headers=".pred">81847.32</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Ano">2009</td>
+<td class="gt_row gt_right" headers="Preco">39900</td>
+<td class="gt_row gt_right" headers=".pred">41699.11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-regmul" class="level2" data-number="2.2">
@@ -1107,13 +1670,13 @@ H_0:&amp; \beta_j = 0 \\
 H_1:&amp; \beta_j \neq 0, j = 1, ..., k\\
 \end{align}
 \]</span></p>
-<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span>, na <span class="math inline">\(j\)</span>-ésima linha e na <span class="math inline">\(j\)</span>-ésima coluna, correspondente à <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(t_{0j} &gt; t_{[\alpha/2,N-k]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
+<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor diagonal na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span> correspondente a <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(|t_{0j}| &gt; t_{[\alpha/2,n-k-1]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
 <p><span id="eq-testet"><span class="math display">\[
-t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(N-k)}}
+t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(n-k-1)}}
 \tag{2.10}\]</span></span></p>
-<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança de encontrar os verdadeiros valores dos coeficientes de regressão.</p>
+<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança para encontrar os verdadeiros valores dos coeficientes de regressão.</p>
 <p><span id="eq-betaic"><span class="math display">\[
-\hat{\beta}_j \pm t_{[\alpha/2,N-k]}\sqrt{C_jSS_E/(N-k)}
+\hat{\beta}_j \pm t_{[\alpha/2,n-k-1]}\sqrt{C_jSS_E/(n-k-1)}
 \tag{2.11}\]</span></span></p>
 <p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros Honda Fit usados em função do ano de fabricação e quilometragem.</p>
 <div class="cell">
@@ -1134,7 +1697,7 @@ Figura&nbsp;2.5: Modelo de regressão linear múltipla para prever o preço de c
 <p><span id="eq-modelregmult"><span class="math display">\[
 \hat{y} = -7,560\times 10^6 +3,788\times 10^3x_1 -6,789\times 10^{-2}x_2
 \tag{2.12}\]</span></span></p>
-<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>2.13</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>2.12</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,N-k}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos, uma vez que <span class="math inline">\(t_{0j} &gt; t_{\alpha/2,N-k}\)</span>, <span class="math inline">\(\forall j = 1, ..., k\)</span>.</p>
+<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>2.13</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>2.12</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,n-k-1}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos.</p>
 <p><span id="eq-normx"><span class="math display">\[
 x_{j,norm} = \frac{x_j-\mu_j}{\sigma_j}
 \tag{2.13}\]</span></span></p>
@@ -1155,523 +1718,9 @@ Nota
 <div id="tbl-ttestregmult" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ttestregmult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.2: Teste t para os coeficientes do modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e ano de fabricação
+Tabela&nbsp;2.3: Teste t para os coeficientes do modelo de regressão linear múltipla para prever o preço de carros usados em função da quilometragem e ano de fabricação
 </figcaption>
 <div aria-describedby="tbl-ttestregmult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<div id="eqqkljdyix" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eqqkljdyix table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#eqqkljdyix thead, #eqqkljdyix tbody, #eqqkljdyix tfoot, #eqqkljdyix tr, #eqqkljdyix td, #eqqkljdyix th {
-  border-style: none;
-}
-
-#eqqkljdyix p {
-  margin: 0;
-  padding: 0;
-}
-
-#eqqkljdyix .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#eqqkljdyix .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#eqqkljdyix .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#eqqkljdyix .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#eqqkljdyix .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#eqqkljdyix .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#eqqkljdyix .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#eqqkljdyix .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#eqqkljdyix .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#eqqkljdyix .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#eqqkljdyix .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#eqqkljdyix .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#eqqkljdyix .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#eqqkljdyix .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#eqqkljdyix .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eqqkljdyix .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#eqqkljdyix .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#eqqkljdyix .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#eqqkljdyix .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eqqkljdyix .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#eqqkljdyix .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eqqkljdyix .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#eqqkljdyix .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eqqkljdyix .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eqqkljdyix .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eqqkljdyix .gt_left {
-  text-align: left;
-}
-
-#eqqkljdyix .gt_center {
-  text-align: center;
-}
-
-#eqqkljdyix .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#eqqkljdyix .gt_font_normal {
-  font-weight: normal;
-}
-
-#eqqkljdyix .gt_font_bold {
-  font-weight: bold;
-}
-
-#eqqkljdyix .gt_font_italic {
-  font-style: italic;
-}
-
-#eqqkljdyix .gt_super {
-  font-size: 65%;
-}
-
-#eqqkljdyix .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#eqqkljdyix .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#eqqkljdyix .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#eqqkljdyix .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#eqqkljdyix .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#eqqkljdyix .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#eqqkljdyix .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#eqqkljdyix .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#eqqkljdyix div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
-<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
-<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
-<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
-<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">64,861.54</td>
-<td class="gt_row gt_right" headers="std.error">1,326.61</td>
-<td class="gt_row gt_right" headers="statistic">48.89</td>
-<td class="gt_row gt_right" headers="p.value">0.00</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="term">Ano</td>
-<td class="gt_row gt_right" headers="estimate">14,352.60</td>
-<td class="gt_row gt_right" headers="std.error">1,489.73</td>
-<td class="gt_row gt_right" headers="statistic">9.63</td>
-<td class="gt_row gt_right" headers="p.value">0.00</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="term">Km</td>
-<td class="gt_row gt_right" headers="estimate">−2,293.21</td>
-<td class="gt_row gt_right" headers="std.error">1,489.73</td>
-<td class="gt_row gt_right" headers="statistic">−1.54</td>
-<td class="gt_row gt_right" headers="p.value">0.15</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Importante
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>O p-valor não é a probabilidade de <span class="math inline">\(H_0\)</span> ser verdadeira, nem a probabilidade de os dados terem ocorrido por acaso. Ele representa a probabilidade de se obter um resultado tão ou mais extremo que o observado, assumindo <span class="math inline">\(H_0\)</span> verdadeira. Um p-valor significativo (<span class="math inline">\(p &lt; \alpha\)</span>) não implica relevância prática - apenas indica evidência estatística contra <span class="math inline">\(H_0\)</span>. O efeito e o contexto do problema devem sempre ser considerados na interpretação.</p>
-</div>
-</div>
-<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
-<div class="cell">
-<div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.3: Intervalos de confiança para os coeficientes de regressão múltipla
-</figcaption>
-<div aria-describedby="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div id="dnhrthzrfn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#dnhrthzrfn table {
@@ -2128,6 +2177,520 @@ Tabela&nbsp;2.3: Intervalos de confiança para os coeficientes de regressão mú
 <tr class="gt_col_headings header">
 <th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
 <th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">64,861.54</td>
+<td class="gt_row gt_right" headers="std.error">1,326.61</td>
+<td class="gt_row gt_right" headers="statistic">48.89</td>
+<td class="gt_row gt_right" headers="p.value">0.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">Ano</td>
+<td class="gt_row gt_right" headers="estimate">14,352.60</td>
+<td class="gt_row gt_right" headers="std.error">1,489.73</td>
+<td class="gt_row gt_right" headers="statistic">9.63</td>
+<td class="gt_row gt_right" headers="p.value">0.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">Km</td>
+<td class="gt_row gt_right" headers="estimate">−2,293.21</td>
+<td class="gt_row gt_right" headers="std.error">1,489.73</td>
+<td class="gt_row gt_right" headers="statistic">−1.54</td>
+<td class="gt_row gt_right" headers="p.value">0.15</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O p-valor não é a probabilidade de <span class="math inline">\(H_0\)</span> ser verdadeira, nem a probabilidade de os dados terem ocorrido por acaso. Ele representa a probabilidade de se obter um resultado tão ou mais extremo que o observado, assumindo <span class="math inline">\(H_0\)</span> verdadeira. Um p-valor significativo (<span class="math inline">\(p &lt; \alpha\)</span>) não implica relevância prática - apenas indica evidência estatística contra <span class="math inline">\(H_0\)</span>. O efeito e o contexto do problema devem sempre ser considerados na interpretação.</p>
+</div>
+</div>
+<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
+<div class="cell">
+<div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.4: Intervalos de confiança para os coeficientes de regressão múltipla
+</figcaption>
+<div aria-describedby="tbl-ic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="hftwfqyefy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hftwfqyefy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hftwfqyefy thead, #hftwfqyefy tbody, #hftwfqyefy tfoot, #hftwfqyefy tr, #hftwfqyefy td, #hftwfqyefy th {
+  border-style: none;
+}
+
+#hftwfqyefy p {
+  margin: 0;
+  padding: 0;
+}
+
+#hftwfqyefy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hftwfqyefy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hftwfqyefy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hftwfqyefy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hftwfqyefy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hftwfqyefy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hftwfqyefy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hftwfqyefy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hftwfqyefy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hftwfqyefy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hftwfqyefy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hftwfqyefy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hftwfqyefy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hftwfqyefy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hftwfqyefy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hftwfqyefy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hftwfqyefy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hftwfqyefy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hftwfqyefy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hftwfqyefy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hftwfqyefy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hftwfqyefy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hftwfqyefy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hftwfqyefy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hftwfqyefy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hftwfqyefy .gt_left {
+  text-align: left;
+}
+
+#hftwfqyefy .gt_center {
+  text-align: center;
+}
+
+#hftwfqyefy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hftwfqyefy .gt_font_normal {
+  font-weight: normal;
+}
+
+#hftwfqyefy .gt_font_bold {
+  font-weight: bold;
+}
+
+#hftwfqyefy .gt_font_italic {
+  font-style: italic;
+}
+
+#hftwfqyefy .gt_super {
+  font-size: 65%;
+}
+
+#hftwfqyefy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hftwfqyefy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hftwfqyefy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hftwfqyefy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hftwfqyefy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hftwfqyefy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hftwfqyefy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hftwfqyefy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hftwfqyefy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
 <th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.low</th>
 <th id="conf.high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.high</th>
 </tr>
@@ -2160,32 +2723,32 @@ Tabela&nbsp;2.3: Intervalos de confiança para os coeficientes de regressão mú
 </figure>
 </div>
 </div>
-<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a>.</p>
+<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo, um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a>.</p>
 <div class="cell">
 <div id="tbl-ttestregmult2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ttestregmult2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear múltipla com interação
+Tabela&nbsp;2.5: Teste t para os coeficientes do modelo de regressão linear múltipla com interação
 </figcaption>
 <div aria-describedby="tbl-ttestregmult2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fybvorjfrj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fybvorjfrj table {
+<div id="gpewzefwxl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gpewzefwxl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fybvorjfrj thead, #fybvorjfrj tbody, #fybvorjfrj tfoot, #fybvorjfrj tr, #fybvorjfrj td, #fybvorjfrj th {
+#gpewzefwxl thead, #gpewzefwxl tbody, #gpewzefwxl tfoot, #gpewzefwxl tr, #gpewzefwxl td, #gpewzefwxl th {
   border-style: none;
 }
 
-#fybvorjfrj p {
+#gpewzefwxl p {
   margin: 0;
   padding: 0;
 }
 
-#fybvorjfrj .gt_table {
+#gpewzefwxl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2211,12 +2774,12 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-left-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_caption {
+#gpewzefwxl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fybvorjfrj .gt_title {
+#gpewzefwxl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2228,7 +2791,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-bottom-width: 0;
 }
 
-#fybvorjfrj .gt_subtitle {
+#gpewzefwxl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2240,7 +2803,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-top-width: 0;
 }
 
-#fybvorjfrj .gt_heading {
+#gpewzefwxl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2252,13 +2815,13 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-right-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_bottom_border {
+#gpewzefwxl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_col_headings {
+#gpewzefwxl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2273,7 +2836,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-right-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_col_heading {
+#gpewzefwxl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2293,7 +2856,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   overflow-x: hidden;
 }
 
-#fybvorjfrj .gt_column_spanner_outer {
+#gpewzefwxl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2305,15 +2868,15 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 4px;
 }
 
-#fybvorjfrj .gt_column_spanner_outer:first-child {
+#gpewzefwxl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fybvorjfrj .gt_column_spanner_outer:last-child {
+#gpewzefwxl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fybvorjfrj .gt_column_spanner {
+#gpewzefwxl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2325,11 +2888,11 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   width: 100%;
 }
 
-#fybvorjfrj .gt_spanner_row {
+#gpewzefwxl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fybvorjfrj .gt_group_heading {
+#gpewzefwxl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2355,7 +2918,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   text-align: left;
 }
 
-#fybvorjfrj .gt_empty_group_heading {
+#gpewzefwxl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2370,15 +2933,15 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   vertical-align: middle;
 }
 
-#fybvorjfrj .gt_from_md > :first-child {
+#gpewzefwxl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fybvorjfrj .gt_from_md > :last-child {
+#gpewzefwxl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fybvorjfrj .gt_row {
+#gpewzefwxl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2397,7 +2960,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   overflow-x: hidden;
 }
 
-#fybvorjfrj .gt_stub {
+#gpewzefwxl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2410,7 +2973,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 5px;
 }
 
-#fybvorjfrj .gt_stub_row_group {
+#gpewzefwxl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2424,15 +2987,15 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   vertical-align: top;
 }
 
-#fybvorjfrj .gt_row_group_first td {
+#gpewzefwxl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fybvorjfrj .gt_row_group_first th {
+#gpewzefwxl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fybvorjfrj .gt_summary_row {
+#gpewzefwxl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2442,16 +3005,16 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 5px;
 }
 
-#fybvorjfrj .gt_first_summary_row {
+#gpewzefwxl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_first_summary_row.thick {
+#gpewzefwxl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fybvorjfrj .gt_last_summary_row {
+#gpewzefwxl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2461,7 +3024,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-bottom-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_grand_summary_row {
+#gpewzefwxl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2471,7 +3034,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 5px;
 }
 
-#fybvorjfrj .gt_first_grand_summary_row {
+#gpewzefwxl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2481,7 +3044,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-top-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_last_grand_summary_row_top {
+#gpewzefwxl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2491,11 +3054,11 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-bottom-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_striped {
+#gpewzefwxl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fybvorjfrj .gt_table_body {
+#gpewzefwxl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2504,7 +3067,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-bottom-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_footnotes {
+#gpewzefwxl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2518,7 +3081,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-right-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_footnote {
+#gpewzefwxl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2527,7 +3090,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 5px;
 }
 
-#fybvorjfrj .gt_sourcenotes {
+#gpewzefwxl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2541,7 +3104,7 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   border-right-color: #D3D3D3;
 }
 
-#fybvorjfrj .gt_sourcenote {
+#gpewzefwxl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2549,72 +3112,72 @@ Tabela&nbsp;2.4: Teste t para os coeficientes do modelo de regressão linear mú
   padding-right: 5px;
 }
 
-#fybvorjfrj .gt_left {
+#gpewzefwxl .gt_left {
   text-align: left;
 }
 
-#fybvorjfrj .gt_center {
+#gpewzefwxl .gt_center {
   text-align: center;
 }
 
-#fybvorjfrj .gt_right {
+#gpewzefwxl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fybvorjfrj .gt_font_normal {
+#gpewzefwxl .gt_font_normal {
   font-weight: normal;
 }
 
-#fybvorjfrj .gt_font_bold {
+#gpewzefwxl .gt_font_bold {
   font-weight: bold;
 }
 
-#fybvorjfrj .gt_font_italic {
+#gpewzefwxl .gt_font_italic {
   font-style: italic;
 }
 
-#fybvorjfrj .gt_super {
+#gpewzefwxl .gt_super {
   font-size: 65%;
 }
 
-#fybvorjfrj .gt_footnote_marks {
+#gpewzefwxl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fybvorjfrj .gt_asterisk {
+#gpewzefwxl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fybvorjfrj .gt_indent_1 {
+#gpewzefwxl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fybvorjfrj .gt_indent_2 {
+#gpewzefwxl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fybvorjfrj .gt_indent_3 {
+#gpewzefwxl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fybvorjfrj .gt_indent_4 {
+#gpewzefwxl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fybvorjfrj .gt_indent_5 {
+#gpewzefwxl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fybvorjfrj .katex-display {
+#gpewzefwxl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fybvorjfrj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gpewzefwxl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2682,12 +3245,12 @@ Importante
 </div>
 <section id="codificação-de-variáveis-categóricas-em-regressão-múltipla" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</h3>
-<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> expõe algumas observações do conjunto de dados.</p>
+<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> expõe algumas observações disponíveis.</p>
 <div class="cell">
 <div id="tbl-carrr" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-carrr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.5: Dados de preços de carros usados
+Tabela&nbsp;2.6: Dados de preços de carros usados
 </figcaption>
 <div aria-describedby="tbl-carrr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3196,19 +3759,19 @@ Tabela&nbsp;2.5: Dados de preços de carros usados
 </figure>
 </div>
 </div>
-<p>Os modelos de regressão múltipla estimados via mínimos quadrados, assim como outros diversos métodos, só aceitam preditores quantitativos. Para trabalhar com a variável modelo e qualquer outra variável nominal em regressão múltipla, pode-se utilizar de codificação binária ou dicotômica. No caso de três categorias, como no exemplo acima, duas variáveis binárias são suficientes. Cria-se uma coluna denominada <code>Fit</code>, com 1, se <code>Carro == Fit</code> e 0, caso contrário e, de forma análoga, uma coluna para o modelo <code>Onix</code>. Caso uma determinada observação receba 0 em ambas colunas, o modelo do carro seria naturalmente <code>Onix</code>.</p>
+<p>Os modelos de regressão múltipla estimados via mínimos quadrados, assim como outros diversos métodos, só aceitam preditores quantitativos. Para trabalhar com a variável modelo e qualquer outra variável nominal em regressão múltipla, pode-se utilizar de codificação binária ou dicotômica. No caso de três categorias, como no exemplo acima, duas variáveis binárias são suficientes. Cria-se uma coluna denominada <code>Corolla</code>, com 1, se <code>Carro == Corolla</code> e 0, caso contrário e, de forma análoga, uma coluna para o modelo <code>Fit</code>. Caso uma determinada observação receba 0 em ambas colunas, o modelo do carro seria naturalmente <code>Onix</code>.</p>
 <p>Seja <span class="math inline">\(x_1\)</span> o ano e <span class="math inline">\(x_2\)</span> a quiometragem, então:</p>
 <p><span class="math display">\[
 x_3 = \bigg\{
 \begin{matrix}
-1, \text{ se Carro == Fit} \\
+1, \text{ se Carro == Corolla} \\
 0, \text{ cc}\\
 \end{matrix}
 \]</span> e</p>
 <p><span class="math display">\[
 x_4 = \bigg\{
 \begin{matrix}
-1, \text{ se Carro == Onix} \\
+1, \text{ se Carro == Fit} \\
 0, \text{ cc}\\
 \end{matrix}
 \]</span></p>
@@ -3216,12 +3779,12 @@ x_4 = \bigg\{
 <p><span id="eq-regmultdummy"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3x_{i3} + \beta_4x_{i4}
 \tag{2.14}\]</span></span></p>
-<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Fit</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para o caso <code>Onix</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Corolla</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>.</p>
+<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Corolla</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para <code>Fit</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Onix</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a>.</p>
 <div class="cell">
 <div id="tbl-carsint" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-carsint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.6: Dados de carros com colunas das variáveis dicotômicas
+Tabela&nbsp;2.7: Dados de carros com colunas das variáveis dicotômicas
 </figcaption>
 <div aria-describedby="tbl-carsint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -3737,12 +4300,12 @@ Tabela&nbsp;2.6: Dados de carros com colunas das variáveis dicotômicas
 </figure>
 </div>
 </div>
-<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a>.</p>
+<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>.</p>
 <div class="cell">
 <div id="tbl-modeldummy" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modeldummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.7: Modelo de regressão linear múltipla com variáveis dicotômicas
+Tabela&nbsp;2.8: Modelo de regressão linear múltipla com variáveis dicotômicas
 </figcaption>
 <div aria-describedby="tbl-modeldummy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -4253,8 +4816,8 @@ Tabela&nbsp;2.7: Modelo de regressão linear múltipla com variáveis dicotômic
 </div>
 </section>
 </section>
-<section id="regressão-polinomial" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="regressão-polinomial"><span class="header-section-number">2.3</span> Regressão polinomial</h2>
+<section id="sec-regpoly" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-regpoly"><span class="header-section-number">2.3</span> Regressão polinomial</h2>
 <p>Em regressão simples ou múltipla, é possível realizar transformações nos preditores, de forma a incluir termos polinomiais associados à uma ou mais variáveis independentes. Para o caso simples, um modelo de regressão polinomial pode ser escrito conforme segue, onde <span class="math inline">\(p\)</span> é a ordem do modelo de regressão.</p>
 <p><span class="math display">\[
 \hat{y} = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + ... \beta_px^p
@@ -4282,30 +4845,30 @@ Nota
 1 &amp; x_{n} &amp; x_{n}^2 &amp; \cdots &amp; x_{n}^p \\
 \end{bmatrix}\\
 \]</span></p>
-<p>Sejam os dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior, conforme <a href="#fig-folhass" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>.</p>
+<p>Sejam os dados do Preço de veículos elétricos em função da Capacidade da bateria em kWh plotados na <a href="#fig-carelet" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-folhass" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-carelet" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-folhass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_reg_ols_files/figure-html/fig-folhass-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-carelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_reg_ols_files/figure-html/fig-carelet-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhass-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.6: Dados da área de folhas de árvores frutíferas em função do comprimento do eixo maior
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-carelet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.6: Dados de Preço de carros elétricos em função da capacidade da bateria em kWh
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-folhassresi" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
+<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-careletresi" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-folhassresi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-careletresi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="AS_reg_ols_files/figure-html/fig-folhassresi-1.png" class="img-fluid figure-img" width="672">
+<div aria-describedby="fig-careletresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="AS_reg_ols_files/figure-html/fig-careletresi-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folhassresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-careletresi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.7: Resíduos do modelo de regressão linear
 </figcaption>
 </figure>
@@ -4321,38 +4884,38 @@ Figura&nbsp;2.7: Resíduos do modelo de regressão linear
 <img src="AS_reg_ols_files/figure-html/fig-arealm2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-arealm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.8: Modelo de regressão quadrática para a área de folhas
+Figura&nbsp;2.8: Modelo de regressão quadrática para o preço de carros elétricos
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>.</p>
+<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a>. Observa-se que o coeficiente quadrático foi significativo, assim como os demais.</p>
 <div class="cell">
 <div id="tbl-quadf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
+Tabela&nbsp;2.9: Modelo de regressão polinomial de segunda ordem
 </figcaption>
 <div aria-describedby="tbl-quadf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="xmjzswbgrd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xmjzswbgrd table {
+<div id="dqrskaqxxl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dqrskaqxxl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xmjzswbgrd thead, #xmjzswbgrd tbody, #xmjzswbgrd tfoot, #xmjzswbgrd tr, #xmjzswbgrd td, #xmjzswbgrd th {
+#dqrskaqxxl thead, #dqrskaqxxl tbody, #dqrskaqxxl tfoot, #dqrskaqxxl tr, #dqrskaqxxl td, #dqrskaqxxl th {
   border-style: none;
 }
 
-#xmjzswbgrd p {
+#dqrskaqxxl p {
   margin: 0;
   padding: 0;
 }
 
-#xmjzswbgrd .gt_table {
+#dqrskaqxxl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4378,12 +4941,12 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-left-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_caption {
+#dqrskaqxxl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xmjzswbgrd .gt_title {
+#dqrskaqxxl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4395,7 +4958,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-bottom-width: 0;
 }
 
-#xmjzswbgrd .gt_subtitle {
+#dqrskaqxxl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4407,7 +4970,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-top-width: 0;
 }
 
-#xmjzswbgrd .gt_heading {
+#dqrskaqxxl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4419,13 +4982,13 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-right-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_bottom_border {
+#dqrskaqxxl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_col_headings {
+#dqrskaqxxl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4440,7 +5003,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-right-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_col_heading {
+#dqrskaqxxl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4460,7 +5023,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   overflow-x: hidden;
 }
 
-#xmjzswbgrd .gt_column_spanner_outer {
+#dqrskaqxxl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4472,15 +5035,15 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 4px;
 }
 
-#xmjzswbgrd .gt_column_spanner_outer:first-child {
+#dqrskaqxxl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xmjzswbgrd .gt_column_spanner_outer:last-child {
+#dqrskaqxxl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xmjzswbgrd .gt_column_spanner {
+#dqrskaqxxl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4492,11 +5055,11 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   width: 100%;
 }
 
-#xmjzswbgrd .gt_spanner_row {
+#dqrskaqxxl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xmjzswbgrd .gt_group_heading {
+#dqrskaqxxl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4522,7 +5085,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   text-align: left;
 }
 
-#xmjzswbgrd .gt_empty_group_heading {
+#dqrskaqxxl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4537,15 +5100,15 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   vertical-align: middle;
 }
 
-#xmjzswbgrd .gt_from_md > :first-child {
+#dqrskaqxxl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xmjzswbgrd .gt_from_md > :last-child {
+#dqrskaqxxl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xmjzswbgrd .gt_row {
+#dqrskaqxxl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4564,7 +5127,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   overflow-x: hidden;
 }
 
-#xmjzswbgrd .gt_stub {
+#dqrskaqxxl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4577,7 +5140,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 5px;
 }
 
-#xmjzswbgrd .gt_stub_row_group {
+#dqrskaqxxl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4591,15 +5154,15 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   vertical-align: top;
 }
 
-#xmjzswbgrd .gt_row_group_first td {
+#dqrskaqxxl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xmjzswbgrd .gt_row_group_first th {
+#dqrskaqxxl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xmjzswbgrd .gt_summary_row {
+#dqrskaqxxl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4609,16 +5172,16 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 5px;
 }
 
-#xmjzswbgrd .gt_first_summary_row {
+#dqrskaqxxl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_first_summary_row.thick {
+#dqrskaqxxl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xmjzswbgrd .gt_last_summary_row {
+#dqrskaqxxl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4628,7 +5191,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-bottom-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_grand_summary_row {
+#dqrskaqxxl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4638,7 +5201,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 5px;
 }
 
-#xmjzswbgrd .gt_first_grand_summary_row {
+#dqrskaqxxl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4648,7 +5211,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-top-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_last_grand_summary_row_top {
+#dqrskaqxxl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4658,11 +5221,11 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-bottom-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_striped {
+#dqrskaqxxl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xmjzswbgrd .gt_table_body {
+#dqrskaqxxl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4671,7 +5234,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-bottom-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_footnotes {
+#dqrskaqxxl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4685,7 +5248,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-right-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_footnote {
+#dqrskaqxxl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4694,7 +5257,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 5px;
 }
 
-#xmjzswbgrd .gt_sourcenotes {
+#dqrskaqxxl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4708,7 +5271,7 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   border-right-color: #D3D3D3;
 }
 
-#xmjzswbgrd .gt_sourcenote {
+#dqrskaqxxl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4716,72 +5279,72 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
   padding-right: 5px;
 }
 
-#xmjzswbgrd .gt_left {
+#dqrskaqxxl .gt_left {
   text-align: left;
 }
 
-#xmjzswbgrd .gt_center {
+#dqrskaqxxl .gt_center {
   text-align: center;
 }
 
-#xmjzswbgrd .gt_right {
+#dqrskaqxxl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xmjzswbgrd .gt_font_normal {
+#dqrskaqxxl .gt_font_normal {
   font-weight: normal;
 }
 
-#xmjzswbgrd .gt_font_bold {
+#dqrskaqxxl .gt_font_bold {
   font-weight: bold;
 }
 
-#xmjzswbgrd .gt_font_italic {
+#dqrskaqxxl .gt_font_italic {
   font-style: italic;
 }
 
-#xmjzswbgrd .gt_super {
+#dqrskaqxxl .gt_super {
   font-size: 65%;
 }
 
-#xmjzswbgrd .gt_footnote_marks {
+#dqrskaqxxl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xmjzswbgrd .gt_asterisk {
+#dqrskaqxxl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xmjzswbgrd .gt_indent_1 {
+#dqrskaqxxl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xmjzswbgrd .gt_indent_2 {
+#dqrskaqxxl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xmjzswbgrd .gt_indent_3 {
+#dqrskaqxxl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xmjzswbgrd .gt_indent_4 {
+#dqrskaqxxl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xmjzswbgrd .gt_indent_5 {
+#dqrskaqxxl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xmjzswbgrd .katex-display {
+#dqrskaqxxl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xmjzswbgrd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dqrskaqxxl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4799,23 +5362,23 @@ Tabela&nbsp;2.8: Modelo de regressão polinomial de segunda ordem
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="term">(Intercept)</td>
-<td class="gt_row gt_right" headers="estimate">1.40</td>
-<td class="gt_row gt_right" headers="std.error">0.03</td>
-<td class="gt_row gt_right" headers="statistic">47.55</td>
+<td class="gt_row gt_right" headers="estimate">391,615.76</td>
+<td class="gt_row gt_right" headers="std.error">9,391.45</td>
+<td class="gt_row gt_right" headers="statistic">41.70</td>
 <td class="gt_row gt_right" headers="p.value">0.00</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="term">majoraxis_poly_1</td>
-<td class="gt_row gt_right" headers="estimate">10.14</td>
-<td class="gt_row gt_right" headers="std.error">0.38</td>
-<td class="gt_row gt_right" headers="statistic">26.98</td>
+<td class="gt_row gt_left" headers="term">Capacidadebateria_poly_1</td>
+<td class="gt_row gt_right" headers="estimate">1,948,943.86</td>
+<td class="gt_row gt_right" headers="std.error">128,769.02</td>
+<td class="gt_row gt_right" headers="statistic">15.14</td>
 <td class="gt_row gt_right" headers="p.value">0.00</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="term">majoraxis_poly_2</td>
-<td class="gt_row gt_right" headers="estimate">2.67</td>
-<td class="gt_row gt_right" headers="std.error">0.38</td>
-<td class="gt_row gt_right" headers="statistic">7.10</td>
+<td class="gt_row gt_left" headers="term">Capacidadebateria_poly_2</td>
+<td class="gt_row gt_right" headers="estimate">492,389.37</td>
+<td class="gt_row gt_right" headers="std.error">128,769.02</td>
+<td class="gt_row gt_right" headers="statistic">3.82</td>
 <td class="gt_row gt_right" headers="p.value">0.00</td>
 </tr>
 </tbody>
@@ -4844,7 +5407,7 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 </div>
 <p>Finalmente, o modelo quadrático é escrito na <a href="#eq-modquadf" class="quarto-xref">Equação&nbsp;<span>2.15</span></a>.</p>
 <p><span id="eq-modquadf"><span class="math display">\[
-\hat{y} = 1,40 +10,14x + 2,67x^2
+\hat{y} = 391615,76 +1948943,86 x + 492389,37x^2
 \tag{2.15}\]</span></span></p>
 </section>
 <section id="implementações-em-r" class="level2" data-number="2.4">
@@ -4994,71 +5557,55 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regressão-polinomial-1" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="regressão-polinomial-1"><span class="header-section-number">2.4.4</span> Regressão polinomial</h3>
-<p>O conjunto de dados <code>folhasfrutas</code> do pacote <code>sjdatar</code> inclui medições de folhas de árvores frutíferas distintas. Tais medições foram realizadas por análise de imagem.</p>
+<section id="sec-implregpoly" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="sec-implregpoly"><span class="header-section-number">2.4.4</span> Regressão polinomial</h3>
+<p>O conjunto de dados <code>carros_eletricos</code> do pacote <code>sjdatar</code> contém dados de carros elétricos novos disponíveis no mercado brasileiro no início de 2026.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(folhasfrutas)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">36</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>folhas_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(folhasfrutas, <span class="at">prop =</span> <span class="fl">0.70</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># folhas_split</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>folhas_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(folhas_split)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>folhas_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(folhas_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(carros_eletricos)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> carros_eletricos</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">36</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>dados_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(dados, <span class="at">prop =</span> <span class="fl">0.70</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># dados_split3</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Inicialmente, realiza-se a aproximação de um modelo de regressão linear simples para prever a área das folhas em função da dimensão do eixo maior (<em>majoraxis</em>).</p>
+<p>Inicialmente, realiza-se a aproximação de um modelo de regressão linear simples para prever o preço em função da capacidade da bateria.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>receita_area <span class="ot">&lt;-</span> <span class="fu">recipe</span>(area <span class="sc">~</span> majoraxis, <span class="at">data =</span> folhas_treino) <span class="co"># |&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_normalize(majoraxis)</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>area_workflow <span class="ot">&lt;-</span> </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita_area) <span class="sc">|&gt;</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>area_fit <span class="ot">&lt;-</span> </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  area_workflow <span class="sc">|&gt;</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> folhas_treino)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>area_fit <span class="sc">|&gt;</span> </span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(folhasfrutas, </span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>majoraxis, <span class="at">y=</span>area)) <span class="sc">+</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> F, <span class="at">col =</span> <span class="st">"mediumvioletred"</span>) <span class="sc">+</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"deepskyblue3"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Preco <span class="sc">~</span> Capacidadebateria, <span class="at">data =</span> dados_treino)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>lm_workflow <span class="ot">&lt;-</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>fit_lm <span class="ot">&lt;-</span> </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  lm_workflow <span class="sc">|&gt;</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>fit_lm</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A seguir, realiza-se a aproximação de um modelo de regressão quadrática. Para tal, usa-se o pré-processamento <code>step_poly</code> com o argumento <code>degree = 2</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>receita_area2 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(area <span class="sc">~</span> majoraxis, <span class="at">data =</span> folhas_treino) <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>receita2 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Preco <span class="sc">~</span> Capacidadebateria, <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># step_normalize(majoraxis) |&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_poly</span>(majoraxis, <span class="at">degree =</span> <span class="dv">2</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_poly</span>(Capacidadebateria, <span class="at">degree =</span> <span class="dv">2</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>area_workflow2 <span class="ot">&lt;-</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>workflow2 <span class="ot">&lt;-</span> </span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita_area2) <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita2) <span class="sc">|&gt;</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lm_model)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>area_fit2 <span class="ot">&lt;-</span> </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  area_workflow2 <span class="sc">|&gt;</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> folhas_treino)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  workflow2 <span class="sc">|&gt;</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> dados_treino)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>area_fit2 <span class="sc">|&gt;</span> </span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_parsnip</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(folhasfrutas, </span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>majoraxis, <span class="at">y=</span>area)) <span class="sc">+</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">se =</span> F, <span class="at">col =</span> <span class="st">"mediumvioletred"</span>) <span class="sc">+</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"deepskyblue3"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>fit2</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -5077,6 +5624,7 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <li><p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outras variáveis ainda não exploradas, a saber: Marca, Carro, Ano, Km, Cambio, Motor, Valvulas e Combustivel. Ademais, há outros modelos de veículos ainda não explorados. Primeiro abra o conjunto de dados e estude tais variáveis. QUais você sugere acrescentar ao modelo? Quais talvez não sejam importantes?</p></li>
 <li><p>Ainda em relação ao conjunto de dados <code>carrosusados2025webmotors</code>, qual tipo de pré-processamento você sugere para cada novo preditor a ser considerado no novo modelo?</p></li>
 <li><p>Realize todos os passos para obter um modelo considerando as novas variáveis do conjunto de dados <code>carrosusados2025webmotors</code>. Considere 75% dos dados para treinamento. Na receita, sugere-se considerar apenas variáveis que apresentem variação nas colunas, ou então considerar todas e usar <code>step_zv</code> ao final da receita para remover variáveis com valor único. Avalie o ajuste do modelo aos dados de teste.</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregpoly" class="quarto-xref"><span>Seção 2.4.4</span></a> não foram realizadas previsões para os dados de teste, bem como, calculadas as métricas d ajuste do modelo. Realize tais previsões e estime as métricas de ajuste.</p></li>
 </ol>
 
 

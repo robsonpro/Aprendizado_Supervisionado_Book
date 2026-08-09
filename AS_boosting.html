@@ -284,7 +284,7 @@ window.Quarto = {
   <ul>
   <li><a href="#máquinas-de-reforço-de-gradiente" id="toc-máquinas-de-reforço-de-gradiente" class="nav-link active" data-scroll-target="#máquinas-de-reforço-de-gradiente"><span class="header-section-number">8.1</span> Máquinas de reforço de gradiente</a>
   <ul class="collapse">
-  <li><a href="#implementação-simplista-passo-a-passo-do-gbm-para-regressão" id="toc-implementação-simplista-passo-a-passo-do-gbm-para-regressão" class="nav-link" data-scroll-target="#implementação-simplista-passo-a-passo-do-gbm-para-regressão"><span class="header-section-number">8.1.1</span> Implementação simplista passo a passo do GBM para regressão</a></li>
+  <li><a href="#gbm-para-regressão-passo-a-passo" id="toc-gbm-para-regressão-passo-a-passo" class="nav-link" data-scroll-target="#gbm-para-regressão-passo-a-passo"><span class="header-section-number">8.1.1</span> GBM para regressão passo a passo</a></li>
   </ul></li>
   <li><a href="#light-gbm" id="toc-light-gbm" class="nav-link" data-scroll-target="#light-gbm"><span class="header-section-number">8.2</span> <em>Light GBM</em></a></li>
   <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">8.3</span> Implementações em R</a>
@@ -330,13 +330,13 @@ window.Quarto = {
 <p>Um algoritmo GBM simplista do método GBM para regressão é apresentado à seguir:</p>
 <ol type="1">
 <li>Defina <span class="math inline">\(\hat{f}(\mathbf{x})=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span> para todos dados de treino.</li>
-<li>Para <span class="math inline">\(m=1,...,M\)</span>, faça:</li>
+<li>Para <span class="math inline">\(m=1,...,M\)</span>, faça: <!-- --></li>
 </ol>
 <!-- -->
 <ol type="i">
 <li>Estime uma árvore, <span class="math inline">\(\hat{f}_m\)</span>, para os resíduos dos dados de treino <span class="math inline">\((\mathbf{x}_i,\varepsilon_i)\)</span>, <span class="math inline">\(i=1,...,n\)</span>;</li>
 <li>Atualize <span class="math inline">\(\hat{f}(\mathbf{x})\)</span> adicionando a árvore de regressão obtida multiplicada por uma taxa de aprendizagem <span class="math inline">\(\lambda\)</span>, isto é, <span class="math inline">\(\hat{f}(\mathbf{x}) \leftarrow \hat{f}(\mathbf{x}) + \lambda\hat{f}_m(\mathbf{x})\)</span>;</li>
-<li>Atualize os resíduos, isto é <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_m(\mathbf{x}_i)\)</span>, <span class="math inline">\(i=1,...,n\)</span>;</li>
+<li>Atualize os resíduos, isto é <span class="math inline">\(\varepsilon_i \leftarrow \varepsilon_i - \lambda\hat{f}_m(\mathbf{x}_i)\)</span>, <span class="math inline">\(i=1,...,n\)</span>; <!-- --></li>
 </ol>
 <!-- -->
 <ol start="3" type="1">
@@ -357,18 +357,14 @@ Dica
 </div>
 </div>
 <p>A função perda quadrática, comumente usada em problemas de regressão, é usada no algoritmo de aprendizado por reforço, conforme <a href="#eq-losgbm" class="quarto-xref">Equação&nbsp;<span>8.1</span></a>.</p>
-<p><span id="eq-losgbm"><span class="math display">\[
-L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2
-\tag{8.1}\]</span></span></p>
+<p><span id="eq-losgbm"><span class="math display">\[L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2 \tag{8.1}\]</span></span></p>
 <p>A divisão por 2 visa facilitar os cálculos no algoritmo de aprendizado por reforço. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.2</span></a>.</p>
-<p><span id="eq-gradloss"><span class="math display">\[
-\begin{aligned}
+<p><span id="eq-gradloss"><span class="math display">\[\begin{aligned}
 \frac{\partial L}{\partial f} = y - \hat{f}(\mathbf{x}) = \varepsilon
-\end{aligned}
-\tag{8.2}\]</span></span></p>
+\end{aligned} \tag{8.2}\]</span></span></p>
 <p>Portanto, em cada iteração, o algoritmo, ao aproximar uma árvore considerando <span class="math inline">\(n\)</span> observações das variáveis regressoras, <span class="math inline">\(\mathbf{x}_i\)</span>, em relação à <span class="math inline">\(n\)</span> valores residuais, <span class="math inline">\(\varepsilon_i\)</span>, aproxima o gradiente da função perda.</p>
-<section id="implementação-simplista-passo-a-passo-do-gbm-para-regressão" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="implementação-simplista-passo-a-passo-do-gbm-para-regressão"><span class="header-section-number">8.1.1</span> Implementação simplista passo a passo do GBM para regressão</h3>
+<section id="gbm-para-regressão-passo-a-passo" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="gbm-para-regressão-passo-a-passo"><span class="header-section-number">8.1.1</span> GBM para regressão passo a passo</h3>
 <p>Para entender melhor o algoritmo GBM, considere o conjunto arbitrário de dados de treino da <a href="#tbl-regdata" class="quarto-xref">Tabela&nbsp;<span>8.1</span></a>, com duas variáveis independentes, <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span>, e uma dependente contínua, <span class="math inline">\(y\)</span>.</p>
 <div class="cell">
 <div id="tbl-regdata" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -3693,7 +3689,7 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 </figure>
 </div>
 </div>
-<p>Observando as previsões e resíduos, observa-se que os resultados foram gradativamente melhorados de forma iterativa.</p>
+<p>Atulizando-se as previsões e resíduos em cada iteração, observa-se que os resultados foram gradativamente melhorados.</p>
 </section>
 </section>
 <section id="light-gbm" class="level2" data-number="8.2">

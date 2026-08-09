@@ -196,26 +196,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./AS_feature_eng.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Análise exploratória de dados e engenharia de atributos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./AS_ridge_LASSO.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão rígida e LASSO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_tree.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regressão por árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./AS_pcr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Regressão por Componentes Principais</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -333,7 +333,7 @@ window.Quarto = {
 
 <section id="sec-Intro" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="sec-Intro"><span class="header-section-number">1.1</span> Aprendizado</h2>
-<p>No contexto da ciência de dados (<em>data science</em>) o <strong>aprendizado</strong> consiste em adquirir um determinado comportamento. Mais especificamente, este comportamento a ser aprendido está relacionado a previsão de uma determinada resposta de interesse em função de outras variáveis ou atributos disponíveis. Esta resposta pode ser quantitativa, ou seja, medida em uma escala real, ou qualitativa, constando de um conjunto finito de possibilidades. Para tal, faz-se necessário a utilização de dados.</p>
+<p>No contexto da ciência de dados (<em>data science</em>) o <strong>aprendizado</strong> consiste em aprender ou mimetizar um determinado comportamento a partir de dados. Mais especificamente, no caso supervisionado, este comportamento está relacionado à previsão de uma determinada resposta de interesse em função de outras variáveis ou atributos disponíveis. Esta resposta pode ser quantitativa, ou seja, medida em uma escala real, ou qualitativa, constando de um conjunto finito de possibilidades.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -356,7 +356,7 @@ Importante
 </section>
 <section id="um-pouco-de-história" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="um-pouco-de-história"><span class="header-section-number">1.2</span> Um pouco de história</h2>
-<p>Inicialmente serão citados alguns teóricos importantes para a estatística frequentista e paramétrica. Porém, alguns métodos propostos, por exemplo a análise discriminante linear de Fisher é utilizada hoje como método de aprendizado supervisionado para classificação.</p>
+<p>Alguns teóricos importantes para o aprendizado surgiram da estatística frequentista e paramétrica. Desta época ainda há métodos utilizados atualmente, por exemplo a análise discriminante linear de Fisher.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -370,27 +370,18 @@ Nota
 <p>A estatística paramétrica engloba métodos que pressupõem uma distribuição de probabilidade para os dados.</p>
 </div>
 </div>
-<ul>
-<li><p>Willian Gosset (Student), 1908-1909: criou o teste t e a distribuição t de Student quando trabalhava na cervejaria Guiness. Sua intenção era criar uma aproximação da distribuição normal para amostras de tamanhos limitados.</p></li>
-<li><p>Ronald Fisher, 1920-1940: Criou vários testes e conceitos estatísticos importantes, como a análise de variância (ANOVA), a análise discriminante linear, o p-valor, entre outros. Seus principais desenvolvimentos foram realizados especialmente enquanto trabalhava na estação agrícola <em>Rothamsted Research</em> no Reino Unido.</p></li>
-<li><p>George Box, 1948-1992: Considerado uma dos maiores pesquisadores em estatística do século XX, desenvolveu trabalhos e métodos em controle de qualidade, planejamento de experimentos, séries temporais e inferência Bayesiana. Cunhou a famosa frase: “<em>All models are wrong, some are usefull</em>”.</p></li>
-</ul>
+<p>Willian Gosset (Student), 1908-1909, criou o teste t e a distribuição t de Student quando trabalhava na cervejaria Guiness. Sua intenção era criar uma aproximação da distribuição normal para amostras de tamanhos limitados. Ronald Fisher, 1920-1940, cunhou vários testes e conceitos estatísticos importantes, como a análise de variância (ANOVA), a análise discriminante linear, o p-valor, entre outros. Seus principais desenvolvimentos foram realizados especialmente enquanto trabalhava na estação agrícola <em>Rothamsted Research</em> no Reino Unido. George Box, 1948-1992, é considerado uma dos maiores estatísticos do século XX, tendo desenvolvido trabalhos e métodos em controle de qualidade, planejamento de experimentos, séries temporais e inferência Bayesiana. Cunhou a famosa frase: “<em>All models are wrong, some are usefull</em>”.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figs/gossetfisherbox.png" class="img-fluid figure-img" width="1044"></p>
+<p><img src="figs/gossetfisherbox.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Gosset, Fisher e Box</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Alguns estatísticos foram importantes para definir termos que hoje são populares no contexto da teoria do aprendizado supervisionado e mais amplamente da <strong>ciência e análise de dados</strong>.</p>
-<ul>
-<li><p>John Tukey (1962, 1977): Cunhou o termo <strong>análise exploratória de dados</strong>, com o objetivo de incentivar a ênfase em gráficos, tabelas e limpeza de dados para resumir dados e apontar suas tendências.</p></li>
-<li><p>Jeff Wu (1980): Formulou o termo <em>data science</em> e inclusive recomendou que a área de conhecimento <strong>estatística</strong> fosse renomeada para <strong>ciência de dados</strong>.</p></li>
-</ul>
-<p>A <a href="#fig-tukey_wu" class="quarto-xref">Figura&nbsp;<span>1.1</span></a> expõe fotos dos estatísticos Tukey e Wu.</p>
+<p>Alguns estatísticos foram importantes para definir termos que hoje são populares no contexto da teoria do aprendizado supervisionado e mais amplamente da <strong>ciência e análise de dados</strong>. John Tukey, 1962-1977, cunhou o termo <strong>análise exploratória de dados</strong>, com o objetivo de incentivar a ênfase em gráficos, tabelas e limpeza de dados para resumir dados e apontar suas tendências. Jeff Wu formulou o termo <em>data science</em> em 1980 e, inclusive, recomendou que a área de conhecimento <strong>estatística</strong> fosse renomeada para <strong>ciência de dados</strong>. A <a href="#fig-tukey_wu" class="quarto-xref">Figura&nbsp;<span>1.1</span></a> expõe fotos dos estatísticos Tukey e Wu.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tukey_wu" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -405,7 +396,7 @@ Figura&nbsp;1.1: Tukey e Wu
 </div>
 </div>
 </div>
-<p>Vários bioestatísticos de Stanford tiveram contribuições importantes no campo do aprendizado estatístico. Bradley Efron desenvolveu nas décadas de 70 e 80 o método <em>bootstrap</em>, um método que visa estimar o erro a partir da amostragem com reposição. Tal abordagem é amplamente usada em inferência e em aprendizado de máquina. Jerome Friedman desenvolveu o método floresta aleatória e o aprendizado por reforço de gradiente. Trevor Hastie propôs os modelos aditivos generalizados e Robert Tibshirani propôs a regularização via LASSO. Estes autores, <a href="#fig-efht" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>, tiveram outras contribuições importantes na estatística e computação.</p>
+<p>Vários bioestatísticos de Stanford tiveram contribuições importantes no campo do aprendizado estatístico. Bradley Efron desenvolveu nas décadas de 70 e 80 o método <em>bootstrap</em>, um método que visa estimar o erro a partir da amostragem com reposição. Tal abordagem é amplamente usada em inferência e em aprendizado de máquina. Jerome Friedman desenvolveu o método de aprendizado por reforço de gradiente. Trevor Hastie propôs os modelos aditivos generalizados e Robert Tibshirani propôs a regularização via LASSO. Estes autores, <a href="#fig-efht" class="quarto-xref">Figura&nbsp;<span>1.2</span></a>, tiveram outras contribuições importantes na estatística e computação.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-efht" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -420,22 +411,37 @@ Figura&nbsp;1.2: Efron, Friedman, Hastie e Tibishirani
 </div>
 </div>
 </div>
-<p>A densa teoria do aprendizado estatístico foi cunhada pelo matemático russo Vladimir Vapnik, <a href="#fig-vapnik" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>, visando obter um modelo preditivo a partir dos dados. Inicialmente não foi proposto um método específico, mas o arcabouço teórico necessário para sustentar a capacidade de generalização de modelos obtidos a partir de amostras limitadas, porém suficientes. Posteriormente, Vapnik e co-autores propuseram as máquinas de vetores de suporte, método aplicado com sucesso até hoje em problemas de aprendizado supervisionado. Seus principais trabalhos foram publicados na década de 90.</p>
+<p>Leo Breiman, 1928-2005, <a href="#fig-lbreiman" class="quarto-xref">Figura&nbsp;<span>1.3</span></a>, foi um estatístico americano muito importante para o aprendizado supervisionado, tendo criado o algoritmo floresta aleatória, além de ter publicado um artigo importante falando sobre as duas culturas da modelagem: a estatística e a computacional. Basicamente, ele defendia que enquanto a cultura estatística buscava um modelo por trás dos dados, a algorítmica dá ênfase à qualidade da previsão, sugerindo que a segunda seria mais interessante, especialmente para problemas complexos. Também destacou a importância da validação cruzada para seleção de modelos. Por fim, ele sugere que o truque do cientista (de dados - acréscimo meu) é estar aberto a usar uma ampla variedade de ferramentas. Acreditamos que este curso vai muito ao encontro de seu pensamento, embora a necessidade de explicar a importância das variáveis em modelos tem crescido com o tempo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-vapnik" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-lbreiman" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vapnik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figs/vapnik.png" class="img-fluid figure-img" width="512">
+<div aria-describedby="fig-lbreiman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/breiman.jpg" class="img-fluid figure-img" style="width:30.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vapnik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.3: Vapnik
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lbreiman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.3: Leo Breiman
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Nomes importantes da computação incluem Christopher Bishop, com grande contribuição em <strong>redes neurais</strong> e Andrew Ng, <a href="#fig-bishop_ng" class="quarto-xref">Figura&nbsp;<span>1.4</span></a> com contribuições e militância recentes em aplicações, pesquisa e ensino de <strong>aprendizado profundo</strong> e <strong>inteligência artificial</strong>.</p>
+<p>A densa teoria do aprendizado estatístico foi cunhada pelo matemático russo Vladimir Vapnik, <a href="#fig-vapnik" class="quarto-xref">Figura&nbsp;<span>1.4</span></a>, visando obter um modelo preditivo a partir dos dados. Inicialmente não foi proposto um método específico, mas o arcabouço teórico necessário para sustentar a capacidade de generalização de modelos obtidos a partir de amostras limitadas, porém suficientes. Posteriormente, Vapnik e co-autores propuseram as máquinas de vetores de suporte, método aplicado com sucesso até hoje em problemas de aprendizado supervisionado. Seus principais trabalhos foram publicados na década de 90.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vapnik" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vapnik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figs/vapnik.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vapnik-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.4: Vapnik
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Nomes importantes da computação incluem Christopher Bishop, com grande contribuição em <strong>redes neurais</strong> e Andrew Ng, <a href="#fig-bishop_ng" class="quarto-xref">Figura&nbsp;<span>1.5</span></a> com contribuições e militância recentes em aplicações, pesquisa e ensino de <strong>aprendizado profundo</strong> e <strong>inteligência artificial</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bishop_ng" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -444,7 +450,7 @@ Figura&nbsp;1.3: Vapnik
 <img src="figs/bishop_ng.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bishop_ng-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.4: Bishop e Andrew
+Figura&nbsp;1.5: Bishop e Andrew
 </figcaption>
 </figure>
 </div>
@@ -452,7 +458,7 @@ Figura&nbsp;1.4: Bishop e Andrew
 </div>
 <section id="um-brasileiro-importante" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="um-brasileiro-importante"><span class="header-section-number">1.2.1</span> Um brasileiro importante</h3>
-<p>Carlos Guestrin, <a href="#fig-guestrin" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>, é um brasileiro que tem feito um excelente trabalho na área de aprendizado por reforço. Guestrin é professor da Universidade de Stanford, foi diretor sênior de <em>Machine Learning</em> da <strong>Apple</strong> (2016-2021) e é co-criador do impressionante método recente de <strong>reforço por gradiente extremo</strong> (<em>extreme gradient boosting</em>), usado com sucesso em aprendizado supervisionado.</p>
+<p>Carlos Guestrin, <a href="#fig-guestrin" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>, é um brasileiro que tem feito um excelente trabalho na área de aprendizado por reforço. Guestrin é professor da Universidade de Stanford, foi diretor sênior de <em>Machine Learning</em> da <strong>Apple</strong> (2016-2021) e é co-criador do impressionante método recente de <strong>reforço por gradiente extremo</strong> (<em>extreme gradient boosting</em>), usado com sucesso em aprendizado supervisionado.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-guestrin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -461,7 +467,7 @@ Figura&nbsp;1.4: Bishop e Andrew
 <img src="figs/guestrin.png" class="img-fluid figure-img" width="270">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-guestrin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.5: Carlos Guestrin
+Figura&nbsp;1.6: Carlos Guestrin
 </figcaption>
 </figure>
 </div>
@@ -482,7 +488,7 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O <strong>aprendizado supervisionado</strong> consiste na aproximação ou treinamento de um modelo para prever um supervisor, variável independente ou resposta de interesse a partir de dados.</p>
+<p>O <strong>aprendizado supervisionado</strong> consiste na aproximação ou treinamento de um modelo para prever uma variável dependente ou resposta de interesse a partir de dados.</p>
 </div>
 </div>
 <p>Seja um conjunto de variáveis de entrada, independentes ou preditores <span class="math inline">\(\mathbf{x} = [x_1, x_2, ..., x_k]^T\)</span> e uma variável dependente ou supervisora <span class="math inline">\(y\)</span>. Dado uma amostra de observações para tais variáveis, <span class="math inline">\((\mathbf{x}_1,y_1), (\mathbf{x}_2,y_2),..., (\mathbf{x}_n,y_n)\)</span>, o aprendizado supervisionado visa prever o comportamento ou resultado de <span class="math inline">\(y\)</span>, considerando valores futuros de <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{x}_0\)</span>.</p>
@@ -520,7 +526,7 @@ Nota
 <section id="exemplo-de-problema-de-regressão" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="exemplo-de-problema-de-regressão"><span class="header-section-number">1.3.1</span> Exemplo de problema de regressão</h3>
 <p>Um dos métodos mais simples utilizados para regressão é a regressão linear simples, com coeficientes estimados por mínimos quadrados. Tal método será melhor detalhado no Capítulo 3.</p>
-<p>A <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.6</span></a> ilustra o resultado de um exemplo de aplicação de regressão linear simples para prever o preço de carros usados do modelo Honda Fit em função do ano de fabricação. O modelo foi treinado com um conjunto de dados de 13 observações e aplicado em 10 observações de teste. Naturalmente, há um crescimento linear do preço com o ano de fabricação do veículo. Observa-se uma boa aproximação do modelo aos dados separados para teste, o que supõe uma boa capacidade de generalização do modelo.</p>
+<p>A <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> ilustra o resultado de um exemplo de aplicação de regressão linear simples para prever o preço de carros usados do modelo Honda Fit em função do ano de fabricação. O modelo foi treinado com um conjunto de dados de 13 observações e aplicado em 10 observações de teste. Naturalmente, há um crescimento linear do preço com o ano de fabricação do veículo. Observa-se uma boa aproximação do modelo aos dados separados para teste, o que supõe uma boa capacidade de generalização do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-hfit" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -529,7 +535,7 @@ Nota
 <img src="AS_Intro_files/figure-html/fig-hfit-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hfit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.6: Modelo de regressão linear simples para previsão do preço de carros Honda Fit usados
+Figura&nbsp;1.7: Modelo de regressão linear simples para previsão do preço de carros Honda Fit usados
 </figcaption>
 </figure>
 </div>
@@ -552,7 +558,7 @@ Importante
 <section id="exemplo-de-problema-de-classificação" class="level3" data-number="1.3.2">
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="exemplo-de-problema-de-classificação"><span class="header-section-number">1.3.2</span> Exemplo de problema de classificação</h3>
 <p>Um dos métodos mais simples utilizados para classificação é a regressão logística. Tal método será melhor detalhado no Capítulo 13.</p>
-<p>A <a href="#fig-feijaoreglog" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> apresenta o resultado gráfico de um exemplo de aplicação de classificação, sendo estimado um modelo de regressão logística para classificação de feijões pretos e vermelhos segundo o nível de diabetes, com 1 = “vermelho” e 0 = “preto”. O modelo prevê a probabilidade de pertencer a classe 1 em função do comprimento do feijão, isto é, <span class="math inline">\(P(y=1|x)\)</span>. A classificação pode ser realizada considerando a probabilidade intermediária, isto é, considera-se o feijão vermelho, <span class="math inline">\(y=1\)</span> se <span class="math inline">\(p\geq0,5\)</span> e preto caso contrário, conforme segue.</p>
+<p>A <a href="#fig-feijaoreglog" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> apresenta o resultado gráfico de um exemplo de aplicação de classificação, sendo estimado um modelo de regressão logística para classificação de feijões pretos e vermelhos segundo o nível de diabetes, com 1 = “vermelho” e 0 = “preto”. O modelo prevê a probabilidade de pertencer a classe 1 em função do comprimento do feijão, isto é, <span class="math inline">\(P(y=1|x)\)</span>. A classificação pode ser realizada considerando a probabilidade intermediária, isto é, considera-se o feijão vermelho, <span class="math inline">\(y=1\)</span> se <span class="math inline">\(p\geq0,5\)</span> e preto caso contrário, conforme segue.</p>
 <p><span class="math display">\[
 \bigg\{\begin{matrix}
 y = 1, \text{ se } p&gt;0,5, \\
@@ -567,13 +573,13 @@ y = 0, \text{ cc}.
 <img src="AS_Intro_files/figure-html/fig-feijaoreglog-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaoreglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.7: Modelo de regressão logística para prever a probabilidade de o feijão ser vermelho em detrimento do preto em função do comprimento
+Figura&nbsp;1.8: Modelo de regressão logística para prever a probabilidade de o feijão ser vermelho em detrimento do preto em função do comprimento
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Neste segundo exemplo da <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> considera-se além do comprimento a largura do feijão para obter um modelo de regressão logística para prever a probabilidade de o feijão ser vermelho entre vermelhos e pretos. No gráfico é plotada a fronteira de classificação, isto é, <span class="math inline">\(p(y=1) = 0,5\)</span>. Foram consideradas 75 observações para treinamento e 17 para teste do modelo.</p>
+<p>Neste segundo exemplo da <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.9</span></a> considera-se além do comprimento a largura do feijão para obter um modelo de regressão logística para prever a probabilidade de o feijão ser vermelho entre vermelhos e pretos. No gráfico é plotada a fronteira de classificação, isto é, a linha para a qual <span class="math inline">\(p(y=1) = 0,5\)</span>. Foram consideradas 75 observações para treinamento e 17 para teste do modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-feijaoreglog2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -582,7 +588,7 @@ Figura&nbsp;1.7: Modelo de regressão logística para prever a probabilidade de 
 <img src="AS_Intro_files/figure-html/fig-feijaoreglog2-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feijaoreglog2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.8: Regressão logística para diabetes em função do nível de glicose e idade
+Figura&nbsp;1.9: Regressão logística para diabetes em função do nível de glicose e idade
 </figcaption>
 </figure>
 </div>
@@ -619,7 +625,7 @@ Nota
 <p>Alguns métodos de aprendizado supervisionado usam de técnicas de aprendizado não supervisionado, visando diminuir o erro dos modelos e melhorar a capacidade de generalização destes. Por exemplo, a regressão por componentes principais, visa expressar os regressores correlacionados em termos de um número menor de novas variáveis não correlacionadas.</p>
 </div>
 </div>
-<p>A <a href="#fig-kmeans" class="quarto-xref">Figura&nbsp;<span>1.9</span></a> expõe um gráfico do resultado de um agrupamento por <span class="math inline">\(k\)</span>-médias considerando distintos índices de demografia dos EUA. São plotados os dois índices mais importantes.</p>
+<p>A <a href="#fig-kmeans" class="quarto-xref">Figura&nbsp;<span>1.10</span></a> expõe um gráfico do resultado de um agrupamento por <span class="math inline">\(k\)</span>-médias considerando distintos índices de demografia dos EUA. São plotados os dois índices mais importantes.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-kmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -628,13 +634,13 @@ Nota
 <img src="AS_Intro_files/figure-html/fig-kmeans-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.9: Algoritmo k-means para agrupar estados americanos segundo índices de criminalidade
+Figura&nbsp;1.10: Algoritmo k-means para agrupar estados americanos segundo índices de criminalidade
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-pca" class="quarto-xref">Figura&nbsp;<span>1.10</span></a> expõe um gráfico de dispersão para anos de fabricação e quilometragem de carros modelo Corolla usados. Devido a alta correção negativa entre as variáveis, <span class="math inline">\(R = -0,88\)</span>, foi realizada uma análise de componentes principais para obter uma nova variável ou componente principal que represente ambas as variáveis, reduzindo a dimensionalidade do problema. A nova variável obtida, plotada em azul escuro, representa 98% da variabilidade das variáveis originais.</p>
+<p>A <a href="#fig-pca" class="quarto-xref">Figura&nbsp;<span>1.11</span></a> expõe um gráfico de dispersão para anos de fabricação e quilometragem de carros modelo Corolla usados. Devido a alta correção negativa entre as variáveis, <span class="math inline">\(R = -0,88\)</span>, foi realizada uma análise de componentes principais para obter uma nova variável ou componente principal que represente ambas as variáveis, reduzindo a dimensionalidade do problema. A nova variável obtida, plotada em azul escuro, representa 98% da variabilidade das variáveis originais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-pca" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -643,7 +649,7 @@ Figura&nbsp;1.9: Algoritmo k-means para agrupar estados americanos segundo índi
 <img src="AS_Intro_files/figure-html/fig-pca-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.10: Análise de componentes principais para encontrar uma nova variável que represente o peso e a idade
+Figura&nbsp;1.11: Análise de componentes principais para encontrar uma nova variável que represente o peso e a idade
 </figcaption>
 </figure>
 </div>
@@ -863,8 +869,8 @@ Nota
 <!-- -->
 <ol start="5" type="1">
 <li><p>Dê dois exemplos de problemas de regressão e dois de classificação. Sugira possíveis preditores para cada caso.</p></li>
-<li><p>Tomando a <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.6</span></a> aproximadamente qual o preço previsto para um Honda Fit ano 2015?</p></li>
-<li><p>Seja o problema de classificação de feijões usando o comprimento e largura destes, com modelo plotado na <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.8</span></a> junto aos dados de teste. Considere a classe “preto” referência e a “vermelho” como sendo a que se deseja prever e responda:</p></li>
+<li><p>Tomando a <a href="#fig-hfit" class="quarto-xref">Figura&nbsp;<span>1.7</span></a> aproximadamente qual o preço previsto para um Honda Fit ano 2015?</p></li>
+<li><p>Seja o problema de classificação de feijões usando o comprimento e largura destes, com modelo plotado na <a href="#fig-feijaoreglog2" class="quarto-xref">Figura&nbsp;<span>1.9</span></a> junto aos dados de teste. Considere a classe “preto” referência e a “vermelho” como sendo a que se deseja prever e responda:</p></li>
 </ol>
 <!-- -->
 <ol type="a">

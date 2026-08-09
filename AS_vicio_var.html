@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -283,9 +249,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão" id="toc-intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão" class="nav-link active" data-scroll-target="#intuição-e-conflito-entre-vício-e-variância-em-problemas-de-regressão"><span class="header-section-number">3.1</span> Intuição e conflito entre vício e variância em problemas de regressão</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">3.2</span> Implementações em R</a></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">3.3</span> Exercícios</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">3.2</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -354,7 +319,7 @@ Figura&nbsp;3.1: Exemplo de dados para regressão linear simples
 </div>
 </div>
 </div>
-<p>Seja um amplo número de conjuntos de dados distintos, <span class="math inline">\(D\)</span>, e tomados de forma independente da população de interesse, sendo <em>iid</em>, todos de tamanho <span class="math inline">\(N\)</span>. Para cada um destes podemos aplicar um algoritmo para obter uma aproximação <span class="math inline">\(\hat f_D(x)\)</span>. Obviamente cada conjunto de dados resultará em uma aproximação diferente, com perda distinta associada. Para medir o desempenho de um algoritmo ou método pode-se considerar a média de todos modelos obtidos via conjuntos de dados distintos.</p>
+<p>Seja um amplo número de conjuntos de dados distintos, <span class="math inline">\(\mathcal D_{treino}\)</span>, e tomados de forma independente da população de interesse, sendo <em>iid</em>, todos de tamanho <span class="math inline">\(n\)</span>. Para cada um destes podemos aplicar um algoritmo para obter uma aproximação <span class="math inline">\(\hat f_ \mathcal D(x)\)</span>. Obviamente cada conjunto de dados resultará em uma aproximação diferente, com perda distinta associada. Para medir o desempenho de um algoritmo ou método pode-se considerar a média de todos modelos obtidos via conjuntos de dados distintos.</p>
 <p>Seja o erro quadrático de um modelo em relação à função desconhecida à qual se deseja aproximar.</p>
 <p><span class="math display">\[
 \{\hat f_D(x) - f(x)\}^2
@@ -379,7 +344,7 @@ E_D\{\hat f_D(x) - f(x)\}^2 = \underbrace{E_D\{\hat f_D(x) - E_D[\hat f_D(x)]\}^
 <p>Agora considerando um valor específico de <span class="math inline">\(x\)</span>, <span class="math inline">\(x_0\)</span>, em detrimento dos conjuntos de dados <span class="math inline">\(D\)</span>, uma vez que <span class="math inline">\(E[\varepsilon]=0\)</span>, o vício pode ser obtido via <a href="#eq-vicio" class="quarto-xref">Equação&nbsp;<span>3.2</span></a>.</p>
 <p><span id="eq-vicio"><span class="math display">\[
 \begin{aligned}
-Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0) - f(x_0)] = E_D[\hat f(x_0) - (y + \varepsilon)] \\
+Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0) - f(x_0)] = E_D[\hat f(x_0) - (y - \varepsilon)] \\
 Vicio_D[\hat f(x_0)] &amp;= E_D[\hat f(x_0)] - E_D[y]
 \end{aligned}
 \tag{3.2}\]</span></span></p>
@@ -1533,205 +1498,16 @@ Definição
 </div>
 <p>O melhor modelo seria aquele que apresenta menor erro de teste que, no exemplo plotado na <a href="#fig-erro" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>, seria o de terceira ordem.</p>
 </section>
-<section id="implementações-em-r" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">3.2</span> Implementações em R</h2>
-<p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<p>Carregando as bibliotecas (pacotes) para análise.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Criando uma função para simular o conflito. Na prática tal função é desconhecida. Portanto, deseja-se aproximá-la apartir dos dados.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f_sin <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>x)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(f)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Simulando dados. Os dados do eixo x foram simulados segundo uma distribuição uniforme com limites entre 0 e 1, usando o comando <code>runif</code>.Já os dados do eixo y foram simulado avaliando os valores de x na função criada previamente adicionando um termo de erro segundo a distribuição normal com média nula e desvio-padrão igual a 0.2, através do comando <code>rnorm</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">f_sin</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, .<span class="dv">2</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Visualizando os dados.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Plotando os dados disponíveis acompanhados de três modelos de regressão polinomial simples, um linear, um cúbico e um de décima ordem.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"linear"</span> <span class="ot">=</span> <span class="st">"#F8766D"</span>, <span class="st">"cúbico"</span> <span class="ot">=</span> <span class="st">"#00BA38"</span>, <span class="st">"poly-10"</span> <span class="ot">=</span> <span class="st">"#619CFF"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"y"</span>)) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"linear"</span>)) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">3</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"cúbico"</span>)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">10</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"poly-10"</span>)) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Modelo"</span>) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Tomando um valor arbitrário de <span class="math inline">\(x = 0,75\)</span>, e conjuntos distintos de observações futuras para medir o vício e a variância de cada modelo neste ponto específico.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">model =</span> <span class="fu">numeric</span>(<span class="dv">3000</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">pred =</span> <span class="fu">numeric</span>(<span class="dv">3000</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">vicio =</span> <span class="fu">numeric</span>(<span class="dv">3000</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>x0<span class="ot">=</span><span class="fl">0.75</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>i<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>E_y <span class="ot">&lt;-</span> <span class="fu">f_sin</span>(x0)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>E_y</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data_ <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="fu">f_sin</span>(x) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>lm1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, data_)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">3</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), data_)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>lm10 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">10</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), data_)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                    </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x0)) </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm3, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x0)) </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>pred10 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm10, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x0))  </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>vicio1 <span class="ot">&lt;-</span> pred1 <span class="sc">-</span> E_y</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>vicio3 <span class="ot">&lt;-</span> pred3 <span class="sc">-</span> E_y</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>vicio10 <span class="ot">&lt;-</span> pred10 <span class="sc">-</span> E_y</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>model[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>model[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>model[i<span class="sc">+</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>pred[i] <span class="ot">&lt;-</span> pred1</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>pred[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> pred3</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>pred[i<span class="sc">+</span><span class="dv">2</span>] <span class="ot">&lt;-</span> pred10</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>vicio[i]   <span class="ot">&lt;-</span> vicio1</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>vicio[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> vicio3</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>pred<span class="sc">$</span>vicio[i<span class="sc">+</span><span class="dv">2</span>] <span class="ot">&lt;-</span> vicio10</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">3</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(model),<span class="at">y=</span>vicio, <span class="at">col =</span> <span class="fu">as.factor</span>(model))) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Ordem"</span>, <span class="at">y =</span> <span class="st">"Erro"</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred, <span class="fu">aes</span>(<span class="at">x=</span>vicio, <span class="at">fill =</span> <span class="fu">as.factor</span>(model))) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> .<span class="dv">3</span>, <span class="at">col =</span> <span class="st">"white"</span>) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Densidade"</span>, <span class="at">x =</span> <span class="st">"Erro"</span>, <span class="at">fill =</span> <span class="st">"Ordem"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Simulando o conflito para um caso com poucas observações disponíveis.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>xa <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">15</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dataa <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xa,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="fu">f_sin</span>(xa) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="dv">0</span>, .<span class="dv">2</span>))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"y"</span> <span class="ot">=</span> <span class="st">"black"</span>, <span class="st">"linear"</span> <span class="ot">=</span> <span class="st">"#F8766D"</span>, <span class="st">"cúbico"</span> <span class="ot">=</span> <span class="st">"#00BA38"</span>, <span class="st">"poly-10"</span> <span class="ot">=</span> <span class="st">"#619CFF"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataa, <span class="fu">aes</span>(x,y)) <span class="sc">+</span> </span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"y"</span>)) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"linear"</span>)) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">3</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"cúbico"</span>)) <span class="sc">+</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">10</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> F, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"poly-10"</span>)) <span class="sc">+</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Modelo"</span>) <span class="sc">+</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Erro ou valor da função perda de tais modelos para dados de treino e dados de teste.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>xa <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>dataa <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xa,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="fu">f_sin</span>(xa) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, .<span class="dv">2</span>))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>lm1a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, dataa)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># lm2a &lt;- lm(y ~ poly(x, degree = 2, raw = TRUE), dataa)</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>lm3a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">3</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), dataa)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>lm5a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">5</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), dataa)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>lm10a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="at">degree =</span> <span class="dv">10</span>, <span class="at">raw =</span> <span class="cn">TRUE</span>), dataa)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">27</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>xb <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>datab <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> xb,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="fu">f_sin</span>(xb) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, .<span class="dv">2</span>))</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>MSE <span class="ot">&lt;-</span> <span class="cf">function</span>(obs, pred) {</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  MSE <span class="ot">&lt;-</span> <span class="fu">mean</span>((obs <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(MSE)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>MSE1_T <span class="ot">&lt;-</span> <span class="fu">MSE</span>(dataa<span class="sc">$</span>y, lm1a<span class="sc">$</span>fitted.values)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># MSE2_T &lt;- MSE(dataa$y, lm2a$fitted.values)</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>MSE3_T <span class="ot">&lt;-</span> <span class="fu">MSE</span>(dataa<span class="sc">$</span>y, lm3a<span class="sc">$</span>fitted.values)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>MSE5_T <span class="ot">&lt;-</span> <span class="fu">MSE</span>(dataa<span class="sc">$</span>y, lm5a<span class="sc">$</span>fitted.values)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>MSE10_T <span class="ot">&lt;-</span> <span class="fu">MSE</span>(dataa<span class="sc">$</span>y, lm10a<span class="sc">$</span>fitted.values)</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>yhat1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm1a, <span class="at">newdata =</span> datab)</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co"># yhat2 &lt;- predict(lm2a, newdata = datab)</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>yhat3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm3a, <span class="at">newdata =</span> datab)</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>yhat5 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm5a, <span class="at">newdata =</span> datab)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>yhat10 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm10a, <span class="at">newdata =</span> datab)</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>MSE1_t <span class="ot">&lt;-</span> <span class="fu">MSE</span>(datab<span class="sc">$</span>y, yhat1)</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co"># MSE2_t &lt;- MSE(datab$y, yhat2)</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>MSE3_t <span class="ot">&lt;-</span> <span class="fu">MSE</span>(datab<span class="sc">$</span>y, yhat3)</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>MSE5_t <span class="ot">&lt;-</span> <span class="fu">MSE</span>(datab<span class="sc">$</span>y, yhat5)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>MSE10_t <span class="ot">&lt;-</span> <span class="fu">MSE</span>(datab<span class="sc">$</span>y, yhat10)</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>data_MSE <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">model =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">10</span>),<span class="dv">2</span>),</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>                       <span class="at">dados =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"treino"</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="st">"teste"</span>,<span class="dv">4</span>)),</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>                       <span class="at">MSE =</span> <span class="fu">c</span>(MSE1_T, MSE3_T, MSE5_T, MSE10_T, </span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                               MSE1_t, MSE3_t, MSE5_t, MSE10_t))</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_MSE, <span class="fu">aes</span>(<span class="at">x=</span>model, <span class="at">y =</span> MSE, </span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                     <span class="at">col =</span> dados,</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>                     <span class="at">linetype =</span> dados,</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pch =</span> dados)) <span class="sc">+</span> </span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Ordem"</span>, <span class="at">color =</span> <span class="st">"Dados"</span>, </span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="st">"Dados"</span>, <span class="at">pch =</span> <span class="st">"Dados"</span>) <span class="sc">+</span></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="referências" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="referências">Referências</h2>
 <p>Bishop, Christopher M., and Hugh Bishop. “Deep learning: foundations and concepts.” (2024).</p>
 </section>
-<section id="exercícios" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">3.3</span> Exercícios</h2>
+<section id="exercícios" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">3.2</span> Exercícios</h2>
 <ol type="1">
 <li><p>Defina sobreajuste ou <em>overfitting</em> e explique porque é crucial identificar e evitar modelos com este problema.</p></li>
 <li><p>Entre o vício e a variância, qual está associado com o sobreajuste e qual com o baixo ajuste?</p></li>
-<li><p>A curva da <a href="#fig-ex3" class="quarto-xref">Figura&nbsp;<span>3.10</span></a> plota os erros de treino e teste segundo a ordem do modelo. Identifique o modelo com melhor ajuste, os modelos com baixo ajuste e os modelos com sobreajuste.</p></li>
+<li><p>A curva da <a href="#fig-ex3" class="quarto-xref">Figura&nbsp;<span>3.10</span></a> plota os erros de treino e teste segundo a ordem de com,plexidade do modelo. Identifique o modelo com melhor ajuste, os modelos com baixo ajuste e os modelos com sobreajuste.</p></li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
