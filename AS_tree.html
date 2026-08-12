@@ -215,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -1063,7 +1063,7 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, o número máximo de nós terminais ou folhas, <span class="math inline">\(J\)</span>, e o número mínimo de observações por partição (<code>min_n</code>).</p>
+<p>Os hiperparâmetros a serem otimizados em modelos de árvore de regressão/decisão são a complexidade de custo, <span class="math inline">\(\alpha\)</span>, a profundidade máxima da árvore (<code>tree_depth</code>), e o número mínimo de observações por partição (<code>min_n</code>). O número de nós terminais ou folhas, <span class="math inline">\(J\)</span>, não é definido diretamente, mas resulta da combinação desses hiperparâmetros e do processo de poda. Entretanto, os hiperparâmetros podem mudar de acordo com a biblioteca usada.</p>
 </div>
 </div>
 <p>Pode-se realizar uma validação cruzada para otimizar os hiperparâmetros do modelo de árvore de regressão, isto é, definir a profundidade da árvore e a complexidade de custo, <span class="math inline">\(\alpha\)</span>, ideais para os dados em análise e evitar o sobreajuste. A <a href="#fig-cvtree" class="quarto-xref">Figura&nbsp;<span>6.4</span></a> plota o erro em relação a profundidade e a complexidade da árvore. Neste caso, foi considerado <code>min_n = 20</code>. Observa-se que um modelo com profundidade igual a 4 e um valor de complexidade de custo de baixo a intermediário minimiza o erro de teste, isto é, minimiza RMSE ou maximiza <span class="math inline">\(R^2\)</span>.</p>
@@ -2392,7 +2392,7 @@ Importante
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Os hiperparâmetros do método floresta aleatória são o número de <em>bootstraps</em>/árvores, o número de preditores sorteados e considerados em cada particionamento binário recursivo, m (<code>mtry</code>) e o número mínimo de observações por partição (<code>min_n</code>).</p>
+<p>Os hiperparâmetros do método floresta aleatória são o número de <em>bootstraps</em>/árvores, o número de preditores sorteados e considerados em cada particionamento binário recursivo, m (<code>mtry</code>) e o número mínimo de observações por partição.</p>
 </div>
 </div>
 <p>A <a href="#fig-cvrfap" class="quarto-xref">Figura&nbsp;<span>6.12</span></a> plota o RMSE em função dos hiperparâmetros na validação cruzada do modelo de regressão via <em>bagging</em> para prever o preço de apartamentos. Os níveis que minimizam RMSE são <span class="math inline">\(m = 4\)</span>, 1000 árvores e <code>min_n=2</code>.</p>
@@ -3838,8 +3838,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e otimização de hiperparâmetros">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

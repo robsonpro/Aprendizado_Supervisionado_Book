@@ -8,7 +8,7 @@
 
 <meta name="author" content="Robson Bruno Dutra Pereira">
 
-<title>10&nbsp; Regressão por vetores de suporte – Aprendizado Supervisionado com implementações em R</title>
+<title>9&nbsp; Regressão por vetores de suporte – Aprendizado Supervisionado com implementações em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./AS_nnet.html" rel="next">
-<link href="./AS_GAM.html" rel="prev">
+<link href="./AS_boosting.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_SVR.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AS_SVR.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -226,50 +226,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_GAM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -282,16 +276,16 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#regressão-por-vetores-de-suporte-para-problemas-lineares" id="toc-regressão-por-vetores-de-suporte-para-problemas-lineares" class="nav-link active" data-scroll-target="#regressão-por-vetores-de-suporte-para-problemas-lineares"><span class="header-section-number">10.1</span> Regressão por vetores de suporte para problemas lineares</a></li>
-  <li><a href="#truque-de-kernel-e-svr-para-problemas-não-lineares" id="toc-truque-de-kernel-e-svr-para-problemas-não-lineares" class="nav-link" data-scroll-target="#truque-de-kernel-e-svr-para-problemas-não-lineares"><span class="header-section-number">10.2</span> Truque de <em>kernel</em> e SVR para problemas não lineares</a></li>
-  <li><a href="#exemplos-de-regressão-por-vetores-de-suporte" id="toc-exemplos-de-regressão-por-vetores-de-suporte" class="nav-link" data-scroll-target="#exemplos-de-regressão-por-vetores-de-suporte"><span class="header-section-number">10.3</span> Exemplos de regressão por vetores de suporte</a></li>
-  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">10.4</span> Implementações em R</a>
+  <li><a href="#regressão-por-vetores-de-suporte-para-problemas-lineares" id="toc-regressão-por-vetores-de-suporte-para-problemas-lineares" class="nav-link active" data-scroll-target="#regressão-por-vetores-de-suporte-para-problemas-lineares"><span class="header-section-number">9.1</span> Regressão por vetores de suporte para problemas lineares</a></li>
+  <li><a href="#truque-de-kernel-e-svr-para-problemas-não-lineares" id="toc-truque-de-kernel-e-svr-para-problemas-não-lineares" class="nav-link" data-scroll-target="#truque-de-kernel-e-svr-para-problemas-não-lineares"><span class="header-section-number">9.2</span> Truque de <em>kernel</em> e SVR para problemas não lineares</a></li>
+  <li><a href="#exemplos-de-regressão-por-vetores-de-suporte" id="toc-exemplos-de-regressão-por-vetores-de-suporte" class="nav-link" data-scroll-target="#exemplos-de-regressão-por-vetores-de-suporte"><span class="header-section-number">9.3</span> Exemplos de regressão por vetores de suporte</a></li>
+  <li><a href="#implementações-em-r" id="toc-implementações-em-r" class="nav-link" data-scroll-target="#implementações-em-r"><span class="header-section-number">9.4</span> Implementações em R</a>
   <ul class="collapse">
-  <li><a href="#regresssão-por-vetores-de-suporte-com-kernel-polinomial" id="toc-regresssão-por-vetores-de-suporte-com-kernel-polinomial" class="nav-link" data-scroll-target="#regresssão-por-vetores-de-suporte-com-kernel-polinomial"><span class="header-section-number">10.4.1</span> Regresssão por vetores de suporte com <em>kernel</em> polinomial</a></li>
-  <li><a href="#regresssão-por-vetores-de-suporte-com-kernel-radial" id="toc-regresssão-por-vetores-de-suporte-com-kernel-radial" class="nav-link" data-scroll-target="#regresssão-por-vetores-de-suporte-com-kernel-radial"><span class="header-section-number">10.4.2</span> Regresssão por vetores de suporte com <em>kernel</em> radial</a></li>
+  <li><a href="#regresssão-por-vetores-de-suporte-com-kernel-polinomial" id="toc-regresssão-por-vetores-de-suporte-com-kernel-polinomial" class="nav-link" data-scroll-target="#regresssão-por-vetores-de-suporte-com-kernel-polinomial"><span class="header-section-number">9.4.1</span> Regresssão por vetores de suporte com <em>kernel</em> polinomial</a></li>
+  <li><a href="#regresssão-por-vetores-de-suporte-com-kernel-radial" id="toc-regresssão-por-vetores-de-suporte-com-kernel-radial" class="nav-link" data-scroll-target="#regresssão-por-vetores-de-suporte-com-kernel-radial"><span class="header-section-number">9.4.2</span> Regresssão por vetores de suporte com <em>kernel</em> radial</a></li>
   </ul></li>
   <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências">Referências</a></li>
-  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">10.5</span> Exercícios</a></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">9.5</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -300,7 +294,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></h1>
 </div>
 
 
@@ -323,9 +317,9 @@ window.Quarto = {
 </header>
 
 
-<section id="regressão-por-vetores-de-suporte-para-problemas-lineares" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="regressão-por-vetores-de-suporte-para-problemas-lineares"><span class="header-section-number">10.1</span> Regressão por vetores de suporte para problemas lineares</h2>
-<p>Drucker et al.&nbsp;(1996) adaptaram as máquinas de vetores de suporte para regressão (<em>Support Vector Regression</em> - SVR), um método que confirma os conceitos da teoria de aprendizado estatístico de Vapnik (VAPNIK, 1999). O processo de aprendizado com SVR é realizado no espaço de um subconjunto dos dados, chamados de vetores de suporte. Sejam as observações <span class="math inline">\(\{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), ..., (\mathbf{x}_n, y_n)\}\)</span>, com <span class="math inline">\(\mathbf{x}_i = (x_{i1}, x_{i2}, ..., x_{ik})\)</span>. O SVR busca uma função com desvio máximo <span class="math inline">\(\varepsilon\)</span> para os dados de treinamento. A <a href="#fig-einsensiteloss" class="quarto-xref">Figura&nbsp;<span>10.1</span></a> ilustra à esquerda a função perda <span class="math inline">\(\varepsilon\)</span>-insensitiva ou insensitiva ao erro, enquanto à direita ilustra-se a idéia geral da regressão por vetores de suporte para o caso linerar simples.</p>
+<section id="regressão-por-vetores-de-suporte-para-problemas-lineares" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="regressão-por-vetores-de-suporte-para-problemas-lineares"><span class="header-section-number">9.1</span> Regressão por vetores de suporte para problemas lineares</h2>
+<p>As máquinas de vetores de suporte para regressão (<em>Support Vector Regression</em> - SVR) é um método que confirma os conceitos da teoria de aprendizado estatístico de Vapnik. O método foi inicialmente concebido para classificação, sendo chamado de máquinas de vetores de suporte, sendo posteriormente adaptado para regressão por Drucker et al.&nbsp;(1996). O processo de aprendizado com SVR é realizado no espaço de um subconjunto dos dados, chamados de vetores de suporte. Sejam as observações <span class="math inline">\(\{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), ..., (\mathbf{x}_n, y_n)\}\)</span>, com <span class="math inline">\(\mathbf{x}_i = (x_{i1}, x_{i2}, ..., x_{ik})\)</span>. O SVR busca uma função com desvio máximo <span class="math inline">\(\varepsilon\)</span> para os dados de treinamento. A <a href="#fig-einsensiteloss" class="quarto-xref">Figura&nbsp;<span>9.1</span></a> ilustra à esquerda a função perda <span class="math inline">\(\varepsilon\)</span>-insensitiva ou insensitiva ao erro, enquanto à direita ilustra-se a idéia geral da regressão por vetores de suporte para o caso linear simples.</p>
 <p>A linha central consiste na linha do modelo de regressão por SVR, <span class="math inline">\(\hat{y}_i = \mathbf{x}_i^T \mathbf{w} + b\)</span>, enquanto as duas outras linhas paralelas e simétricas são chamadas de margens, <span class="math inline">\(\hat{y}_i = \mathbf{x}_i^T \mathbf{w} + b \pm \varepsilon\)</span> e os pontos que coincidem ou estão para fora desta linha são chamados de vetores de suporte e apresentam valor na função perda igual a zero ou maior, <span class="math inline">\(\xi_i \geq 0\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -335,25 +329,25 @@ window.Quarto = {
 <img src="figs/SVM_loss.png" class="img-fluid figure-img" width="1334">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-einsensiteloss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.1: Função perda insensitiva ao erro
+Figura&nbsp;9.1: Função perda insensitiva ao erro
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Seja um modelo linear, segundo a <a href="#eq-linmodel" class="quarto-xref">Equação&nbsp;<span>10.1</span></a>.</p>
+<p>Seja um modelo linear, segundo a <a href="#eq-linmodel" class="quarto-xref">Equação&nbsp;<span>9.1</span></a>.</p>
 <p><span id="eq-linmodel"><span class="math display">\[
 \begin{aligned}
 \hat{y}_i = \mathbf{x}_i^T \mathbf{w} + b,\text{ i = 1, ..., n}
 \end{aligned}
-\tag{10.1}\]</span></span></p>
-<p>Para estimar os parâmetros deste modelo, pode-se otimizar uma função perda mais um termo de regularização, conforme a <a href="#eq-loss" class="quarto-xref">Equação&nbsp;<span>10.2</span></a>, onde <span class="math inline">\(C\)</span> é uma constante de regularização. Este problema é similar ao problema de regressão rígida. No entanto, a constante de regularização aqui multiplica a função perda, <span class="math inline">\(\sum_i L\)</span>, e não a soma dos quadrados dos termos do modelo, <span class="math inline">\(\mathbf{w}^T\mathbf{w} = \sum_{i=1}^N w_i^2\)</span>.</p>
+\tag{9.1}\]</span></span></p>
+<p>Para estimar os parâmetros deste modelo, pode-se otimizar uma função perda mais um termo de regularização, conforme a <a href="#eq-loss" class="quarto-xref">Equação&nbsp;<span>9.2</span></a>, onde <span class="math inline">\(C\)</span> é uma constante de regularização. Este problema é similar ao problema de regressão rígida. No entanto, a constante de regularização aqui multiplica a função perda, <span class="math inline">\(\sum_i L\)</span>, e não a soma dos quadrados dos termos do modelo, <span class="math inline">\(\mathbf{w}^T\mathbf{w} = \sum_{i=1}^N w_i^2\)</span>.</p>
 <p><span id="eq-loss"><span class="math display">\[
 \begin{aligned}
 C\sum_{i=1}^N L(y_i, \hat{y}_i) + \mathbf{w}^T\mathbf{w}
 \end{aligned}
-\tag{10.2}\]</span></span></p>
-<p>A função perda <span class="math inline">\(\varepsilon\)</span>-insensitiva usada na SVR e ilustrada na <a href="#fig-einsensiteloss" class="quarto-xref">Figura&nbsp;<span>10.1</span></a> é apresentada na <a href="#eq-insloss" class="quarto-xref">Equação&nbsp;<span>10.3</span></a>, com <span class="math inline">\(\xi_i= \lvert y_i - \hat{y}_i \rvert - \varepsilon\)</span>.</p>
+\tag{9.2}\]</span></span></p>
+<p>A função perda <span class="math inline">\(\varepsilon\)</span>-insensitiva usada na SVR e ilustrada na <a href="#fig-einsensiteloss" class="quarto-xref">Figura&nbsp;<span>9.1</span></a> é apresentada na <a href="#eq-insloss" class="quarto-xref">Equação&nbsp;<span>9.3</span></a>, com <span class="math inline">\(\xi_i= \lvert y_i - \hat{y}_i \rvert - \varepsilon\)</span>.</p>
 <p><span id="eq-insloss"><span class="math display">\[
 \begin{aligned}
 L = \Biggl\{
@@ -362,8 +356,8 @@ L = \Biggl\{
       \lvert y_i - \hat{y}_i \rvert - \varepsilon \text{, cc.}
 \end{matrix}
 \end{aligned}
-\tag{10.3}\]</span></span></p>
-<p>O problema primal de SVR pode ser expresso conforme a formulação <a href="#eq-primal" class="quarto-xref">Equação&nbsp;<span>10.4</span></a> (VAPNIK, 2013).</p>
+\tag{9.3}\]</span></span></p>
+<p>O problema primal de SVR pode ser expresso conforme a formulação <a href="#eq-primal" class="quarto-xref">Equação&nbsp;<span>9.4</span></a>.</p>
 <p><span id="eq-primal"><span class="math display">\[
 \begin{aligned}
     \text{Min}\ \begin{Bmatrix}
@@ -376,15 +370,15 @@ L = \Biggl\{
   \xi_i, \xi_i^* \geq 0
   \end{matrix}
 \end{aligned}
-\tag{10.4}\]</span></span></p>
-<p>Para resolver este problema mais facilmente, a formulação dual pode ser considerada. Além disso, a formulação dual permitirá a extensão da regressão por vetores de suporte para problemas não lineares. Porém, antes, é adequado apresentar a formulação lagrangeana para o problema SVR primal, conforme <a href="#eq-lagran" class="quarto-xref">Equação&nbsp;<span>10.5</span></a>, onde <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\alpha_i^*\)</span>, <span class="math inline">\(\eta_i\)</span> e <span class="math inline">\(\eta_i^*\)</span> são os multiplicadores de Lagrange, que devem ser não-negativos (VAPNIK, 1999; 2013).</p>
+\tag{9.4}\]</span></span></p>
+<p>Para resolver este problema mais facilmente, a formulação dual pode ser considerada. Além disso, a formulação dual permitirá a extensão da regressão por vetores de suporte para problemas não lineares. Porém, antes, é adequado apresentar a formulação lagrangeana para o problema SVR primal, conforme <a href="#eq-lagran" class="quarto-xref">Equação&nbsp;<span>9.5</span></a>, onde <span class="math inline">\(\alpha_i\)</span>, <span class="math inline">\(\alpha_i^*\)</span>, <span class="math inline">\(\eta_i\)</span> e <span class="math inline">\(\eta_i^*\)</span> são os multiplicadores de Lagrange, que devem ser não-negativos.</p>
 <p><span id="eq-lagran"><span class="math display">\[
 \begin{split}
 L = \frac{1}{2}\mathbf{w}^T\mathbf{w} + C\sum_{i=1}^n(\xi_i + \xi_i^*) - \sum_{i=1}^n \alpha_i(\varepsilon + \xi_i -  y_i + \mathbf{x}_i^T\mathbf{w} + b) \\
 - \sum_{i=1}^n \alpha_i^*(\varepsilon + \xi_i^* - \mathbf{x}_i^T\mathbf{w} - b +  y_i) -\sum_{i=1}^n(\eta_i\xi_i + \eta_i^*\xi_i^*)
 \end{split}
-\tag{10.5}\]</span></span></p>
-<p>Derivando a função Lagrangeana em relação às variáveis do problema primal, <span class="math inline">\(\mathbf{w}\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(\xi_i\)</span> e <span class="math inline">\(\xi_i^*\)</span>, e igualando a zero, as condições de otimalidade de primeira ordem são obtidas conforme segue (SMOLA e BERNHARD, 2004).</p>
+\tag{9.5}\]</span></span></p>
+<p>Derivando a função Lagrangeana em relação às variáveis do problema primal, <span class="math inline">\(\mathbf{w}\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(\xi_i\)</span> e <span class="math inline">\(\xi_i^*\)</span>, e igualando a zero, as condições de otimalidade de primeira ordem são obtidas conforme segue.</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp;\frac{\partial L}{\partial b} = \sum_{i=1}^n(\alpha_i - \alpha_i^*) = 0 \\
@@ -393,7 +387,7 @@ L = \frac{1}{2}\mathbf{w}^T\mathbf{w} + C\sum_{i=1}^n(\xi_i + \xi_i^*) - \sum_{i
 &amp;\frac{\partial L}{\partial \xi_i^*} = C - \alpha_i^* - \eta_i^* = 0 \\
 \end{aligned}
 \]</span></p>
-<p>Substituindo os resultados das derivadas na formulação lagrangeana, obtém-se a formulação dual do problema de SVR, conforme <a href="#eq-dual" class="quarto-xref">Equação&nbsp;<span>10.6</span></a> (VAPNIK, 1999; DRUCKER, 1996; SMOLA e BERNHARD, 2004).</p>
+<p>Substituindo os resultados das derivadas na formulação lagrangeana, obtém-se a formulação dual do problema de SVR, conforme <a href="#eq-dual" class="quarto-xref">Equação&nbsp;<span>9.6</span></a>.</p>
 <p><span id="eq-dual"><span class="math display">\[
 \begin{aligned}
     \text{Max}\ &amp;\begin{Bmatrix}
@@ -406,22 +400,35 @@ L = \frac{1}{2}\mathbf{w}^T\mathbf{w} + C\sum_{i=1}^n(\xi_i + \xi_i^*) - \sum_{i
   \alpha_i, \alpha_i^* \in [0,C] \\
   \end{matrix}
 \end{aligned}
-\tag{10.6}\]</span></span></p>
-<p>Nesta formulação dual, <span class="math inline">\(\mathbf{w}\)</span> é reescrito como uma combinação linear das observações de treinamento, <span class="math inline">\(\mathbf{x}_i\mathbf{x}\)</span>, <span class="math inline">\(\eta_i\)</span> e <span class="math inline">\(\eta_i^*\)</span> são descritos em função de <span class="math inline">\(C\)</span>, <span class="math inline">\(\alpha_i\)</span> e <span class="math inline">\(\alpha_i^*\)</span>. Além disso, <span class="math inline">\(\mathbf{w} = \sum_{i=1}^n(\alpha_i + \alpha_i^*)\mathbf{x}_i\)</span>. Logo, na regressão por vetores de suporte, o modelo inicial, <span class="math inline">\(\hat{y}_i = \mathbf{x}_i^T \mathbf{w} + b\)</span>, é reescrito segundo a <a href="#eq-svr" class="quarto-xref">Equação&nbsp;<span>10.7</span></a>, incluindo apenas os vetores de suporte, ou seja, <span class="math inline">\(\mathbf{x}_i\)</span> tal que <span class="math inline">\(\alpha_i &gt; 0\)</span> ou <span class="math inline">\(\alpha_i^* &gt; 0\)</span>, <span class="math inline">\(i = 1, ..., n\)</span>, com <span class="math inline">\(\xi_i\)</span> definindo a folga ou erro para além da margem. A SVR aumenta a dimensionalidade no espaço dos vetores de suporte em detrimento do espaço de preditores (VAPNIK, 2013).</p>
+\tag{9.6}\]</span></span></p>
+<p>Nesta formulação dual, <span class="math inline">\(\mathbf{w}\)</span> é reescrito como uma combinação linear das observações de treinamento, <span class="math inline">\(\mathbf{x}_i\mathbf{x}\)</span>, <span class="math inline">\(\eta_i\)</span> e <span class="math inline">\(\eta_i^*\)</span> são descritos em função de <span class="math inline">\(C\)</span>, <span class="math inline">\(\alpha_i\)</span> e <span class="math inline">\(\alpha_i^*\)</span>. Além disso, <span class="math inline">\(\mathbf{w} = \sum_{i=1}^n(\alpha_i + \alpha_i^*)\mathbf{x}_i\)</span>. Logo, na regressão por vetores de suporte, o modelo inicial, <span class="math inline">\(\hat{y}_i = \mathbf{x}_i^T \mathbf{w} + b\)</span>, é reescrito segundo a <a href="#eq-svr" class="quarto-xref">Equação&nbsp;<span>9.7</span></a>, incluindo apenas os vetores de suporte, ou seja, <span class="math inline">\(\mathbf{x}_i\)</span> tal que <span class="math inline">\(\alpha_i &gt; 0\)</span> ou <span class="math inline">\(\alpha_i^* &gt; 0\)</span>, <span class="math inline">\(i = 1, ..., n\)</span>, com <span class="math inline">\(\xi_i\)</span> definindo a folga ou erro para além da margem. A SVR aumenta a dimensionalidade no espaço dos vetores de suporte em detrimento do espaço de preditores.</p>
 <p><span id="eq-svr"><span class="math display">\[
 \hat{y} = \sum_{i=1}^n(\alpha_i - \alpha_i^*)\mathbf{x}_i\mathbf{x} + b
-\tag{10.7}\]</span></span></p>
+\tag{9.7}\]</span></span></p>
 </section>
-<section id="truque-de-kernel-e-svr-para-problemas-não-lineares" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="truque-de-kernel-e-svr-para-problemas-não-lineares"><span class="header-section-number">10.2</span> Truque de <em>kernel</em> e SVR para problemas não lineares</h2>
-<p>O modelo SVR depende apenas do produto escalar dos dados de treinamento, <span class="math inline">\(\mathbf{x}_i\)</span>. Para aproximar funções mais complexas, o produto escalar <span class="math inline">\(\mathbf{x}_i\mathbf{x}_j\)</span> pode ser substituído por um <em>kernel</em>, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x}_j)\)</span>. Algumas opções incluem o <em>kernel</em> linear, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x}_j) = \mathbf{x}_i\mathbf{x}_j\)</span>, o polinomial, <span class="math inline">\(k(\mathbf{x }_i,\mathbf{x}_j) = (\gamma\mathbf{x}_i\mathbf{x}_j + c_0)^d\)</span>, e o <em>kernel</em> de base radial, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x }_j) = \exp(-||\mathbf{x}_i - \mathbf{x}_j||^2/(2\sigma^2))\)</span>. Portanto, o modelo SVR final pode ser expresso conforme a Equação <a href="#eq-svr2" class="quarto-xref">Equação&nbsp;<span>10.8</span></a>. De acordo com o <em>kernel</em> selecionado, os hiperparâmetros <span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(C\)</span> e outros específicos do <em>kernel</em> devem ser determinados por validação cruzada e <em>grid search</em>.</p>
+<section id="truque-de-kernel-e-svr-para-problemas-não-lineares" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="truque-de-kernel-e-svr-para-problemas-não-lineares"><span class="header-section-number">9.2</span> Truque de <em>kernel</em> e SVR para problemas não lineares</h2>
+<p>O modelo SVR depende apenas do produto escalar dos dados de treinamento, <span class="math inline">\(\mathbf{x}_i\)</span>. Para aproximar funções mais complexas, o produto escalar <span class="math inline">\(\mathbf{x}_i\mathbf{x}_j\)</span> pode ser substituído por um <em>kernel</em>, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x}_j)\)</span>. Algumas opções incluem o <em>kernel</em> linear, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x}_j) = \mathbf{x}_i\mathbf{x}_j\)</span>, o polinomial, <span class="math inline">\(k(\mathbf{x }_i,\mathbf{x}_j) = (\gamma\mathbf{x}_i\mathbf{x}_j + c_0)^d\)</span>, e o <em>kernel</em> de base radial, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x }_j) = \exp(-||\mathbf{x}_i - \mathbf{x}_j||^2/(2\sigma^2))\)</span>. Portanto, o modelo SVR final pode ser expresso conforme a Equação <a href="#eq-svr2" class="quarto-xref">Equação&nbsp;<span>9.8</span></a>. De acordo com o <em>kernel</em> selecionado, os hiperparâmetros <span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(C\)</span> e outros específicos do <em>kernel</em> devem ser determinados por validação cruzada e <em>grid search</em> ou busca iterativa.</p>
 <p><span id="eq-svr2"><span class="math display">\[
 \hat{y} = \sum_{i=1}^n(\alpha_i - \alpha_i^*)k(\mathbf{x}_i,\mathbf{x}) + b
-\tag{10.8}\]</span></span></p>
+\tag{9.8}\]</span></span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros gerais a serem otimizados em modelos de regressão por vetores de suporte são o custo, <span class="math inline">\(C\)</span>, e a largura da margem, <span class="math inline">\(\varepsilon\)</span>. Ao se considerar o <em>kernel</em> polinomial os hiperparâmetros adicionais são o grau, <span class="math inline">\(d\)</span>, e o fator de escala <span class="math inline">\(\gamma\)</span>. No caso do <em>kernel</em> radial, consta o termo <span class="math inline">\(\sigma\)</span> como hiperparâmetro adicional.</p>
+</div>
+</div>
 </section>
-<section id="exemplos-de-regressão-por-vetores-de-suporte" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="exemplos-de-regressão-por-vetores-de-suporte"><span class="header-section-number">10.3</span> Exemplos de regressão por vetores de suporte</h2>
-<p>Na <a href="#fig-svrlin" class="quarto-xref">Figura&nbsp;<span>10.2</span></a> observa-se um modelo SVR em linha preta contínua para um caso de regressão simples, sendo utilizado um <em>kernel</em> linear. As observações que são vetores de suporte são destacadas em triângulos verdes. A título de comparação, o modelo plotado em linha tracejada azul consiste em um modelo de regressão linear simples obtido por mínimos quadrados.</p>
+<section id="exemplos-de-regressão-por-vetores-de-suporte" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="exemplos-de-regressão-por-vetores-de-suporte"><span class="header-section-number">9.3</span> Exemplos de regressão por vetores de suporte</h2>
+<p>Na <a href="#fig-svrlin" class="quarto-xref">Figura&nbsp;<span>9.2</span></a> observa-se um modelo SVR em linha preta contínua para um caso de regressão simples, sendo utilizado um <em>kernel</em> linear. As observações que são vetores de suporte são destacadas em triângulos verdes. A título de comparação, o modelo plotado em linha tracejada azul consiste em um modelo de regressão linear simples obtido por mínimos quadrados.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code> Setting default kernel parameters  </code></pre>
@@ -435,13 +442,13 @@ L = \frac{1}{2}\mathbf{w}^T\mathbf{w} + C\sum_{i=1}^n(\xi_i + \xi_i^*) - \sum_{i
 <img src="AS_SVR_files/figure-html/fig-svrlin-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-svrlin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.2: Exemplo de regressão de vetores de suporte para caso linear
+Figura&nbsp;9.2: Exemplo de regressão de vetores de suporte para caso linear
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Outros casos mais complexos como o seguinte podem ser aproximados por SVR com a aplicação do <em>kernel</em> adequado. Na <a href="#fig-svrrad" class="quarto-xref">Figura&nbsp;<span>10.3</span></a> foi utilizado um <em>kernel</em> radial. A função considerada para simular os dados é plotada em cinza e o modelo em preto.</p>
+<p>Outros casos mais complexos como o seguinte podem ser aproximados por SVR com a aplicação do <em>kernel</em> adequado. Na <a href="#fig-svrrad" class="quarto-xref">Figura&nbsp;<span>9.3</span></a> foi utilizado um <em>kernel</em> radial. A função considerada para simular os dados é plotada em cinza e o modelo em preto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-svrrad" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -450,13 +457,13 @@ Figura&nbsp;10.2: Exemplo de regressão de vetores de suporte para caso linear
 <img src="AS_SVR_files/figure-html/fig-svrrad-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-svrrad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.3: Exemplo de regressão de vetores de suporte para caso não linear com <em>kernel</em> radial
+Figura&nbsp;9.3: Exemplo de regressão de vetores de suporte para caso não linear com <em>kernel</em> radial
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Seja um modelo para prever o preço de venda de celulares novos. A <a href="#fig-permsvr" class="quarto-xref">Figura&nbsp;<span>10.4</span></a> expõe o gráfico de importância dos preditores obtido via permutação para um modelo de regressão por vetores de suporte com <em>kernel</em> polinomial, com grau 1 definido via <em>grid search</em> e validação cruzada. Logo, o resultado obtido é similar ao do <em>kernel</em> linear. Os preditores mais importantes foram marca, resolução, memória ram e resolução vertical da câmera em pixels.</p>
+<p>Seja um modelo para prever o preço de venda de celulares novos. A <a href="#fig-permsvr" class="quarto-xref">Figura&nbsp;<span>9.4</span></a> expõe o gráfico de importância dos preditores obtido via permutação para um modelo de regressão por vetores de suporte com <em>kernel</em> polinomial, com grau 1 definido via <em>grid search</em> e validação cruzada. Logo, o resultado obtido é similar ao do <em>kernel</em> linear. Os preditores mais importantes foram marca, resolução, memória ram e resolução vertical da câmera em pixels.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-permsvr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -465,13 +472,13 @@ Figura&nbsp;10.3: Exemplo de regressão de vetores de suporte para caso não lin
 <img src="AS_SVR_files/figure-html/fig-permsvr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-permsvr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.4: Importância dos preditores por permutação para prever o preço de venda celulares novos usando SVR
+Figura&nbsp;9.4: Importância dos preditores por permutação para prever o preço de venda celulares novos usando SVR
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>A <a href="#fig-effectssvr" class="quarto-xref">Figura&nbsp;<span>10.5</span></a> expõe o gráfico de efeitos parciais dos preditores mais importantes para prver o preço de celulares usando o modelo de regressão por vetores de suporte. A marca Apple, com resolução 8K UHD, menor resolução lateral e maior resolução da altura câmera resultam em maior preço.</p>
+<p>A <a href="#fig-effectssvr" class="quarto-xref">Figura&nbsp;<span>9.5</span></a> expõe o gráfico de efeitos parciais dos preditores mais importantes para prver o preço de celulares usando o modelo de regressão por vetores de suporte. A marca Apple, com resolução 8K UHD, menor resolução lateral e maior resolução da altura câmera resultam em maior preço.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-effectssvr" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -480,18 +487,18 @@ Figura&nbsp;10.4: Importância dos preditores por permutação para prever o pre
 <img src="AS_SVR_files/figure-html/fig-effectssvr-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-effectssvr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.5: Efeitos parciais dos preditores para prever o preço de venda de celulares novos
+Figura&nbsp;9.5: Efeitos parciais dos preditores para prever o preço de venda de celulares novos
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="implementações-em-r" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">10.4</span> Implementações em R</h2>
+<section id="implementações-em-r" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="implementações-em-r"><span class="header-section-number">9.4</span> Implementações em R</h2>
 <p>A seguir serão expostas as implementações necessárias para obter os resultados do capítulo.</p>
-<section id="regresssão-por-vetores-de-suporte-com-kernel-polinomial" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="regresssão-por-vetores-de-suporte-com-kernel-polinomial"><span class="header-section-number">10.4.1</span> Regresssão por vetores de suporte com <em>kernel</em> polinomial</h3>
+<section id="regresssão-por-vetores-de-suporte-com-kernel-polinomial" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="regresssão-por-vetores-de-suporte-com-kernel-polinomial"><span class="header-section-number">9.4.1</span> Regresssão por vetores de suporte com <em>kernel</em> polinomial</h3>
 <p>Obtenção dos pacotes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjdatar)</span>
@@ -508,7 +515,7 @@ Figura&nbsp;10.5: Efeitos parciais dos preditores para prever o preço de venda 
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(split)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>dados_teste  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Definição da receita, modelo, <em>grid</em>, workflow e particionamento dos dados para validação cruzada. O modelo é definido via <code>svr_poly</code> com hiperparâmetros <code>degree</code> que consiste no grau do polinômio, <span class="math inline">\(d\)</span>; <code>scale_factor</code> que consiste no <span class="math inline">\(\gamma\)</span> do kernel polinomial, <span class="math inline">\(k(\mathbf{x }_i,\mathbf{x}_j) = (\gamma\mathbf{x}_i\mathbf{x}_j + c_0)^d\)</span>; <code>cost</code> que determina o custo de violar a margem, <span class="math inline">\(C\)</span> da <a href="#eq-insloss" class="quarto-xref">Equação&nbsp;<span>10.3</span></a>; e <code>margin</code> que determina a largura da margem, <span class="math inline">\(\varepsilon\)</span> da <a href="#eq-loss" class="quarto-xref">Equação&nbsp;<span>10.2</span></a>.</p>
+<p>Definição da receita, modelo, workflow e particionamento dos dados para validação cruzada. O modelo é definido via <code>svr_poly</code> com hiperparâmetros <code>degree</code> que consiste no grau do polinômio, <span class="math inline">\(d\)</span>; <code>scale_factor</code> que consiste no <span class="math inline">\(\gamma\)</span> do kernel polinomial, <span class="math inline">\(k(\mathbf{x }_i,\mathbf{x}_j) = (\gamma\mathbf{x}_i\mathbf{x}_j + c_0)^d\)</span>; <code>cost</code> que determina o custo de violar a margem, <span class="math inline">\(C\)</span> da <a href="#eq-insloss" class="quarto-xref">Equação&nbsp;<span>9.3</span></a>; e <code>margin</code> que determina a largura da margem, <span class="math inline">\(\varepsilon\)</span> da <a href="#eq-loss" class="quarto-xref">Equação&nbsp;<span>9.2</span></a>. Foi fornecido um <em>grid</em> de preenchimento de espaço viável, caso opte-se pela realização do <em>grid search</em>. Entretanto, devido ao número alto de hiperparâmetros, recomenda-se realizar busca iterativa.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(Preco <span class="sc">~</span> ., <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">|&gt;</span></span>
@@ -532,27 +539,39 @@ Figura&nbsp;10.5: Efeitos parciais dos preditores para prever o preço de venda 
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(svr_spec)</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>grid_svr <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cost</span>(),        </span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">degree</span>(), </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_factor</span>(),</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">svm_margin</span>(),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels =</span> <span class="dv">3</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, <span class="at">v =</span> <span class="dv">5</span>, <span class="at">repeats =</span> <span class="dv">1</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># receita |&gt;  prep() |&gt;  bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># grid_svr &lt;- grid_space_filling(</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   cost(),</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#   degree(),</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#   scale_factor(),</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   svm_margin(),</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#   size = 50)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, <span class="at">v =</span> <span class="dv">5</span>, <span class="at">repeats =</span> <span class="dv">1</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># receita |&gt;  prep() |&gt;  bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Treinamento do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  wf_svr,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> folds,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid      =</span> grid_svr</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tune_res &lt;- tune_grid(</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   wf_svr,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   resamples = folds,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   grid      = grid_svr</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>tune_res <span class="ot">&lt;-</span> wf_svr <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_sim_anneal</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">resamples =</span> folds,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">iter      =</span> <span class="dv">25</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">initial   =</span> <span class="dv">10</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">param_info =</span> <span class="fu">extract_parameter_set_dials</span>(wf_svr) <span class="sc">|&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">finalize</span>(dados_treino),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">control   =</span> <span class="fu">control_sim_anneal</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">verbose_iter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">no_improve =</span> <span class="dv">5</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">cooling_coef =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">restart =</span> <span class="dv">3</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Extraindo melhor modelo, finalizando o workflow e estimando para os dados de treino.</p>
 <div class="cell">
@@ -627,9 +646,9 @@ Figura&nbsp;10.5: Efeitos parciais dos preditores para prever o preço de venda 
 <span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_svr)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="regresssão-por-vetores-de-suporte-com-kernel-radial" class="level3" data-number="10.4.2">
-<h3 data-number="10.4.2" class="anchored" data-anchor-id="regresssão-por-vetores-de-suporte-com-kernel-radial"><span class="header-section-number">10.4.2</span> Regresssão por vetores de suporte com <em>kernel</em> radial</h3>
-<p>O <em>kernel</em> radial contém o hiperparâmetro <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x }_j) = \exp(-||\mathbf{x}_i - \mathbf{x}_j||^2/(2\sigma^2))\)</span>. Sugere-se aqui um <em>grid</em> de preenchimento de espaço viável.</p>
+<section id="regresssão-por-vetores-de-suporte-com-kernel-radial" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="regresssão-por-vetores-de-suporte-com-kernel-radial"><span class="header-section-number">9.4.2</span> Regresssão por vetores de suporte com <em>kernel</em> radial</h3>
+<p>O <em>kernel</em> radial contém o hiperparâmetro <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(k(\mathbf{x}_i,\mathbf{x }_j) = \exp(-||\mathbf{x}_i - \mathbf{x}_j||^2/(2\sigma^2))\)</span>. Sugere-se aqui um <em>grid</em> de preenchimento de espaço viável, caso opte-se por realizar <em>grid search</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>svr_spec <span class="ot">&lt;-</span> <span class="fu">svm_rbf</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">cost      =</span> <span class="fu">tune</span>(),</span>
@@ -655,10 +674,10 @@ Figura&nbsp;10.5: Efeitos parciais dos preditores para prever o preço de venda 
 <p>Vapnik, V. N. (1999). An overview of statistical learning theory. IEEE transactions on neural networks, 10(5), 988-999.</p>
 <p>Vapnik, V. (2013). The nature of statistical learning theory. Springer science &amp; business media.</p>
 </section>
-<section id="exercícios" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">10.5</span> Exercícios</h2>
+<section id="exercícios" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">9.5</span> Exercícios</h2>
 <ol type="1">
-<li><p>Seja o conjunto de dados <code>celularesusados</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando máquinas de vetores de suporte com <em>kernel</em> polinomial. Faça validação cruzada, <em>grid search</em> e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
+<li><p>Seja o conjunto de dados <code>celularesusados</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando máquinas de vetores de suporte com <em>kernel</em> polinomial. Faça validação cruzada, busca iterativa dos hiperparâmetros e obtenha os níveis ótimos destes.</p></li>
 <li><p>Finalize o modelo, realize previsões e obtenha as métricas de desempenho para os dados de teste.</p></li>
 <li><p>Realize o estudo de importância dos preditores via permutação.</p></li>
 <li><p>Repita os exercícios anteriores usando o <em>kernel</em> radial.</p></li>
@@ -1087,13 +1106,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_GAM.html" class="pagination-link" aria-label="Regressão por splines e modelos aditivos generalizados">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span>
+      <a href="./AS_boosting.html" class="pagination-link" aria-label="Regressão por máquinas de reforço de gradiente">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressão por máquinas de reforço de gradiente</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./AS_nnet.html" class="pagination-link" aria-label="Redes neurais para regressão">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

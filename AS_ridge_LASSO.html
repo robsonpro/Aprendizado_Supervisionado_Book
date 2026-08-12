@@ -215,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -2103,7 +2103,7 @@ Figura&nbsp;5.5: Minimização da perda quadrática restrita ao caso rígido e L
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="ot">&lt;-</span> <span class="fu">training</span>(dados_split)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dados_teste <span class="ot">&lt;-</span> <span class="fu">testing</span>(dados_split)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Definindo a receita, método e workflow. A receita com fórmula <code>Preco ~ .</code>, implica em um modelo que considera todas as colunas como preditores exceto a resposta. Foi incluído o <code>step_ns</code> para suavizar alguns preditores via spline natural (caso queira, pode-se comentar tal linha para comparar o modelo de regressão linear múltipla com e sem regularização rígida). O modelo de regressão rígida também é definido via <code>linear_reg</code>, porém com argumento <code>penalty</code> diferente de zero, o qual consiste no parâmetro de regularização <span class="math inline">\(\lambda\)</span>. Recomenda-se usar <code>penalty = tune()</code>, de forma a otimizá-lo. Se <code>mixture = 0</code>, faz-se regularização rígida. Sugere-se, tanto para regressão rígida quanto para LASSO, <code>set_engine("glmnet")</code>. Define-se um modelo de regressão linear múltipla sem regularização, para fins de comparação.</p>
+<p>Definindo a receita, método e workflow. A receita com fórmula <code>Preco ~ .</code>, implica em um modelo que considera todas as colunas como preditores exceto a resposta. Foi incluído o <code>step_ns</code> para suavizar alguns preditores via <em>spline</em> natural (caso queira, pode-se comentar tal linha para comparar o modelo de regressão linear múltipla com e sem regularização rígida). O modelo de regressão rígida também é definido via <code>linear_reg</code>, porém com argumento <code>penalty</code> diferente de zero, o qual consiste no parâmetro de regularização <span class="math inline">\(\lambda\)</span>. Recomenda-se usar <code>penalty = tune()</code>, de forma a otimizá-lo. Se <code>mixture = 0</code>, faz-se regularização rígida. Sugere-se, tanto para regressão rígida quanto para LASSO, <code>set_engine("glmnet")</code>. Define-se um modelo de regressão linear múltipla sem regularização, para fins de comparação.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>

@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AS_GAM.html" rel="next">
+<link href="./AS_SVR.html" rel="next">
 <link href="./AS_cv.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -215,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_cv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -226,50 +226,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AS_GAM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./AS_SVR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_nnet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Redes neurais para regressão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Introdução à classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_logreg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Classificação via regressão logística</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_treec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Classificação via árvores de decisão e floresta aleatória</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_lda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Classificação via análise discriminante</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./AS_svm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Máquinas de vetores de suporte</span></span></a>
   </div>
 </li>
     </ul>
@@ -326,7 +320,7 @@ window.Quarto = {
 
 <section id="máquinas-de-reforço-de-gradiente" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="máquinas-de-reforço-de-gradiente"><span class="header-section-number">8.1</span> Máquinas de reforço de gradiente</h2>
-<p>As máquinas de reforço de gradiente (<em>gradient boosting machines</em> - GBM) foram propostas por Gerome Friedman e consistem em um método de aprendizado por reforço que visa aproximar o gradiente da função perda, ou de forma mais simples, visa aproximar o erro de previsão e diminuir este a cada iteração do método. O conceito de aprendizado por reforço está relacionado ao fato de o método, de certa forma, aprender através do erro, uma vez que vai melhorando a previsão a cada tentativa ou iteração, a partir dos valores residuais atualizados. O gradiente ou erro é gradativamente reduzido de forma iterativa considerando uma taxa de aprendizagem. O método foi proposto inicialmente considerando árvores de decisão/regressão, mas pode ser implementado utilizado regressão por mínimos quadrados.</p>
+<p>As máquinas de reforço de gradiente (<em>gradient boosting machines</em> - GBM) foram propostas por Jerome Friedman e consistem em um método de aprendizado por reforço que visa aproximar o gradiente da função perda, ou de forma mais simples, visa aproximar o erro de previsão e diminuir este a cada iteração do método. O conceito de aprendizado por reforço está relacionado ao fato de o método, de certa forma, aprender através do erro, uma vez que vai melhorando a previsão a cada tentativa ou iteração, a partir dos valores residuais atualizados. O gradiente ou erro é gradativamente reduzido de forma iterativa considerando uma taxa de aprendizagem. O método foi proposto inicialmente considerando árvores de decisão/regressão, mas pode ser implementado utilizado regressão por mínimos quadrados.</p>
 <p>Um algoritmo GBM simplista do método GBM para regressão é apresentado à seguir:</p>
 <ol type="1">
 <li>Defina <span class="math inline">\(\hat{f}(\mathbf{x})=0\)</span> e <span class="math inline">\(\varepsilon_i = y_i\)</span> para todos dados de treino.</li>
@@ -353,14 +347,14 @@ Dica
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>O GBM, <span class="math inline">\(\hat{f}_m(\mathbf{x})\)</span> foi inicialmente implementado a partir de modelos de árvore com apenas uma partição e, portanto, dois nós terminais ou regiões, sendo, portanto, um aprendiz fraco (<em>weak leaner</em>). Modelos com árvores com duas partições ou mais implicam em modelos com interação. Sugere-se definir o número ideal de partições finais via validação cruzada.</p>
+<p>O GBM, <span class="math inline">\(\hat{f}_m(\mathbf{x})\)</span> foi inicialmente implementado a partir de modelos de árvore com apenas uma partição e, portanto, dois nós terminais ou regiões, sendo, portanto, um aprendiz fraco (<em>weak learner</em>). Modelos com árvores com duas partições ou mais implicam em modelos com interação. Sugere-se definir o número ideal de partições finais via validação cruzada.</p>
 </div>
 </div>
 <p>A função perda quadrática, comumente usada em problemas de regressão, é usada no algoritmo de aprendizado por reforço, conforme <a href="#eq-losgbm" class="quarto-xref">Equação&nbsp;<span>8.1</span></a>.</p>
 <p><span id="eq-losgbm"><span class="math display">\[L = \frac{1}{2}(y - \hat{f}(\mathbf{x}))^2 \tag{8.1}\]</span></span></p>
-<p>A divisão por 2 visa facilitar os cálculos no algoritmo de aprendizado por reforço. Tomando a derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.2</span></a>.</p>
+<p>A divisão por 2 visa facilitar os cálculos no algoritmo de aprendizado por reforço. Tomando o negativo da derivada de <span class="math inline">\(L\)</span> em relação a <span class="math inline">\(f\)</span> obtém-se o valor residual ou erro em relação à resposta de interesse, conforme <a href="#eq-gradloss" class="quarto-xref">Equação&nbsp;<span>8.2</span></a>.</p>
 <p><span id="eq-gradloss"><span class="math display">\[\begin{aligned}
-\frac{\partial L}{\partial f} = y - \hat{f}(\mathbf{x}) = \varepsilon
+-\frac{\partial L}{\partial f} = y - \hat{f}(\mathbf{x}) = \varepsilon
 \end{aligned} \tag{8.2}\]</span></span></p>
 <p>Portanto, em cada iteração, o algoritmo, ao aproximar uma árvore considerando <span class="math inline">\(n\)</span> observações das variáveis regressoras, <span class="math inline">\(\mathbf{x}_i\)</span>, em relação à <span class="math inline">\(n\)</span> valores residuais, <span class="math inline">\(\varepsilon_i\)</span>, aproxima o gradiente da função perda.</p>
 <section id="gbm-para-regressão-passo-a-passo" class="level3" data-number="8.1.1">
@@ -1441,7 +1435,7 @@ Tabela&nbsp;8.2: Previsão e resíduos iniciais do GBM
 </figure>
 </div>
 </div>
-<p>Fazendo <span class="math inline">\(m=1\)</span>, estima-se a primeira árvore, <span class="math inline">\(\hat{f} = T\)</span>, para os resíduos em função das variáveis independentes, <span class="math inline">\((x_1,x_2,\varepsilon)_i\)</span>, <span class="math inline">\(i=1,...,N\)</span>, conforme segue. Na primeira iteração, uma vez que <span class="math inline">\(\hat f(\mathbf x)_i = 0\)</span>, tem-se <span class="math inline">\(\varepsilon_i= y_i\)</span>, <span class="math inline">\(\forall i\)</span>.</p>
+<p>Fazendo <span class="math inline">\(m=1\)</span>, estima-se a primeira árvore, <span class="math inline">\(\hat{f} = T\)</span>, para os resíduos em função das variáveis independentes, <span class="math inline">\((x_1,x_2,\varepsilon)_i\)</span>, <span class="math inline">\(i=1,...,n\)</span>, conforme segue. Na primeira iteração, uma vez que <span class="math inline">\(\hat f(\mathbf x)_i = 0\)</span>, tem-se <span class="math inline">\(\varepsilon_i= y_i\)</span>, <span class="math inline">\(\forall i\)</span>.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>node), split, n, deviance, yval
@@ -3596,7 +3590,6 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 <th id="y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">y</th>
 <th id="f_hat" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f_hat</th>
 <th id="e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">e</th>
-<th id="f" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">f</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
@@ -3604,81 +3597,71 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 <td class="gt_row gt_right" headers="x1">-0.08</td>
 <td class="gt_row gt_right" headers="x2">1.24</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f_hat">1.89511</td>
+<td class="gt_row gt_right" headers="f_hat">2.082286</td>
 <td class="gt_row gt_right" headers="e">0.257714</td>
-<td class="gt_row gt_right" headers="f">2.082286</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">0.84</td>
 <td class="gt_row gt_right" headers="x2">2.29</td>
 <td class="gt_row gt_right" headers="y">2.76</td>
-<td class="gt_row gt_right" headers="f_hat">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.486516</td>
 <td class="gt_row gt_right" headers="e">0.273484</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.46</td>
 <td class="gt_row gt_right" headers="x2">2.42</td>
 <td class="gt_row gt_right" headers="y">2.34</td>
-<td class="gt_row gt_right" headers="f_hat">2.09664</td>
+<td class="gt_row gt_right" headers="f_hat">2.194589</td>
 <td class="gt_row gt_right" headers="e">0.145411</td>
-<td class="gt_row gt_right" headers="f">2.194589</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.55</td>
 <td class="gt_row gt_right" headers="x2">0.71</td>
 <td class="gt_row gt_right" headers="y">1.68</td>
-<td class="gt_row gt_right" headers="f_hat">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.790359</td>
 <td class="gt_row gt_right" headers="e">-0.110359</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">0.74</td>
 <td class="gt_row gt_right" headers="x2">2.07</td>
 <td class="gt_row gt_right" headers="y">3.01</td>
-<td class="gt_row gt_right" headers="f_hat">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.486516</td>
 <td class="gt_row gt_right" headers="e">0.523484</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.11</td>
 <td class="gt_row gt_right" headers="x2">1.19</td>
 <td class="gt_row gt_right" headers="y">1.84</td>
-<td class="gt_row gt_right" headers="f_hat">1.89511</td>
+<td class="gt_row gt_right" headers="f_hat">2.082286</td>
 <td class="gt_row gt_right" headers="e">-0.242286</td>
-<td class="gt_row gt_right" headers="f">2.082286</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-0.17</td>
 <td class="gt_row gt_right" headers="x2">3.51</td>
 <td class="gt_row gt_right" headers="y">2.61</td>
-<td class="gt_row gt_right" headers="f_hat">2.29934</td>
+<td class="gt_row gt_right" headers="f_hat">2.486516</td>
 <td class="gt_row gt_right" headers="e">0.123484</td>
-<td class="gt_row gt_right" headers="f">2.486516</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-1.09</td>
 <td class="gt_row gt_right" headers="x2">1.73</td>
 <td class="gt_row gt_right" headers="y">2.38</td>
-<td class="gt_row gt_right" headers="f_hat">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.790359</td>
 <td class="gt_row gt_right" headers="e">0.589641</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="x1">-3.01</td>
 <td class="gt_row gt_right" headers="x2">3.56</td>
 <td class="gt_row gt_right" headers="y">2.10</td>
-<td class="gt_row gt_right" headers="f_hat">2.09664</td>
+<td class="gt_row gt_right" headers="f_hat">2.194589</td>
 <td class="gt_row gt_right" headers="e">-0.094589</td>
-<td class="gt_row gt_right" headers="f">2.194589</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="x1">-0.59</td>
 <td class="gt_row gt_right" headers="x2">1.76</td>
 <td class="gt_row gt_right" headers="y">1.75</td>
-<td class="gt_row gt_right" headers="f_hat">1.69241</td>
+<td class="gt_row gt_right" headers="f_hat">1.790359</td>
 <td class="gt_row gt_right" headers="e">-0.040359</td>
-<td class="gt_row gt_right" headers="f">1.790359</td>
 </tr>
 </tbody>
 </table>
@@ -3689,7 +3672,20 @@ Tabela&nbsp;8.6: Previsão e resíduos da quarta iteração do GBM
 </figure>
 </div>
 </div>
-<p>Atulizando-se as previsões e resíduos em cada iteração, observa-se que os resultados foram gradativamente melhorados.</p>
+<p>Atualizando-se as previsões e resíduos em cada iteração, observa-se que os resultados foram gradativamente melhorados.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros a serem otimizados em modelos de regressão por GBM são a taxa de aprendizagem, <span class="math inline">\(\lambda\)</span>, e o número de iterações, <span class="math inline">\(M\)</span>.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="light-gbm" class="level2" data-number="8.2">
@@ -3723,6 +3719,19 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os hiperparâmetros a serem otimizados em modelos de regressão por <em>light</em> GBM são a taxa de aprendizagem, <span class="math inline">\(\lambda\)</span>, o número de iterações, <span class="math inline">\(M\)</span>, profundidade da árvore, número mínimo de observações por partição, <code>min_n</code>, e a redução de perda (<code>loss_reduction</code>) a qual representa a melhoria na função de perda obtida ao dividir um nó em folhas.</p>
 </div>
 </div>
 </section>
@@ -3766,7 +3775,7 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   prep() |&gt; </span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   bake(dados_treino)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Definindo o modelo via <code>boost_tree</code>. O <em>light</em> GBM apresenta muitos hiperparâmetros, sendo os principais o número de iterações (<code>trees</code>) e a taxa de aprendizagem (<code>learn_rate</code>). O <code>mtry</code> consiste no número de preditores aleatoriamente selecionados entre os disponíveis em cada particionamento binário recursivo, como no método floresta aleatória, <span class="math inline">\(m&lt;k\)</span>. O hiperparâmetro <code>tree_depth</code> consiste na profundidade da árvore, ou no número de partições, sendo um critério de parada para cada árvore.Já o <code>min_n</code> define o número mínimo de observações por partição. Outro critério de parada consiste na redução na função perda, <code>loss_reduction</code>, para prosseguir com as partições. Posteriormente definiu-se um grid irregular via <code>grid_space_filling()</code>, além das partições nos dados e o workflow.</p>
+<p>Definindo o modelo via <code>boost_tree</code>. O <em>light</em> GBM apresenta muitos hiperparâmetros, sendo os principais o número de iterações (<code>trees</code>) e a taxa de aprendizagem (<code>learn_rate</code>). O <code>mtry</code> consiste no número de preditores aleatoriamente selecionados entre os disponíveis em cada particionamento binário recursivo, como no método floresta aleatória, <span class="math inline">\(m&lt;k\)</span>. O hiperparâmetro <code>tree_depth</code> consiste na profundidade da árvore, ou no número de partições, sendo um critério de parada para cada árvore.Já o <code>min_n</code> define o número mínimo de observações por partição. Outro critério de parada consiste na redução na função perda, <code>loss_reduction</code>, para prosseguir com as partições. Um grid de preenchimento de espaço viável poderia ser usado no <em>grid search</em> com <code>grid_space_filling()</code>, porém será realizada busca iterativa. As partições dos dados para validação cruzada foram definidas além do workflow.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lgbm_model <span class="ot">&lt;-</span> <span class="fu">boost_tree</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mtry =</span> <span class="fu">tune</span>(), <span class="at">trees =</span> <span class="fu">tune</span>(), <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
@@ -3775,13 +3784,13 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lightgbm"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>lgbm_grid <span class="ot">&lt;-</span> <span class="fu">grid_space_filling</span>(<span class="fu">finalize</span>(<span class="fu">mtry</span>(), dados_treino),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">trees</span>(),</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">tree_depth</span>(),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">learn_rate</span>(),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">min_n</span>(),</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">loss_reduction</span>(),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> <span class="dv">50</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># lgbm_grid &lt;- grid_space_filling(finalize(mtry(), dados_treino),</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 trees(),</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 tree_depth(),</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 learn_rate(),</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 min_n(),</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 loss_reduction(),</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 size = 50)</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">234</span>)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>cell_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(dados_treino, </span>
@@ -3792,113 +3801,137 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(receita) <span class="sc">|&gt;</span></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lgbm_model) </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Em seguida, é realizado o treinamento do modelo com <em>grid search</em> e validação cruzada.</p>
+<p>Em seguida, é realizado o treinamento do modelo com busca iterativa via arrefecimento simulado e validação cruzada. A abordagem via <em>grid search</em> poderia ser usada com código comentado.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="ot">&lt;-</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  lgbm_wf <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> cell_folds,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> lgbm_grid</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tune_grid(</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   resamples = cell_folds,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   grid = lgbm_grid</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   )</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_sim_anneal</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">resamples =</span> folds,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">iter      =</span> <span class="dv">25</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">initial   =</span> <span class="dv">10</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">param_info =</span> <span class="fu">extract_parameter_set_dials</span>(lgbm_wf) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">finalize</span>(dados_treino),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">control   =</span> <span class="fu">control_sim_anneal</span>(<span class="at">verbose =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">verbose_iter =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">no_improve =</span> <span class="dv">5</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">cooling_coef =</span> <span class="fl">0.5</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">restart =</span> <span class="dv">3</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Métricas de desempenho versus iteração na otimização de hiperparâmetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">autoplot</span>(lgbm_res, <span class="at">type =</span> <span class="st">"performance"</span>) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"iteração"</span>,<span class="at">y=</span><span class="st">"média"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Níveis dos hiperparâmetros testados na otimização.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lgbm_res, <span class="at">metric=</span> <span class="st">"rmse"</span>, <span class="at">type =</span> <span class="st">"parameters"</span>) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"iteração"</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Desempenho dos modelos na validação cruzada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric<span class="sc">==</span> <span class="st">"rsq"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Obtenção dos níveis ótimos dos hiperparâmetros e finalização do modelo e workflow.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>best_lgbm <span class="ot">&lt;-</span> lgbm_res <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>best_wf_lgbm <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lgbm_wf, best_lgbm)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fit_lgbm_final <span class="ot">&lt;-</span> <span class="fu">fit</span>(best_wf_lgbm, <span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>best_lgbm <span class="ot">&lt;-</span> lgbm_res <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>best_wf_lgbm <span class="ot">&lt;-</span> <span class="fu">finalize_workflow</span>(lgbm_wf, best_lgbm)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fit_lgbm_final <span class="ot">&lt;-</span> <span class="fu">fit</span>(best_wf_lgbm, <span class="at">data =</span> dados_treino)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Importância das variáveis por permutação.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># function fct_reorder</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>explainer_lgbm <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> fit_lgbm_final,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>preco),</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>preco,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"SVR"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>ggplot_imp <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  metric_name <span class="ot">&lt;-</span> <span class="fu">attr</span>(obj[[<span class="dv">1</span>]], <span class="st">"loss_name"</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  metric_lab <span class="ot">&lt;-</span> <span class="fu">paste</span>(metric_name, </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"depois da permutação"</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  full_vip <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(obj) <span class="sc">%&gt;%</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_baseline_"</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  perm_vals <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span> </span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">dropout_loss =</span> <span class="fu">mean</span>(dropout_loss))</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">fct_reorder</span>(variable, dropout_loss)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(dropout_loss, variable)) </span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(obj) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(label)) <span class="sc">+</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss, <span class="at">color =</span> label),</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> label, <span class="at">fill =</span> label), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss),</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#91CBD765"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> metric_lab, </span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="cn">NULL</span>,  <span class="at">fill =</span> <span class="cn">NULL</span>,  <span class="at">color =</span> <span class="cn">NULL</span>)</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>vip_lgbm <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_lgbm, <span class="at">loss_function =</span> loss_root_mean_square)</span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_lgbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats) <span class="co"># function fct_reorder</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DALEX)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>explainer_lgbm <span class="ot">&lt;-</span> <span class="fu">explain</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model       =</span> fit_lgbm_final,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data        =</span> dados_treino <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>preco),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y           =</span> dados_treino<span class="sc">$</span>preco,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label       =</span> <span class="st">"lGBM"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">predict_function =</span> <span class="cf">function</span>(model, newdata) <span class="fu">predict</span>(model, newdata)<span class="sc">$</span>.pred,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> F</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>ggplot_imp <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  obj <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  metric_name <span class="ot">&lt;-</span> <span class="fu">attr</span>(obj[[<span class="dv">1</span>]], <span class="st">"loss_name"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  metric_lab <span class="ot">&lt;-</span> <span class="fu">paste</span>(metric_name, </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"depois da permutação"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  full_vip <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(obj) <span class="sc">%&gt;%</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_baseline_"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  perm_vals <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span> </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">dropout_loss =</span> <span class="fu">mean</span>(dropout_loss))</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> full_vip <span class="sc">%&gt;%</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(variable <span class="sc">!=</span> <span class="st">"_full_model_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">fct_reorder</span>(variable, dropout_loss)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(dropout_loss, variable)) </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(obj) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(label)) <span class="sc">+</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss, <span class="at">color =</span> label),</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> label, <span class="at">fill =</span> label), <span class="at">alpha =</span> <span class="fl">0.2</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(<span class="at">data =</span> perm_vals, <span class="fu">aes</span>(<span class="at">xintercept =</span> dropout_loss),</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">linewidth =</span> <span class="fl">1.4</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#91CBD765"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  p <span class="sc">+</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> metric_lab, </span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="cn">NULL</span>,  <span class="at">fill =</span> <span class="cn">NULL</span>,  <span class="at">color =</span> <span class="cn">NULL</span>)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>vip_lgbm <span class="ot">&lt;-</span> <span class="fu">model_parts</span>(explainer_lgbm, <span class="at">loss_function =</span> loss_root_mean_square)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot_imp</span>(vip_lgbm)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(vip)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vip(fit_lgbm_final) </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(vip)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vip(fit_lgbm_final) </span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Previsão e métricas de desempenho para os dados de teste.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pred_lgbm <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fit_lgbm_final, dados_teste),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_lgbm <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> preco, <span class="at">estimate =</span> .pred)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pred_lgbm <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fit_lgbm_final, dados_teste),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  dados_teste</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> pred_lgbm <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">metrics</span>(<span class="at">truth =</span> preco, <span class="at">estimate =</span> .pred)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>metricas</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 rmse    standard       0.363
-2 rsq     standard       0.551
-3 mae     standard       0.285</code></pre>
+1 rmse    standard       0.366
+2 rsq     standard       0.556
+3 mae     standard       0.283</code></pre>
 </div>
 </div>
 </section>
@@ -3913,7 +3946,10 @@ Figura&nbsp;8.2: Efeitos parciais dos preditores para prever o preço de revenda
 <section id="exercícios" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">8.4</span> Exercícios</h2>
 <ol type="1">
-<li><p>Seja o conjunto de dados <code>celularesnovos2025</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando o modelo <em>light</em> GBM. Faça validação cruzada, <em>grid search</em> e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
+<li><p>Seja o conjunto de dados <code>celularesnovos2025</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando o modelo <em>light</em> GBM. Faça validação cruzada com busca iterativa e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
+<li><p>Finalize o modelo, realize previsões e obtenha as métricas de desempenho para os dados de teste.</p></li>
+<li><p>Realize o estudo de importância dos preditores via permutação.</p></li>
+<li><p>Seja o conjunto de dados <code>motos_usadas2</code>. Realize a modelagem para prever o preço segundo os preditores disponíveis usando o modelo <em>light</em> GBM. Faça validação cruzada com busca iterativa e obtenha os níveis ótimos dos hiperparâmetros.</p></li>
 <li><p>Finalize o modelo, realize previsões e obtenha as métricas de desempenho para os dados de teste.</p></li>
 <li><p>Realize o estudo de importância dos preditores via permutação.</p></li>
 </ol>
@@ -4341,13 +4377,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e *grid search*">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e <em>grid search</em></span></span>
+      <a href="./AS_cv.html" class="pagination-link" aria-label="Validação cruzada e otimização de hiperparâmetros">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Validação cruzada e otimização de hiperparâmetros</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AS_GAM.html" class="pagination-link" aria-label="Regressão por splines e modelos aditivos generalizados">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por splines e modelos aditivos generalizados</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./AS_SVR.html" class="pagination-link" aria-label="Regressão por vetores de suporte">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regressão por vetores de suporte</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

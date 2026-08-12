@@ -327,7 +327,7 @@ window.Quarto = {
 
 <section id="regressão-linear-simples" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="regressão-linear-simples"><span class="header-section-number">2.1</span> Regressão linear simples</h2>
-<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que, na verdade motiva o interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Observando a <a href="AS_vicio_var.html#fig-data" class="quarto-xref">Figura&nbsp;<span>3.1</span></a>, onde são plotados dados do preço de carros modelo Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
+<p>Seja um problema onde deseja-se prever uma resposta contínua, <span class="math inline">\(y \in \mathbb{R}\)</span>, em função de um preditor também contínuo, <span class="math inline">\(x \in \mathbb{R}\)</span>. Supõe-se a disponibilidade de dados para bem descrever tal problema, o que, na verdade motiva o interesse na obtenção de um modelo apropriado. Sejam tais dados denotados por <span class="math inline">\((x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>. Para cada observação da resposta de interesse, <span class="math inline">\(y_i\)</span>, existe uma observação do preditor, <span class="math inline">\(x_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>. Observando a <a href="#fig-data" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-data</span></a>, onde são plotados dados do preço de carros modelo Honda Fit em função do ano de fabricação, parece razoável considerar a aproximação por uma função linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-data" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -346,7 +346,7 @@ Figura&nbsp;2.1: Exemplo de conjunto de dados para regressão linear simples
 <p><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_i
 \]</span></p>
-<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span>2.2</span></a> plota o modelo de regressão linear simples obtido juntamente com os dados de treino.</p>
+<p>A <a href="#fig-lm" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-lm</span></a> plota o modelo de regressão linear simples obtido juntamente com os dados de treino.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-lm" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -361,11 +361,11 @@ Figura&nbsp;2.2: Modelo de regressão linear simples
 </div>
 </div>
 </div>
-<p>Para este caso inicial, os coeficientes de regressão estimados são, <span class="math inline">\(\beta_0 = -8024077\)</span> e <span class="math inline">\(\beta_1\)</span> = 4015, sendo o modelo escrito conforme <a href="#eq-regfit1" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>, onde <span class="math inline">\(\hat y\)</span> seria o preço previsto.</p>
+<p>Para este caso inicial, os coeficientes de regressão estimados são, <span class="math inline">\(\beta_0 = -8024077\)</span> e <span class="math inline">\(\beta_1\)</span> = 4015, sendo o modelo escrito conforme <a href="#eq-regfit1" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regfit1</span></a>, onde <span class="math inline">\(\hat y\)</span> seria o preço previsto.</p>
 <p><span id="eq-regfit1"><span class="math display">\[
 \hat y = -8024077 + 4015x
 \tag{2.1}\]</span></span></p>
-<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span>2.3</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
+<p>A primeira pergunta a ser feita seria como estimar tais coeficientes de regressão. Pode-se pensar em estimativas que minimizem o erro de previsão. Conforme, plotado na <a href="#fig-erros" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-erros</span></a> em linhas verticais vermelhas, o erro de previsão seria a diferença entre o valor experimental e o previsto, <span class="math inline">\(\varepsilon_i = y_i - \hat{y}_i\)</span>, <span class="math inline">\(i = 1, ...., n\)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-erros" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -380,7 +380,7 @@ Figura&nbsp;2.3: Erros do modelo de regressão linear simples
 </div>
 </div>
 </div>
-<p>Neste sentido, as observações da variável dependente ou resposta podem ser descritas conforme <a href="#eq-obslm" class="quarto-xref">Equação&nbsp;<span>2.2</span></a>.</p>
+<p>Neste sentido, as observações da variável dependente ou resposta podem ser descritas conforme <a href="#eq-obslm" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-obslm</span></a>.</p>
 <p><span id="eq-obslm"><span class="math display">\[
 \begin{aligned}
 y_i = \hat{y}_i + \varepsilon_i \\
@@ -388,7 +388,7 @@ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\
 \end{aligned}
 \tag{2.2}\]</span></span></p>
 <p>Tomando as <span class="math inline">\(n\)</span> observações disponíveis obtidas a partir da população de interesse, <span class="math inline">\((x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\)</span>, pode-se pensar em um modelo que minimize os erros de previsão para a amostra disponível. Uma vez que supõem-se o erro normalmente distribuído, com média nula, <span class="math inline">\(\mu_\varepsilon=E(\varepsilon)=0\)</span>, e variância <span class="math inline">\(\sigma_\varepsilon^2\)</span>, <span class="math inline">\(\varepsilon \sim N(0,\sigma_\varepsilon^2)\)</span>, pode-se trabalhar a minimização da soma dos quadrados dos erros de previsão, <span class="math inline">\(\sum_{i=1}^{n}\varepsilon_i^2\)</span>.</p>
-<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> expõe as observações plotadas anteriormente, bem como os valores preditos e erros associados.</p>
+<p>A <a href="#tbl-dados" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dados</span></a> expõe as observações plotadas anteriormente, bem como os valores preditos e erros associados.</p>
 <div class="cell">
 <div id="tbl-dados" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -944,7 +944,7 @@ Tabela&nbsp;2.1: Dados de treino para regressão linear simples e previsões
 </figure>
 </div>
 </div>
-<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span>2.3</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste, neste caso, em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
+<p>A sintaxe anteriormente apresentada pode ser escrita de forma matricial, conforme <a href="#eq-obslm2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-obslm2</span></a>, onde <span class="math inline">\(\mathbf{X}_{[2 \times n]}\)</span> consiste, neste caso, em uma matriz relacionada às observações independentes, com uma coluna de valores unitários associada à <span class="math inline">\(\beta_0\)</span> e outra com as observações de <span class="math inline">\(x\)</span>, portanto associada a <span class="math inline">\(\beta_1\)</span>. o vetor coluna <span class="math inline">\(\mathbf{y}_{[n\times1]}\)</span> consiste no vetor de observações da resposta, enquanto <span class="math inline">\(\mathbf{\varepsilon}_{[n\times1]}\)</span> consiste no vetor de erros ou resíduos de previsão e <span class="math inline">\(\mathbf{\beta}_{[2\times1]}\)</span> consiste no vetor que contém os dois coeficientes de regressão.</p>
 <p><span id="eq-obslm2"><span class="math display">\[
 \begin{aligned}
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{\varepsilon}
@@ -1019,8 +1019,8 @@ L(\mathbf{\beta}) = \mathbf{\varepsilon}^T\mathbf{\varepsilon} = (\mathbf{y} - \
 \hat{\mathbf{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}(\mathbf{X}^T\mathbf{y})
 \end{aligned}
 \tag{2.4}\]</span></span></p>
-<p>A solução exposta na <a href="#eq-eqnormols" class="quarto-xref">Equação&nbsp;<span>2.4</span></a> constitui as chamadas equações normais de mínimos quadrados.</p>
-<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span>2.4</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade, homocedasticidade, bem como para identificação de observações não usuais.</p>
+<p>A solução exposta na <a href="#eq-eqnormols" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-eqnormols</span></a> constitui as chamadas equações normais de mínimos quadrados.</p>
+<p>Ao se obter um modelo de regressão por mínimos quadrados, é importante avaliar os resíduos, os quais devem ser normalmente distribuídos, independentes e homocedásticos. Tais pressuposições implicam que o modelo obtido por mínimos quadrados é paramétrico, uma vez que pressupõe-se uma distribuição para os resíduos. A <a href="#fig-resi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-resi</span></a> expõe alguns gráficos dos resíduos do modelo obtido, os quais podem servir para avaliação da normalidade, homocedasticidade, bem como para identificação de observações não usuais.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-resi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1077,7 +1077,7 @@ Nota
 <p>Os dados de treinamento, isto é, aqueles usados para estimar o modelo, são aqui denotados por <span class="math inline">\(\mathcal D_{treino} = (x_1,y_1), (x_2,y_2), \dots, (x_n,y_n)\)</span>, enquanto os dados de teste, isto é, aqueles usados para medir a capacidade de generalização do modelo, são distintos dos treino, sendo aqui denotados por <span class="math inline">\(\mathcal D_{teste} = (x'_1,y'_1), (x'_2,y'_2), \dots, (x'_m,y'_m)\)</span>. Sugere-se calcular as métricas de ajuste para os dados de teste, de forma a avaliar melhor a capacidade de generalização do modelo.</p>
 </div>
 </div>
-<p>Uma métrica usual para regressão consiste no coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span>2.5</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
+<p>Uma métrica usual para regressão consiste no coeficiente de determinação múltipla, <span class="math inline">\(R^2\)</span>, conforme <a href="#eq-r2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-r2</span></a>. O <span class="math inline">\(R^2\)</span> consiste na proporção da variabilidade dos dados explicados pelo modelo. Quanto maior é o valor de <span class="math inline">\(R^2\)</span> para os dados de teste, maior a capacidade de generalização do modelo.</p>
 <p><span id="eq-r2"><span class="math display">\[
 \begin{align}
 R^2 = 1- \frac{\sum_{i=1}^{m}(y'_i-\hat{y}'_i)^2}{\sum_{i=1}^{m}(y'_i-\overline{y}')^2},
@@ -1094,18 +1094,18 @@ Definição
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas na <a href="AS_cv.html#sec-cvgs" class="quarto-xref"><span>Seção 7.1</span></a>.</p>
+<p>A <strong>validação cruzada</strong> consiste justamente de abordagens realizadas para avaliar a capacidade de generalização do modelo. Engloba técnicas de separação dos dados para treinamento e teste dos modelos. A abordagem de separação de dados de treino e teste é a mais simples. Técnicas mais robustas serão explicitadas na <a href="#sec-cvgs" class="quarto-xref"><span class="quarto-unresolved-ref">sec-cvgs</span></a>.</p>
 </div>
 </div>
-<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span>2.6</span></a> para os dados de teste, consiste na raiz da média dos quadrados dos erros de previsão. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
+<p>A raiz do erro quadrático médio (<em>root mean square error</em> - RMSE), caculada segundo a <a href="#eq-rmse" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-rmse</span></a> para os dados de teste, consiste na raiz da média dos quadrados dos erros de previsão. O RMSE tem a mesma unidade da resposta em estudo, porém é mais impactado por <em>outliers</em>, demonstrando a influência destes no erro de previsão. Esta métrica é uma boa opção quando deseja-se mensurar o erro na mesma unidade da resposta.</p>
 <p><span id="eq-rmse"><span class="math display">\[
     RMSE (y',\hat{y}')  = \sqrt{\frac{1}{m} \sum_{i=1}^{m}{(y'_i - \hat{y}'_i)}^2}
 \tag{2.6}\]</span></span></p>
-<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span>2.7</span></a> para os dados de teste, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
+<p>O erro médio absoluto (<em>mean absolute error</em> - MAE), calculado segundo a <a href="#eq-mae" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-mae</span></a> para os dados de teste, mede a média dos valores absolutos das diferenças entre o valor real e o valor predito. Essa métrica é mais robusta a <em>outliers</em> e também mede o erro na mesma unidade de medida da resposta.</p>
 <p><span id="eq-mae"><span class="math display">\[
     MAE (y',\hat{y}')  = \frac{1}{m} \sum_{i=1}^{m}\left|y'_i - \hat{y}'_i\right|
 \tag{2.7}\]</span></span></p>
-<p>A <a href="#tbl-dadosteste" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> apresenta os dados de teste separados para avaliar o desempenho do modelo de regressão linear simples proposto. Para estas <span class="math inline">\(m=10\)</span> observações foi obtido <span class="math inline">\(R^2 = 0,99\)</span>, $RMSE = R<span class="math inline">\(2387,05\)</span> e $MAE = R<span class="math inline">\(2138,48\)</span>. Considerando a magnitude das observações da resposta com veículos na faixa de R$40000,00 a R$80000,00, pode se considerar pelos valores de RMSE e MAE, além do <span class="math inline">\(R^2\)</span> bem próximo de 1 que tem-se um bom modelo para estimar o preço de veículos Honda Fit em função do Ano de fabricação.</p>
+<p>A <a href="#tbl-dadosteste" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-dadosteste</span></a> apresenta os dados de teste separados para avaliar o desempenho do modelo de regressão linear simples proposto. Para estas <span class="math inline">\(m=10\)</span> observações foi obtido <span class="math inline">\(R^2 = 0,99\)</span>, $RMSE = R<span class="math inline">\(2387,05\)</span> e $MAE = R<span class="math inline">\(2138,48\)</span>. Considerando a magnitude das observações da resposta com veículos na faixa de R$40000,00 a R$80000,00, pode se considerar pelos valores de RMSE e MAE, além do <span class="math inline">\(R^2\)</span> bem próximo de 1 que tem-se um bom modelo para estimar o preço de veículos Honda Fit em função do Ano de fabricação.</p>
 <div class="cell">
 <div id="tbl-dadosteste" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1636,11 +1636,11 @@ Tabela&nbsp;2.2: Dados de teste para regressão linear simples e previsões
 </section>
 <section id="sec-regmul" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-regmul"><span class="header-section-number">2.2</span> Regressão linear múltipla</h2>
-<p>No caso onde há múltiplas variáveis independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-regmult" class="quarto-xref">Equação&nbsp;<span>2.8</span></a>.</p>
+<p>No caso onde há múltiplas variáveis independentes ou regressoras de interesse, <span class="math inline">\(x_1, x_2, ..., x_k\)</span>, pode-se considerar o modelo com um coeficiente linear associado a cada variável, conforme <a href="#eq-regmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmult</span></a>.</p>
 <p><span id="eq-regmult"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_kx_{ik} = \beta_0 + \sum_{j=1}^{k}\beta_jx_{ij},  
 \tag{2.8}\]</span></span></p>
-<p>ou de forma matricial segundo a <a href="#eq-regmult2" class="quarto-xref">Equação&nbsp;<span>2.9</span></a>, com <span class="math inline">\(\mathbf{X}_{[n\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
+<p>ou de forma matricial segundo a <a href="#eq-regmult2" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmult2</span></a>, com <span class="math inline">\(\mathbf{X}_{[n\times (k+1)]}\)</span> e <span class="math inline">\(\mathbf{\beta}_{[(k+1) \times 1]}\)</span>:</p>
 <p><span id="eq-regmult2"><span class="math display">\[
 \begin{aligned}
 \hat{\mathbf{y}} = \mathbf{X}\mathbf{\beta}
@@ -1670,15 +1670,15 @@ H_0:&amp; \beta_j = 0 \\
 H_1:&amp; \beta_j \neq 0, j = 1, ..., k\\
 \end{align}
 \]</span></p>
-<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span>2.10</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor diagonal na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span> correspondente a <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(|t_{0j}| &gt; t_{[\alpha/2,n-k-1]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
+<p>O teste é calculado conforme <a href="#eq-testet" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-testet</span></a>, onde <span class="math inline">\(C_j\)</span> é o valor diagonal na matriz <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span> correspondente a <span class="math inline">\(\beta_j\)</span>. A hipótese nula é rejeitada se <span class="math inline">\(|t_{0j}| &gt; t_{[\alpha/2,n-k-1]}\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância de interesse.</p>
 <p><span id="eq-testet"><span class="math display">\[
 t_{0j} = \frac{\hat{\beta}_j}{\sqrt{C_jSS_E/(n-k-1)}}
 \tag{2.10}\]</span></span></p>
-<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span>2.11</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança para encontrar os verdadeiros valores dos coeficientes de regressão.</p>
+<p>Analogamente, estimativas intervalares para os coeficientes podem ser obtidas conforme <a href="#eq-betaic" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-betaic</span></a>, as quais consistem em intervalos que garantem <span class="math inline">\(\gamma = 1-\alpha\)</span> de confiança para encontrar os verdadeiros valores dos coeficientes de regressão.</p>
 <p><span id="eq-betaic"><span class="math display">\[
 \hat{\beta}_j \pm t_{[\alpha/2,n-k-1]}\sqrt{C_jSS_E/(n-k-1)}
 \tag{2.11}\]</span></span></p>
-<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span>2.5</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros Honda Fit usados em função do ano de fabricação e quilometragem.</p>
+<p>A <a href="#fig-mulreg" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-mulreg</span></a> ilustra graficamente um modelo de regressão linear múltipla para prever o preço de carros Honda Fit usados em função do ano de fabricação e quilometragem.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mulreg" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1693,11 +1693,11 @@ Figura&nbsp;2.5: Modelo de regressão linear múltipla para prever o preço de c
 </div>
 </div>
 </div>
-<p>O modelo pode ser escrito segundo a <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>2.12</span></a>, onde <span class="math inline">\(x_1\)</span> consiste no Ano de fabricação e <span class="math inline">\(x_2\)</span> na quilometragem. Portanto, quanto maior o ano e menor a quilometragem, maior o preço estimado. Os coeficientes foram estimados nas unidades originais das variáveis. Porém, para fins de inferência, é importante padronizar as variáveis regressoras.</p>
+<p>O modelo pode ser escrito segundo a <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modelregmult</span></a>, onde <span class="math inline">\(x_1\)</span> consiste no Ano de fabricação e <span class="math inline">\(x_2\)</span> na quilometragem. Portanto, quanto maior o ano e menor a quilometragem, maior o preço estimado. Os coeficientes foram estimados nas unidades originais das variáveis. Porém, para fins de inferência, é importante padronizar as variáveis regressoras.</p>
 <p><span id="eq-modelregmult"><span class="math display">\[
 \hat{y} = -7,560\times 10^6 +3,788\times 10^3x_1 -6,789\times 10^{-2}x_2
 \tag{2.12}\]</span></span></p>
-<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>2.13</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span>2.12</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,n-k-1}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos.</p>
+<p>O teste t para os coeficientes de regressão é apresentado na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult</span></a>. As duas variáveis regressoras foram antes normalizadas, conforme <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-normx</span></a>, onde <span class="math inline">\(\mu_j\)</span> é a média e <span class="math inline">\(\sigma_j\)</span> o desvio-padrão de <span class="math inline">\(x_j\)</span>. Ao realizar tal normalização para todas as variáveis, <span class="math inline">\(j=1,...,k\)</span>, <span class="math inline">\(x_{j,norm}\)</span> terá média nula e desvio-padrão unitário, evitando efeito de escala e de unidade de medida na inferência. Devido à normalização, os coeficientes apresentados na Tabela, diferem dos apresentados na <a href="#eq-modelregmult" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modelregmult</span></a>. Como, <span class="math inline">\(|t_{\alpha/2,n-k-1}|\)</span> = 2,2, apenas o intercepto e o coeficiente relacionado ao Ano são significativos.</p>
 <p><span id="eq-normx"><span class="math display">\[
 x_{j,norm} = \frac{x_j-\mu_j}{\sigma_j}
 \tag{2.13}\]</span></span></p>
@@ -2213,7 +2213,7 @@ Tabela&nbsp;2.3: Teste t para os coeficientes do modelo de regressão linear mú
 </figure>
 </div>
 </div>
-<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
+<p>Ainda em relação à interpretação do teste t, exposto na <a href="#tbl-ttestregmult" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult</span></a>, pode-se também considerar o p-valor (<em>p-value</em>) que é a probabilidade de erro na rejeição da hipótese nula, <span class="math inline">\(H_0\)</span>, associada ao valor calculado <span class="math inline">\(t_0\)</span>. Se <span class="math inline">\(p-value &lt; \alpha\)</span>, onde <span class="math inline">\(\alpha\)</span> é o nível de significância adotado, rejeita-se <span class="math inline">\(H_0\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2227,7 +2227,7 @@ Importante
 <p>O p-valor não é a probabilidade de <span class="math inline">\(H_0\)</span> ser verdadeira, nem a probabilidade de os dados terem ocorrido por acaso. Ele representa a probabilidade de se obter um resultado tão ou mais extremo que o observado, assumindo <span class="math inline">\(H_0\)</span> verdadeira. Um p-valor significativo (<span class="math inline">\(p &lt; \alpha\)</span>) não implica relevância prática - apenas indica evidência estatística contra <span class="math inline">\(H_0\)</span>. O efeito e o contexto do problema devem sempre ser considerados na interpretação.</p>
 </div>
 </div>
-<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
+<p>A <a href="#tbl-ic" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ic</span></a> apresenta os intervalos de confiança de 0,95 para os coeficientes codificados.</p>
 <div class="cell">
 <div id="tbl-ic" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2723,7 +2723,7 @@ Tabela&nbsp;2.4: Intervalos de confiança para os coeficientes de regressão mú
 </figure>
 </div>
 </div>
-<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo, um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a>.</p>
+<p>Além de considerar termos de múltiplas variáveis, é possível considerar a interação entre estas, colocando na matriz <span class="math inline">\(\mathbf{X}\)</span> colunas com multiplicação ou produto das variáveis de interesse e no modelo termos da forma <span class="math inline">\(\beta_{ij}x_ix_j\)</span>. Para o caso em estudo, um modelo de regressão múltipla com interação é apresentado na <a href="#tbl-ttestregmult2" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-ttestregmult2</span></a>.</p>
 <div class="cell">
 <div id="tbl-ttestregmult2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -3245,7 +3245,7 @@ Importante
 </div>
 <section id="codificação-de-variáveis-categóricas-em-regressão-múltipla" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="codificação-de-variáveis-categóricas-em-regressão-múltipla"><span class="header-section-number">2.2.1</span> Codificação de variáveis categóricas em regressão múltipla</h3>
-<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a> expõe algumas observações disponíveis.</p>
+<p>Ainda considerando o problema de regressão do preço de revenda de carros considerando o ano e a quilometragem, seja o caso onde deseja-se considerar uma terceira variável regressora que determina o modelo ou tipo do veículo. Portanto, além do Honda Fit, consideremos também os modelos Toyota Corolla e Chevrolet Onix. A <a href="#tbl-carrr" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carrr</span></a> expõe algumas observações disponíveis.</p>
 <div class="cell">
 <div id="tbl-carrr" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -3775,11 +3775,11 @@ x_4 = \bigg\{
 0, \text{ cc}\\
 \end{matrix}
 \]</span></p>
-<p>O modelo de regressão pode ser escrito conforme <a href="#eq-regmultdummy" class="quarto-xref">Equação&nbsp;<span>2.14</span></a>.</p>
+<p>O modelo de regressão pode ser escrito conforme <a href="#eq-regmultdummy" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-regmultdummy</span></a>.</p>
 <p><span id="eq-regmultdummy"><span class="math display">\[
 \hat{y}_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \beta_3x_{i3} + \beta_4x_{i4}
 \tag{2.14}\]</span></span></p>
-<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Corolla</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para <code>Fit</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Onix</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span>2.7</span></a>.</p>
+<p>Fica claro que, neste tipo de modelo, o coeficiente <span class="math inline">\(\beta_3\)</span> é uma constante adicionada a <span class="math inline">\(\beta_0\)</span> caso o modelo do carro seja <code>Corolla</code>. O mesmo pode ser dito de <span class="math inline">\(\beta_4\)</span> para <code>Fit</code>. Portanto, tais termos não mudam a inclinação do modelo, apenas o intercepto. Logo, <span class="math inline">\(\beta_0\)</span> seria a constante para o modelo <code>Onix</code>. É possível adicionar termos de interação entre variáveis dicotômicas e variáveis contínuas, o que na prática serviria para mudar a inclinação ou coeficientes das variáveis contínuas. Retomando a criação de variáveis dicotômicas para o exemplo em questão, tem-se as colunas com tais variáveis criadas na <a href="#tbl-carsint" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-carsint</span></a>.</p>
 <div class="cell">
 <div id="tbl-carsint" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -4300,7 +4300,7 @@ Tabela&nbsp;2.7: Dados de carros com colunas das variáveis dicotômicas
 </figure>
 </div>
 </div>
-<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>.</p>
+<p>O modelo com estas variáveis é apresentado na <a href="#tbl-modeldummy" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-modeldummy</span></a>.</p>
 <div class="cell">
 <div id="tbl-modeldummy" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -4845,7 +4845,7 @@ Nota
 1 &amp; x_{n} &amp; x_{n}^2 &amp; \cdots &amp; x_{n}^p \\
 \end{bmatrix}\\
 \]</span></p>
-<p>Sejam os dados do Preço de veículos elétricos em função da Capacidade da bateria em kWh plotados na <a href="#fig-carelet" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>.</p>
+<p>Sejam os dados do Preço de veículos elétricos em função da Capacidade da bateria em kWh plotados na <a href="#fig-carelet" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-carelet</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-carelet" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4860,7 +4860,7 @@ Figura&nbsp;2.6: Dados de Preço de carros elétricos em função da capacidade 
 </div>
 </div>
 </div>
-<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-careletresi" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
+<p>Considerando-se um modelo linear para tais dados, os resíduos obtidos são plotados na <a href="#fig-careletresi" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-careletresi</span></a>. Pode-se observar claramente um padrão de não linearidade nos resíduos em relação aos valores ajustados, indicando o ajuste de um modelo não linear.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-careletresi" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4875,7 +4875,7 @@ Figura&nbsp;2.7: Resíduos do modelo de regressão linear
 </div>
 </div>
 </div>
-<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar a área da folha em função do comprimento. A curva plotada na <a href="#fig-arealm2" class="quarto-xref">Figura&nbsp;<span>2.8</span></a> consiste em tal modelo.</p>
+<p>Pode-se pensar, portanto, em um modelo de regressão quadrático para aproximar a área da folha em função do comprimento. A curva plotada na <a href="#fig-arealm2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-arealm2</span></a> consiste em tal modelo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-arealm2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -4890,7 +4890,7 @@ Figura&nbsp;2.8: Modelo de regressão quadrática para o preço de carros elétr
 </div>
 </div>
 </div>
-<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span>2.9</span></a>. Observa-se que o coeficiente quadrático foi significativo, assim como os demais.</p>
+<p>O modelo quadrático obtido e associado ao gráfico anterior é exposto na <a href="#tbl-quadf" class="quarto-xref">Tabela&nbsp;<span class="quarto-unresolved-ref">tbl-quadf</span></a>. Observa-se que o coeficiente quadrático foi significativo, assim como os demais.</p>
 <div class="cell">
 <div id="tbl-quadf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -5390,7 +5390,7 @@ Tabela&nbsp;2.9: Modelo de regressão polinomial de segunda ordem
 </figure>
 </div>
 </div>
-<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-folhassresi2" class="quarto-xref">Figura&nbsp;<span>2.9</span></a>.</p>
+<p>Os resíduos para o modelo quadrático são plotados na <a href="#fig-folhassresi2" class="quarto-xref">Figura&nbsp;<span class="quarto-unresolved-ref">fig-folhassresi2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-folhassresi2" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -5405,7 +5405,7 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 </div>
 </div>
 </div>
-<p>Finalmente, o modelo quadrático é escrito na <a href="#eq-modquadf" class="quarto-xref">Equação&nbsp;<span>2.15</span></a>.</p>
+<p>Finalmente, o modelo quadrático é escrito na <a href="#eq-modquadf" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-modquadf</span></a>.</p>
 <p><span id="eq-modquadf"><span class="math display">\[
 \hat{y} = 391615,76 +1948943,86 x + 492389,37x^2
 \tag{2.15}\]</span></span></p>
@@ -5446,7 +5446,7 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dados_treino <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>No capítulo 1 não utilizamos uma receita. Porém, esta abordagem é recomendada, uma vez que viabilizará o pré-processamento e tratamento dos preditores. A receita, definida com o comando <code>recipe</code> do pacote <code>recipes</code>, incluído no ecosistema <code>tidymodels</code>, inclui a fórmula e os dados. O comando <code>step_normalize</code> faz a normalização dos preditores, segundo <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span>2.13</span></a>. Há diversos comandos que começam com <code>step</code>, os quais serão úteis neste curso para engenharia de atributos.</p>
+<p>No capítulo 1 não utilizamos uma receita. Porém, esta abordagem é recomendada, uma vez que viabilizará o pré-processamento e tratamento dos preditores. A receita, definida com o comando <code>recipe</code> do pacote <code>recipes</code>, incluído no ecosistema <code>tidymodels</code>, inclui a fórmula e os dados. O comando <code>step_normalize</code> faz a normalização dos preditores, segundo <a href="#eq-normx" class="quarto-xref">Equação&nbsp;<span class="quarto-unresolved-ref">eq-normx</span></a>. Há diversos comandos que começam com <code>step</code>, os quais serão úteis neste curso para engenharia de atributos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>receita <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="at">formula =</span> Preco <span class="sc">~</span> Ano <span class="sc">+</span> Km, <span class="at">data =</span> dados_treino) <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>())</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5618,13 +5618,13 @@ Figura&nbsp;2.9: Resíduos para o modelo quadrático
 <section id="sec-exregols" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="sec-exregols"><span class="header-section-number">2.5</span> Exercícios</h2>
 <ol type="1">
-<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span>Seção 2.4.2</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste. Este modelo é melhor que o modelo obtido na implementação da <a href="#sec-implregmul" class="quarto-xref"><span>Seção 2.4.1</span></a>?</p></li>
-<li><p>Na implementação realizada no item <a href="#sec-implregmulbin" class="quarto-xref"><span>Seção 2.4.3</span></a>, para regressão múltipla com variáveis categóricas, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregmultint" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmultint</span></a>, para regressão múltipla com interação, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste. Este modelo é melhor que o modelo obtido na implementação da <a href="#sec-implregmul" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmul</span></a>?</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregmulbin" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregmulbin</span></a>, para regressão múltipla com variáveis categóricas, não foi realizada a avaliação do modelo com os dados de teste. Realize tais previsões e estime as métricas de ajuste.</p></li>
 <li><p>Considerando o problema de previsão de preços de carros, compare os resultados de ajuste de teste para o caso de regressão múltipla considerando o ano e a quilometragem e regressão múltipla considerando a interação entre tais variáveis.</p></li>
 <li><p>O conjunto de dados <code>carrosusados2025webmotors</code> contém outras variáveis ainda não exploradas, a saber: Marca, Carro, Ano, Km, Cambio, Motor, Valvulas e Combustivel. Ademais, há outros modelos de veículos ainda não explorados. Primeiro abra o conjunto de dados e estude tais variáveis. QUais você sugere acrescentar ao modelo? Quais talvez não sejam importantes?</p></li>
 <li><p>Ainda em relação ao conjunto de dados <code>carrosusados2025webmotors</code>, qual tipo de pré-processamento você sugere para cada novo preditor a ser considerado no novo modelo?</p></li>
 <li><p>Realize todos os passos para obter um modelo considerando as novas variáveis do conjunto de dados <code>carrosusados2025webmotors</code>. Considere 75% dos dados para treinamento. Na receita, sugere-se considerar apenas variáveis que apresentem variação nas colunas, ou então considerar todas e usar <code>step_zv</code> ao final da receita para remover variáveis com valor único. Avalie o ajuste do modelo aos dados de teste.</p></li>
-<li><p>Na implementação realizada no item <a href="#sec-implregpoly" class="quarto-xref"><span>Seção 2.4.4</span></a> não foram realizadas previsões para os dados de teste, bem como, calculadas as métricas d ajuste do modelo. Realize tais previsões e estime as métricas de ajuste.</p></li>
+<li><p>Na implementação realizada no item <a href="#sec-implregpoly" class="quarto-xref"><span class="quarto-unresolved-ref">sec-implregpoly</span></a> não foram realizadas previsões para os dados de teste, bem como, calculadas as métricas d ajuste do modelo. Realize tais previsões e estime as métricas de ajuste.</p></li>
 </ol>
 
 
